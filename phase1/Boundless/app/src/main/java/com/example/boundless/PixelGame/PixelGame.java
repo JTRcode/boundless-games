@@ -1,13 +1,16 @@
 package com.example.boundless.PixelGame;
 
 import com.example.boundless.Game;
-
 import java.util.List;
 
 /**
  * A game where you use pixels to recreate an image.
  */
 public class PixelGame extends Game {
+    /**
+     * The size of the pixel grid.
+     */
+    static int gridSize = 10;
     /**
      * A list of all available levels.
      */
