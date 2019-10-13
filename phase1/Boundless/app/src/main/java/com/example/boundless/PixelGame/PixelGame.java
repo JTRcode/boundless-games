@@ -16,7 +16,7 @@ public class PixelGame extends Game {
     /**
      * The user's choices of pixels.
      */
-    int[][] userChoice;
+    static int[][] userChoice;
 
     /**
      * Checks if the users choices are correct.
