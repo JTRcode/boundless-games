@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class PixelManagerTests {
-    private PixelManager pixelManager = new PixelManager();
+    private PixelManager pixelManager = new PixelManager(3);
     private int[][] level1 = {{0, 1, 0},
             {1, 0, 1},
             {1, 1, 1}};
