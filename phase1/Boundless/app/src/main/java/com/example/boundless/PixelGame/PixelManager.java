@@ -1,5 +1,6 @@
 package com.example.boundless.PixelGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,55 +8,86 @@ import java.util.List;
  */
 public class PixelManager {
     /**
-     *
-     * @param x the x coordinate of the pixel that the user what to change
-     * @param y the y coordinate of the pixel that the user what to change
-     * @param color the color filled the pixel and it is greater than 1
+     * A list of all available levels.
      */
-    public void switchPixel(int x, int y, int color) {
+    private List<int[][]> levels;
+
+    /**
+     * The size of the pixel grid.
+     */
+    private int gridSize = 10;
+
+    public PixelManager(){}
+
+    public PixelManager(int size){
+        gridSize = size;
+    }
+
+    /**
+     * Add a level to this game
+     *
+     * @param levelToAdd the array containing the pixels of the new level.
+     */
+    public void addLevel(int[][] levelToAdd) {
+        levels.add(levelToAdd);
+    }
+
+    /**
+     * Checks if the users choices are correct.
+     *
+     * @return A boolean telling if the answer is correct.
+     */
+    public boolean checkPixels(int[][] userChoices) {
         //TODO
-        if(PixelGame.userChoice[x][y] == 0){ // empty
-            PixelGame.userChoice[x][y] = color;  // it is filled with the color
-        }
-        else if (PixelGame.userChoice[x][y] > 1){ // it is filled with color
-            PixelGame.userChoice[x][y] = 1; // it is an X
-        }
-        else{ // it is an X
-            PixelGame.userChoice[x][y] = 0; // back to empty
-        }
+        return false;
     }
 
     /**
      * Labels the top and side with the correct numbers.
+     *
+     * @param level The 2D array of pixels that creates the image.
+     * @return A list with the first half as rows and the second half as column labels.
      */
-    public void label(int[][] level) {
-        List<List<Integer>> labels = null;
-        for (int i = 0; i < PixelGame.gridSize; i++){
-            //get row
-            int pixelsInARow = 0;
-            List<Integer> streaks = null;
-            for (int j = 0; j < PixelGame.gridSize; j++){
-                if (level[i][j] == 0){
-                    if (pixelsInARow != 0) streaks.add(pixelsInARow);
-                    pixelsInARow = 0;
-                    //end streak, add streak to labels
-                } else {
-                    pixelsInARow++;
-                    //add to streak, nothing to labels
-                }
-            }
-            if (pixelsInARow > 0) streaks.add(pixelsInARow);
-            labels.add(streaks);
-            //if streak is > 0, add to labels
+    public List<List<Integer>> label(int[][] level) {
+        List<List<Integer>> labels = new ArrayList<>();
+        for (int row = 0; row < gridSize; row++) {
+            labels.add(labelSet(level, row, true));
         }
-        //TODO
+        for (int col = 0; col < gridSize; col++) {
+            labels.add(labelSet(level, col, false));
+        }
+        return labels;
     }
 
     /**
-     * Draw the grid with the pixels, and the labels on the row/column.
+     * Returns the label for a given row or column (a given set).
+     *
+     * @param level    The 2D array of pixels to label the set from.
+     * @param i        The row or column to look at.
+     * @param setIsRow Is this set a row?
+     * @return The label for that row or column.
      */
-    public void draw() {
-        //TODO
-
+    private List<Integer> labelSet(int[][] level, int i, boolean setIsRow) {
+        int consecutivePixels = 0;
+        List<Integer> streaks = new ArrayList<>();
+        for (int j = 0; j < gridSize; j++) {
+            if (setIsRow) {
+                if (level[i][j] == 0 && consecutivePixels != 0) {
+                    streaks.add(consecutivePixels); //streak ends
+                    consecutivePixels = 0;
+                } else if (level[i][j] == 1) {
+                    consecutivePixels++;            //streak continues
+                }
+            } else {
+                if (level[j][i] == 0 && consecutivePixels != 0) {
+                    streaks.add(consecutivePixels); //streak ends
+                    consecutivePixels = 0;
+                } else if (level[j][i] == 1) {      //streak continues
+                    consecutivePixels++;
+                }
+            }
+        }
+        if (consecutivePixels > 0) streaks.add(consecutivePixels);
+        return streaks;
     }
 }
