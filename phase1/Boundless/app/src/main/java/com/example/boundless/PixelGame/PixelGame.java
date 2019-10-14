@@ -21,13 +21,15 @@ public class PixelGame extends Game {
      */
     private PixelManager pixelManager = new PixelManager(gridSize);
 
-    public PixelGame(){}
+    public PixelGame() {
+    }
 
     public PixelGame(int size) {
         gridSize = size;
     }
 
-    public boolean gameOver(){
+    @Override
+    public boolean gameOver() {
         return pixelManager.checkPixels(userChoice);
     }
 

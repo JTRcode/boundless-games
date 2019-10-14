@@ -9,5 +9,7 @@ public abstract class Game {
      */
     Statistics stats;
 
+    public abstract boolean gameOver();
+
     //TODO
 }

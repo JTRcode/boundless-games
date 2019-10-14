@@ -70,12 +70,8 @@ public class PixelManager {
      */
     public List<List<Integer>> label(int[][] level) {
         List<List<Integer>> labels = new ArrayList<>();
-        for (int row = 0; row < gridSize; row++) {
-            labels.add(labelSet(level, row, true));
-        }
-        for (int col = 0; col < gridSize; col++) {
-            labels.add(labelSet(level, col, false));
-        }
+        for (int row = 0; row < gridSize; row++) labels.add(labelSet(level, row, true));
+        for (int col = 0; col < gridSize; col++) labels.add(labelSet(level, col, false));
         return labels;
     }
 
@@ -91,20 +87,12 @@ public class PixelManager {
         int consecutivePixels = 0;
         List<Integer> streaks = new ArrayList<>();
         for (int j = 0; j < gridSize; j++) {
-            if (setIsRow) {
-                if (level[i][j] == 0 && consecutivePixels != 0) {
-                    streaks.add(consecutivePixels); //streak ends
-                    consecutivePixels = 0;
-                } else if (level[i][j] > 0) {
-                    consecutivePixels++;            //streak continues
-                }
-            } else {
-                if (level[j][i] == 0 && consecutivePixels != 0) {
-                    streaks.add(consecutivePixels); //streak ends
-                    consecutivePixels = 0;
-                } else if (level[j][i] > 0) {      //streak continues
-                    consecutivePixels++;
-                }
+            int current = setIsRow ? level[i][j] : level[j][i];
+            if (current == 0 && consecutivePixels != 0) {
+                streaks.add(consecutivePixels); //streak ends
+                consecutivePixels = 0;
+            } else if (current > 0) {
+                consecutivePixels++;            //streak continues
             }
         }
         if (consecutivePixels > 0) streaks.add(consecutivePixels);
