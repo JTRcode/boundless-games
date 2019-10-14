@@ -10,16 +10,20 @@ public class PixelManager {
     /**
      * A list of all available levels.
      */
-    private List<int[][]> levels;
-
+    private List<int[][]> levels = new ArrayList<>();
+    /**
+     * The current level being played.
+     */
+    private int currentLevel = 0;
     /**
      * The size of the pixel grid.
      */
     private int gridSize = 10;
 
-    public PixelManager(){}
+    public PixelManager() {
+    }
 
-    public PixelManager(int size){
+    public PixelManager(int size) {
         gridSize = size;
     }
 
@@ -37,9 +41,25 @@ public class PixelManager {
      *
      * @return A boolean telling if the answer is correct.
      */
-    public boolean checkPixels(int[][] userChoices) {
-        //TODO
-        return false;
+    public boolean checkPixels(PixelOptions[][] userChoices) {
+        int[][] level = levels.get(currentLevel);
+        for (int row = 0; row < gridSize; row++)
+            for (int col = 0; col < gridSize; col++)
+                if (doesNotMatch(userChoices[row][col], level[row][col]))
+                    return false;
+        currentLevel++;
+        return true;
+    }
+
+    /**
+     * Returns if the pixelOption matches the level answer for a pixel
+     *
+     * @param userOption  The user input of what the pixel is
+     * @param levelOption The answer of what the pixel is
+     * @return If the user input matches the correct answer
+     */
+    private boolean doesNotMatch(PixelOptions userOption, int levelOption) {
+        return ((levelOption == 0 && userOption == PixelOptions.COLOUR) || (levelOption > 0 && userOption != PixelOptions.COLOUR));
     }
 
     /**
@@ -75,14 +95,14 @@ public class PixelManager {
                 if (level[i][j] == 0 && consecutivePixels != 0) {
                     streaks.add(consecutivePixels); //streak ends
                     consecutivePixels = 0;
-                } else if (level[i][j] == 1) {
+                } else if (level[i][j] > 0) {
                     consecutivePixels++;            //streak continues
                 }
             } else {
                 if (level[j][i] == 0 && consecutivePixels != 0) {
                     streaks.add(consecutivePixels); //streak ends
                     consecutivePixels = 0;
-                } else if (level[j][i] == 1) {      //streak continues
+                } else if (level[j][i] > 0) {      //streak continues
                     consecutivePixels++;
                 }
             }

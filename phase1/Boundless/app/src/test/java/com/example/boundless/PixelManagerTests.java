@@ -1,6 +1,7 @@
 package com.example.boundless;
 
 import com.example.boundless.PixelGame.PixelManager;
+import com.example.boundless.PixelGame.PixelOptions;
 
 import org.junit.Test;
 
@@ -13,9 +14,9 @@ import static org.junit.Assert.*;
 
 public class PixelManagerTests {
     private PixelManager pixelManager = new PixelManager(3);
-    private int[][] level1 = {{0, 1, 0},
-            {1, 0, 1},
-            {1, 1, 1}};
+    private int[][] level1 = {{0, 3, 0},
+            {5, 0, 2},
+            {1, 8, 10}};
 
     @Test
     public void labels_areCorrect() {
@@ -29,5 +30,27 @@ public class PixelManagerTests {
         //set up actual result
         List<List<Integer>> result = pixelManager.label(level1);
         assertThat(result, is(expected));
+    }
+
+    @Test
+    public void checkPixels_correctAnswer() {
+        pixelManager.addLevel(level1);
+        PixelOptions[][] userChoices = {
+                {PixelOptions.X, PixelOptions.COLOUR, PixelOptions.EMPTY},
+                {PixelOptions.COLOUR, PixelOptions.X, PixelOptions.COLOUR},
+                {PixelOptions.COLOUR, PixelOptions.COLOUR, PixelOptions.COLOUR}
+        };
+        assertTrue(pixelManager.checkPixels(userChoices));
+    }
+
+    @Test
+    public void checkPixels_incorrectAnswer() {
+        pixelManager.addLevel(level1);
+        PixelOptions[][] userChoices = {
+                {PixelOptions.X, PixelOptions.COLOUR, PixelOptions.EMPTY},
+                {PixelOptions.COLOUR, PixelOptions.X, PixelOptions.COLOUR},
+                {PixelOptions.COLOUR, PixelOptions.COLOUR, PixelOptions.X}
+        };
+        assertFalse(pixelManager.checkPixels(userChoices));
     }
 }

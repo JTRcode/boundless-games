@@ -27,6 +27,10 @@ public class PixelGame extends Game {
         gridSize = size;
     }
 
+    public boolean gameOver(){
+        return pixelManager.checkPixels(userChoice);
+    }
+
     /**
      * Switches the pixel at the given coordinates from empty to a colour to an X.
      *
