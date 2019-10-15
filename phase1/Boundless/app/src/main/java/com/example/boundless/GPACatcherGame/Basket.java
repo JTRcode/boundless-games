@@ -11,7 +11,10 @@ public class Basket {
     /**
      * The location of the basket
      */
-    Coordinates coordinates;
+    int coord_x;
+    int coord_y;
+    int range; // how much distance the basket can reach;
+                // the range in which objects are considered caught
 
     public Basket() {
         appearance = "|__|";
@@ -29,5 +32,11 @@ public class Basket {
      */
     public void moveRight() {
         //TODO
+    }
+
+    public static boolean in_range(int object_x_coord){
+        // TODO calls only when a falling object hits bottom;
+        //  returns true if the object is in range. i.e. if the object is "caught"
+        return false;
     }
 }
