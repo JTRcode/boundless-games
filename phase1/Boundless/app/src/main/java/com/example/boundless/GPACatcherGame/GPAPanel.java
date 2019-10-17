@@ -11,6 +11,13 @@ import com.example.boundless.GPACatcherGame.GPAMainThread;
 public class GPAPanel extends SurfaceView implements SurfaceHolder.Callback {
     private GPAMainThread thread;
 
+
+    /**
+     * the GPAManager contents
+     */
+    public GPAManager GPAManager;
+
+
     public GPAPanel(Context context){
         super(context);
         getHolder().addCallback(this);
