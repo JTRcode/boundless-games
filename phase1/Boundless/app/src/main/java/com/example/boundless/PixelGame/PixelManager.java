@@ -33,7 +33,7 @@ public class PixelManager {
      * @param levelToAdd the array containing the pixels of the new level.
      */
     public void addLevel(int[][] levelToAdd) {
-        levels.add(levelToAdd);
+        levels.add(levelToAdd.clone());
     }
 
     /**

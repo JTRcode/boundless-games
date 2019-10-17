@@ -24,4 +24,10 @@ public class GPACatcherGame extends Game {
     public static void addTime(int time) {
         GPACatcherGame.time += time;
     }
+
+    @Override
+    public boolean gameOver() {
+        //TODO
+        return false;
+    }
 }

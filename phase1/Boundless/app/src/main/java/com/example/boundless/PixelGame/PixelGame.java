@@ -45,15 +45,15 @@ public class PixelGame extends Game {
      * @param y the y coordinate of the pixel that the user what to change
      */
     public static void switchPixel(int x, int y) {
-        switch (PixelGame.userChoice[x][y]) {
+        switch (userChoice[x][y]) {
             case EMPTY: //empty, change to color
-                PixelGame.userChoice[x][y] = PixelOptions.COLOUR;
+                userChoice[x][y] = PixelOptions.COLOUR;
                 break;
             case COLOUR: //has color, change to X
-                PixelGame.userChoice[x][y] = PixelOptions.X;
+                userChoice[x][y] = PixelOptions.X;
                 break;
             case X: //has an X, change to empty
-                PixelGame.userChoice[x][y] = PixelOptions.EMPTY;
+                userChoice[x][y] = PixelOptions.EMPTY;
                 break;
             default:
                 break;
