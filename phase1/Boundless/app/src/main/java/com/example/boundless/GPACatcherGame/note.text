@@ -3,6 +3,12 @@ For keeping track on every change and detailed explanation
 2019.10.16
 Writer :Huiqin Chen
 Changes Under commit message--
- 1. Changed the the name of file FallingObjectManager.java into GPAManager as the Manager
-    class will contain all objects including basket. Therefore deleted th empty file GPAManager.java.
- 2. Added note.text for further explanation
+    "Deleted GPAManager and named FallingObjectManager as GPAManager. Added note.txt."
+     1. Changed the the name of file FallingObjectManager.java into GPAManager as the Manager
+        class will contain all objects including basket. Therefore deleted th empty file GPAManager.java.
+     2. Added note.text for further explanation
+Changes Under commit message--
+    "Basic code for all objects"
+    1. wrote basic codes for falling objects
+    2. wrote basic codes for Basket.java
+    3. changed the accessibility of some variables and methods and added setters and getters

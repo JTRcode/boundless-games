@@ -9,19 +9,18 @@ public class GPACatcherGame extends Game {
 
     static double gpa; // current GPA
     static int life; // current life remaining (max 3)
-    static int time; // current time remaining
+    static int time; // current time remaining  (overall time to be determined)
     //TODO
 
-
-    public static void addGpa(double gpa) {
+    static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
     }
 
-    public static void addLife(int life) {
+    static void addLife(int life) {
         GPACatcherGame.life += life;
     }
 
-    public static void addTime(int time) {
+    static void addTime(int time) {
         GPACatcherGame.time += time;
     }
 

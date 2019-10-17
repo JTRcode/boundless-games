@@ -1,16 +1,20 @@
 package com.example.boundless.GPACatcherGame;
 
 public class Assignment extends FallingObject {
+    /**
+     *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
+     */
     @Override
-    public void caught() {
-
+    void caught() {
+        GPACatcherGame.addGpa(0.1);
     }
 
     @Override
-    public void missed() {
-
+    void missed() {
+        GPACatcherGame.addGpa(-0.3);
+        GPACatcherGame.addLife(-1);
     }
-    /* An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
-     *
+    /**
+     *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
      */
 }
