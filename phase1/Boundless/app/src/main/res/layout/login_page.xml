@@ -21,7 +21,7 @@
         android:id="@+id/signIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/password"
+        android:text="@string/sign_in"
         android:onClick="signIn"/>
 
 

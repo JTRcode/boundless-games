@@ -53,5 +53,8 @@ public class PixelPanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
+        if(canvas != null){
+            //PixelManager.draw(canvas);
+        }
     }
 }
