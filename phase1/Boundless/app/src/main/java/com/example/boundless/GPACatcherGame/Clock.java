@@ -1,6 +1,15 @@
 package com.example.boundless.GPACatcherGame;
 
-public class Clock extends FallingObject {
+import android.graphics.Color;
+
+class Clock extends FallingObject {
+
+    Clock(){
+        super();
+        setAppearance("[C]");
+        getPaintText().setColor(Color.GREEN);
+    }
+
     /**
      *  + some time when caught, no effect when missed
      *  current design: add 5 more seconds when caught

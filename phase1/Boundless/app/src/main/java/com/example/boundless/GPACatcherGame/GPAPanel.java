@@ -1,6 +1,7 @@
 package com.example.boundless.GPACatcherGame;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -12,6 +13,8 @@ public class GPAPanel extends SurfaceView implements SurfaceHolder.Callback {
     private GPAMainThread thread;
 
 
+    public static int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    public static int screenHeight= Resources.getSystem().getDisplayMetrics().heightPixels;
     /**
      * the GPAManager contents
      */

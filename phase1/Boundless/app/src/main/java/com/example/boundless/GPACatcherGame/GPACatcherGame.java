@@ -10,7 +10,7 @@ public class GPACatcherGame extends Game {
     static double gpa; // current GPA
     static int life; // current life remaining (max 3)
     static int time; // current time remaining  (overall time to be determined)
-    //TODO
+
 
     static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
@@ -26,7 +26,6 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        //TODO
-        return false;
+        return(time <=0||life <=0);
     }
 }

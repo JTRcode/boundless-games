@@ -1,9 +1,14 @@
 package com.example.boundless.GPACatcherGame;
 
-public class Sleep extends FallingObject {
-    /**
-     * appr
-     */
+import android.graphics.Color;
+
+class Sleep extends FallingObject {
+
+    Sleep(){
+        super();
+        setAppearance("[S]");
+        getPaintText().setColor(Color.WHITE);
+    }
 
 
     /**

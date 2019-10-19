@@ -1,6 +1,15 @@
 package com.example.boundless.GPACatcherGame;
 
-public class Assignment extends FallingObject {
+import android.graphics.Color;
+
+class Assignment extends FallingObject {
+
+    Assignment(){
+        super();
+        setAppearance("[A]");
+        getPaintText().setColor(Color.BLUE);
+    }
+
     /**
      *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
      */

@@ -1,6 +1,14 @@
 package com.example.boundless.GPACatcherGame;
 
-public class Bomb extends FallingObject {
+import android.graphics.Color;
+
+class Bomb extends FallingObject {
+
+    Bomb(){
+        super();
+        setAppearance("[B]");
+        getPaintText().setColor(Color.RED);
+    }
     /**
      *  -1 life when caught, no effect when missed
      */

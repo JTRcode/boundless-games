@@ -7,7 +7,7 @@ public class UserInput {
     /**
      * A manager for falling objects
      */
-    FallingObjectManager manager;
+    GPAManager manager;
 
     /**
      * Handle a user tap on the screen

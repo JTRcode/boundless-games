@@ -12,3 +12,14 @@ Changes Under commit message--
     1. wrote basic codes for falling objects
     2. wrote basic codes for Basket.java
     3. changed the accessibility of some variables and methods and added setters and getters
+
+
+ 2019.10.18
+ writer: Huiqin Chen
+ Changes under commit message--
+    "Set appearance for objects and methods in GPAManager"
+    1. Changed the arrayList in GPAManager to LinkedList, as it's better when items will be added
+       or removed frequently.
+    2. added variable paintText of type PaintText as we are using Text in Phase 1.
+    3. set appearance for falling objects
+    4. more code in GPAManager and FallingObjects

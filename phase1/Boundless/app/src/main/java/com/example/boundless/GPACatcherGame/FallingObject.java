@@ -1,61 +1,88 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+
 /**
  * Objects that will fall on the screen.
  */
 public abstract class FallingObject {
 
-    private int coord_x; //The first coordinate of the object
-    private int coord_y; //The second coordinate of the object
-    static int height; // height of the screen; used to indicate if the object hits the ground
+    private int coordX; //The first coordinate of the object
+    private int coordY; //The second coordinate of the object
     private String appearance; //The appearance of the object
     private int fallingSpeed = 2; //The speed that the object will fall at
+    private Paint paintText = new Paint();
 
-    public int getCoord_x() {
-        return coord_x;
+    public FallingObject(){
+        paintText.setTextSize(36);
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        setCoordY(0);
+        setCoordX((int)Math.random()*(GPAPanel.screenWidth));
     }
 
-    public void setCoord_x(int coord_x) {
-        this.coord_x = coord_x;
+    int getCoordX() {
+        return coordX;
     }
 
-    public int getCoord_y() {
-        return coord_y;
+    void setCoordX(int coordX) {
+        this.coordX = coordX;
     }
 
-    public void setCoord_y(int coord_y) {
-        this.coord_y = coord_y;
+    int getCoordY() {
+        return coordY;
     }
 
-    public String getAppearance() {
+    void setCoordY(int coordY) {
+        this.coordY = coordY;
+    }
+
+    String getAppearance() {
         return appearance;
     }
 
-    public void setAppearance(String appearance) {
+    void setAppearance(String appearance) {
         this.appearance = appearance;
     }
+
+    Paint getPaintText() {
+        return paintText;
+    }
+
 
     public void fall(){
         // makes the object fall down the screen when called.
         // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
-        //TODO compare the Range and if hit the ground in GPAManager to remove objects
-            coord_y += fallingSpeed;
+            coordY += fallingSpeed;
 
     }
 
     boolean hitGround(){
         //  returns true if the object's at the bottom of the screen when called
-            if(coord_y == height)
-                return true;
-        return false;
+        return(coordY == GPAPanel.screenHeight);
+    }
+
+    /**
+     * @param canvas     the canvas on which to draw this item.
+     * @param appearance the string to draw.
+     * @param x          the x-coordinate of the string's cursor location.
+     * @param y          the y-coordinate of the string's cursor location.
+     */
+    void drawString(Canvas canvas, String appearance, int x, int y) {
+        canvas.drawText(appearance, x , y, paintText);
+    }
+
+
+    /**
+     * @param canvas the canvas on which to draw this item.
+     */
+    protected void draw(Canvas canvas) {
+        drawString(canvas, appearance, coordX, coordY);
     }
 
     abstract void caught();
-        //TODO sub classes calls static addLife, addGpa, and/or addTime methods in GPACatcherGame
-        // with positive values
 
     abstract void missed();
-    //TODO sub classes calls static addLife, addGpa, and/or addTime methods in GPACatcherGame
-    // with negative values
 
 }
