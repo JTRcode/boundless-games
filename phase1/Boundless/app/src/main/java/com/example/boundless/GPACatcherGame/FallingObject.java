@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import com.example.boundless.Panel;
+
 /**
  * Objects that will fall on the screen.
  */
@@ -19,7 +21,7 @@ public abstract class FallingObject {
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
-        setCoordX((int)Math.random()*(GPAPanel.screenWidth));
+        setCoordX((int)Math.random()*(Panel.screenWidth));
     }
 
     int getCoordX() {
@@ -60,7 +62,7 @@ public abstract class FallingObject {
 
     boolean hitGround(){
         //  returns true if the object's at the bottom of the screen when called
-        return(coordY == GPAPanel.screenHeight);
+        return(coordY == Panel.screenHeight);
     }
 
     /**

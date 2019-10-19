@@ -1,5 +1,7 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Canvas;
+
 import com.example.boundless.Game;
 
 /**
@@ -27,5 +29,15 @@ public class GPACatcherGame extends Game {
     @Override
     public boolean gameOver() {
         return(time <=0||life <=0);
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        //TODO
+    }
+
+    @Override
+    public void update(){
+        //TODO
     }
 }

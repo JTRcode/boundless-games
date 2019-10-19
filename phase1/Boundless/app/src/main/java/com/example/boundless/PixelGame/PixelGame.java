@@ -1,5 +1,9 @@
 package com.example.boundless.PixelGame;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import com.example.boundless.Game;
 
 /**
@@ -16,6 +20,7 @@ public class PixelGame extends Game {
     private int occupied = 1;
 
 
+    Paint paintText = new Paint();
     /**
      * The user's choices of pixels.
      */
@@ -27,10 +32,14 @@ public class PixelGame extends Game {
     private PixelManager pixelManager = new PixelManager(gridSize);
 
     public PixelGame() {
+        paintText.setColor(Color.WHITE);
+        paintText.setTextSize(36);
     }
 
     public PixelGame(int size) {
         gridSize = size;
+        paintText.setColor(Color.WHITE);
+        paintText.setTextSize(36);
     }
 
     @Override
@@ -173,5 +182,9 @@ public class PixelGame extends Game {
         return Taiji;
     }
 
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawText("JACKSONNNNN", 100, 100, paintText);
+    }
 
 }

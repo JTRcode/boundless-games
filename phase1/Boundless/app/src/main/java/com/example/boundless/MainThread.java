@@ -1,23 +1,23 @@
-package com.example.boundless.GPACatcherGame;
+package com.example.boundless;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.boundless.GPACatcherGame.GPAPanel;
+import com.example.boundless.Panel;
 
-public class GPAMainThread extends Thread{
+public class MainThread extends Thread{
     public static final int MAX_FPS = 30;
-    private GPAPanel gpaPanel;
+    private Panel panel;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
     private boolean running;
     public static Canvas canvas;
 
 
-    public GPAMainThread(SurfaceHolder surfaceHolder, GPAPanel gpaPanel){
+    public MainThread(SurfaceHolder surfaceHolder, Panel panel){
         super();
         this.surfaceHolder = surfaceHolder;
-        this.gpaPanel = gpaPanel;
+        this.panel = panel;
     }
 
     @Override
@@ -36,8 +36,8 @@ public class GPAMainThread extends Thread{
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder){
-                    this.gpaPanel.update();
-                    this.gpaPanel.draw(canvas);
+                    this.panel.update();
+                    this.panel.draw(canvas);
                 }
             }catch(Exception e){e.printStackTrace();}
             finally {

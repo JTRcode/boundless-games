@@ -2,12 +2,8 @@ package com.example.boundless;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.example.boundless.GPACatcherGame.GPAPanel;
-import com.example.boundless.PixelGame.PixelPanel;
 
 public class GameActivity extends Activity {
     @Override
@@ -18,9 +14,16 @@ public class GameActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         String gameNum = extras.getString("GAMENAME");
+        System.out.println("Name: "+gameNum);
         switch (gameNum){
             case "GPA Catcher":
-                setContentView(new GPAPanel(this));
+                setContentView(new Panel(this, GamesEnum.GPACATCHER));
+                break;
+            case "Pixel":
+                setContentView(new Panel(this, GamesEnum.PIXELS));
+                break;
+            case "Rotate Tile":
+                setContentView(new Panel(this, GamesEnum.ROTATETILE));
                 break;
             default:
                 break;

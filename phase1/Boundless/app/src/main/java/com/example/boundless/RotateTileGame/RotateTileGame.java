@@ -1,5 +1,7 @@
 package com.example.boundless.RotateTileGame;
 
+import android.graphics.Canvas;
+
 import com.example.boundless.Game;
 
 /**
@@ -22,6 +24,11 @@ public class RotateTileGame extends Game {
      */
     public void rotate(int x, int y) {
         userChoice[x][y].rotateTile();
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        //TODO
     }
 
     //TODO

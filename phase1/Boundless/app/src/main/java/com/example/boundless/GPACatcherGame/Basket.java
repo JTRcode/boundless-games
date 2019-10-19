@@ -4,7 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.text.TextPaint;
+
+import com.example.boundless.Panel;
 
 /**
  * A basket for catching falling objects
@@ -45,8 +46,8 @@ class Basket {
         paintText.setColor(Color.GRAY);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         appearance = "|____|";
-        this.screenWidth = GPAPanel.screenWidth;
-        this.screenHeight = GPAPanel.screenHeight;
+        this.screenWidth = Panel.screenWidth;
+        this.screenHeight = Panel.screenHeight;
         setCoordX(screenWidth/2);
         setCoordY(screenHeight-1);
     }
