@@ -17,7 +17,8 @@
         android:id="@+id/PixelGame"
         android:text="@string/pixel"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/GPACatcherGame"/>
+        android:layout_below="@id/GPACatcherGame"
+        android:onClick="startGame"/>
 
     <Button
         android:id="@+id/RotateTile"
@@ -25,5 +26,6 @@
         android:layout_height="wrap_content"
         android:text="@string/rotate_tile"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/PixelGame"/>
+        android:layout_below="@id/PixelGame"
+        android:onClick="startGame"/>
 </RelativeLayout>

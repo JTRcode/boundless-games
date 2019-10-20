@@ -1,7 +1,5 @@
 package com.example.boundless;
 
-import android.app.AppComponentFactory;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signIn(View view){
-        Intent intent = new Intent(this,Menu.class);
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 

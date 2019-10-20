@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * The main menu, controls log in and starting games
  */
-public class Menu extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
     /**
      * The current user, null if not logged in
      */
@@ -25,7 +25,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.menu);
     }
 
-    public void startGame(View v){
+    public void startGame(View v) {
         Intent intent = new Intent(this, GameActivity.class);
         /*
         switch (v.getId()){
@@ -41,8 +41,8 @@ public class Menu extends AppCompatActivity {
             default:
                 break;
         }*/
-        Button button = (Button)findViewById(v.getId());
-        intent.putExtra("GAMENAME",button.getText());
+        Button button = (Button) findViewById(v.getId());
+        intent.putExtra("GAMENAME", button.getText());
         startActivity(intent);
     }
 
@@ -52,14 +52,9 @@ public class Menu extends AppCompatActivity {
     UserAccountManager accountManager;
 
     /**
-     * Manages game starting and resuming
-     */
-    GameDeployer gameDeployer;
-
-    /**
      * Starts or resumes a game
      */
-    public void playGame(boolean resume){
+    public void playGame(boolean resume) {
         //TODO
     }
 
@@ -68,16 +63,17 @@ public class Menu extends AppCompatActivity {
      *
      * @return If the sign in is successful
      */
-    public boolean signIn(String name){
+    public boolean signIn(String name) {
         //TODO
         return false;
     }
 
     /**
      * Signs a user up given credentials
+     *
      * @param name the username of the new account.
      */
-    public void signUp(String name){
+    public void signUp(String name) {
         //TODO
     }
 
