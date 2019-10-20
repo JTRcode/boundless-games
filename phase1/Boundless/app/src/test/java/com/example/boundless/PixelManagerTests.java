@@ -28,7 +28,8 @@ public class PixelManagerTests {
             expected.add(intList);
         }
         //set up actual result
-        List<List<Integer>> result = pixelManager.label(level1);
+        pixelManager.addLevel(level1);
+        List<List<Integer>> result = pixelManager.label(0);
         assertThat(result, is(expected));
     }
 
@@ -40,7 +41,7 @@ public class PixelManagerTests {
                 {PixelOptions.COLOUR, PixelOptions.X, PixelOptions.COLOUR},
                 {PixelOptions.COLOUR, PixelOptions.COLOUR, PixelOptions.COLOUR}
         };
-        assertTrue(pixelManager.checkPixels(userChoices));
+        assertTrue(pixelManager.checkPixels(userChoices, 0));
     }
 
     @Test
@@ -51,6 +52,6 @@ public class PixelManagerTests {
                 {PixelOptions.COLOUR, PixelOptions.X, PixelOptions.COLOUR},
                 {PixelOptions.COLOUR, PixelOptions.COLOUR, PixelOptions.X}
         };
-        assertFalse(pixelManager.checkPixels(userChoices));
+        assertFalse(pixelManager.checkPixels(userChoices,0));
     }
 }
