@@ -20,11 +20,25 @@ public class PixelManager {
      */
     private int gridSize = 10;
 
+    /**
+     * array of the color;
+     */
+    int[] colors = new int[3];
+
     public PixelManager() {
     }
 
     public PixelManager(int size) {
         gridSize = size;
+    }
+
+    /**
+     * add all the levels into the level
+     */
+    public void addAll(){
+        addLevel(HardCodeEasy());
+        addLevel(HardCodeMed());
+        addLevel(HardCodeHard());
     }
 
     /**
@@ -74,6 +88,98 @@ public class PixelManager {
         for (int col = 0; col < gridSize; col++) labels.add(labelSet(level, col, false));
         return labels;
     }
+
+    /**
+     * The first level
+     * @return the picture of the first level
+     */
+    private int[][] HardCodeEasy(){
+        int[][] Heart = new int[gridSize][gridSize]; //The first level is a heart
+        Heart[1][2] = colors[0];
+        Heart[1][7] = colors[0];
+        for(int i = 0; i < 3; i++){
+            Heart[2][1+i] = colors[0];
+            Heart[2][6+i] = colors[0];
+        }
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 10; j++){
+                Heart[3+i][j] = colors[0];
+            }
+        }
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 8 - 2*i; j++){
+                Heart[6+i][1+i+j] = colors[0];
+            }
+        }
+        return Heart;
+    }
+
+    /**
+     * The second one
+     * @return the picture of second level
+     */
+    private int[][] HardCodeMed(){
+        int[][] Bugdroid = new int[gridSize][gridSize];//the second level is Bugdroid
+        //The head
+        Bugdroid[0][4] = colors[1];
+        Bugdroid[0][5] = colors[1];
+        //The body and the arm
+        for(int i = 0; i < 4; i++){
+            Bugdroid[1][3+i] = colors[1];
+        }
+        for(int i = 0; i < 3; i++){
+            Bugdroid[4+i][0] = colors[1];
+            Bugdroid[4+i][9] = colors[1];
+        }
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 6; j++){
+                Bugdroid[2+i][2+j] = colors[1];
+            }
+        }
+        Bugdroid[3][1] = colors[1];
+        Bugdroid[3][8] = colors[1];
+        Bugdroid[2][3] = 0;
+        Bugdroid[2][6] = 0;
+
+        //The leg
+        Bugdroid[8][3] = colors[1];
+        Bugdroid[8][6] = colors[1];
+        return Bugdroid;
+    }
+
+    /**
+     * The hardest level
+     * @return the picture of the hardest level
+     */
+    private int[][] HardCodeHard(){
+        int[][] Taiji = new int[gridSize][gridSize]; // The third one is Taiji
+        for(int i = 0; i < 4; i++){
+            Taiji[0][3+i] = colors[2];
+            Taiji[9][3+i] = colors[2];
+            Taiji[3+i][0] = colors[2];
+            Taiji[3+i][9] = colors[2];
+            Taiji[5][1+i] = colors[2];
+        }
+        for(int i = 0; i < 6; i++){
+            Taiji[1][2+i] = colors[2];
+        }
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 6; j++){
+                Taiji[i+2][1+j] = colors[2];
+            }
+        }
+        for(int i = 0; i < 2; i++){
+            Taiji[6+i][1] = colors[2];
+            Taiji[2+i][8] = colors[2];
+        }
+        Taiji[8][2] = colors[2];
+        Taiji[8][7] = colors[2];
+        Taiji[7][6] = colors[2];
+        Taiji[7][8] = colors[2];
+        Taiji[2][3] = 0;
+        return Taiji;
+    }
+
 
     /**
      * Returns the label for a given row or column (a given set).
