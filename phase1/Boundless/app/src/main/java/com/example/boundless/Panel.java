@@ -7,15 +7,25 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.boundless.GPACatcherGame.GPACatcherGame;
 import com.example.boundless.PixelGame.PixelGame;
+import com.example.boundless.RotateTileGame.RotateTileGame;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
-    private MainThread thread;
-
-    public static int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-    public static int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
     /**
-     * The game contents
+     * The main thread to run on
+     */
+    private MainThread thread;
+    /**
+     * The width of the screen
+     */
+    public static final int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    /**
+     * The height of the screen.
+     */
+    public static final int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+    /**
+     * The game contents.
      */
     public Game game;
 
@@ -25,13 +35,19 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
-        switch (gameToPlay){
+        switch (gameToPlay) {
             case PIXELS:
                 game = new PixelGame();
                 break;
+            case GPACATCHER:
+                game = new GPACatcherGame();
+                break;
+            case ROTATETILE:
+                game = new RotateTileGame();
+                break;
             default:
                 break;
-                //TODO
+            //TODO
         }
     }
 
@@ -64,11 +80,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         final int pointerCount = event.getPointerCount();
-        float x = event.getX();
-        float y = event.getY();
         for (int pointer = 0; pointer < pointerCount; pointer++) {
-            System.out.printf("  POINTER: %d: (%f,%f)",
-                    event.getPointerId(pointer), event.getX(pointer), event.getY(pointer));
+            MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
+            event.getPointerCoords(pointer, coords);
+            game.screenTouched((int)coords.x, (int)coords.y);
         }
         return super.onTouchEvent(event);
     }

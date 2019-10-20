@@ -1,5 +1,8 @@
 package com.example.boundless.RotateTileGame;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 /**
  * An individual tile that can be rotated.
  */
@@ -15,10 +18,12 @@ public abstract class Tile {
      */
     boolean visited = true;
 
+    Bitmap image;
     /**
      * The current rotation on this tile.
      */
     private Rotation rotation;
+    private String srcPath = "../../../res/drawable/";
 
     Tile(int[] exits) {
         this.exits = exits;

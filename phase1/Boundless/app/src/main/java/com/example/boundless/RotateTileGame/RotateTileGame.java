@@ -28,6 +28,12 @@ public class RotateTileGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
+        //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
+        //TODO
+    }
+
+    @Override
+    public void screenTouched(int x, int y) {
         //TODO
     }
 

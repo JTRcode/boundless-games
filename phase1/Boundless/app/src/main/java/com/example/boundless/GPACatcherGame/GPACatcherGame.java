@@ -37,6 +37,11 @@ public class GPACatcherGame extends Game {
     }
 
     @Override
+    public void screenTouched(int x, int y) {
+        //TODO
+    }
+
+    @Override
     public void update(){
         //TODO
     }
