@@ -31,7 +31,7 @@ public class PixelGame extends Game {
      */
     private int width;
 
-    Paint paint = new Paint();
+    private Paint paint = new Paint();
     /**
      * The user's choices of pixels.
      */
@@ -54,8 +54,12 @@ public class PixelGame extends Game {
         gridSize = size;
         pixelManager = new PixelManager(gridSize);
         currentLabels = pixelManager.label(currentLevel);
-        width = (Panel.screenWidth - startX * 2) / gridSize;
+        width = (Panel.SCREEN_WIDTH - startX * 2) / gridSize;
         userChoice = new PixelOptions[gridSize][gridSize];
+        emptyUserChoices();
+    }
+
+    private void emptyUserChoices() {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoice[i][j] = PixelOptions.EMPTY;
@@ -65,9 +69,14 @@ public class PixelGame extends Game {
     public boolean gameOver() {
         if (pixelManager.checkPixels(userChoice, currentLevel)) {
             currentLevel++;
-            //TODO: check if that's the end of levels
-            currentLabels = pixelManager.label(currentLevel);
-            return true;
+            try {
+                currentLabels = pixelManager.label(currentLevel);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                emptyUserChoices();
+                //TODO: exit here and go back to main menu
+                return true;
+            }
+            emptyUserChoices();
         }
         return false;
     }
@@ -78,11 +87,14 @@ public class PixelGame extends Game {
      * @param x The x coordinate of the touched location.
      * @param y The y coordinate of the touched location.
      */
+    @Override
     public void screenTouched(int x, int y) {
+        if (Math.abs(x - startX) < 300 && Math.abs(y - (startY +width * gridSize + 300)) < 100){
+            gameOver();
+        }
         int[] coordsIJ = convertCoordToIJ(x, y);
-        if (coordsIJ[0] >= gridSize || coordsIJ[1] >= gridSize)
-            return; // user touched outside of playing area
-        switchPixel(coordsIJ[0], coordsIJ[1]);
+        if (coordsIJ[0] < gridSize && coordsIJ[1] < gridSize)
+            switchPixel(coordsIJ[0], coordsIJ[1]);
     }
 
     /**
@@ -95,7 +107,7 @@ public class PixelGame extends Game {
         //note: [0][gridSize - 1] is the lower left pixel
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                int filled = (userChoice[i][j] == PixelOptions.X) ? Color.LTGRAY : Color.BLACK;
+                int filled = (userChoice[i][j] == PixelOptions.X) ? Color.DKGRAY : Color.BLACK;
                 filled = (userChoice[i][j] == PixelOptions.COLOUR) ? Color.CYAN : filled;
                 paint.setColor(filled);
                 int[] coords = convertIJToSquare(i, j);
@@ -104,6 +116,13 @@ public class PixelGame extends Game {
         }
         drawOutlines(canvas);
         drawLabels(canvas);
+        addGameOverButton(canvas);
+    }
+
+    private void addGameOverButton(Canvas canvas) {
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(40);
+        drawString(canvas, "Check your answer!", startX, startY +width * gridSize + 300);
     }
 
     /**
@@ -130,6 +149,8 @@ public class PixelGame extends Game {
      * @param canvas The canvas to draw on.
      */
     private void drawLabels(Canvas canvas) {
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(20);
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
             for (int entryNum = 0; entryNum < row.size(); entryNum++) {
@@ -154,8 +175,6 @@ public class PixelGame extends Game {
      * @param y      The y location to draw text at.
      */
     private void drawString(Canvas canvas, String text, int x, int y) {
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(20);
         canvas.drawText(text, x, y, paint);
     }
 

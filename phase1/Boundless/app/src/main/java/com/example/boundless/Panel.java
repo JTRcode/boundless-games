@@ -3,7 +3,6 @@ package com.example.boundless;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -20,15 +19,15 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     /**
      * The width of the screen
      */
-    public static final int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    public static final int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
     /**
      * The height of the screen.
      */
-    public static final int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+    public static final int SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
     /**
      * The game contents.
      */
-    public Game game;
+    private Game game;
 
 
     public Panel(Context context, GamesEnum gameToPlay) {
@@ -48,7 +47,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
                 break;
             default:
                 break;
-            //TODO
         }
     }
 
@@ -59,7 +57,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         thread = new MainThread(getHolder(), this);
-
         thread.setRunning(true);
         thread.start();
     }
@@ -100,4 +97,5 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
             game.draw(canvas);
         }
     }
+
 }

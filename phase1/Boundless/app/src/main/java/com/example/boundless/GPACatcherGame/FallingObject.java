@@ -21,7 +21,7 @@ public abstract class FallingObject {
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
-        setCoordX((int)Math.random()*(Panel.screenWidth));
+        setCoordX((int)Math.random()*(Panel.SCREEN_WIDTH));
     }
 
     int getCoordX() {
@@ -62,7 +62,7 @@ public abstract class FallingObject {
 
     boolean hitGround(){
         //  returns true if the object's at the bottom of the screen when called
-        return(coordY == Panel.screenHeight);
+        return(coordY == Panel.SCREEN_HEIGHT);
     }
 
     /**
