@@ -29,9 +29,11 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     private Game game;
 
+    private static Panel instance;
 
     public Panel(Context context, GamesEnum gameToPlay) {
         super(context);
+        instance = this;
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
@@ -48,6 +50,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
             default:
                 break;
         }
+    }
+
+    public static Panel getPanel(){
+        return instance;
     }
 
     @Override

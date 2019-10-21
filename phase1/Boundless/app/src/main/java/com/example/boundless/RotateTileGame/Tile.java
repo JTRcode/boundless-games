@@ -25,6 +25,8 @@ public abstract class Tile {
     private Rotation rotation;
     private String srcPath = "../../../res/drawable/";
 
+
+
     Tile(int[] exits) {
         this.exits = exits;
         rotation = Rotation.getRandom();

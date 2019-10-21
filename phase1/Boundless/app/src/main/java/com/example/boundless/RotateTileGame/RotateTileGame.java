@@ -1,6 +1,8 @@
 package com.example.boundless.RotateTileGame;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.example.boundless.Game;
 
@@ -12,6 +14,14 @@ public class RotateTileGame extends Game {
     private TileManager manager = new TileManager();
     private Tile[][] userChoice;
 
+    private Paint paint;
+
+    public RotateTileGame(){
+        manager.setUpTiles();
+        paint = new Paint();
+        paint.setColor(Color.RED);
+        paint.setTextSize(100);
+    }
     @Override
     public boolean gameOver() {
         return manager.gameOver(userChoice);
@@ -30,6 +40,9 @@ public class RotateTileGame extends Game {
     public void draw(Canvas canvas) {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
         //TODO
+        Tile tile = new StraightTile();
+        canvas.drawText("Jackson", 100,100,paint);
+        canvas.drawBitmap(tile.image, 150, 150, paint);
     }
     /**
      * Deal with the screen being touched, and check if the game is now over
