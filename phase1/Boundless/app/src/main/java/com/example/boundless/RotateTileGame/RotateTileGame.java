@@ -31,7 +31,13 @@ public class RotateTileGame extends Game {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
         //TODO
     }
-
+    /**
+     * Deal with the screen being touched, and check if the game is now over
+     *
+     * @param x The x coordinate of the touched location.
+     * @param y The y coordinate of the touched location.
+     * @return whether the game should be over.
+     */
     @Override
     public void screenTouched(int x, int y) {
         //TODO

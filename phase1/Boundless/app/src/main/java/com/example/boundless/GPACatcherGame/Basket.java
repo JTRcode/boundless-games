@@ -46,8 +46,8 @@ class Basket {
         paintText.setColor(Color.GRAY);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         appearance = "|____|";
-        this.screenWidth = Panel.screenWidth;
-        this.screenHeight = Panel.screenHeight;
+        this.screenWidth = Panel.SCREEN_WIDTH;
+        this.screenHeight = Panel.SCREEN_HEIGHT;
         setCoordX(screenWidth/2);
         setCoordY(screenHeight-1);
         this.speed = speed;

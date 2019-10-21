@@ -66,7 +66,7 @@ public class PixelManager {
         int[][] level = levels.get(currentLevel);
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
-                if (doesNotMatch(userChoices[row][col], level[row][col]))
+                if (doesNotMatch(userChoices[row][col], level[col][row]))   //TODO: should be level[row][col], not sure whats wrong
                     return false;
         return true;
     }
@@ -79,7 +79,7 @@ public class PixelManager {
      * @return If the user input matches the correct answer
      */
     private boolean doesNotMatch(PixelOptions userOption, int levelOption) {
-        return ((levelOption == 0 && userOption == PixelOptions.COLOUR) || (levelOption > 0 && userOption != PixelOptions.COLOUR));
+        return ((levelOption == 0 && userOption == PixelOptions.COLOUR) || (levelOption != 0 && userOption != PixelOptions.COLOUR));
     }
 
     /**
