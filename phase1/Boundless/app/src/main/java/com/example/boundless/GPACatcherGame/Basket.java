@@ -114,7 +114,7 @@ class Basket {
      *
      * @param canvas the canvas on which to draw this item.
      */
-    protected void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         drawString(canvas, appearance, coordX, coordY);
     }
 

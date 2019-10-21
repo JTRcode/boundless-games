@@ -60,15 +60,15 @@ public class GPACatcherGame extends Game {
 
 
         canvas.drawText("GPA: " + gpa, 10, 10, paint);
-        canvas.drawText("Time: " + time, Panel.screenWidth - 10, 10, paint);
-        canvas.drawText("Life: " + life, Panel.screenWidth - 10, 30, paint);
+        canvas.drawText("Time: " + time, Panel.SCREEN_WIDTH - 10, 10, paint);
+        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 10, 30, paint);
         this.basket.draw(canvas);
 
     }
 
     @Override
     public void screenTouched(int x, int y) {
-        int mid = Panel.screenWidth / 2;
+        int mid = Panel.SCREEN_WIDTH / 2;
         if (x <= mid){
             this.basket.moveLeft();
         }
