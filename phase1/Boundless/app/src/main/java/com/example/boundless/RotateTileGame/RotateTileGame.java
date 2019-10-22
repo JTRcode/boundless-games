@@ -42,7 +42,7 @@ public class RotateTileGame extends Game {
         //TODO
         Tile tile = new StraightTile();
         canvas.drawText("Jackson", 100,100,paint);
-        canvas.drawBitmap(tile.image, 150, 150, paint);
+        canvas.drawBitmap(tile.image, 20, 20, paint);
     }
     /**
      * Deal with the screen being touched, and check if the game is now over
