@@ -23,3 +23,11 @@ Changes Under commit message--
     2. added variable paintText of type PaintText as we are using Text in Phase 1.
     3. set appearance for falling objects
     4. more code in GPAManager and FallingObjects
+
+ 2019.10.20
+ writer: Cynthia Song
+ Files affected:
+    Basket, GPACatcherGame
+ Changes:
+    1. added parameter int speed to init Basket.
+    2. added init, screentouched and draw to GPACatcherGame

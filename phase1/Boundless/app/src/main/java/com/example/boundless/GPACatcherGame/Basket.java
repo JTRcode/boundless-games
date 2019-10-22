@@ -41,7 +41,7 @@ class Basket {
     private int screenWidth;
     private int screenHeight;
 
-    public Basket() {
+    public Basket(int speed) {
         paintText.setTextSize(36);
         paintText.setColor(Color.GRAY);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
@@ -50,6 +50,8 @@ class Basket {
         this.screenHeight = Panel.SCREEN_HEIGHT;
         setCoordX(screenWidth/2);
         setCoordY(screenHeight-1);
+        this.speed = speed;
+
     }
 
     public int getCoordX() {
@@ -112,7 +114,7 @@ class Basket {
      *
      * @param canvas the canvas on which to draw this item.
      */
-    protected void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         drawString(canvas, appearance, coordX, coordY);
     }
 
