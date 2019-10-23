@@ -18,7 +18,7 @@ public class RotateTileGame extends Game {
 
     public RotateTileGame(){
         manager.setUpTiles();
-        //userChoice = manager.getTileStage();
+        userChoice = manager.getTileStage();
         paint = new Paint();
         paint.setColor(Color.RED);
         paint.setTextSize(100);
@@ -46,6 +46,7 @@ public class RotateTileGame extends Game {
         canvas.drawBitmap(tile.image, 100, 100, paint);
         for (int x = 0; x < manager.getGridSize(); x++){
             for (int y = 0; y < manager.getGridSize(); y++){
+                canvas.drawBitmap(userChoice[x][y].image, 100*y, 100*x, paint);
             }
         }
     }

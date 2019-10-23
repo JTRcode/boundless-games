@@ -14,7 +14,7 @@ public class TileManager {
      * The grid of tiles on the screen
      */
     private List<Tile[][]> levels;
-    private int gridSize = 10;
+    private int gridSize = 5;
     private int tileSize = 100; //TODO assign it depending on the width of the screen
 
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -71,6 +71,14 @@ public class TileManager {
      */
     public void setUpTiles() {
         //TODO: hardcode and randomize tiles?
+        Tile[][] level = new Tile[gridSize][gridSize];
+        for (int i = 0; i < gridSize; i++){
+            for (int t = 0 ; t < gridSize; t++){
+                level[i][t] = createNewTile(HardCodeSetUps.game1[i][t]);
+            }
+        }
+        randomizeTiles(level); //Is it mutable? if so then yes this will work
+        levels.add(level);
     }
 
     /**
