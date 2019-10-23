@@ -16,7 +16,7 @@ public class GPACatcherGame extends Game {
     private static double gpa; // current GPA
     private static int life; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
-    private Basket basket;
+    //private Basket basket;
     private GPAManager manager;
     Paint paint = new Paint();
 
@@ -29,9 +29,9 @@ public class GPACatcherGame extends Game {
         GPACatcherGame.time = time;
         gpa = 3.0;
         life = 3;
-        basket = new Basket(1);
         manager = new GPAManager();
-
+        manager.basket = new Basket(1);
+        manager.addFallingObject();
     }
 
     static void addGpa(double gpa) {
@@ -62,7 +62,7 @@ public class GPACatcherGame extends Game {
         canvas.drawText("GPA: " + gpa, 10, 10, paint);
         canvas.drawText("Time: " + time, Panel.SCREEN_WIDTH - 10, 10, paint);
         canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 10, 30, paint);
-        this.basket.draw(canvas);
+        manager.basket.draw(canvas);
 
     }
 
@@ -70,17 +70,19 @@ public class GPACatcherGame extends Game {
     public void screenTouched(int x, int y) {
         int mid = Panel.SCREEN_WIDTH / 2;
         if (x <= mid){
-            this.basket.moveLeft();
+            manager.basket.moveLeft();
         }
         else{
-            this.basket.moveRight();
+            manager.basket.moveRight();
         }
     }
 
     @Override
     public void update(){
         //TODO
-        manager.update();
+
         manager.addFallingObject();
+        manager.update();
+
     }
 }

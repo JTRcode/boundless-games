@@ -31,3 +31,12 @@ Changes Under commit message--
  Changes:
     1. added parameter int speed to init Basket.
     2. added init, screentouched and draw to GPACatcherGame
+
+2019.10.23
+writer: Huiqin Chen
+Changes under commit message--
+    "Fixed NullPointerException "
+Files affected: GPACatherGame.java
+Flaw: NullPointerException
+Fix: the error was on the basket.The instance variable basket in GPACatherGame
+is deleted and use manager.basket to call basket instead .
