@@ -1,5 +1,8 @@
 package com.example.boundless.RotateTileGame;
 
+import android.content.res.Resources;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,13 @@ public class TileManager {
      */
     private List<Tile[][]> levels;
     private int gridSize = 10;
+    private int tileSize = 100; //TODO assign it depending on the width of the screen
+
+    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+
+
     /**
      * The current level being played.
      */
@@ -26,6 +36,36 @@ public class TileManager {
         levels = new ArrayList<>();
     }
 
+    public Tile createNewTile(TileEnum type){
+        Tile tile;
+        switch (type){
+            case I:
+                tile = new StraightTile();
+                break;
+            case T:
+                tile = new TTile();
+                break;
+            case L:
+                tile = new LTile();
+                break;
+            case X:
+                tile = new CrossTile();
+                break;
+            default:
+                Log.e("TileManager","TRIED CREATING NEW TILE< BUT DID NOT PASS CORRECT ENUM TYPE");
+                return null;
+        }
+        tile.resize(tileSize);
+        return tile;
+    }
+
+    public int getGridSize(){
+        return gridSize;
+    }
+
+    public Tile[][] getTileStage(){
+        return levels.get(currentLevel);
+    }
     /**
      * Initializes the tiles array and randomizes the rotation.
      */

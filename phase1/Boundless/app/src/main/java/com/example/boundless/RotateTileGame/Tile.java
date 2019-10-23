@@ -23,13 +23,16 @@ public abstract class Tile {
      * The current rotation on this tile.
      */
     private Rotation rotation;
-    private String srcPath = "../../../res/drawable/";
 
 
+    public void resize(int newDimension){
+        image = Bitmap.createScaledBitmap(image, newDimension, newDimension, true);
+    }
 
     Tile(int[] exits) {
         this.exits = exits;
         rotation = Rotation.getRandom();
+
     }
 
     /**

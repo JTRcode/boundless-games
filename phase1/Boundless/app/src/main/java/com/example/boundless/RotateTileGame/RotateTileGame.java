@@ -18,6 +18,7 @@ public class RotateTileGame extends Game {
 
     public RotateTileGame(){
         manager.setUpTiles();
+        //userChoice = manager.getTileStage();
         paint = new Paint();
         paint.setColor(Color.RED);
         paint.setTextSize(100);
@@ -40,9 +41,13 @@ public class RotateTileGame extends Game {
     public void draw(Canvas canvas) {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
         //TODO
-        Tile tile = new StraightTile();
+        Tile tile = manager.createNewTile(TileEnum.I);
         canvas.drawText("Jackson", 100,100,paint);
-        canvas.drawBitmap(tile.image, 20, 20, paint);
+        canvas.drawBitmap(tile.image, 100, 100, paint);
+        for (int x = 0; x < manager.getGridSize(); x++){
+            for (int y = 0; y < manager.getGridSize(); y++){
+            }
+        }
     }
     /**
      * Deal with the screen being touched, and check if the game is now over
@@ -53,7 +58,7 @@ public class RotateTileGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        //TODO
+        //TODO Update purposes
     }
 
     //TODO
