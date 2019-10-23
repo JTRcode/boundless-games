@@ -32,20 +32,23 @@ public class Statistics {
         return ran.nextInt(201) + 400;
     }
 
-    // adds output of rngScore() to total score
+    // adds output of addRandomScore() to total score
     public static int sumTotalScore() {
         totalScore += addRandomScore();
         return totalScore;
     }
 
+    // counts the number of clicks on the screen during the game
     public static void clickEvent() {
         counterClicks += 1;
     }
 
+    // returns the total number of clicks
     public static int totalClicks() {
         return counterClicks;
     }
 
+    // returns string formatting the statistics (to be called at the end after all 3 games)
     @Override
     public String toString() {
         return "Your Statistics (For All Games):" + "\n" +
