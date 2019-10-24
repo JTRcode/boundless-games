@@ -14,7 +14,5 @@ class CrossTile extends Tile {
     CrossTile() {
         super(new int[]{1, 1, 1, 1});
         image = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.cross_pipe);
-
     }
-    //TODO
 }

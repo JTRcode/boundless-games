@@ -9,6 +9,7 @@ import java.util.*;
  * Creates new falling objects and updates them
  */
 public class GPAManager {
+    //TODO: make sure javadocs are there, and change modifiers to package-private or private where possible
     /**
      * A list of all the falling objects on the screen
      */
@@ -23,7 +24,6 @@ public class GPAManager {
         for (FallingObject f : fallingObjects) {
             f.draw(canvas);
         }
-
     }
 
     /**
@@ -43,14 +43,13 @@ public class GPAManager {
             } else
                 temp.fall();
         }
-
-
     }
 
     /**
      * Add a falling object to the screen
      */
     public void addFallingObject() {
+        //TODO: figure out why objects aren't showing up
         double d = Math.random();
         if (d < 0.1)
             fallingObjects.add(new Assignment());
@@ -67,7 +66,7 @@ public class GPAManager {
 //     * Remove a falling object from the screen
 //     */
 //    public void removeFallingObject() {
-//        //TODO
+//        //TODO: remove this if its not being used
 //    }
 //}
 

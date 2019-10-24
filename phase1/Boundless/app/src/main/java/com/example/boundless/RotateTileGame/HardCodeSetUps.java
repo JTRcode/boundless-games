@@ -14,4 +14,5 @@ public class HardCodeSetUps {
                     {TileEnum.I,TileEnum.I,TileEnum.T, TileEnum.L, TileEnum.L},
                     {TileEnum.T, TileEnum.L, TileEnum.I, TileEnum.L, TileEnum.X},
                     {TileEnum.X, TileEnum.I, TileEnum.L, TileEnum.X,TileEnum.L}};
+    //TODO: eventually, would be cool to make these null values choose a random tile and generate "random" maps that way
 }

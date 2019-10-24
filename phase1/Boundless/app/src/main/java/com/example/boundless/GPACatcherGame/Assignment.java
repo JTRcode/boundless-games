@@ -26,4 +26,5 @@ class Assignment extends FallingObject {
     /**
      *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
      */
+    //TODO: what's the comment above for?
 }

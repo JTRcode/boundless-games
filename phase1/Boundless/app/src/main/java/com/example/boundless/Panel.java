@@ -12,6 +12,7 @@ import com.example.boundless.PixelGame.PixelGame;
 import com.example.boundless.RotateTileGame.RotateTileGame;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
+    //TODO: finish javadocs (including for class)
     /**
      * The main thread to run on
      */

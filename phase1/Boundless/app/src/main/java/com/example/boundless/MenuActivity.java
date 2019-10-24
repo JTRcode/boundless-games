@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
  * The main menu, controls log in and starting games
  */
 public class MenuActivity extends AppCompatActivity {
+    //TODO: show stats on the menu screen
+    //TODO: create customization options (will need a new class)
     /**
      * The current user, null if not logged in
      */
@@ -25,56 +27,27 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.menu);
     }
 
-    public void startGame(View v) {
+    /**
+     * Start the chosen game.
+     * @param view The chosen button that was clicked
+     */
+    public void startGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
-        /*
-        switch (v.getId()){
+
+        switch (view.getId()) {
             case R.id.GPACatcherGame:
-                intent.putExtra("GAMENUM", 1);
+                intent.putExtra("GAME", GamesEnum.GPACATCHER);
                 break;
             case R.id.RotateTile:
-                intent.putExtra("GAMENUM", 2);
+                intent.putExtra("GAME", GamesEnum.ROTATETILE);
                 break;
             case R.id.PixelGame:
-                intent.putExtra("GAMENUM", 3);
+                intent.putExtra("GAME", GamesEnum.PIXELS);
                 break;
             default:
                 break;
-        }*/
-        Button button = (Button) findViewById(v.getId());
-        intent.putExtra("GAMENAME", button.getText());
+        }
         startActivity(intent);
-    }
-
-    /**
-     * Manages sign in and sign up
-     */
-    UserAccountManager accountManager;
-
-    /**
-     * Starts or resumes a game
-     */
-    public void playGame(boolean resume) {
-        //TODO
-    }
-
-    /**
-     * Signs a user in given credentials
-     *
-     * @return If the sign in is successful
-     */
-    public boolean signIn(String name) {
-        //TODO
-        return false;
-    }
-
-    /**
-     * Signs a user up given credentials
-     *
-     * @param name the username of the new account.
-     */
-    public void signUp(String name) {
-        //TODO
     }
 
 }
