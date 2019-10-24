@@ -5,56 +5,51 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private UserAccountManager userManager;
+
+    private EditText username;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
-
         /*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment()).commit();
         }
         */
+        userManager = new UserAccountManager();
+        if (notSignedIn()) {
+            setContentView(R.layout.login_page);
+            username = findViewById(R.id.username);
+            password = findViewById(R.id.password);
+        }
+        else {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
-    public void signIn(View view){
+    private boolean notSignedIn() {
+        //TODO: Nyah figure out if user is signed in
+        return true;
+    }
+
+    public void signIn(View view) {
+        if (userManager.signIn(username.getText().toString(), password.getText().toString())) {
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
+        }
+    }
+    public void signUp(View view) {
+        //TODO: check if user already exists in userManager
+        userManager.signUp(username.getText().toString(), password.getText().toString());
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
-
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    /*
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() { }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_display_message,
-                    container, false);
-            return rootView;
-        }
-    }
-     */
 }
