@@ -97,6 +97,92 @@ public class TileManager {
     }
 
     /**
+     * Initializes the tiles array and randomizes the rotation (easy mode).
+     */
+    public void setUpTilesEasy() {
+
+        gridSize = 4;
+
+        char[][] EasyLayout = {
+                {'L', 'L', 'I', 'X'},
+                {'L', 'I', 'I', 'L'},
+                {'X', 'L', 'T', 'I'},
+                {'L', 'I', 'I', 'L'}};
+
+        Tile[][] EasyTileLevel = this.convertCharToTile(EasyLayout, 4);
+        this.randomizeTiles(EasyTileLevel);
+        levels.add(EasyTileLevel);
+    }
+
+    /**
+     * Initializes the tiles array and randomizes the rotation (medium mode).
+     */
+    public void setUpTilesMedium() {
+
+        gridSize = 6;
+
+        char[][] mediumLayout = {
+                {'L', 'L', 'I', 'X', 'L', 'X'},
+                {'L', 'I', 'I', 'L', 'L', 'X'},
+                {'X', 'L', 'T', 'I', 'L', 'X'},
+                {'L', 'I', 'I', 'L', 'L', 'X'},
+                {'L', 'I', 'I', 'L', 'L', 'X'},
+                {'L', 'I', 'I', 'L', 'L', 'X'}};
+
+        Tile[][] MedTileLevel = this.convertCharToTile(mediumLayout, 6);
+        this.randomizeTiles(MedTileLevel);
+        levels.add(MedTileLevel);
+    }
+
+    /**
+     * Initializes the tiles array and randomizes the rotation (hard mode).
+     */
+    public void setUpTilesHard() {
+
+        gridSize = 8;
+
+        char[][] hardLayout = {
+                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
+                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I'}};
+
+        Tile[][] HardTileLevel = this.convertCharToTile(hardLayout, 8);
+        this.randomizeTiles(HardTileLevel);
+        levels.add(HardTileLevel);
+    }
+
+    /**
+     * Initializes the tiles array and randomizes the rotation (expert mode), i.e. play all levels
+     * and an expert stage.
+     */
+    public void setUpTilesExpert() {
+
+        gridSize = 10;
+
+        char[][] ExpertLayout = {
+                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
+                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I', 'I', 'I'}};
+
+        Tile[][] ExpertTileLevel = this.convertCharToTile(ExpertLayout, 10);
+        this.randomizeTiles(ExpertTileLevel);
+        levels.add(ExpertTileLevel);
+    }
+
+
+    /**
      * Randomizes the tile rotation
      *
      * @param level the level to randomize the tiles of.
@@ -208,6 +294,7 @@ public class TileManager {
                     default:
                         break;
                 }
+                output[i][j].resize(tileSize);
             }
         return output;
     }
