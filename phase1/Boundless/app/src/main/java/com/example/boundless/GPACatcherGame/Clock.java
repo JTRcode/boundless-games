@@ -4,15 +4,15 @@ import android.graphics.Color;
 
 class Clock extends FallingObject {
 
-    Clock(){
+    Clock() {
         super();
         setAppearance("[C]");
         getPaintText().setColor(Color.GREEN);
     }
 
     /**
-     *  + some time when caught, no effect when missed
-     *  current design: add 5 more seconds when caught
+     * + some time when caught, no effect when missed
+     * current design: add 5 more seconds when caught
      */
     @Override
     void caught() {

@@ -4,13 +4,14 @@ import android.graphics.Color;
 
 class Bomb extends FallingObject {
 
-    Bomb(){
+    Bomb() {
         super();
         setAppearance("[B]");
         getPaintText().setColor(Color.RED);
     }
+
     /**
-     *  -1 life when caught, no effect when missed
+     * -1 life when caught, no effect when missed
      */
     @Override
     void caught() {

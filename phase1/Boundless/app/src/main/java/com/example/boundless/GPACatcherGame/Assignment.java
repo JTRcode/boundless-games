@@ -4,14 +4,14 @@ import android.graphics.Color;
 
 class Assignment extends FallingObject {
 
-    Assignment(){
+    Assignment() {
         super();
         setAppearance("[A]");
         getPaintText().setColor(Color.BLUE);
     }
 
     /**
-     *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
+     * An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
      */
     @Override
     void caught() {

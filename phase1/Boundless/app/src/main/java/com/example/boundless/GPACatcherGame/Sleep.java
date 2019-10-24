@@ -4,15 +4,15 @@ import android.graphics.Color;
 
 class Sleep extends FallingObject {
 
-    Sleep(){
+    Sleep() {
         super();
         setAppearance("[S]");
-        getPaintText().setColor(Color.WHITE);
+        getPaintText().setColor(Color.BLACK);
     }
 
 
     /**
-     *  + 1 life when caught, no effect when missed.
+     * + 1 life when caught, no effect when missed.
      */
     @Override
     void caught() {

@@ -20,17 +20,17 @@ public class GPACatcherGame extends Game {
     private GPAManager manager;
     Paint paint = new Paint();
 
-    public GPACatcherGame(){
+    public GPACatcherGame() {
         this(1);
     }
 
-    public GPACatcherGame(int time){
+    public GPACatcherGame(int time) {
 
         GPACatcherGame.time = time;
         gpa = 3.0;
         life = 3;
         manager = new GPAManager();
-        manager.basket = new Basket(1);
+        manager.basket = new Basket(50);
         manager.addFallingObject();
     }
 
@@ -48,7 +48,7 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        return(time <=0||life <=0);
+        return (time <= 0 || life <= 0);
     }
 
     @Override
@@ -58,27 +58,25 @@ public class GPACatcherGame extends Game {
         paint.setColor(Color.BLACK);
         paint.setTextSize(24);
 
-
-        canvas.drawText("GPA: " + gpa, 10, 10, paint);
-        canvas.drawText("Time: " + time, Panel.SCREEN_WIDTH - 10, 10, paint);
-        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 10, 30, paint);
+        canvas.drawText("GPA: " + gpa, 50, 50, paint);
+        canvas.drawText("Time: " + time, Panel.SCREEN_WIDTH - 130, 50, paint);
+        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
-
+        manager.draw(canvas);
     }
 
     @Override
     public void screenTouched(int x, int y) {
         int mid = Panel.SCREEN_WIDTH / 2;
-        if (x <= mid){
+        if (x <= mid) {
             manager.basket.moveLeft();
-        }
-        else{
+        } else {
             manager.basket.moveRight();
         }
     }
 
     @Override
-    public void update(){
+    public void update() {
         //TODO
 
         manager.addFallingObject();

@@ -40,3 +40,13 @@ Files affected: GPACatherGame.java
 Flaw: NullPointerException
 Fix: the error was on the basket.The instance variable basket in GPACatherGame
 is deleted and use manager.basket to call basket instead .
+
+Changes under commit message--
+    "Got GPACatherGame to run"
+Files affected: GPACatherGame.java, Sleep.java, GPAManager.java, FallingObject.java, Basket.java
+Flaw:
+1. cannot see falling objects on the screen
+2. too many falling objects and they overlap
+Fix:
+1. added a manager.draw() method in GPACatherGame.
+2. rewrote the addFallingObject method so somethings no object is created when updating

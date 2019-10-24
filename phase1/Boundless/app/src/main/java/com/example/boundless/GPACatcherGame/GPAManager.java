@@ -37,10 +37,10 @@ public class GPAManager {
             if (basket.inRange(temp)) {
                 temp.caught();
                 iterator.remove();
-            }else if(temp.hitGround()){
+            } else if (temp.hitGround()) {
                 temp.missed();
                 iterator.remove();
-            }else
+            } else
                 temp.fall();
         }
 
@@ -52,13 +52,13 @@ public class GPAManager {
      */
     public void addFallingObject() {
         double d = Math.random();
-        if (d < 0.45)
+        if (d < 0.1)
             fallingObjects.add(new Assignment());
-        else if (d < 0.7)
+        else if (d < 0.15)
             fallingObjects.add(new Bomb());
-        else if (d < 0.85)
+        else if (d < 0.2)
             fallingObjects.add(new Sleep());
-        else
+        else if (d < 0.25)
             fallingObjects.add(new Clock());
 
     }

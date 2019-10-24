@@ -14,14 +14,14 @@ public abstract class FallingObject {
     private int coordX; //The first coordinate of the object
     private int coordY; //The second coordinate of the object
     private String appearance; //The appearance of the object
-    private int fallingSpeed = 2; //The speed that the object will fall at
+    private int fallingSpeed = 10; //The speed that the object will fall at
     private Paint paintText = new Paint();
 
-    public FallingObject(){
-        paintText.setTextSize(36);
+    public FallingObject() {
+        paintText.setTextSize(40);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
-        setCoordX((int)Math.random()*(Panel.SCREEN_WIDTH));
+        setCoordX((int) (Math.random() * (Panel.SCREEN_WIDTH)));
     }
 
     int getCoordX() {
@@ -52,17 +52,17 @@ public abstract class FallingObject {
         return paintText;
     }
 
+    // makes the object fall down the screen when called.
+    // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
+    public void fall() {
 
-    public void fall(){
-        // makes the object fall down the screen when called.
-        // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
-            coordY += fallingSpeed;
+        coordY += fallingSpeed;
 
     }
 
-    boolean hitGround(){
+    boolean hitGround() {
         //  returns true if the object's at the bottom of the screen when called
-        return(coordY == Panel.SCREEN_HEIGHT);
+        return (coordY == Panel.SCREEN_HEIGHT);
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class FallingObject {
      * @param y          the y-coordinate of the string's cursor location.
      */
     void drawString(Canvas canvas, String appearance, int x, int y) {
-        canvas.drawText(appearance, x , y, paintText);
+        canvas.drawText(appearance, x, y, paintText);
     }
 
 
