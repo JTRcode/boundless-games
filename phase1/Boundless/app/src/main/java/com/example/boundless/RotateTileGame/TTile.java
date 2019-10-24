@@ -13,5 +13,4 @@ class TTile extends Tile {
         super(new int[]{1, 1, 1, 0});
         image = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.t_pipe);
     }
-    //TODO
 }

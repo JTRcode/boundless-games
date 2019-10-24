@@ -18,10 +18,9 @@ public class TileManager {
     private int tileSize = 100; //TODO assign it depending on the width of the screen
     private int startX = 100;
     private int startY = 100;
-
+    //TODO: Jackson the drawing stuff shouldn't be in the manager
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
 
 
     /**
@@ -36,12 +35,12 @@ public class TileManager {
     public TileManager(int size) {
         gridSize = size;
         levels = new ArrayList<>();
-        tileSize = (screenWidth - 2*startX)/size;
+        tileSize = (screenWidth - 2 * startX) / size;
     }
 
-    public Tile createNewTile(TileEnum type){
+    public Tile createNewTile(TileEnum type) {
         Tile tile;
-        switch (type){
+        switch (type) {
             case I:
                 tile = new StraightTile();
                 break;
@@ -55,34 +54,41 @@ public class TileManager {
                 tile = new CrossTile();
                 break;
             default:
-                Log.e("TileManager","TRIED CREATING NEW TILE< BUT DID NOT PASS CORRECT ENUM TYPE");
+                Log.e("TileManager", "TRIED CREATING NEW TILE< BUT DID NOT PASS CORRECT ENUM TYPE");
                 return null;
         }
         tile.resize(tileSize);
         return tile;
     }
 
-    public int getGridSize(){
+    public int getGridSize() {
         return gridSize;
     }
 
-    public int getTileSize(){return tileSize;}
+    public int getTileSize() {
+        return tileSize;
+    }
 
-    public int getStartX(){return startX;}
+    public int getStartX() {
+        return startX;
+    }
 
-    public int getStartY(){return startY;}
+    public int getStartY() {
+        return startY;
+    }
 
-    public Tile[][] getTileStage(){
+    public Tile[][] getTileStage() {
         return levels.get(currentLevel);
     }
+
     /**
      * Initializes the tiles array and randomizes the rotation.
      */
     public void setUpTiles() {
         //TODO: hardcode and randomize tiles?
         Tile[][] level = new Tile[gridSize][gridSize];
-        for (int i = 0; i < gridSize; i++){
-            for (int t = 0 ; t < gridSize; t++){
+        for (int i = 0; i < gridSize; i++) {
+            for (int t = 0; t < gridSize; t++) {
                 level[i][t] = createNewTile(HardCodeSetUps.game1[i][t]);
             }
         }
@@ -99,46 +105,6 @@ public class TileManager {
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
                 level[row][col].setTile(Rotation.getRandom());
-    }
-
-    /**
-     * Draws the tiles on the screen
-     */
-    public void draw() {
-        Tile[][] level = levels.get(currentLevel);
-        System.out.println("--------------------------");
-        for (int i = 0; i < gridSize; i++) {
-            StringBuilder builder = new StringBuilder("/  ");
-            for (int j = 0; j < gridSize; j++) {
-                if (level[i][j] instanceof CrossTile) {
-                    builder.append(" -|- ");
-                } else if (level[i][j] instanceof StraightTile && (level[i][j].getRotation() == Rotation.NORTH || level[i][j].getRotation() == Rotation.SOUTH)) {
-                    builder.append("  |  ");
-                } else if (level[i][j] instanceof StraightTile) {
-                    builder.append(" --- ");
-                } else if (level[i][j] instanceof TTile && level[i][j].getRotation() == Rotation.NORTH) {
-                    builder.append("  |- ");
-                } else if (level[i][j] instanceof TTile && level[i][j].getRotation() == Rotation.EAST) {
-                    builder.append(" -,- ");
-                } else if (level[i][j] instanceof TTile && level[i][j].getRotation() == Rotation.SOUTH) {
-                    builder.append(" -|  ");
-                } else if (level[i][j] instanceof TTile) {
-                    builder.append(" -`- ");
-                } else if (level[i][j] instanceof LTile && level[i][j].getRotation() == Rotation.NORTH) {
-                    builder.append("  |_ ");
-                } else if (level[i][j] instanceof LTile && level[i][j].getRotation() == Rotation.EAST) {
-                    builder.append("  ,- ");
-                } else if (level[i][j] instanceof LTile && level[i][j].getRotation() == Rotation.SOUTH) {
-                    builder.append(" -,  ");
-                } else if (level[i][j] instanceof LTile) {
-                    builder.append(" -`  ");
-                }
-            }
-            builder.append("  /\n");
-            System.out.println(builder);
-        }
-        System.out.println("--------------------------");
-        //TODO: change to graphical interface when we have it
     }
 
     /**

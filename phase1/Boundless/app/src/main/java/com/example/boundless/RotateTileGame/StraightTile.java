@@ -13,5 +13,4 @@ class StraightTile extends Tile {
         super(new int[]{1, 0, 1, 0});
         image = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.straight_pipe);
     }
-    //TODO
 }

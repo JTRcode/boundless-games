@@ -11,6 +11,7 @@ import com.example.boundless.Panel;
  * A basket for catching falling objects
  */
 class Basket {
+    //TODO: Finish javadocs
     /**
      * The appearance of the basket
      */
@@ -51,7 +52,6 @@ class Basket {
         setCoordX(screenWidth/2);
         setCoordY(screenHeight-1);
         this.speed = speed;
-
     }
 
     public int getCoordX() {
@@ -95,7 +95,6 @@ class Basket {
             int bottom = object.getCoordY();
 
             return (left>= coordX &&right<= coordX +appearance.length()&& bottom>=coordY);
-
     }
 
     /**
@@ -108,7 +107,6 @@ class Basket {
         canvas.drawText(appearance, x, y, paintText);
     }
 
-
     /**
      * Draws this fish tank item.
      *
@@ -117,5 +115,6 @@ class Basket {
     public void draw(Canvas canvas) {
         drawString(canvas, appearance, coordX, coordY);
     }
+    //TODO: the javadoc for draw... (and inRange javadoc needs to be implemented)
 
 }

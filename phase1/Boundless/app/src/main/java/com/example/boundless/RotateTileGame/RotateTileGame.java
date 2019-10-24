@@ -22,30 +22,30 @@ public class RotateTileGame extends Game {
         manager.setUpTiles();
         userChoice = manager.getTileStage();
         paint = new Paint();
-        paint.setColor(Color.RED);
-        paint.setTextSize(100);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(40);
     }
 
     @Override
     public boolean gameOver() {
         return manager.gameOver(userChoice);
-        //TODO
     }
 
 
     /**
      * Rotates a given tile clockwise.
+     * @param i The first coordinate of the tile to rotate
+     * @param j The second coordinate of the tile to rotate
      */
-    public void rotate(int x, int y) {
-        userChoice[x][y].rotateTile();
+    public void rotate(int i, int j) {
+        userChoice[i][j].rotateTile();
     }
 
     @Override
     public void draw(Canvas canvas) {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
-        //TODO
+        //TODO: Jackson finish this up
         Tile tile = manager.createNewTile(TileEnum.I);
-        canvas.drawText("Jackson", 100, 100, paint);
         for (int i = 0; i < manager.getGridSize(); i++) {
             for (int j = 0; j < manager.getGridSize(); j++) {
                 canvas.drawBitmap(userChoice[i][j].image, manager.getStartX() + j * manager.getTileSize(), manager.getStartY() + manager.getTileSize() * i, paint);
@@ -62,9 +62,7 @@ public class RotateTileGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        //TODO Update purposes
+        //TODO: Update location touched with rotated tile (see PixelGame.convertCoordToIJ method for example on getting the [i] and [j] coordinates)
         userChoice[0][0].rotateTile();
     }
-
-    //TODO
 }

@@ -58,22 +58,26 @@ public class UserAccountManager {
      * Restores the previous users and allows them to sign in again.
      */
     private void restorePreviousUsers() {
+        System.out.println("ZZZ LOOKING AT FILE AT " + path + FILE_NAME);
         String line;
         try {
+            System.out.println("ZZZ TRYING TO LOOK AT FILE");
             FileInputStream fileInputStream = new FileInputStream(new File(path + FILE_NAME));
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             while ((line = bufferedReader.readLine()) != null) {
                 //separate line by `, restore name and password...
+                System.out.println("ZZZ " + line);
                 String[] userInfo = line.split("`", 1);
                 users.add(new UserAccount(userInfo[0], userInfo[1]));
+                System.out.println("ZZZ ADDING USER NAME: " + userInfo[0] + " PASS: " + userInfo[1]);
             }
             fileInputStream.close();
             bufferedReader.close();
         } catch (FileNotFoundException ex) {
-            Log.d(TAG, ex.getMessage());
+            Log.d(TAG, "ZZZ #1 " + ex.getMessage());
         } catch (IOException ex) {
-            Log.d(TAG, ex.getMessage());
+            Log.d(TAG, "ZZZ #2 " + ex.getMessage());
         }
     }
 
@@ -83,12 +87,14 @@ public class UserAccountManager {
             new File(path).mkdir();
             File file = new File(path + FILE_NAME);
             if (!file.exists()) {
+                System.out.println("ZZZ CREATING NEW FILE");
                 file.createNewFile();
             }
+            System.out.println("ZZZ WRITING TO FILE");
             FileOutputStream fileOutputStream = new FileOutputStream(file, true);
             fileOutputStream.write((data + System.getProperty("line.separator")).getBytes());
         } catch (IOException ex) {
-            Log.d(TAG, ex.getMessage());
+            Log.d(TAG, "ZZZ " + ex.getMessage());
         }
     }
 }

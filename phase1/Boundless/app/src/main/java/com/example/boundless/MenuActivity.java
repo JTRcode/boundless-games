@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
  * The main menu, controls log in and starting games
  */
 public class MenuActivity extends AppCompatActivity {
+    //TODO: show stats on the menu screen
+    //TODO: create customization options (will need a new class)
     /**
      * The current user, null if not logged in
      */

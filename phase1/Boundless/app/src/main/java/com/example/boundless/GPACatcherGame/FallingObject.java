@@ -1,6 +1,7 @@
 package com.example.boundless.GPACatcherGame;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
@@ -10,7 +11,7 @@ import com.example.boundless.Panel;
  * Objects that will fall on the screen.
  */
 public abstract class FallingObject {
-
+    //TODO: javadocs need to be created
     private int coordX; //The first coordinate of the object
     private int coordY; //The second coordinate of the object
     private String appearance; //The appearance of the object
@@ -57,7 +58,6 @@ public abstract class FallingObject {
         // makes the object fall down the screen when called.
         // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
             coordY += fallingSpeed;
-
     }
 
     boolean hitGround(){

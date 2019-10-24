@@ -122,7 +122,7 @@ public class PixelManager {
 
     //-----------------------------------
     //Hardcode levels
-
+    //TODO: move these hardcoded patterns to a new class
     /**
      * The first level
      *

@@ -119,6 +119,10 @@ public class PixelGame extends Game {
         addGameOverButton(canvas);
     }
 
+    /**
+     * Adds the game over button to the screen.
+     * @param canvas
+     */
     private void addGameOverButton(Canvas canvas) {
         paint.setColor(Color.WHITE);
         paint.setTextSize(40);
