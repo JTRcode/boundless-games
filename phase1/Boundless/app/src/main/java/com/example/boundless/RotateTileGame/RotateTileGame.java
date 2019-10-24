@@ -11,18 +11,21 @@ import com.example.boundless.Game;
  */
 public class RotateTileGame extends Game {
 
-    private TileManager manager = new TileManager();
+    private TileManager manager = new TileManager(5);
     private Tile[][] userChoice;
-
+    /**
+     * The width of each grid square.
+     */
     private Paint paint;
 
-    public RotateTileGame(){
+    public RotateTileGame() {
         manager.setUpTiles();
         userChoice = manager.getTileStage();
         paint = new Paint();
         paint.setColor(Color.RED);
         paint.setTextSize(100);
     }
+
     @Override
     public boolean gameOver() {
         return manager.gameOver(userChoice);
@@ -42,14 +45,14 @@ public class RotateTileGame extends Game {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
         //TODO
         Tile tile = manager.createNewTile(TileEnum.I);
-        canvas.drawText("Jackson", 100,100,paint);
-        canvas.drawBitmap(tile.image, 100, 100, paint);
-        for (int x = 0; x < manager.getGridSize(); x++){
-            for (int y = 0; y < manager.getGridSize(); y++){
-                canvas.drawBitmap(userChoice[x][y].image, 100*y, 100*x, paint);
+        canvas.drawText("Jackson", 100, 100, paint);
+        for (int i = 0; i < manager.getGridSize(); i++) {
+            for (int j = 0; j < manager.getGridSize(); j++) {
+                canvas.drawBitmap(userChoice[i][j].image, manager.getStartX() + j * manager.getTileSize(), manager.getStartY() + manager.getTileSize() * i, paint);
             }
         }
     }
+
     /**
      * Deal with the screen being touched, and check if the game is now over
      *
@@ -60,6 +63,7 @@ public class RotateTileGame extends Game {
     @Override
     public void screenTouched(int x, int y) {
         //TODO Update purposes
+        userChoice[0][0].rotateTile();
     }
 
     //TODO

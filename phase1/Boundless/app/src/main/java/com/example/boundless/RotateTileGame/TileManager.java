@@ -16,6 +16,8 @@ public class TileManager {
     private List<Tile[][]> levels;
     private int gridSize = 5;
     private int tileSize = 100; //TODO assign it depending on the width of the screen
+    private int startX = 100;
+    private int startY = 100;
 
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
@@ -34,6 +36,7 @@ public class TileManager {
     public TileManager(int size) {
         gridSize = size;
         levels = new ArrayList<>();
+        tileSize = (screenWidth - 2*startX)/size;
     }
 
     public Tile createNewTile(TileEnum type){
@@ -62,6 +65,12 @@ public class TileManager {
     public int getGridSize(){
         return gridSize;
     }
+
+    public int getTileSize(){return tileSize;}
+
+    public int getStartX(){return startX;}
+
+    public int getStartY(){return startY;}
 
     public Tile[][] getTileStage(){
         return levels.get(currentLevel);

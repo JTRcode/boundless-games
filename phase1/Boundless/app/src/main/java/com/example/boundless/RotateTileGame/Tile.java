@@ -2,6 +2,7 @@ package com.example.boundless.RotateTileGame;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 /**
  * An individual tile that can be rotated.
@@ -87,6 +88,7 @@ public abstract class Tile {
      * Rotates the tile.
      */
     void rotateTile() {
+        rotateBitmap(90);
         switch (rotation) {
             case NORTH:
                 rotation = Rotation.EAST;
@@ -103,6 +105,13 @@ public abstract class Tile {
             default:
                 break;
         }
+    }
+
+    private void rotateBitmap(float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        image =  Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, true);
     }
 
     /**
