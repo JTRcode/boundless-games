@@ -11,8 +11,6 @@ class Clock extends FallingObject {
 
     Clock() {
         super();
-//        setAppearance("[C]");
-//        getPaintText().setColor(Color.GREEN);
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.time);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
@@ -28,7 +26,7 @@ class Clock extends FallingObject {
 
     @Override
     void missed() {
-        GPACatcherGame.addTime(-1);
+        GPACatcherGame.addTime(0);
     }
 
 }

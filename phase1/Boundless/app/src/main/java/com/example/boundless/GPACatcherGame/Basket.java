@@ -34,12 +34,6 @@ class Basket {
     private int speed;
 
 
-//    /**
-//     * how much distance the basket can reach
-//     * the range in which objects are considered caught
-//     */
-//    private int range;
-
      /**
      * the width of the screen
      */
@@ -50,15 +44,15 @@ class Basket {
         paintText.setTextSize(36);
         paintText.setColor(Color.WHITE);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        this.size = 200;
+        this.size = 250;
 
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
         appearance = Bitmap.createScaledBitmap(appearance, size, size, true);
-//        appearance = "|____|";
+
         this.screenWidth = Panel.SCREEN_WIDTH;
         this.screenHeight = Panel.SCREEN_HEIGHT;
         setCoordX(screenWidth/2);
-        setCoordY(screenHeight-200);
+        setCoordY(screenHeight-250);
         this.speed = speed;
     }
 
@@ -82,7 +76,7 @@ class Basket {
      * Moves the basket left on the screen
      */
     void moveLeft() {
-        if(coordX !=0)
+        if(coordX >=0)
             coordX -= speed;
     }
 
@@ -90,42 +84,35 @@ class Basket {
      * Moves the basket right on the screen
      */
     void moveRight() {
-        coordX += speed;
-//        if(coordX +appearance.length()<screenWidth)
-//            coordX +=speed;
+
+        if(coordX +size<screenWidth)
+            coordX +=speed;
     }
-
-    //  calls only when a falling object reaches the same y value as basket;
-    boolean inRange(FallingObject object){
-        //  returns true if the object is in range. i.e. if the object is "caught"
-//            int right = object.getCoordX()+object.getAppearance().length();
-            int right = object.getCoordX() + object.getSize();
-            int left = object.getCoordX();
-            int bottom = object.getCoordY();
-
-            return (left>= coordX &&right<= coordX + size&& bottom>=coordY);
-    }
-
-//    /**
-//     * @param canvas     the canvas on which to draw this item.
-//     * @param appearance the string to draw.
-//     * @param x          the x-coordinate of the string's cursor location.
-//     * @param y          the y-coordinate of the string's cursor location.
-//     */
-//    void drawString(Canvas canvas, String appearance, int x, int y) {
-//        canvas.drawText(appearance, x, y, paintText);
-//    }
 
     /**
-     * Draws this fish tank item.
+     * @param object The object that being examined if it is caught by the basket
+     *
+     * @return return true if it's in the range of basket
+     */
+    boolean inRange(FallingObject object){
+        //  returns true if the object is in range. i.e. if the object is "caught"
+
+            int middle = object.getCoordX()+object.getSize()/2 ;
+            int bottom = object.getCoordY()+object.getSize();
+
+            return (middle>= coordX&& middle<= coordX +size&& bottom>=coordY);
+    }
+
+
+    /**
+     * Draws the Bomb
      *
      * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
-//        drawString(canvas, appearance, coordX, coordY);
+
         canvas.drawBitmap(appearance, coordX, coordY, paintText);
 
     }
-    //TODO: the javadoc for draw... (and inRange javadoc needs to be implemented)
 
 }

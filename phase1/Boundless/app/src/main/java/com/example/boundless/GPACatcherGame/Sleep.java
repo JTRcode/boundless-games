@@ -11,8 +11,6 @@ class Sleep extends FallingObject {
 
     Sleep() {
         super();
-//        setAppearance("[S]");
-//        getPaintText().setColor(Color.BLACK);
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.sleep);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
@@ -28,7 +26,7 @@ class Sleep extends FallingObject {
 
     @Override
     void missed() {
-        GPACatcherGame.addLife(-1);
+        GPACatcherGame.addLife(0);
     }
 
 }

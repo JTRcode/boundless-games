@@ -28,7 +28,7 @@ public class GPACatcherGame extends Game {
     public GPACatcherGame(int time) {
 
         GPACatcherGame.time = time;
-        gpa = 3.0;
+        gpa = 2.0;
         life = 3;
         bomb_avoided = 0;
         manager = new GPAManager();
@@ -38,14 +38,23 @@ public class GPACatcherGame extends Game {
 
     static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
+        if(GPACatcherGame.gpa>4.0)
+            GPACatcherGame.gpa = 4.0;
+        else if(GPACatcherGame.gpa<0)
+            GPACatcherGame.gpa = 0;
     }
 
     static void addLife(int life) {
         GPACatcherGame.life += life;
+        if(GPACatcherGame.life>3)
+            GPACatcherGame.life = 3;
     }
+
 
     static void addTime(int time) {
         GPACatcherGame.time += time;
+        if(GPACatcherGame.time>60)
+            GPACatcherGame.time = 60;
     }
 
     static void bomb_missed(){
@@ -67,7 +76,8 @@ public class GPACatcherGame extends Game {
         paint.setColor(Color.BLACK);
         paint.setTextSize(24);
 
-        canvas.drawText("GPA: " + gpa, 50, 50, paint);
+        double roundedGPA = Math.round(gpa*100)/100.0;
+        canvas.drawText("GPA: " + roundedGPA, 50, 50, paint);
         canvas.drawText("Time: " + time, Panel.SCREEN_WIDTH - 130, 50, paint);
         canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
@@ -86,8 +96,6 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void update() {
-        //TODO
-
         manager.addFallingObject();
         manager.update();
 

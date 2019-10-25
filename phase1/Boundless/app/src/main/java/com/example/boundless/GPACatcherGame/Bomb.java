@@ -11,8 +11,6 @@ class Bomb extends FallingObject {
 
     Bomb() {
         super();
-//        setAppearance("[B]");
-//        getPaintText().setColor(Color.RED);
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.bomb);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }

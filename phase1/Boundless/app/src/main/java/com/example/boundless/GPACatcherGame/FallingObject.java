@@ -18,7 +18,7 @@ public abstract class FallingObject {
     private int coordX; //The first coordinate of the object
     private int coordY; //The second coordinate of the object
     Bitmap appearance; //The appearance of the object
-    private int size = 60;
+    private int size = 100;
     private int fallingSpeed = 8; //The speed that the object will fall at
     private Paint paintText = new Paint();
 
@@ -26,7 +26,7 @@ public abstract class FallingObject {
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
-        int x = (int) (Math.random()*Panel.SCREEN_WIDTH);
+        int x = (int) (Math.random()*Panel.SCREEN_WIDTH-size);
         setCoordX(x);
     }
     public void setSize(int size){
@@ -52,39 +52,19 @@ public abstract class FallingObject {
         this.coordY = coordY;
     }
 
-//    String getAppearance() {
-//        return appearance;
-//    }
-//
-//    void setAppearance(String appearance) {
-//        this.appearance = appearance;
-//    }
 
-    Paint getPaintText() {
-        return paintText;
-    }
-
-
+    /**
+     *  makes the object fall down the screen when called.
+     */
     void fall(){
-        // makes the object fall down the screen when called.
-        // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
+
             coordY += fallingSpeed;
     }
 
     boolean hitGround(){
         //  returns true if the object's at the bottom of the screen when called
-        return(coordY == Panel.SCREEN_HEIGHT);
+        return(coordY >= Panel.SCREEN_HEIGHT);
     }
-
-//    /**
-//     * @param canvas     the canvas on which to draw this item.
-//     * @param appearance the string to draw.
-//     * @param x          the x-coordinate of the string's cursor location.
-//     * @param y          the y-coordinate of the string's cursor location.
-//     */
-//    void drawString(Canvas canvas, String appearance, int x, int y) {
-//        canvas.drawText(appearance, x , y, paintText);
-//    }
 
 
     /**

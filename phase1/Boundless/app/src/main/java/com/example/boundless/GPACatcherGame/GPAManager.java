@@ -30,18 +30,20 @@ public class GPAManager {
      * Update the location of the objects on the screen
      */
     public void update() {
-        //Todo   basket move right or left
         ListIterator<FallingObject> iterator = fallingObjects.listIterator();
         while (iterator.hasNext()) {
             FallingObject temp = iterator.next();
             if (basket.inRange(temp)) {
                 temp.caught();
                 iterator.remove();
+                System.out.println("it is Caught");
             } else if (temp.hitGround()) {
                 temp.missed();
+                System.out.println("it is Missed");
                 iterator.remove();
             } else
                 temp.fall();
+                System.out.println("Falling");
         }
     }
 
@@ -49,25 +51,15 @@ public class GPAManager {
      * Add a falling object to the screen
      */
     public void addFallingObject() {
-        //TODO: figure out why objects aren't showing up
         double d = Math.random();
-        if (d < 0.03)
+        if (d < 0.02)
             fallingObjects.add(new Assignment());
-        else if (d < 0.04)
+        else if (d < 0.025)
             fallingObjects.add(new Bomb());
-        else if (d < 0.045)
+        else if (d < 0.026)
             fallingObjects.add(new Sleep());
-        else if (d < 0.05)
+        else if (d < 0.027)
             fallingObjects.add(new Clock());
-
     }
-
-//    /**
-//     * Remove a falling object from the screen
-//     */
-//    public void removeFallingObject() {
-//        //TODO: remove this if its not being used
-//    }
-//}
 
 }

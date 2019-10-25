@@ -11,10 +11,8 @@ class Assignment extends FallingObject {
 
     Assignment() {
         super();
-//        setAppearance("[A]");
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.assignment);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
-//        getPaintText().setColor(Color.BLUE);
     }
 
     @Override
@@ -24,8 +22,8 @@ class Assignment extends FallingObject {
 
     @Override
     void missed() {
-        GPACatcherGame.addGpa(-0.3);
-        GPACatcherGame.addLife(-1);
+        GPACatcherGame.addGpa(-0.1);
+        GPACatcherGame.addLife(0);
     }
 
 }
