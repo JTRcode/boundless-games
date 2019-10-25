@@ -1,13 +1,20 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+
+import com.example.boundless.Panel;
+import com.example.boundless.R;
 
 class Clock extends FallingObject {
 
     Clock() {
         super();
-        setAppearance("[C]");
-        getPaintText().setColor(Color.GREEN);
+//        setAppearance("[C]");
+//        getPaintText().setColor(Color.GREEN);
+        appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.time);
+        appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     /**
@@ -21,7 +28,7 @@ class Clock extends FallingObject {
 
     @Override
     void missed() {
-        //TODO: Cynthia/Huiqin unsure what this is used for, implement or remove
+        GPACatcherGame.addTime(-1);
     }
 
 }

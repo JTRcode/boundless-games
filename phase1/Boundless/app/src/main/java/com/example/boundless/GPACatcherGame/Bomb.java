@@ -1,13 +1,20 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+
+import com.example.boundless.Panel;
+import com.example.boundless.R;
 
 class Bomb extends FallingObject {
 
     Bomb() {
         super();
-        setAppearance("[B]");
-        getPaintText().setColor(Color.RED);
+//        setAppearance("[B]");
+//        getPaintText().setColor(Color.RED);
+        appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.bomb);
+        appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     /**
@@ -20,7 +27,7 @@ class Bomb extends FallingObject {
 
     @Override
     void missed() {
-        //TODO: Cynthia/Huiqin unsure what this is used for, implement or remove
+        GPACatcherGame.bomb_missed();
     }
 
 }

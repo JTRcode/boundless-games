@@ -1,18 +1,22 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+
+import com.example.boundless.Panel;
+import com.example.boundless.R;
 
 class Assignment extends FallingObject {
 
     Assignment() {
         super();
-        setAppearance("[A]");
-        getPaintText().setColor(Color.BLUE);
+//        setAppearance("[A]");
+        appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.assignment);
+        appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
+//        getPaintText().setColor(Color.BLUE);
     }
 
-    /**
-     * An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
-     */
     @Override
     void caught() {
         GPACatcherGame.addGpa(0.1);
@@ -23,8 +27,5 @@ class Assignment extends FallingObject {
         GPACatcherGame.addGpa(-0.3);
         GPACatcherGame.addLife(-1);
     }
-    /**
-     *  An assignment; +0.1 GPA when caught, -0.3GPA and -1 life when missed.
-     */
-    //TODO: what's the comment above for?
+
 }

@@ -1,9 +1,12 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.example.boundless.Panel;
 
@@ -14,22 +17,30 @@ public abstract class FallingObject {
     //TODO: javadocs need to be created
     private int coordX; //The first coordinate of the object
     private int coordY; //The second coordinate of the object
-    private String appearance; //The appearance of the object
-    private int fallingSpeed = 2; //The speed that the object will fall at
+    Bitmap appearance; //The appearance of the object
+    private int size = 60;
+    private int fallingSpeed = 8; //The speed that the object will fall at
     private Paint paintText = new Paint();
 
     public FallingObject(){
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
-        setCoordX((int)Math.random()*(Panel.SCREEN_WIDTH));
+        int x = (int) (Math.random()*Panel.SCREEN_WIDTH);
+        setCoordX(x);
+    }
+    public void setSize(int size){
+        this.size = size;
+    }
+    public int getSize(){
+        return this.size;
     }
 
     int getCoordX() {
         return coordX;
     }
 
-    void setCoordX(int coordX) {
+    private void setCoordX(int coordX) {
         this.coordX = coordX;
     }
 
@@ -37,24 +48,24 @@ public abstract class FallingObject {
         return coordY;
     }
 
-    void setCoordY(int coordY) {
+    private void setCoordY(int coordY) {
         this.coordY = coordY;
     }
 
-    String getAppearance() {
-        return appearance;
-    }
-
-    void setAppearance(String appearance) {
-        this.appearance = appearance;
-    }
+//    String getAppearance() {
+//        return appearance;
+//    }
+//
+//    void setAppearance(String appearance) {
+//        this.appearance = appearance;
+//    }
 
     Paint getPaintText() {
         return paintText;
     }
 
 
-    public void fall(){
+    void fall(){
         // makes the object fall down the screen when called.
         // calls hitGround(), then Basket.in_range(coord_x), then caught() or missed()
             coordY += fallingSpeed;
@@ -65,22 +76,23 @@ public abstract class FallingObject {
         return(coordY == Panel.SCREEN_HEIGHT);
     }
 
-    /**
-     * @param canvas     the canvas on which to draw this item.
-     * @param appearance the string to draw.
-     * @param x          the x-coordinate of the string's cursor location.
-     * @param y          the y-coordinate of the string's cursor location.
-     */
-    void drawString(Canvas canvas, String appearance, int x, int y) {
-        canvas.drawText(appearance, x , y, paintText);
-    }
+//    /**
+//     * @param canvas     the canvas on which to draw this item.
+//     * @param appearance the string to draw.
+//     * @param x          the x-coordinate of the string's cursor location.
+//     * @param y          the y-coordinate of the string's cursor location.
+//     */
+//    void drawString(Canvas canvas, String appearance, int x, int y) {
+//        canvas.drawText(appearance, x , y, paintText);
+//    }
 
 
     /**
      * @param canvas the canvas on which to draw this item.
      */
     protected void draw(Canvas canvas) {
-        drawString(canvas, appearance, coordX, coordY);
+//        drawString(canvas, appearance, coordX, coordY);
+        canvas.drawBitmap(appearance, coordX, coordY, paintText);
     }
 
     abstract void caught();

@@ -53,7 +53,10 @@ Fix:
 
 2019.10.24
 writer: Cynthia Song
-Files affected: Basket
+Files affected: all in GPACatcher
 
 Changes:
-   1. temporary changes (tried adding images, but have to reclone due to laptop errors)
+    1. added visuals
+    2. decreased spawn rate for falling objects
+    3. implemented missed() for non-assignment falling objects
+    4. added static attribute to GPACatcherGame so 10 missed bombs = 1 extra life

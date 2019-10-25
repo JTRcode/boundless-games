@@ -51,13 +51,13 @@ public class GPAManager {
     public void addFallingObject() {
         //TODO: figure out why objects aren't showing up
         double d = Math.random();
-        if (d < 0.1)
+        if (d < 0.03)
             fallingObjects.add(new Assignment());
-        else if (d < 0.15)
+        else if (d < 0.04)
             fallingObjects.add(new Bomb());
-        else if (d < 0.2)
+        else if (d < 0.045)
             fallingObjects.add(new Sleep());
-        else if (d < 0.25)
+        else if (d < 0.05)
             fallingObjects.add(new Clock());
 
     }

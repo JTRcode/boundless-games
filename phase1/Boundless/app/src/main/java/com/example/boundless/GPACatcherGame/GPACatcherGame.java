@@ -16,6 +16,7 @@ public class GPACatcherGame extends Game {
     private static double gpa; // current GPA
     private static int life; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
+    private static int bomb_avoided; // every 10 bombs avoided = +1 life
     //private Basket basket;
     private GPAManager manager;
     Paint paint = new Paint();
@@ -29,6 +30,7 @@ public class GPACatcherGame extends Game {
         GPACatcherGame.time = time;
         gpa = 3.0;
         life = 3;
+        bomb_avoided = 0;
         manager = new GPAManager();
         manager.basket = new Basket(50);
         manager.addFallingObject();
@@ -44,6 +46,13 @@ public class GPACatcherGame extends Game {
 
     static void addTime(int time) {
         GPACatcherGame.time += time;
+    }
+
+    static void bomb_missed(){
+        bomb_avoided += 1;
+        if (bomb_avoided >= 10){
+            life += 1;
+        }
     }
 
     @Override

@@ -25,6 +25,7 @@ class Basket {
      */
     private int coordX;
     private int coordY;
+    private int size;
 
     /**
      * the distance basket moves by each tap
@@ -47,15 +48,17 @@ class Basket {
 
     public Basket(int speed) {
         paintText.setTextSize(36);
-        paintText.setColor(Color.GRAY);
+        paintText.setColor(Color.WHITE);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        this.size = 200;
 
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
+        appearance = Bitmap.createScaledBitmap(appearance, size, size, true);
 //        appearance = "|____|";
         this.screenWidth = Panel.SCREEN_WIDTH;
         this.screenHeight = Panel.SCREEN_HEIGHT;
         setCoordX(screenWidth/2);
-        setCoordY(screenHeight-30);
+        setCoordY(screenHeight-200);
         this.speed = speed;
     }
 
@@ -95,12 +98,12 @@ class Basket {
     //  calls only when a falling object reaches the same y value as basket;
     boolean inRange(FallingObject object){
         //  returns true if the object is in range. i.e. if the object is "caught"
-            int right = object.getCoordX()+object.getAppearance().length();
+//            int right = object.getCoordX()+object.getAppearance().length();
+            int right = object.getCoordX() + object.getSize();
             int left = object.getCoordX();
             int bottom = object.getCoordY();
 
-//            return (left>= coordX &&right<= coordX +appearance.length()&& bottom>=coordY);
-            return false;
+            return (left>= coordX &&right<= coordX + size&& bottom>=coordY);
     }
 
 //    /**

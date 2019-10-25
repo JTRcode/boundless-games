@@ -1,13 +1,20 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+
+import com.example.boundless.Panel;
+import com.example.boundless.R;
 
 class Sleep extends FallingObject {
 
     Sleep() {
         super();
-        setAppearance("[S]");
-        getPaintText().setColor(Color.BLACK);
+//        setAppearance("[S]");
+//        getPaintText().setColor(Color.BLACK);
+        appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.sleep);
+        appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
 
@@ -21,7 +28,7 @@ class Sleep extends FallingObject {
 
     @Override
     void missed() {
-        //TODO: Cynthia/Huiqin unsure what this is used for, implement or remove
+        GPACatcherGame.addLife(-1);
     }
 
 }
