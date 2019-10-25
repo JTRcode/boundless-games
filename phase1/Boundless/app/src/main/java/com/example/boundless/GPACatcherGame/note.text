@@ -50,3 +50,10 @@ Flaw:
 Fix:
 1. added a manager.draw() method in GPACatherGame.
 2. rewrote the addFallingObject method so somethings no object is created when updating
+
+2019.10.24
+writer: Cynthia Song
+Files affected: Basket
+
+Changes:
+   1. temporary changes (tried adding images, but have to reclone due to laptop errors)

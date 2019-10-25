@@ -4,8 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.example.boundless.Panel;
+import com.example.boundless.R;
 
 /**
  * A basket for catching falling objects
@@ -15,7 +18,7 @@ class Basket {
     /**
      * The appearance of the basket
      */
-    private String appearance;
+    private Bitmap appearance;
     private Paint paintText = new Paint();
     /**
      * The location of the basket
@@ -46,11 +49,13 @@ class Basket {
         paintText.setTextSize(36);
         paintText.setColor(Color.GRAY);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        appearance = "|____|";
+
+        appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
+//        appearance = "|____|";
         this.screenWidth = Panel.SCREEN_WIDTH;
         this.screenHeight = Panel.SCREEN_HEIGHT;
         setCoordX(screenWidth/2);
-        setCoordY(screenHeight-1);
+        setCoordY(screenHeight-30);
         this.speed = speed;
     }
 
@@ -82,9 +87,9 @@ class Basket {
      * Moves the basket right on the screen
      */
     void moveRight() {
-
-        if(coordX +appearance.length()<screenWidth)
-            coordX +=speed;
+        coordX += speed;
+//        if(coordX +appearance.length()<screenWidth)
+//            coordX +=speed;
     }
 
     //  calls only when a falling object reaches the same y value as basket;
@@ -94,18 +99,19 @@ class Basket {
             int left = object.getCoordX();
             int bottom = object.getCoordY();
 
-            return (left>= coordX &&right<= coordX +appearance.length()&& bottom>=coordY);
+//            return (left>= coordX &&right<= coordX +appearance.length()&& bottom>=coordY);
+            return false;
     }
 
-    /**
-     * @param canvas     the canvas on which to draw this item.
-     * @param appearance the string to draw.
-     * @param x          the x-coordinate of the string's cursor location.
-     * @param y          the y-coordinate of the string's cursor location.
-     */
-    void drawString(Canvas canvas, String appearance, int x, int y) {
-        canvas.drawText(appearance, x, y, paintText);
-    }
+//    /**
+//     * @param canvas     the canvas on which to draw this item.
+//     * @param appearance the string to draw.
+//     * @param x          the x-coordinate of the string's cursor location.
+//     * @param y          the y-coordinate of the string's cursor location.
+//     */
+//    void drawString(Canvas canvas, String appearance, int x, int y) {
+//        canvas.drawText(appearance, x, y, paintText);
+//    }
 
     /**
      * Draws this fish tank item.
@@ -113,7 +119,9 @@ class Basket {
      * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
-        drawString(canvas, appearance, coordX, coordY);
+//        drawString(canvas, appearance, coordX, coordY);
+        canvas.drawBitmap(appearance, coordX, coordY, paintText);
+
     }
     //TODO: the javadoc for draw... (and inRange javadoc needs to be implemented)
 
