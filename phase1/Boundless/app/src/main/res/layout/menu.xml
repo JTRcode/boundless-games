@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu">
 
     <Button
         android:id="@+id/GPACatcherGame"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/gpa_catcher"
         android:layout_marginTop="250dp"
-        android:onClick="startGame"/>
+        android:onClick="startGame"
+        android:text="@string/gpa_catcher" />
 
     <Button
+        android:id="@+id/PixelGame"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/PixelGame"
-        android:text="@string/pixel"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/GPACatcherGame"
-        android:onClick="startGame"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="startGame"
+        android:text="@string/pixel" />
 
     <Button
         android:id="@+id/RotateTile"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="@string/rotate_tile"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/PixelGame"
-        android:onClick="startGame"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="startGame"
+        android:text="@string/rotate_tile" />
 </RelativeLayout>

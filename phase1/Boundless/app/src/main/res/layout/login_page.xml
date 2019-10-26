@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E91E63">
+    android:background="@drawable/login">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,8 +51,8 @@
             android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_account"
-            android:onClick="signUp"/>
+            android:onClick="signUp"
+            android:text="@string/create_account" />
     </LinearLayout>
 
 
