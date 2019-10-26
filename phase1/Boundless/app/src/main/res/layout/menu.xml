@@ -1,33 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/menu">
 
     <Button
-        android:id="@+id/GPACatcherGame"
-        android:layout_width="250dp"
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:onClick="startGame"
-        android:text="@string/gpa_catcher" />
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="60dp"
+        android:onClick="signOut"
+        android:text="@string/sign_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/PixelGame"
-        android:layout_width="250dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/GPACatcherGame"
-        android:layout_centerHorizontal="true"
-        android:onClick="startGame"
-        android:text="@string/pixel" />
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
 
-    <Button
-        android:id="@+id/RotateTile"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/PixelGame"
-        android:layout_centerHorizontal="true"
-        android:onClick="startGame"
-        android:text="@string/rotate_tile" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/RotateTile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startGame"
+            android:text="@string/rotate_tile" />
+
+        <Button
+            android:id="@+id/PixelGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startGame"
+            android:text="@string/pixel" />
+
+        <Button
+            android:id="@+id/GPACatcherGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startGame"
+            android:text="@string/gpa_catcher" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

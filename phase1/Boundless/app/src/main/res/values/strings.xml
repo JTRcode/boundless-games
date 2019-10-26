@@ -8,4 +8,5 @@
     <string name="pixel">Pixel</string>
     <string name="rotate_tile">Rotate Tile</string>
     <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign out</string>
 </resources>

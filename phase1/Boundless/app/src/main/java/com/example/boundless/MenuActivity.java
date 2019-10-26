@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MenuActivity extends AppCompatActivity {
     //TODO: show stats on the menu screen
     //TODO: create customization options (will need a new class)
+    //TODO: get current user from login activity
     /**
      * The current user, null if not logged in
      */
@@ -29,6 +30,7 @@ public class MenuActivity extends AppCompatActivity {
 
     /**
      * Start the chosen game.
+     *
      * @param view The chosen button that was clicked
      */
     public void startGame(View view) {
@@ -47,6 +49,12 @@ public class MenuActivity extends AppCompatActivity {
             default:
                 break;
         }
+        startActivity(intent);
+    }
+
+    public void signOut(View v) {
+        Session.clearUser();
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
