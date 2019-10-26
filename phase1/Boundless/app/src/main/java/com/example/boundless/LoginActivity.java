@@ -9,47 +9,58 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * Manages user accounts and saves them
+     */
     private UserAccountManager userManager;
 
+    /**
+     * The username and password input boxes
+     */
     private EditText username;
     private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment()).commit();
-        }
-        */
-        userManager = new UserAccountManager();
-        if (notSignedIn()) {
+        userManager = new UserAccountManager(this);
+        if (userManager.notSignedIn()) {
             setContentView(R.layout.login_page);
             username = findViewById(R.id.username);
             password = findViewById(R.id.password);
-        }
-        else {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private boolean notSignedIn() {
-        //TODO: Nyah figure out if user is signed in
-        return true;
-    }
-
-    public void signIn(View view) {
-        if (userManager.signIn(username.getText().toString(), password.getText().toString())) {
+        } else {
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
     }
+
+    /**
+     * Signs the user into their account
+     *
+     * @param view The login button
+     */
+    public void signIn(View view) {
+        String name = username.getText().toString();
+        String pass = password.getText().toString();
+        UserAccount user = userManager.signIn(name, pass);
+        if (user != null) {
+            //TODO: Send user to MenuActivity
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Sign up a new user.
+     *
+     * @param view The signup button
+     */
     public void signUp(View view) {
-        //TODO: check if user already exists in userManager
-        userManager.signUp(username.getText().toString(), password.getText().toString());
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+        String user = username.getText().toString();
+        String pass = password.getText().toString();
+        if (userManager.signUp(user, pass)) {
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
+        }
     }
 }

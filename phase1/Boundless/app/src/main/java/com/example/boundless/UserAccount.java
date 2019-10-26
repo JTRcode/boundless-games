@@ -3,7 +3,7 @@ package com.example.boundless;
 /**
  * An account for a user
  */
-public class UserAccount {
+class UserAccount {
     /**
      * The username of the user
      */
@@ -13,7 +13,7 @@ public class UserAccount {
      */
     private String password;
 
-    public UserAccount(String name, String password) {
+    UserAccount(String name, String password) {
         this.name = name;
         this.password = password;
     }
@@ -21,7 +21,12 @@ public class UserAccount {
     /**
      * Check if the credentials match this user
      */
-    public boolean checkCreds(String name, String password) {
+    boolean checkCreds(String name, String password) {
         return (this.name.equals(name) && this.password.equals(password));
+    }
+
+    boolean sameUsername(String name) {
+        //TODO: show a toast saying that someone already has this username
+        return (this.name.equals(name));
     }
 }
