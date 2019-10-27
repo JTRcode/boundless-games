@@ -31,7 +31,7 @@ public class PixelGame extends Game {
      * The starting coordinates of the grid on the screen.
      */
     private final int startX = 100;
-    private final int startY = 100;
+    private final int startY = Panel.SCREEN_HEIGHT / 4;
     /**
      * The width of each grid square.
      */
@@ -53,7 +53,7 @@ public class PixelGame extends Game {
     private List<List<Integer>> currentLabels;
 
     public PixelGame(Context context) {
-        this(context,10);
+        this(context, 10);
     }
 
     public PixelGame(Context context, int size) {
@@ -86,8 +86,7 @@ public class PixelGame extends Game {
                 return true;
             }
             emptyUserChoices();
-        }
-        else{
+        } else {
             showToast("Sorry, you have the wrong answer!");
         }
         return false;
@@ -102,7 +101,7 @@ public class PixelGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        if (Math.abs(x - startX) < 300 && Math.abs(y - (startY +width * gridSize + 300)) < 100){
+        if (Math.abs(x - startX) < 300 && Math.abs(y - (startY + width * gridSize + 300)) < 100) {
             gameOver();
         }
         int[] coordsIJ = convertCoordToIJ(x, y);
@@ -134,12 +133,13 @@ public class PixelGame extends Game {
 
     /**
      * Adds the game over button to the screen.
+     *
      * @param canvas
      */
     private void addGameOverButton(Canvas canvas) {
         paint.setColor(Color.WHITE);
         paint.setTextSize(40);
-        drawString(canvas, "Check your answer!", startX, startY +width * gridSize + 300);
+        drawString(canvas, "Check your answer!", startX, startY + width * gridSize + 300);
     }
 
     /**
@@ -183,13 +183,13 @@ public class PixelGame extends Game {
         }
     }
     /**
-    public void showToast(String message){
-        CharSequence text = message;
-        int duration = Toast.LENGTH_SHORT;
+     public void showToast(String message){
+     CharSequence text = message;
+     int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-        toast.show();
-    }*/
+     Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+     toast.show();
+     }*/
 
     /**
      * Draw text on the canvas.

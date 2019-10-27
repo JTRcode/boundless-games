@@ -57,5 +57,12 @@
             android:layout_height="wrap_content"
             android:onClick="setBackground"
             android:text="@string/background_2" />
+
+        <Button
+            android:id="@+id/background_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setBackground"
+            android:text="@string/background_3" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,8 @@ package com.example.boundless.RotateTileGame;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.boundless.Panel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class TileManager {
     private int gridSize = 5;
     private int tileSize = 100; //TODO assign it depending on the width of the screen
     private int startX = 100;
-    private int startY = 100;
+    private int startY = Panel.SCREEN_HEIGHT / 4;
     //TODO: Jackson the drawing stuff shouldn't be in the manager
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;

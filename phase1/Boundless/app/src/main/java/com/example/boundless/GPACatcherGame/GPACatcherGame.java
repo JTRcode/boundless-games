@@ -74,7 +74,7 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
         paint.setTextSize(24);
 
         double roundedGPA = Math.round(gpa*100)/100.0;

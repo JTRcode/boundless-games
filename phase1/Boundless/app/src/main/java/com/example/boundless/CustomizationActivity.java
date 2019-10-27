@@ -49,6 +49,8 @@ public class CustomizationActivity extends AppCompatActivity {
             case R.id.background_2:
                 Session.setBackground(R.drawable.backgroundtwo);
                 break;
+            case R.id.background_3:
+                Session.setBackground(R.drawable.backgroundfive);
             default:
                 break;
         }
