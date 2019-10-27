@@ -57,5 +57,9 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+    public void goCustomization(View v){
+        Intent intent = new Intent(this, CustomizationActivity.class);
+        startActivity(intent);
+    }
 
 }

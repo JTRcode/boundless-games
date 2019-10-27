@@ -47,4 +47,20 @@ class Session {
         }
         return new String[]{username, password};
     }
+
+    /**
+     * set the users' music
+     * @param id the id of the music
+     */
+    static void setMusic(int id) {
+        prefs.edit().putInt("music", id).apply();
+    }
+
+    /**
+     * get the users' music
+     * @return the users' choice of the music
+     */
+    static int getMusic() {
+        return prefs.getInt("music", R.raw.minnutesican);
+    }
 }

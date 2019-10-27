@@ -2,6 +2,7 @@ package com.example.boundless;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,15 +19,9 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setBackgroundDrawableResource(R.drawable.backgroundone);
-
         setCurrentGame();
-
-        //getWindow().setBackgroundDrawableResource(R.drawable.backgroundone);
-
-        /**imageView.setImageResource(R.drawable.backgroundtwo);
-        setContentView(imageView);*/
-        player = MediaPlayer.create(this,R.raw.minnutesican);
+        findViewById(R.id.ConstraintLayout).setBackgroundResource(R.drawable.backgroundone);
+        player = MediaPlayer.create(this,Session.getMusic());
         player.setLooping(true);
         player.start();
     }

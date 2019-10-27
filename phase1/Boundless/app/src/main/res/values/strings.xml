@@ -9,4 +9,13 @@
     <string name="rotate_tile">Rotate Tile</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign out</string>
+    <string name="choose_music">Choose your music</string>
+    <string name="choose_background">Choose your background</string>
+    <string name="music_1">Music 1</string>
+    <string name="music_2">Music 2</string>
+    <string name="music_3">Music 3</string>
+    <string name="background_1">Background 1</string>
+    <string name="background_2">Background 2</string>
+    <string name="customization">Customization</string>
+
 </resources>
