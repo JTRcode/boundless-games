@@ -40,13 +40,13 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
         switch (gameToPlay) {
             case PIXELS:
-                game = new PixelGame();
+                game = new PixelGame(context);
                 break;
             case GPACATCHER:
-                game = new GPACatcherGame();
+                game = new GPACatcherGame(context);
                 break;
             case ROTATETILE:
-                game = new RotateTileGame();
+                game = new RotateTileGame(context);
                 break;
             default:
                 break;

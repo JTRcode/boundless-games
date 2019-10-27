@@ -1,5 +1,6 @@
 package com.example.boundless.RotateTileGame;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,7 +19,8 @@ public class RotateTileGame extends Game {
      */
     private Paint paint;
 
-    public RotateTileGame() {
+    public RotateTileGame(Context context) {
+        super(context);
         manager.setUpTiles();
         userChoice = manager.getTileStage();
         paint = new Paint();
