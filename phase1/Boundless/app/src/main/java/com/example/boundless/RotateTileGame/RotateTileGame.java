@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.boundless.Game;
+import com.example.boundless.Panel;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
@@ -14,6 +15,7 @@ public class RotateTileGame extends Game {
 
     private TileManager manager = new TileManager(5);
     private Tile[][] userChoice;
+    private boolean gameFinished = false;
     /**
      * The width of each grid square.
      */
@@ -30,7 +32,14 @@ public class RotateTileGame extends Game {
 
     @Override
     public boolean gameOver() {
+        //TODO need to check the game is completed correctly
+        gameFinished = true;
         return manager.gameOver(userChoice);
+    }
+
+    @Override
+    public boolean isGameFinished() {
+        return gameFinished;
     }
 
 
@@ -47,12 +56,34 @@ public class RotateTileGame extends Game {
     public void draw(Canvas canvas) {
         //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
         //TODO: Jackson finish this up
-        Tile tile = manager.createNewTile(TileEnum.I);
         for (int i = 0; i < manager.getGridSize(); i++) {
             for (int j = 0; j < manager.getGridSize(); j++) {
                 canvas.drawBitmap(userChoice[i][j].image, manager.getStartX() + j * manager.getTileSize(), manager.getStartY() + manager.getTileSize() * i, paint);
             }
         }
+        addGameOverButton(canvas);
+    }
+
+    /**
+     * Adds the game over button to the screen.
+     * @param canvas
+     */
+    private void addGameOverButton(Canvas canvas) {
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(40);
+        drawString(canvas, "Check your answer!", manager.getStartX(), manager.getStartY() + manager.getTileSize() * manager.getGridSize() + 300);
+    }
+
+    /**
+     * Draw text on the canvas.
+     *
+     * @param canvas The canvas to draw on.
+     * @param text   The text to draw.
+     * @param x      The x location to draw text at.
+     * @param y      The y location to draw text at.
+     */
+    private void drawString(Canvas canvas, String text, int x, int y) {
+        canvas.drawText(text, x, y, paint);
     }
 
     /**
@@ -65,6 +96,17 @@ public class RotateTileGame extends Game {
     @Override
     public void screenTouched(int x, int y) {
         //TODO: Update location touched with rotated tile (see PixelGame.convertCoordToIJ method for example on getting the [i] and [j] coordinates)
-        userChoice[0][0].rotateTile();
+        int i = (y - manager.getStartY())/manager.getTileSize();
+        int j = (x - manager.getStartX())/manager.getTileSize();
+
+        if ((Math.abs(x - manager.getStartX()) < 300 && Math.abs(y - (manager.getStartY() +manager.getTileSize() * manager.getGridSize() + 300)) < 100)){
+            System.out.println("NYAHHHH stoppp it plaz");
+            gameOver();
+        }else {
+            try {
+                userChoice[i][j].rotateTile();
+            } catch (Exception e) {
+            }
+        }
     }
 }

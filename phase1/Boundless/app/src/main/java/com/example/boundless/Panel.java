@@ -137,6 +137,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         game.update();
+        if (game.isGameFinished()){
+            System.out.println("Nyah I see you");
+            thread.setRunning(false);
+        }
     }
 
     @Override
