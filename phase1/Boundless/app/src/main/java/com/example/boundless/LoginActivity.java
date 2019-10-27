@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         userManager = new UserAccountManager(this);
         if (userManager.notSignedIn()) {
             setContentView(R.layout.login_page);
+            //setBackground();
             username = findViewById(R.id.username);
             password = findViewById(R.id.password);
         } else {
@@ -63,4 +64,12 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    /**
+    public void setBackground(){
+       Session.setBackground(R.drawable.login);
+    }
+
+    public void setHalloweenLogin(){
+        Session.setBackground(R.drawable.halloween_log_in);
+    }*/
 }

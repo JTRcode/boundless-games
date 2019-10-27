@@ -80,4 +80,24 @@ public class CustomizationActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
+
+    /**
+     * change the theme, for now it is the halloween theme
+     * @param view the button of spooks
+     */
+
+    public void themeChanged(View view){
+        boolean themeOn = Session.getTheme();
+        if(!themeOn){
+            Session.setBackground(R.drawable.halloween_background);
+            Session.setMusic(R.raw.thriller);
+            Session.setTheme(true);
+        }
+        else{
+            Session.setBackground(R.drawable.backgroundone);
+            Session.setMusic(R.raw.minnutesican);
+            Session.setTheme(false);
+        }
+
+    }
 }

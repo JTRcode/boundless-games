@@ -21,5 +21,7 @@
     <string name="customization">Customization</string>
     <string name="stats">Statistics</string>
     <string name="back_to_menu">&lt;-</string>
+    <string name="halloween">If you dare...</string>
+    <string name="halloween_theme">The Button of Spooks!</string>
 
 </resources>

@@ -26,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        //setBackground();
     }
 
     /**
@@ -61,5 +62,13 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CustomizationActivity.class);
         startActivity(intent);
     }
+    /**
+    public void setBackground(){
+        Session.setBackground(R.drawable.menu);
+    }
+
+    public void setHalloweenMenu(){
+        Session.setBackground(R.drawable.halloween_main_menu);
+    }*/
 
 }

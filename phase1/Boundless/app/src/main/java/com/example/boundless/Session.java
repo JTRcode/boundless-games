@@ -79,4 +79,21 @@ class Session {
     static int getBackground(){
         return prefs.getInt("background", R.drawable.backgroundone);
     }
+
+    /**
+     * set the theme on
+     * @param on determine if the theme is on or not
+     */
+    static void setTheme(boolean on){
+        prefs.edit().putBoolean("theme_on", on).apply();
+    }
+
+    /**
+     * return the state of the theme
+     * @return the theme is on
+     */
+    static boolean getTheme(){
+        return prefs.getBoolean("theme_on", false);
+    }
+
 }
