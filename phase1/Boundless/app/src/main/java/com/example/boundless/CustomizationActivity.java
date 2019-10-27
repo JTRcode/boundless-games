@@ -36,4 +36,22 @@ public class CustomizationActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /**
+     * set the background picture
+     * @param view the button that the user click
+     */
+    public void setBackground(View view){
+        switch (view.getId()) {
+            case R.id.background_1:
+                Session.setBackground(R.drawable.backgroundone);
+                break;
+            case R.id.background_2:
+                Session.setBackground(R.drawable.backgroundtwo);
+                break;
+            default:
+                break;
+        }
+
+    }
 }

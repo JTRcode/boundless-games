@@ -63,4 +63,20 @@ class Session {
     static int getMusic() {
         return prefs.getInt("music", R.raw.minnutesican);
     }
+
+    /**
+     * set the background
+     * @param id the id of the background
+     */
+    static void setBackground(int id){
+        prefs.edit().putInt("background", id).apply();
+    }
+
+    /**
+     * return users' choice of background
+     * @return the users' choice of background, default is backgroundone
+     */
+    static int getBackground(){
+        return prefs.getInt("background", R.drawable.backgroundone);
+    }
 }

@@ -20,7 +20,7 @@ public class GameActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setCurrentGame();
-        findViewById(R.id.ConstraintLayout).setBackgroundResource(R.drawable.backgroundone);
+        findViewById(R.id.ConstraintLayout).setBackgroundResource(Session.getBackground());
         player = MediaPlayer.create(this,Session.getMusic());
         player.setLooping(true);
         player.start();

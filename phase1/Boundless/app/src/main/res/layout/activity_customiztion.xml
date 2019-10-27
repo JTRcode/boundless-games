@@ -48,12 +48,14 @@
             android:id="@+id/background_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="setBackground"
             android:text="@string/background_1" />
 
         <Button
             android:id="@+id/background_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="setBackground"
             android:text="@string/background_2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
