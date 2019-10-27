@@ -19,6 +19,7 @@ public class GPACatcherGame extends Game {
     private static int time; // current time remaining  (overall time to be determined)
     private static int bomb_avoided; // every 10 bombs avoided = +1 life
     //private Basket basket;
+    private boolean gameFinished = false;
     private GPAManager manager;
     Paint paint = new Paint();
 
@@ -70,6 +71,11 @@ public class GPACatcherGame extends Game {
     @Override
     public boolean gameOver() {
         return (time <= 0 || life <= 0);
+    }
+
+    @Override
+    public boolean isGameFinished() {
+        return gameFinished;
     }
 
     @Override

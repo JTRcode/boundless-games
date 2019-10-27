@@ -23,6 +23,12 @@ public class PixelGame extends Game {
      * The size of the pixel grid.
      */
     private int gridSize;
+
+    /**
+     * The bool value to indicate the end of game
+     */
+    private boolean gameFinished = false;
+
     /**
      * The current level of the game.
      */
@@ -83,6 +89,7 @@ public class PixelGame extends Game {
                 emptyUserChoices();
                 //TODO: exit here and go back to main menu
                 showToast("Congrats!");
+                gameFinished = true;
                 return true;
             }
             emptyUserChoices();
@@ -92,6 +99,10 @@ public class PixelGame extends Game {
         return false;
     }
 
+    @Override
+    public boolean isGameFinished(){
+        return gameFinished;
+    }
 
     /**
      * Deal with the screen being touched.
@@ -125,6 +136,17 @@ public class PixelGame extends Game {
         }
         drawOutlines(canvas);
         drawLabels(canvas);
+        addGameOverButton(canvas);
+    }
+
+    /**
+     * Adds the game over button to the screen.
+     * @param canvas
+     */
+    private void addGameOverButton(Canvas canvas) {
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(40);
+        drawString(canvas, "Check your answer!", startX, startY +width * gridSize + 300);
     }
 
     /**
