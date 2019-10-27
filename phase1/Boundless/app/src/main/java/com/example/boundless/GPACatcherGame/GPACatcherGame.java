@@ -71,8 +71,6 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
-        paint.setColor(Color.WHITE);
-        canvas.drawPaint(paint);
         paint.setColor(Color.BLACK);
         paint.setTextSize(24);
 

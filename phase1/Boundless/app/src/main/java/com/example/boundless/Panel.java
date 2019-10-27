@@ -3,6 +3,10 @@ package com.example.boundless;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -29,14 +33,30 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      * The game contents.
      */
     private Game game;
+    /**
+     * The panel
+     */
+    private static SurfaceView instance;
 
-    private static Panel instance;
-
-    public Panel(Context context, GamesEnum gameToPlay) {
+    public Panel(Context context) {
         super(context);
-        instance = this;
-        getHolder().addCallback(this);
-        thread = new MainThread(getHolder(), this);
+    }
+
+    public Panel(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public Panel(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    /**
+     * Choose the game the panel displays
+     *
+     * @param gameToPlay The enum of the game to play
+     */
+    void chooseGame(GamesEnum gameToPlay) {
+        setupPanel();
         setFocusable(true);
         switch (gameToPlay) {
             case PIXELS:
@@ -53,12 +73,21 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public static Panel getPanel(){
-        return instance;
+    /**
+     * Setup the panel with a transparent background.
+     */
+    private void setupPanel() {
+        instance = this;
+        instance.setZOrderOnTop(true);
+        SurfaceHolder holder = instance.getHolder();
+        holder.addCallback(this);
+        holder.setFormat(PixelFormat.TRANSPARENT);
+
+        thread = new MainThread(getHolder(), this);
     }
 
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    public static SurfaceView getPanel() {
+        return instance;
     }
 
     @Override
@@ -66,6 +95,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
     }
 
     @Override
@@ -88,7 +121,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         for (int pointer = 0; pointer < pointerCount; pointer++) {
             MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
             event.getPointerCoords(pointer, coords);
-            game.screenTouched((int)coords.x, (int)coords.y);
+            game.screenTouched((int) coords.x, (int) coords.y);
         }
         return super.onTouchEvent(event);
     }
@@ -101,6 +134,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             game.draw(canvas);
         }
     }
