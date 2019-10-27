@@ -1,5 +1,6 @@
 package com.example.boundless.GPACatcherGame;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -21,11 +22,13 @@ public class GPACatcherGame extends Game {
     private GPAManager manager;
     Paint paint = new Paint();
 
-    public GPACatcherGame() {
-        this(1);
+    public GPACatcherGame(Context context) {
+        this(context,1);
     }
 
-    public GPACatcherGame(int time) {
+    public GPACatcherGame(Context context, int time) {
+        super(context);
+
 
         GPACatcherGame.time = time;
         gpa = 2.0;

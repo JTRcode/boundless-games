@@ -1,10 +1,15 @@
 package com.example.boundless.PixelGame;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.widget.Toast;
 
 import com.example.boundless.Game;
+import com.example.boundless.GameActivity;
+import com.example.boundless.MenuActivity;
 import com.example.boundless.Panel;
 
 import java.util.List;
@@ -13,6 +18,7 @@ import java.util.List;
  * A game where you use pixels to recreate an image.
  */
 public class PixelGame extends Game {
+
     /**
      * The size of the pixel grid.
      */
@@ -46,11 +52,12 @@ public class PixelGame extends Game {
      */
     private List<List<Integer>> currentLabels;
 
-    public PixelGame() {
-        this(10);
+    public PixelGame(Context context) {
+        this(context,10);
     }
 
-    public PixelGame(int size) {
+    public PixelGame(Context context, int size) {
+        super(context);
         gridSize = size;
         pixelManager = new PixelManager(gridSize);
         currentLabels = pixelManager.label(currentLevel);
@@ -69,17 +76,23 @@ public class PixelGame extends Game {
     public boolean gameOver() {
         if (pixelManager.checkPixels(userChoice, currentLevel)) {
             currentLevel++;
+            showToast("That's correct");
             try {
                 currentLabels = pixelManager.label(currentLevel);
             } catch (ArrayIndexOutOfBoundsException e) {
                 emptyUserChoices();
                 //TODO: exit here and go back to main menu
+                showToast("Congrats!");
                 return true;
             }
             emptyUserChoices();
         }
+        else{
+            showToast("Sorry, you have the wrong answer!");
+        }
         return false;
     }
+
 
     /**
      * Deal with the screen being touched.
@@ -169,6 +182,14 @@ public class PixelGame extends Game {
             }
         }
     }
+    /**
+    public void showToast(String message){
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+        toast.show();
+    }*/
 
     /**
      * Draw text on the canvas.
