@@ -55,7 +55,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @param gameToPlay The enum of the game to play
      */
-    void chooseGame(GamesEnum gameToPlay) {
+    void chooseGame(Context context, GamesEnum gameToPlay) {
         setupPanel();
         setFocusable(true);
         switch (gameToPlay) {

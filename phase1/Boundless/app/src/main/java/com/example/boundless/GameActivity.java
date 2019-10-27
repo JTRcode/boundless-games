@@ -39,7 +39,7 @@ public class GameActivity extends Activity {
         if (game != null) {
             setContentView(R.layout.game_page);
             Panel panel = findViewById(R.id.panel);
-            panel.chooseGame(game);
+            panel.chooseGame(this, game);
 
             System.out.println("Changing to game: " + game);
         } else {
