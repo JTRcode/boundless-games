@@ -51,6 +51,15 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
+     * Get the current game on this panel
+     *
+     * @return The game
+     */
+    Game getGame() {
+        return game;
+    }
+
+    /**
      * Choose the game the panel displays
      *
      * @param gameToPlay The enum of the game to play

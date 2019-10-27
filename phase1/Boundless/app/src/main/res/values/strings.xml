@@ -9,6 +9,7 @@
     <string name="rotate_tile">Rotate Tile</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign out</string>
+    <string name="game_over_button">Check your answer!</string>
     <string name="choose_music">Choose your music:</string>
     <string name="choose_background">Choose your background:</string>
     <string name="music_1">Music 1</string>

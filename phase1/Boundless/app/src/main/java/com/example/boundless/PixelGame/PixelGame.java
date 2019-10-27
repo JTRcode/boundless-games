@@ -101,9 +101,6 @@ public class PixelGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        if (Math.abs(x - startX) < 300 && Math.abs(y - (startY + width * gridSize + 300)) < 100) {
-            gameOver();
-        }
         int[] coordsIJ = convertCoordToIJ(x, y);
         if (coordsIJ[0] < gridSize && coordsIJ[1] < gridSize)
             switchPixel(coordsIJ[0], coordsIJ[1]);
@@ -128,18 +125,6 @@ public class PixelGame extends Game {
         }
         drawOutlines(canvas);
         drawLabels(canvas);
-        addGameOverButton(canvas);
-    }
-
-    /**
-     * Adds the game over button to the screen.
-     *
-     * @param canvas
-     */
-    private void addGameOverButton(Canvas canvas) {
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(40);
-        drawString(canvas, "Check your answer!", startX, startY + width * gridSize + 300);
     }
 
     /**

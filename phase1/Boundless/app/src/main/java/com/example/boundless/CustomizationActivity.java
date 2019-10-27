@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * The CustomizationActivity handles customizations for users, for example,
@@ -37,6 +38,7 @@ public class CustomizationActivity extends AppCompatActivity {
             default:
                 break;
         }
+        showToast("Music choice saved!");
     }
 
     /**
@@ -54,10 +56,11 @@ public class CustomizationActivity extends AppCompatActivity {
                 break;
             case R.id.background_3:
                 Session.setBackground(R.drawable.backgroundfive);
+                break;
             default:
                 break;
         }
-
+        showToast("Background saved!");
     }
 
     /**
@@ -68,5 +71,13 @@ public class CustomizationActivity extends AppCompatActivity {
     public void backToMenu(View view) {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
+    }
+
+    private void showToast(String message){
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
     }
 }
