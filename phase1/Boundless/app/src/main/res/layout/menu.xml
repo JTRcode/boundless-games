@@ -11,8 +11,8 @@
         android:id="@+id/sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="55dp"
         android:onClick="signOut"
         android:text="@string/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.52">
 
         <Button
             android:id="@+id/RotateTile"
@@ -51,12 +51,26 @@
             android:onClick="startGame"
             android:text="@string/gpa_catcher" />
 
-        <Button
-            android:id="@+id/button"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goCustomization"
-            android:text="@string/customization" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/customization"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:onClick="goCustomization"
+                android:text="@string/customization" />
+
+            <Button
+                android:id="@+id/stats"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="@string/stats" />
+        </LinearLayout>
 
     </LinearLayout>
 

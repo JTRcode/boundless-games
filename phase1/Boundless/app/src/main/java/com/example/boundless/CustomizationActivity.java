@@ -2,6 +2,7 @@ package com.example.boundless;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,9 +20,10 @@ public class CustomizationActivity extends AppCompatActivity {
 
     /**
      * set music
+     *
      * @param view the button clicked
      */
-    public void setMusic(View view){
+    public void setMusic(View view) {
         switch (view.getId()) {
             case R.id.music_1:
                 Session.setMusic(R.raw.minnutesican);
@@ -39,9 +41,10 @@ public class CustomizationActivity extends AppCompatActivity {
 
     /**
      * set the background picture
+     *
      * @param view the button that the user click
      */
-    public void setBackground(View view){
+    public void setBackground(View view) {
         switch (view.getId()) {
             case R.id.background_1:
                 Session.setBackground(R.drawable.backgroundone);
@@ -55,5 +58,15 @@ public class CustomizationActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    /**
+     * Brings user back to the main menu
+     *
+     * @param view The button clicked
+     */
+    public void backToMenu(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }
