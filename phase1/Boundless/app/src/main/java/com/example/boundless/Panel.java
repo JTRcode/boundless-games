@@ -127,6 +127,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         final int pointerCount = event.getPointerCount();
+        Statistics.clickEvent();
         for (int pointer = 0; pointer < pointerCount; pointer++) {
             MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
             event.getPointerCoords(pointer, coords);

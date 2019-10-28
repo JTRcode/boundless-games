@@ -7,6 +7,7 @@ import android.graphics.Paint;
 
 import com.example.boundless.Game;
 import com.example.boundless.Panel;
+import com.example.boundless.Statistics;
 
 import java.util.List;
 
@@ -86,7 +87,9 @@ public class PixelGame extends Game {
                 //TODO: exit here and go back to main menu
                 showToast("Congrats!");
                 gameFinished = true;
+                Statistics.sumTotalScore();
                 return true;
+
             }
             emptyUserChoices();
         } else {
