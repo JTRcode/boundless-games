@@ -1,15 +1,11 @@
 package com.example.boundless.PixelGame;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.widget.Toast;
 
 import com.example.boundless.Game;
-import com.example.boundless.GameActivity;
-import com.example.boundless.MenuActivity;
 import com.example.boundless.Panel;
 
 import java.util.List;
@@ -36,8 +32,8 @@ public class PixelGame extends Game {
     /**
      * The starting coordinates of the grid on the screen.
      */
-    private final int startX = 100;
-    private final int startY = Panel.SCREEN_HEIGHT / 4;
+    private static final int startX = 100;
+    private static final int startY = Panel.SCREEN_HEIGHT / 4;
     /**
      * The width of each grid square.
      */
@@ -100,7 +96,7 @@ public class PixelGame extends Game {
     }
 
     @Override
-    public boolean isGameFinished(){
+    public boolean isGameFinished() {
         return gameFinished;
     }
 
@@ -145,13 +141,16 @@ public class PixelGame extends Game {
      */
     private void drawOutlines(Canvas canvas) {
         paint.setColor(Color.RED);
-        paint.setStrokeWidth(2);
         //draw vertical lines
         for (int x = startX; x <= startX + width * gridSize; x += width) {
+            if ((x - startX) % 5 == 0) paint.setStrokeWidth(4);
+            else paint.setStrokeWidth(1);
             canvas.drawLine(x, startY, x, startY + width * gridSize, paint);
         }
         //draw horizontal lines
         for (int y = startY; y <= startY + width * gridSize; y += width) {
+            if ((y - startY) % 5 == 0) paint.setStrokeWidth(4);
+            else paint.setStrokeWidth(1);
             canvas.drawLine(startX, y, startX + width * gridSize, y, paint);
         }
     }
@@ -163,19 +162,21 @@ public class PixelGame extends Game {
      */
     private void drawLabels(Canvas canvas) {
         paint.setColor(Color.WHITE);
-        paint.setTextSize(20);
+        paint.setTextSize(30);
+        int buffer = 25;
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
-            for (int entryNum = 0; entryNum < row.size(); entryNum++) {
-                drawString(canvas, row.get(entryNum).toString(), startX + entryNum * 20 - 50, startY + rowNum * width + (width / 2));
-            }
+            int drawY = startY + rowNum * width + (width / 2);
+            int drawX = startX -15 - row.size() * buffer;
+            for (int entryNum = 0; entryNum < row.size(); entryNum++)
+                drawString(canvas, row.get(entryNum).toString(), drawX + entryNum * buffer, drawY);
         }
-        currentLabels = pixelManager.label(currentLevel);
         for (int colNum = gridSize; colNum < gridSize * 2; colNum++) {
             List<Integer> col = currentLabels.get(colNum);
-            for (int entryNum = 0; entryNum < col.size(); entryNum++) {
-                drawString(canvas, col.get(entryNum).toString(), startX + (colNum - gridSize) * width + (width / 2), startY + entryNum * 20 - 50);
-            }
+            int drawX = startX + (colNum - gridSize) * width + (width / 2);
+            int drawY = startY - col.size() * buffer;
+            for (int entryNum = 0; entryNum < col.size(); entryNum++)
+                drawString(canvas, col.get(entryNum).toString(), drawX, drawY + entryNum * buffer);
         }
     }
 
