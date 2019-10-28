@@ -16,14 +16,14 @@ public class TileManager {
      * The grid of tiles on the screen
      */
     private List<Tile[][]> levels;
-    private int gridSize = 5;
-    private int tileSize = 100; //TODO assign it depending on the width of the screen
+    /**
+     * The size of the grid
+     */
+    private int gridSize;
     private int startX = 100;
     private int startY = Panel.SCREEN_HEIGHT / 4;
+    private int tileSize;
     //TODO: Jackson the drawing stuff shouldn't be in the manager
-    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
 
     /**
      * The current level being played.
@@ -31,16 +31,21 @@ public class TileManager {
     private int currentLevel = 0;
 
     public TileManager() {
-        levels = new ArrayList<>();
+        this(5);
     }
 
     public TileManager(int size) {
         gridSize = size;
         levels = new ArrayList<>();
-        tileSize = (screenWidth - 2 * startX) / size;
+        tileSize = (Panel.SCREEN_WIDTH - 2 * startX) / size;
     }
 
-    public Tile createNewTile(TileEnum type) {
+    /**
+     * Creates a new tile based on the enum given
+     * @param type Enum of the tile to create
+     * @return The new tile
+     */
+    private Tile createNewTile(TileEnum type) {
         Tile tile;
         switch (type) {
             case I:
@@ -63,30 +68,30 @@ public class TileManager {
         return tile;
     }
 
-    public int getGridSize() {
+    int getGridSize() {
         return gridSize;
     }
 
-    public int getTileSize() {
+    int getTileSize() {
         return tileSize;
     }
 
-    public int getStartX() {
+    int getStartX() {
         return startX;
     }
 
-    public int getStartY() {
+    int getStartY() {
         return startY;
     }
 
-    public Tile[][] getTileStage() {
+    Tile[][] getTileStage() {
         return levels.get(currentLevel);
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation.
      */
-    public void setUpTiles() {
+    void setUpTiles() {
         //TODO: hardcode and randomize tiles?
         Tile[][] level = new Tile[gridSize][gridSize];
         for (int i = 0; i < gridSize; i++) {
@@ -102,25 +107,23 @@ public class TileManager {
      * Initializes the tiles array and randomizes the rotation (easy mode).
      */
     public void setUpTilesEasy() {
-
         gridSize = 4;
 
-        char[][] EasyLayout = {
+        char[][] easyLayout = {
                 {'L', 'L', 'I', 'X'},
                 {'L', 'I', 'I', 'L'},
                 {'X', 'L', 'T', 'I'},
                 {'L', 'I', 'I', 'L'}};
 
-        Tile[][] EasyTileLevel = this.convertCharToTile(EasyLayout, 4);
-        this.randomizeTiles(EasyTileLevel);
-        levels.add(EasyTileLevel);
+        Tile[][] easyTileLevel = this.convertCharToTile(easyLayout, 4);
+        this.randomizeTiles(easyTileLevel);
+        addLevel(easyTileLevel);
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation (medium mode).
      */
     public void setUpTilesMedium() {
-
         gridSize = 6;
 
         char[][] mediumLayout = {
@@ -131,16 +134,15 @@ public class TileManager {
                 {'L', 'I', 'I', 'L', 'L', 'X'},
                 {'L', 'I', 'I', 'L', 'L', 'X'}};
 
-        Tile[][] MedTileLevel = this.convertCharToTile(mediumLayout, 6);
-        this.randomizeTiles(MedTileLevel);
-        levels.add(MedTileLevel);
+        Tile[][] medTileLevel = this.convertCharToTile(mediumLayout, 6);
+        this.randomizeTiles(medTileLevel);
+        addLevel(medTileLevel);
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation (hard mode).
      */
     public void setUpTilesHard() {
-
         gridSize = 8;
 
         char[][] hardLayout = {
@@ -153,9 +155,9 @@ public class TileManager {
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
                 {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I'}};
 
-        Tile[][] HardTileLevel = this.convertCharToTile(hardLayout, 8);
-        this.randomizeTiles(HardTileLevel);
-        levels.add(HardTileLevel);
+        Tile[][] hardTileLevel = this.convertCharToTile(hardLayout, 8);
+        this.randomizeTiles(hardTileLevel);
+        addLevel(hardTileLevel);
     }
 
     /**
@@ -163,10 +165,9 @@ public class TileManager {
      * and an expert stage.
      */
     public void setUpTilesExpert() {
-
         gridSize = 10;
 
-        char[][] ExpertLayout = {
+        char[][] expertLayout = {
                 {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
@@ -178,11 +179,10 @@ public class TileManager {
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
                 {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I', 'I', 'I'}};
 
-        Tile[][] ExpertTileLevel = this.convertCharToTile(ExpertLayout, 10);
-        this.randomizeTiles(ExpertTileLevel);
-        levels.add(ExpertTileLevel);
+        Tile[][] expertTileLevel = this.convertCharToTile(expertLayout, 10);
+        this.randomizeTiles(expertTileLevel);
+        addLevel(expertTileLevel);
     }
-
 
     /**
      * Randomizes the tile rotation
@@ -200,7 +200,7 @@ public class TileManager {
      *
      * @param levelToAdd the array containing the pixels of the new level.
      */
-    public void addLevel(Tile[][] levelToAdd) {
+    private void addLevel(Tile[][] levelToAdd) {
         levels.add(levelToAdd.clone());
     }
 
@@ -241,7 +241,6 @@ public class TileManager {
                     currentLevel++;
                     return true;
                 }
-
             }
         }
         return false;

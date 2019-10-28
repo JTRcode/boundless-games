@@ -11,6 +11,7 @@ import com.example.boundless.R;
 class LTile extends Tile {
     LTile() {
         super(new int[]{1, 1, 0, 0});
-        image = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.l_pipe);
+        originalImage = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.l_pipe);
+        rotatedImage = originalImage;
     }
 }

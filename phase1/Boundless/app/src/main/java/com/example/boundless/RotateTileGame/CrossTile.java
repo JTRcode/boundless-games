@@ -1,6 +1,5 @@
 package com.example.boundless.RotateTileGame;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.boundless.Panel;
@@ -13,6 +12,7 @@ class CrossTile extends Tile {
 
     CrossTile() {
         super(new int[]{1, 1, 1, 1});
-        image = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.cross_pipe);
+        originalImage = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.cross_pipe);
+        rotatedImage = originalImage;
     }
 }

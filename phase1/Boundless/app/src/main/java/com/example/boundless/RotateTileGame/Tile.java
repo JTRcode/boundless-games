@@ -18,7 +18,9 @@ public abstract class Tile {
      */
     boolean visited = true;
 
-    Bitmap image;
+    Bitmap originalImage;
+
+    Bitmap rotatedImage;
     /**
      * The current rotation on this tile.
      */
@@ -26,13 +28,12 @@ public abstract class Tile {
 
 
     public void resize(int newDimension){
-        image = Bitmap.createScaledBitmap(image, newDimension, newDimension, true);
+        originalImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
     }
 
     Tile(int[] exits) {
         this.exits = exits;
         rotation = Rotation.getRandom();
-
     }
 
     /**
@@ -81,35 +82,27 @@ public abstract class Tile {
      */
     public void setTile(Rotation rotation) {
         this.rotation = rotation;
+        rotateBitmap(rotation.getValue());
     }
 
     /**
      * Rotates the tile.
      */
     void rotateTile() {
-        rotateBitmap(90);
-        switch (rotation) {
-            case NORTH:
-                rotation = Rotation.EAST;
-                break;
-            case EAST:
-                rotation = Rotation.SOUTH;
-                break;
-            case SOUTH:
-                rotation = Rotation.WEST;
-                break;
-            case WEST:
-                rotation = Rotation.NORTH;
-                break;
-            default:
-                break;
-        }
+        rotation = Rotation.valueOf((rotation.getValue() + 90) % 360);
+        setTile(rotation);
     }
 
+    /**
+     * Rotates the bitmap image.
+     *
+     * @param angle
+     */
     private void rotateBitmap(float angle)
     {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        image =  Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, true);
+        rotatedImage =  Bitmap.createBitmap(originalImage, 0, 0, originalImage.getWidth(),
+                originalImage.getHeight(), matrix, true);
     }
 }

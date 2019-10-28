@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.boundless.Game;
-import com.example.boundless.Panel;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
@@ -33,8 +32,15 @@ public class RotateTileGame extends Game {
     @Override
     public boolean gameOver() {
         //TODO need to check the game is completed correctly
-        gameFinished = true;
-        return manager.gameOver(userChoice);
+        gameFinished = manager.gameOver(userChoice);
+        if (gameFinished){
+            showToast("Correct!");
+            //change stage
+            return true;
+        } else{
+            showToast("Incorrect!");
+            return false;
+        }
     }
 
     @Override
@@ -42,36 +48,15 @@ public class RotateTileGame extends Game {
         return gameFinished;
     }
 
-
-    /**
-     * Rotates a given tile clockwise.
-     * @param i The first coordinate of the tile to rotate
-     * @param j The second coordinate of the tile to rotate
-     */
-    public void rotate(int i, int j) {
-        userChoice[i][j].rotateTile();
-    }
-
     @Override
     public void draw(Canvas canvas) {
-        //drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
-        //TODO: Jackson finish this up
         for (int i = 0; i < manager.getGridSize(); i++) {
             for (int j = 0; j < manager.getGridSize(); j++) {
-                canvas.drawBitmap(userChoice[i][j].image, manager.getStartX() + j * manager.getTileSize(), manager.getStartY() + manager.getTileSize() * i, paint);
+                canvas.drawBitmap(userChoice[i][j].rotatedImage,
+                        manager.getStartX() + j * manager.getTileSize(),
+                        manager.getStartY() + manager.getTileSize() * i, paint);
             }
         }
-        addGameOverButton(canvas);
-    }
-
-    /**
-     * Adds the game over button to the screen.
-     * @param canvas
-     */
-    private void addGameOverButton(Canvas canvas) {
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(40);
-        drawString(canvas, "Check your answer!", manager.getStartX(), manager.getStartY() + manager.getTileSize() * manager.getGridSize() + 300);
     }
 
     /**
@@ -95,18 +80,9 @@ public class RotateTileGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        //TODO: Update location touched with rotated tile (see PixelGame.convertCoordToIJ method for example on getting the [i] and [j] coordinates)
         int i = (y - manager.getStartY())/manager.getTileSize();
         int j = (x - manager.getStartX())/manager.getTileSize();
-
-        if ((Math.abs(x - manager.getStartX()) < 300 && Math.abs(y - (manager.getStartY() +manager.getTileSize() * manager.getGridSize() + 300)) < 100)){
-            System.out.println("NYAHHHH stoppp it plaz");
-            gameOver();
-        }else {
-            try {
-                userChoice[i][j].rotateTile();
-            } catch (Exception e) {
-            }
-        }
+        if (i < manager.getGridSize() && j < manager.getGridSize())
+            userChoice[i][j].rotateTile();
     }
 }

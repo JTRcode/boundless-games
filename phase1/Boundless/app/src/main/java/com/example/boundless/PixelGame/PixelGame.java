@@ -136,17 +136,6 @@ public class PixelGame extends Game {
         }
         drawOutlines(canvas);
         drawLabels(canvas);
-        addGameOverButton(canvas);
-    }
-
-    /**
-     * Adds the game over button to the screen.
-     * @param canvas
-     */
-    private void addGameOverButton(Canvas canvas) {
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(40);
-        drawString(canvas, "Check your answer!", startX, startY +width * gridSize + 300);
     }
 
     /**
@@ -189,14 +178,6 @@ public class PixelGame extends Game {
             }
         }
     }
-    /**
-     public void showToast(String message){
-     CharSequence text = message;
-     int duration = Toast.LENGTH_SHORT;
-
-     Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-     toast.show();
-     }*/
 
     /**
      * Draw text on the canvas.
