@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userManager = new UserAccountManager(this);
+        Statistics.start();
         if (userManager.notSignedIn()) {
             setContentView(R.layout.login_page);
             //setBackground();

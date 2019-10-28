@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.boundless.Game;
+import com.example.boundless.Statistics;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
@@ -36,6 +37,7 @@ public class RotateTileGame extends Game {
         if (gameFinished){
             showToast("Correct!");
             //change stage
+            Statistics.sumTotalScore();
             return true;
         } else{
             showToast("Incorrect!");

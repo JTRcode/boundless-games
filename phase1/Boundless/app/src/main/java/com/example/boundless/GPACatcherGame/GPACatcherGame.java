@@ -8,6 +8,7 @@ import android.graphics.Paint;
 
 import com.example.boundless.Game;
 import com.example.boundless.Panel;
+import com.example.boundless.Statistics;
 
 /**
  * A GPA catcher game, where you catch falling objects to get a good grade!
@@ -68,19 +69,18 @@ public class GPACatcherGame extends Game {
         }
     }
 
-
     @Override
     public boolean gameOver() {
         if (time <= 0 || life <= 0){
             gameFinished = true;
-
+            Statistics.sumTotalScore();
         }
+
         return gameFinished;
     }
 
     @Override
     public boolean isGameFinished() {
-        gameOver();
         return gameFinished;
     }
 
@@ -95,11 +95,6 @@ public class GPACatcherGame extends Game {
         canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
         manager.draw(canvas);
-
-        if (isGameFinished()){
-            paint.setTextSize(60);
-            canvas.drawText("You GPA is " + roundedGPA, Panel.SCREEN_WIDTH/2-200, Panel.SCREEN_HEIGHT/2, paint);
-        }
     }
 
     @Override

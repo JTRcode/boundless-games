@@ -71,4 +71,10 @@ public class MenuActivity extends AppCompatActivity {
         Session.setBackground(R.drawable.halloween_main_menu);
     }*/
 
+    public void goStatistics(View v){
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        Statistics.end();
+        startActivity(intent);
+    }
+
 }
