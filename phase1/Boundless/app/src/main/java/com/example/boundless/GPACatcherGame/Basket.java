@@ -26,11 +26,6 @@ class Basket {
     private int coordX;
     private int coordY;
     private int size;
-
-    /**
-     * the distance basket moves by each tap
-     * the value will depend on the size of basket and falling objects
-     */
     private int speed;
 
 

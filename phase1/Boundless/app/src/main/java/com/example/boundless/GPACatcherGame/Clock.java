@@ -15,10 +15,6 @@ class Clock extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
-    /**
-     * + some time when caught, no effect when missed
-     * current design: add 5 more seconds when caught
-     */
     @Override
     void caught() {
         GPACatcherGame.addTime(5);

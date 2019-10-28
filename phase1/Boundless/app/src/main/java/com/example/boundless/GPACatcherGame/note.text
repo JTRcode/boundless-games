@@ -69,3 +69,13 @@ Files affected: all files in the package
 Changes:
 1. Fixed some flaw that no object is considered hit the ground and basket may be out of screen
 2. Changes some values and set limitations
+
+2019.10.
+writer: Cynthia Song
+Files affected: all in package
+
+Changes:
+   1. fixed issue where falling objects would appear at very edge where it's unreachable by basket
+   2. bomb_avoided now resets to 0 after it reaches 10
+   3. added time limit (countdown)
+   4. deleted some commented code

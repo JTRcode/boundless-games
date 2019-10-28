@@ -15,9 +15,6 @@ class Bomb extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
-    /**
-     * -1 life when caught, no effect when missed
-     */
     @Override
     void caught() {
         GPACatcherGame.addLife(-1);

@@ -19,7 +19,7 @@ public abstract class FallingObject {
     private int coordY; //The second coordinate of the object
     Bitmap appearance; //The appearance of the object
     private int size = 100;
-    private int fallingSpeed = 8; //The speed that the object will fall at
+    private int fallingSpeed = 15; //The speed that the object will fall at
     private Paint paintText = new Paint();
 
     public FallingObject(){
@@ -27,6 +27,9 @@ public abstract class FallingObject {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
         int x = (int) (Math.random()*Panel.SCREEN_WIDTH-size);
+        if (x <= size/2){
+            x = size;
+        }
         setCoordX(x);
     }
     public void setSize(int size){
@@ -71,7 +74,6 @@ public abstract class FallingObject {
      * @param canvas the canvas on which to draw this item.
      */
     protected void draw(Canvas canvas) {
-//        drawString(canvas, appearance, coordX, coordY);
         canvas.drawBitmap(appearance, coordX, coordY, paintText);
     }
 

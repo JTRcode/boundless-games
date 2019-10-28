@@ -15,6 +15,9 @@ public class GPAManager {
      */
     LinkedList<FallingObject> fallingObjects = new LinkedList<>();
     Basket basket;
+    private static int num_items;
+    private static double add_chance;
+    static int max_items = 10;
 
 
     /**
@@ -36,11 +39,13 @@ public class GPAManager {
             if (basket.inRange(temp)) {
                 temp.caught();
                 iterator.remove();
+                num_items--;
                 System.out.println("it is Caught");
             } else if (temp.hitGround()) {
                 temp.missed();
                 System.out.println("it is Missed");
                 iterator.remove();
+                num_items--;
             } else
                 temp.fall();
                 System.out.println("Falling");
@@ -51,15 +56,44 @@ public class GPAManager {
      * Add a falling object to the screen
      */
     public void addFallingObject() {
+        switch (num_items){
+            case 0:
+                add_chance = 0.1;
+                break;
+            case 1:
+                add_chance = 0.05;
+                break;
+            case 2:
+                add_chance = 0.02;
+                break;
+            case 3:
+                add_chance = 0.01;
+                break;
+            default:
+                add_chance = 0;
+
+        }
+        if (num_items >= max_items){
+            return;
+        }
+
         double d = Math.random();
-        if (d < 0.02)
+        if (d < 0.02 + add_chance){
             fallingObjects.add(new Assignment());
-        else if (d < 0.025)
+            num_items++;
+        }
+        else if (d < 0.025 + add_chance){
             fallingObjects.add(new Bomb());
-        else if (d < 0.026)
+            num_items++;
+        }
+        else if (d < 0.026 + add_chance){
             fallingObjects.add(new Sleep());
-        else if (d < 0.027)
+            num_items++;
+        }
+        else if (d < 0.027 + add_chance){
             fallingObjects.add(new Clock());
+            num_items++;
+        }
     }
 
 }
