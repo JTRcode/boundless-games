@@ -70,7 +70,10 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        return (time <= 0 || life <= 0);
+        if (time <= 0 || life <= 0){
+            gameFinished = true;
+        }
+        return gameFinished;
     }
 
     @Override

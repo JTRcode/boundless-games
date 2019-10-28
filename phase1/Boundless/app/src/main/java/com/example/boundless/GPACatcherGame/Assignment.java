@@ -23,7 +23,7 @@ class Assignment extends FallingObject {
     @Override
     void missed() {
         GPACatcherGame.addGpa(-0.1);
-        GPACatcherGame.addLife(0);
+        GPACatcherGame.addLife(-1);
     }
 
 }

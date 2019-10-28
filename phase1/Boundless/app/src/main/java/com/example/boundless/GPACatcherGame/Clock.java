@@ -17,7 +17,7 @@ class Clock extends FallingObject {
 
     @Override
     void caught() {
-        GPACatcherGame.addTime(5);
+        GPACatcherGame.addTime(50);
     }
 
     @Override
