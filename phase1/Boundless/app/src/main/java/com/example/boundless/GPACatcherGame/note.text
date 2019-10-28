@@ -79,3 +79,8 @@ Changes:
    2. bomb_avoided now resets to 0 after it reaches 10
    3. added time limit (countdown) and upper limit of falling objects
    4. deleted some commented code
+
+2019.10.28
+writer: Huiqin Chen
+file affected: GPACatherGame.java
+change: gameOver() and show message when game over
