@@ -112,8 +112,21 @@
             android:id="@+id/change_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="themeChanged"
+            android:onClick="themeOn"
             android:text="@string/halloween_theme" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/turn_off_theme" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="themeOff"
+            android:text="@string/turn_off" />
 
     </LinearLayout>
 

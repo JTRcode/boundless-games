@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import com.example.boundless.Game;
 import com.example.boundless.Statistics;
@@ -36,12 +35,11 @@ public class RotateTileGame extends Game {
         gameFinished = manager.gameOver(userChoice);
         if (gameFinished){
             showToast("Correct!");
-            //Statistics.sumTotalScore();
-            Log.i(this.toString(), "Made it this far");
             //change stage
             try {userChoice = manager.getTileStage();}
             catch(ArrayIndexOutOfBoundsException e){
-                Log.i("RotateTileGame", "all stages have been cleared");
+                Statistics.sumTotalScore();
+                Statistics.end();
                 return true;
             }
             return false;
@@ -58,7 +56,6 @@ public class RotateTileGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
-        Log.i(this.toString(),userChoice.toString());
         for (int i = 0; i < userChoice.length; i++) {
             for (int j = 0; j < userChoice.length; j++) {
                 canvas.drawBitmap(userChoice[i][j].rotatedImage,
