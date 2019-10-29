@@ -38,6 +38,7 @@ public class RotateTileGame extends Game {
             showToast("Correct!");
             //change stage
             Statistics.sumTotalScore();
+            Statistics.end();
             return true;
         } else{
             showToast("Incorrect!");

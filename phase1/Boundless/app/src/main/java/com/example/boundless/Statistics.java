@@ -24,10 +24,10 @@ public class Statistics {
     /**
      * Stops measuring time
      */
-    static void end() {
+    public static void end() {
         long endTime = new Date().getTime();
         long timeElapsed = endTime - startTime;
-        timeElapsedSeconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+        timeElapsedSeconds += TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
     }
 
     /**
@@ -63,8 +63,8 @@ public class Statistics {
      * returns string formatting the statistics (to be called at the end after all 3 games)
      */
     static String printStats() {
-        return "Your Statistics (For All Games):" + "\n" +
-                "Total App Runtime (Seconds): " + timeElapsedSeconds + "\n" +
+        return "Your Statistics:" + "\n" +
+                "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
                 "Total Points: " + totalScore + "\n" +
                 "Total Number of Taps on Screen: " + counterClicks + "\n" +
                 "Thanks for Playing!";

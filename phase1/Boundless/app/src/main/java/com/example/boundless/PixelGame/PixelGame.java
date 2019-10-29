@@ -88,6 +88,7 @@ public class PixelGame extends Game {
                 showToast("Congrats!");
                 gameFinished = true;
                 Statistics.sumTotalScore();
+                Statistics.end();
                 return true;
 
             }

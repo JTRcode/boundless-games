@@ -83,4 +83,13 @@ public class GameActivity extends Activity {
         player.release();
         finish();
     }
+
+    /**
+    * Override hardware back button to include stopping time for statistics calculation
+    */
+    @Override
+    public void onBackPressed(){
+        Statistics.end();
+        super.onBackPressed();
+    }
 }

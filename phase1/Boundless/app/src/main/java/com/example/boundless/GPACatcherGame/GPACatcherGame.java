@@ -75,6 +75,7 @@ public class GPACatcherGame extends Game {
         if (time <= 0 || life <= 0){
             gameFinished = true;
             Statistics.sumTotalScore();
+            Statistics.end();
 
         }
 
