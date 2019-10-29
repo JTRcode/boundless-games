@@ -17,6 +17,12 @@ public class CustomizationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customiztion);
+        if(Session.getTheme()){
+            getWindow().setBackgroundDrawableResource(R.drawable.halloween_custom);
+        }
+        else{
+            getWindow().setBackgroundDrawableResource(R.drawable.custom);
+        }
     }
 
     /**

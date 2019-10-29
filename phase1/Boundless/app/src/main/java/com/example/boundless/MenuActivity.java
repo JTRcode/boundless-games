@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,12 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-        //setBackground();
+        if(Session.getTheme()){
+            getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
+        }
+        else{
+            getWindow().setBackgroundDrawableResource(R.drawable.menu);
+        }
     }
 
     /**
