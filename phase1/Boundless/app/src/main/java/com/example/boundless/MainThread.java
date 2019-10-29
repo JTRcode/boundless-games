@@ -1,6 +1,8 @@
 package com.example.boundless;
 
+import android.content.Intent;
 import android.graphics.Canvas;
+import android.view.Menu;
 import android.view.SurfaceHolder;
 
 import com.example.boundless.Panel;
@@ -65,6 +67,7 @@ public class MainThread extends Thread{
             }
         }
     }
+
     public void setRunning(boolean running){
         this.running = running;
     }

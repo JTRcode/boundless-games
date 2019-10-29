@@ -23,7 +23,6 @@ public class RotateTileGame extends Game {
 
     public RotateTileGame(Context context) {
         super(context);
-        manager.setUpTiles();
         userChoice = manager.getTileStage();
         paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -37,9 +36,13 @@ public class RotateTileGame extends Game {
         if (gameFinished){
             showToast("Correct!");
             //change stage
-            Statistics.sumTotalScore();
-            Statistics.end();
-            return true;
+            try {userChoice = manager.getTileStage();}
+            catch(ArrayIndexOutOfBoundsException e){
+                Statistics.sumTotalScore();
+                Statistics.end();
+                return true;
+            }
+            return false;
         } else{
             showToast("Incorrect!");
             return false;
@@ -53,25 +56,13 @@ public class RotateTileGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
-        for (int i = 0; i < manager.getGridSize(); i++) {
-            for (int j = 0; j < manager.getGridSize(); j++) {
+        for (int i = 0; i < userChoice.length; i++) {
+            for (int j = 0; j < userChoice.length; j++) {
                 canvas.drawBitmap(userChoice[i][j].rotatedImage,
                         manager.getStartX() + j * manager.getTileSize(),
                         manager.getStartY() + manager.getTileSize() * i, paint);
             }
         }
-    }
-
-    /**
-     * Draw text on the canvas.
-     *
-     * @param canvas The canvas to draw on.
-     * @param text   The text to draw.
-     * @param x      The x location to draw text at.
-     * @param y      The y location to draw text at.
-     */
-    private void drawString(Canvas canvas, String text, int x, int y) {
-        canvas.drawText(text, x, y, paint);
     }
 
     /**
