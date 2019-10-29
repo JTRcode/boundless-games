@@ -23,16 +23,11 @@ public class TileManager {
     private int startX = 100;
     private int startY = Panel.SCREEN_HEIGHT / 4;
     private int tileSize;
-    //TODO: Jackson the drawing stuff shouldn't be in the manager
 
     /**
      * The current level being played.
      */
     private int currentLevel = 0;
-
-    public TileManager() {
-        this(5);
-    }
 
     public TileManager(int size) {
         gridSize = size;
@@ -85,6 +80,9 @@ public class TileManager {
     }
 
     Tile[][] getTileStage() {
+        setUpTiles();
+        gridSize = (levels.get(currentLevel)).length;
+        tileSize = (Panel.SCREEN_WIDTH - 2 * startX) / gridSize;
         return levels.get(currentLevel);
     }
 
@@ -92,15 +90,22 @@ public class TileManager {
      * Initializes the tiles array and randomizes the rotation.
      */
     void setUpTiles() {
-        //TODO: hardcode and randomize tiles?
-        Tile[][] level = new Tile[gridSize][gridSize];
-        for (int i = 0; i < gridSize; i++) {
-            for (int t = 0; t < gridSize; t++) {
-                level[i][t] = createNewTile(HardCodeSetUps.game1[i][t]);
-            }
+        switch (currentLevel){
+            case 0:
+                setUpTilesEasy();
+                break;
+            case 1:
+                setUpTilesMedium();
+                break;
+            case 2:
+                setUpTilesHard();
+                break;
+            case 3:
+                setUpTilesExpert();
+                break;
+            default:
+                break;
         }
-        randomizeTiles(level); //Is it mutable? if so then yes this will work
-        levels.add(level);
     }
 
     /**
@@ -214,7 +219,10 @@ public class TileManager {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j].visited = false;
-        return gameOver(0, 0, 3, userChoices);
+
+        boolean correct = gameOver(0, 0, 3, userChoices);
+        if (correct){currentLevel++;}
+        return correct;
     }
 
     /**
@@ -238,7 +246,6 @@ public class TileManager {
                 int newX = calculateNewCoord(x, exit, 0);
                 int newY = calculateNewCoord(y, exit, 1);
                 if (valid(newX, newY) && gameOver(newX, newY, (exit + 2) % 4, userChoices)) {
-                    currentLevel++;
                     return true;
                 }
             }
@@ -295,7 +302,7 @@ public class TileManager {
                     default:
                         break;
                 }
-                output[i][j].resize(tileSize);
+                output[i][j].resize((Panel.SCREEN_WIDTH - 2 * startX) / size);
             }
         return output;
     }

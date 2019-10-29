@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.example.boundless.Game;
 import com.example.boundless.Statistics;
@@ -23,7 +24,6 @@ public class RotateTileGame extends Game {
 
     public RotateTileGame(Context context) {
         super(context);
-        manager.setUpTiles();
         userChoice = manager.getTileStage();
         paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -36,9 +36,15 @@ public class RotateTileGame extends Game {
         gameFinished = manager.gameOver(userChoice);
         if (gameFinished){
             showToast("Correct!");
+            //Statistics.sumTotalScore();
+            Log.i(this.toString(), "Made it this far");
             //change stage
-            Statistics.sumTotalScore();
-            return true;
+            try {userChoice = manager.getTileStage();}
+            catch(ArrayIndexOutOfBoundsException e){
+                Log.i("RotateTileGame", "all stages have been cleared");
+                return true;
+            }
+            return false;
         } else{
             showToast("Incorrect!");
             return false;
@@ -52,25 +58,14 @@ public class RotateTileGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
-        for (int i = 0; i < manager.getGridSize(); i++) {
-            for (int j = 0; j < manager.getGridSize(); j++) {
+        Log.i(this.toString(),userChoice.toString());
+        for (int i = 0; i < userChoice.length; i++) {
+            for (int j = 0; j < userChoice.length; j++) {
                 canvas.drawBitmap(userChoice[i][j].rotatedImage,
                         manager.getStartX() + j * manager.getTileSize(),
                         manager.getStartY() + manager.getTileSize() * i, paint);
             }
         }
-    }
-
-    /**
-     * Draw text on the canvas.
-     *
-     * @param canvas The canvas to draw on.
-     * @param text   The text to draw.
-     * @param x      The x location to draw text at.
-     * @param y      The y location to draw text at.
-     */
-    private void drawString(Canvas canvas, String text, int x, int y) {
-        canvas.drawText(text, x, y, paint);
     }
 
     /**
