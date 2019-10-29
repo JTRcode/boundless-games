@@ -25,20 +25,25 @@ public class CustomizationActivity extends AppCompatActivity {
      * @param view the button clicked
      */
     public void setMusic(View view) {
-        switch (view.getId()) {
-            case R.id.music_1:
-                Session.setMusic(R.raw.minnutesican);
-                break;
-            case R.id.music_2:
-                Session.setMusic(R.raw.novoamorweather);
-                break;
-            case R.id.music_3:
-                Session.setMusic(R.raw.sufjanstevensdeathwithdignity);
-                break;
-            default:
-                break;
+        if(Session.getTheme()){
+            showToast("Turn the theme off first");
         }
-        showToast("Music choice saved!");
+        else {
+            switch (view.getId()) {
+                case R.id.music_1:
+                    Session.setMusic(R.raw.minnutesican);
+                    break;
+                case R.id.music_2:
+                    Session.setMusic(R.raw.novoamorweather);
+                    break;
+                case R.id.music_3:
+                    Session.setMusic(R.raw.sufjanstevensdeathwithdignity);
+                    break;
+                default:
+                    break;
+            }
+            showToast("Music choice saved");
+        }
     }
 
     /**
@@ -47,20 +52,25 @@ public class CustomizationActivity extends AppCompatActivity {
      * @param view the button that the user click
      */
     public void setBackground(View view) {
-        switch (view.getId()) {
-            case R.id.background_1:
-                Session.setBackground(R.drawable.backgroundone);
-                break;
-            case R.id.background_2:
-                Session.setBackground(R.drawable.backgroundtwo);
-                break;
-            case R.id.background_3:
-                Session.setBackground(R.drawable.backgroundfive);
-                break;
-            default:
-                break;
+        if(Session.getTheme()){
+            showToast("Turn the theme off first");
         }
-        showToast("Background saved!");
+        else {
+            switch (view.getId()) {
+                case R.id.background_1:
+                    Session.setBackground(R.drawable.backgroundone);
+                    break;
+                case R.id.background_2:
+                    Session.setBackground(R.drawable.backgroundtwo);
+                    break;
+                case R.id.background_3:
+                    Session.setBackground(R.drawable.backgroundfive);
+                    break;
+                default:
+                    break;
+            }
+            showToast("Background saved!");
+        }
     }
 
     /**
@@ -81,23 +91,26 @@ public class CustomizationActivity extends AppCompatActivity {
         toast.show();
     }
 
+
     /**
-     * change the theme, for now it is the halloween theme
-     * @param view the button of spooks
+     * Turn the halloween theme on
+     * @param view the button clicked
      */
+    public void themeOn(View view){
+        Session.setBackground(R.drawable.halloween_background);
+        Session.setMusic(R.raw.thriller);
+        Session.setTheme(true);
+        showToast("Spooky Magic happens!!!");
+    }
 
-    public void themeChanged(View view){
-        boolean themeOn = Session.getTheme();
-        if(!themeOn){
-            Session.setBackground(R.drawable.halloween_background);
-            Session.setMusic(R.raw.thriller);
-            Session.setTheme(true);
-        }
-        else{
-            Session.setBackground(R.drawable.backgroundone);
-            Session.setMusic(R.raw.minnutesican);
-            Session.setTheme(false);
-        }
-
+    /**
+     * Turn the theme off
+     * @param view the button clicked
+     */
+    public void themeOff(View view){
+        Session.setBackground(R.drawable.backgroundone);
+        Session.setMusic(R.raw.minnutesican);
+        Session.setTheme(false);
+        showToast("See you soon :)");
     }
 }
