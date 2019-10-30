@@ -23,13 +23,15 @@ public class GPACatcherGame extends Game {
     private static int time; // current time remaining  (overall time to be determined)
     private static int bomb_avoided; // every 10 bombs avoided = +1 life
 
+//    private static int max_time = 1000;
+    private static int max_time = Panel.SCREEN_WIDTH;
     private static Bitmap heart;
-    private static int heart_size = 20;
+    private static int heart_size = 60;
     private GPAManager manager;
     Paint paint = new Paint();
 
     public GPACatcherGame(Context context) {
-        this(context,1000);
+        this(context, max_time);
     }
 
     public GPACatcherGame(Context context, int time) {
@@ -64,8 +66,8 @@ public class GPACatcherGame extends Game {
 
     static void addTime(int time) {
         GPACatcherGame.time += time;
-        if(GPACatcherGame.time>60)
-            GPACatcherGame.time = 60;
+        if(GPACatcherGame.time>max_time)
+            GPACatcherGame.time = max_time;
     }
 
     static void bomb_missed(){
@@ -84,23 +86,33 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void draw(Canvas canvas) {
+        if (time >= max_time/2){
+            paint.setColor(Color.GREEN);
+        }
+        else if (time >= max_time/4){
+            paint.setColor(Color.YELLOW);
+        }
+        else {
+            paint.setColor(Color.RED);
+        }
+        canvas.drawRect(0, 10, time, 70, paint);
+
         paint.setColor(Color.WHITE);
-        paint.setTextSize(36);
+        paint.setTextSize(60);
 
         double roundedGPA = Math.round(gpa*100)/100.0;
-        canvas.drawText("GPA: " + roundedGPA, 50, 50, paint);
-        canvas.drawText("Time: " + time/10, Panel.SCREEN_WIDTH - 160, 50, paint);
+        canvas.drawText("GPA: " + roundedGPA, 50, 125, paint);
+
         if (life >= 1){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130, 80, paint);
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - heart_size, 80, paint);
         }
         if (life >= 2){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130 - heart_size, 80, paint);
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 2* heart_size, 80, paint);
         }
 
         if (life == 3){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130 - 2*heart_size, 80, paint);
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 3*heart_size, 80, paint);
         }
-//        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
         manager.draw(canvas);
     }
@@ -117,7 +129,7 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void update() {
-        time--;
+        time -= 2;
         manager.addFallingObject();
         manager.update();
     }
