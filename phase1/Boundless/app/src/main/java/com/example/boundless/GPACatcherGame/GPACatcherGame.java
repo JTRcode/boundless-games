@@ -19,7 +19,6 @@ public class GPACatcherGame extends Game {
     private static int life; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
     private static int bomb_avoided; // every 10 bombs avoided = +1 life
-    private boolean gameFinished = false;
     private GPAManager manager;
     Paint paint = new Paint();
 
@@ -29,7 +28,6 @@ public class GPACatcherGame extends Game {
 
     public GPACatcherGame(Context context, int time) {
         super(context);
-
 
         GPACatcherGame.time = time;
         gpa = 2.0;
@@ -72,20 +70,7 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        if (time <= 0 || life <= 0){
-            gameFinished = true;
-            Statistics.sumTotalScore();
-            Statistics.end();
-
-        }
-
-        return gameFinished;
-    }
-
-    @Override
-    public boolean isGameFinished() {
-        gameOver();
-        return gameFinished;
+        return (time <= 0 || life <= 0);
     }
 
     @Override
@@ -99,11 +84,6 @@ public class GPACatcherGame extends Game {
         canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
         manager.draw(canvas);
-
-        if (isGameFinished()){
-            paint.setTextSize(60);
-            canvas.drawText("You GPA is " + roundedGPA, Panel.SCREEN_WIDTH/2-200, Panel.SCREEN_HEIGHT/2, paint);
-        }
     }
 
     @Override
@@ -121,6 +101,5 @@ public class GPACatcherGame extends Game {
         time--;
         manager.addFallingObject();
         manager.update();
-
     }
 }

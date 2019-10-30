@@ -138,6 +138,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         game.update();
+        if (game.checkGameOver()){
+            thread.setRunning(false);
+        }
     }
 
     @Override

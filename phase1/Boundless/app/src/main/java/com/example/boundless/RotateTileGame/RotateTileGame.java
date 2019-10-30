@@ -6,16 +6,20 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.boundless.Game;
-import com.example.boundless.Statistics;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
  */
 public class RotateTileGame extends Game {
 
+    /**
+     * The manager for this game
+     */
     private TileManager manager = new TileManager(5);
+    /**
+     * The users choices of the tiles
+     */
     private Tile[][] userChoice;
-    private boolean gameFinished = false;
     /**
      * The width of each grid square.
      */
@@ -31,27 +35,15 @@ public class RotateTileGame extends Game {
 
     @Override
     public boolean gameOver() {
-        //TODO need to check the game is completed correctly
-        gameFinished = manager.gameOver(userChoice);
-        if (gameFinished){
-            showToast("Correct!");
-            //change stage
+        //TODO don't use a try catch for phase 2
+        if (manager.gameOver(userChoice)){
             try {userChoice = manager.getTileStage();}
-            catch(ArrayIndexOutOfBoundsException e){
-                Statistics.sumTotalScore();
-                Statistics.end();
+            catch(IndexOutOfBoundsException e){
+                //out of levels, throws an exception
                 return true;
             }
-            return false;
-        } else{
-            showToast("Incorrect!");
-            return false;
         }
-    }
-
-    @Override
-    public boolean isGameFinished() {
-        return gameFinished;
+        return false;
     }
 
     @Override
@@ -70,7 +62,6 @@ public class RotateTileGame extends Game {
      *
      * @param x The x coordinate of the touched location.
      * @param y The y coordinate of the touched location.
-     * @return whether the game should be over.
      */
     @Override
     public void screenTouched(int x, int y) {

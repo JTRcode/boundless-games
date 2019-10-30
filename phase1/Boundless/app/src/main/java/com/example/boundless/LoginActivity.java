@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Statistics.start();
         userManager = new UserAccountManager(this);
         if (userManager.notSignedIn()) {
             setContentView(R.layout.login_page);

@@ -120,6 +120,14 @@ public class PixelManager {
         return streaks;
     }
 
+    /**
+     * Get the number of levels
+     * @return The number of levels in the game
+     */
+    public int getNumOfLevels(){
+        return levels.size();
+    }
+
     //-----------------------------------
     //Hardcode levels
     //TODO: move these hardcoded patterns to a new class

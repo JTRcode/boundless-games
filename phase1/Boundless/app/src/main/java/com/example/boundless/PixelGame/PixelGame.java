@@ -22,11 +22,6 @@ public class PixelGame extends Game {
     private int gridSize;
 
     /**
-     * The bool value to indicate the end of game
-     */
-    private boolean gameFinished = false;
-
-    /**
      * The current level of the game.
      */
     private int currentLevel = 0;
@@ -75,33 +70,23 @@ public class PixelGame extends Game {
                 userChoice[i][j] = PixelOptions.EMPTY;
     }
 
+    /**
+     * Check if the game is over
+     *
+     * @return If all stages have been correctly finished
+     */
     @Override
     public boolean gameOver() {
-        if (pixelManager.checkPixels(userChoice, currentLevel)) {
-            currentLevel++;
-            showToast("That's correct");
-            try {
-                currentLabels = pixelManager.label(currentLevel);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                emptyUserChoices();
-                //TODO: exit here and go back to main menu
-                showToast("Congrats!");
-                gameFinished = true;
-                Statistics.sumTotalScore();
-                Statistics.end();
-                return true;
-
-            }
-            emptyUserChoices();
-        } else {
-            showToast("Sorry, you have the wrong answer!");
+        if (!pixelManager.checkPixels(userChoice, currentLevel)) {
+            return false;
         }
-        return false;
-    }
-
-    @Override
-    public boolean isGameFinished() {
-        return gameFinished;
+        currentLevel++;
+        if (currentLevel < pixelManager.getNumOfLevels()) {
+            currentLabels = pixelManager.label(currentLevel);
+            emptyUserChoices();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -171,7 +156,7 @@ public class PixelGame extends Game {
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
             int drawY = startY + rowNum * width + (width / 2);
-            int drawX = startX -15 - row.size() * buffer;
+            int drawX = startX - 15 - row.size() * buffer;
             for (int entryNum = 0; entryNum < row.size(); entryNum++)
                 drawString(canvas, row.get(entryNum).toString(), drawX + entryNum * buffer, drawY);
         }

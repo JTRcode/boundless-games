@@ -36,7 +36,17 @@ public class TileManager {
     }
 
     /**
+     * Gets the number of levels we have
+     *
+     * @return The total number of levels
+     */
+    public int getNumOfLevels() {
+        return levels.size();
+    }
+
+    /**
      * Creates a new tile based on the enum given
+     *
      * @param type Enum of the tile to create
      * @return The new tile
      */

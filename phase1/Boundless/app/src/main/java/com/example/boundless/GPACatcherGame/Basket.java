@@ -14,7 +14,6 @@ import com.example.boundless.R;
  * A basket for catching falling objects
  */
 class Basket {
-    //TODO: Finish javadocs
     /**
      * The appearance of the basket
      */
@@ -25,12 +24,15 @@ class Basket {
      */
     private int coordX;
     private int coordY;
+    /**
+     * The size of the basket
+     */
     private int size;
     private int speed;
 
 
-     /**
-     * the width of the screen
+    /**
+     * the size of the screen
      */
     private int screenWidth;
     private int screenHeight;
@@ -46,23 +48,39 @@ class Basket {
 
         this.screenWidth = Panel.SCREEN_WIDTH;
         this.screenHeight = Panel.SCREEN_HEIGHT;
-        setCoordX(screenWidth/2);
-        setCoordY(screenHeight-250);
+        setCoordX(screenWidth / 2);
+        setCoordY(screenHeight - 250);
         this.speed = speed;
     }
 
+    /**
+     * Get the x coordinate of the basket
+     * @return The x coordinate of the basket
+     */
     public int getCoordX() {
         return coordX;
     }
 
+    /**
+     * Set the x coordinate of the basket
+     * @param coordX The new x coordinate to set the basket to
+     */
     public void setCoordX(int coordX) {
         this.coordX = coordX;
     }
 
+    /**
+     * Get the y coordinate of the basket
+     * @return The y coordinate of the basket
+     */
     public int getCoordY() {
         return coordY;
     }
 
+    /**
+     * Set the y coordinate of the basket
+     * @param coordY The new y coordinate to set the basket to
+     */
     public void setCoordY(int coordY) {
         this.coordY = coordY;
     }
@@ -71,7 +89,7 @@ class Basket {
      * Moves the basket left on the screen
      */
     void moveLeft() {
-        if(coordX >=0)
+        if (coordX >= 0)
             coordX -= speed;
     }
 
@@ -79,35 +97,29 @@ class Basket {
      * Moves the basket right on the screen
      */
     void moveRight() {
-
-        if(coordX +size<screenWidth)
-            coordX +=speed;
+        if (coordX + size < screenWidth)
+            coordX += speed;
     }
 
     /**
-     * @param object The object that being examined if it is caught by the basket
+     * Checks if an item is in range to be caught by the basket
      *
+     * @param object The object that being examined if it is caught by the basket
      * @return return true if it's in the range of basket
      */
-    boolean inRange(FallingObject object){
-        //  returns true if the object is in range. i.e. if the object is "caught"
+    boolean inRange(FallingObject object) {
+        int middle = object.getCoordX() + object.getSize() / 2;
+        int bottom = object.getCoordY() + object.getSize();
 
-            int middle = object.getCoordX()+object.getSize()/2 ;
-            int bottom = object.getCoordY()+object.getSize();
-
-            return (middle>= coordX&& middle<= coordX +size&& bottom>=coordY);
+        return (middle >= coordX && middle <= coordX + size && bottom >= coordY);
     }
 
-
     /**
-     * Draws the Bomb
+     * Draws the Basket
      *
      * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
-
         canvas.drawBitmap(appearance, coordX, coordY, paintText);
-
     }
-
 }

@@ -27,7 +27,7 @@ public abstract class Tile {
     private Rotation rotation;
 
 
-    public void resize(int newDimension){
+    void resize(int newDimension){
         originalImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
     }
 
@@ -96,7 +96,7 @@ public abstract class Tile {
     /**
      * Rotates the bitmap image.
      *
-     * @param angle
+     * @param angle Angle to rotate to.
      */
     private void rotateBitmap(float angle)
     {
