@@ -32,7 +32,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/choose_music" />
+            android:text="@string/choose_music"
+            android:background="#FFFFFF"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:id="@+id/musicChooser"
@@ -69,7 +71,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/choose_background" />
+            android:text="@string/choose_background"
+            android:background="#FFFFFF"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:id="@+id/backgroundChooser"
@@ -104,9 +108,11 @@
 
         <TextView
             android:id="@+id/textview3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/halloween" />
+            android:background="#FFFFFF"
+            android:text="@string/halloween"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/change_theme"
@@ -117,9 +123,11 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/turn_off_theme" />
+            android:background="#FFFFFF"
+            android:text="@string/turn_off_theme"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/button"
