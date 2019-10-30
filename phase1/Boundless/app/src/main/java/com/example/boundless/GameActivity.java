@@ -69,8 +69,12 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        player.release();
-        finish();
+        if(player != null){
+            player.release();
+            player = null;
+        }
+        //player.release();
+        //finish();
     }
 
     @Override
