@@ -30,6 +30,7 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Statistics.start();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setupGame();
@@ -84,7 +85,7 @@ public class GameActivity extends Activity implements Observer {
      * @param currentGame The current game being played
      */
     public void moveToNextGame(Game currentGame) {
-        System.out.println("GPA MOVING TO NEXT GAME");
+        Statistics.end();
         Intent intent = new Intent(this, GameActivity.class);
         if (currentGame instanceof PixelGame) {
             intent.putExtra("GAME", GamesEnum.ROTATETILE);

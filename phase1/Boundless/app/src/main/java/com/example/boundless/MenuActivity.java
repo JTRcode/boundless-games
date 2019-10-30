@@ -45,15 +45,12 @@ public class MenuActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.GPACatcherGame:
-                Statistics.start();
                 intent.putExtra("GAME", GamesEnum.GPACATCHER);
                 break;
             case R.id.RotateTile:
-                Statistics.start();
                 intent.putExtra("GAME", GamesEnum.ROTATETILE);
                 break;
             case R.id.PixelGame:
-                Statistics.start();
                 intent.putExtra("GAME", GamesEnum.PIXELS);
                 break;
             default:

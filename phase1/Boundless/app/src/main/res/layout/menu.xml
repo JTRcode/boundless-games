@@ -30,18 +30,18 @@
         app:layout_constraintVertical_bias="0.52">
 
         <Button
-            android:id="@+id/RotateTile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="startGame"
-            android:text="@string/rotate_tile" />
-
-        <Button
             android:id="@+id/PixelGame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startGame"
             android:text="@string/pixel" />
+
+        <Button
+            android:id="@+id/RotateTile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startGame"
+            android:text="@string/rotate_tile" />
 
         <Button
             android:id="@+id/GPACatcherGame"
