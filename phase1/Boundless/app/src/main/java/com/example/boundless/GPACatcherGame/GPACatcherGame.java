@@ -1,6 +1,8 @@
 package com.example.boundless.GPACatcherGame;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +10,7 @@ import android.graphics.Paint;
 
 import com.example.boundless.Game;
 import com.example.boundless.Panel;
+import com.example.boundless.R;
 import com.example.boundless.Statistics;
 
 /**
@@ -19,6 +22,9 @@ public class GPACatcherGame extends Game {
     private static int life; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
     private static int bomb_avoided; // every 10 bombs avoided = +1 life
+
+    private static Bitmap heart;
+    private static int heart_size = 20;
     private GPAManager manager;
     Paint paint = new Paint();
 
@@ -36,6 +42,9 @@ public class GPACatcherGame extends Game {
         manager = new GPAManager();
         manager.basket = new Basket(50);
         manager.addFallingObject();
+
+        heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
+        heart = Bitmap.createScaledBitmap(heart, heart_size, heart_size, true);
     }
 
     static void addGpa(double gpa) {
@@ -81,7 +90,17 @@ public class GPACatcherGame extends Game {
         double roundedGPA = Math.round(gpa*100)/100.0;
         canvas.drawText("GPA: " + roundedGPA, 50, 50, paint);
         canvas.drawText("Time: " + time/10, Panel.SCREEN_WIDTH - 160, 50, paint);
-        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
+        if (life >= 1){
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130, 80, paint);
+        }
+        if (life >= 2){
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130 - heart_size, 80, paint);
+        }
+
+        if (life == 3){
+            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 130 - 2*heart_size, 80, paint);
+        }
+//        canvas.drawText("Life: " + life, Panel.SCREEN_WIDTH - 130, 80, paint);
         manager.basket.draw(canvas);
         manager.draw(canvas);
     }
