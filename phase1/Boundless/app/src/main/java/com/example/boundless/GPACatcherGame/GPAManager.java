@@ -1,7 +1,10 @@
 package com.example.boundless.GPACatcherGame;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
+import com.example.boundless.GPACatcherGame.falling_objects.FallingObject;
+import com.example.boundless.GPACatcherGame.falling_objects.FallingObjectFactory;
 
 import java.util.*;
 
@@ -9,16 +12,16 @@ import java.util.*;
  * Creates new falling objects and updates them
  */
 public class GPAManager {
-    //TODO: make sure javadocs are there, and change modifiers to package-private or private where possible
-    /**
-     * A list of all the falling objects on the screen
-     */
-    LinkedList<FallingObject> fallingObjects = new LinkedList<>();
-    Basket basket;
-    private int num_items;
-    private static double add_chance;
-    static int max_items = 10;
 
+    /**
+     * The basket to catch items in
+     */
+    Basket basket;
+
+    private LinkedList<FallingObject> fallingObjects = new LinkedList<>();
+    private int numItems;
+    private int maxItems = 10;
+    private final String TAG = "GPAManager";
 
     /**
      * Draw all the falling objects on the screen
@@ -32,67 +35,60 @@ public class GPAManager {
     /**
      * Update the location of the objects on the screen
      */
-    public void update() {
+    void update() {
         ListIterator<FallingObject> iterator = fallingObjects.listIterator();
         while (iterator.hasNext()) {
             FallingObject temp = iterator.next();
             if (basket.inRange(temp)) {
                 temp.caught();
                 iterator.remove();
-                num_items--;
-                System.out.println("it is Caught");
+                numItems--;
+                Log.d(TAG, "it is Caught");
             } else if (temp.hitGround()) {
                 temp.missed();
-                System.out.println("it is Missed");
+                Log.d(TAG, "it is Missed");
                 iterator.remove();
-                num_items--;
-            } else
+                numItems--;
+            } else {
                 temp.fall();
-                System.out.println("Falling");
+                Log.d(TAG, "Falling");
+            }
         }
     }
 
     /**
      * Add a falling object to the screen
      */
-    public void addFallingObject() {
-        switch (num_items){
+    void addFallingObject() {
+        double addChance;
+        switch (numItems){
             case 0:
-                add_chance = 0.1;
+                addChance = 0.1;
                 break;
             case 1:
-                add_chance = 0.05;
+                addChance = 0.05;
                 break;
             case 2:
-                add_chance = 0.02;
+                addChance = 0.02;
                 break;
             case 3:
-                add_chance = 0.01;
+                addChance = 0.01;
                 break;
             default:
-                add_chance = 0;
+                addChance = 0;
 
         }
-        if (num_items >= max_items){
-            return;
-        }
+        if (numItems >= maxItems) return;
 
         double d = Math.random();
-        if (d < 0.02 + add_chance){
-            fallingObjects.add(new Assignment());
-            num_items++;
-        }
-        else if (d < 0.025 + add_chance){
-            fallingObjects.add(new Bomb());
-            num_items++;
-        }
-        else if (d < 0.026 + add_chance){
-            fallingObjects.add(new Sleep());
-            num_items++;
-        }
-        else if (d < 0.027 + add_chance){
-            fallingObjects.add(new Clock());
-            num_items++;
+        FallingObjects newItem = null;
+        if (d < 0.02 + addChance) newItem = FallingObjects.ASSIGNMENT;
+        else if (d < 0.025 + addChance) newItem = FallingObjects.BOMB;
+        else if (d < 0.026 + addChance) newItem = FallingObjects.SLEEP;
+        else if (d < 0.027 + addChance) newItem = FallingObjects.CLOCK;
+        if (newItem != null){
+            fallingObjects.add(FallingObjectFactory.createFallingObject(newItem));
+            numItems++;
         }
     }
 

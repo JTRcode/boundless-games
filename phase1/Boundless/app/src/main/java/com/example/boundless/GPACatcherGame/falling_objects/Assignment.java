@@ -1,12 +1,15 @@
-package com.example.boundless.GPACatcherGame;
+package com.example.boundless.GPACatcherGame.falling_objects;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 
+import com.example.boundless.GPACatcherGame.GPACatcherGame;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
 
+/**
+ * A falling assignment, adds to GPA when caught
+ */
 class Assignment extends FallingObject {
 
     Assignment() {
@@ -16,12 +19,12 @@ class Assignment extends FallingObject {
     }
 
     @Override
-    void caught() {
+    public void caught() {
         GPACatcherGame.addGpa(0.1);
     }
 
     @Override
-    void missed() {
+    public void missed() {
         GPACatcherGame.addGpa(-0.1);
         GPACatcherGame.addLife(-1);
     }

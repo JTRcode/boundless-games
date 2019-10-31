@@ -1,12 +1,15 @@
-package com.example.boundless.GPACatcherGame;
+package com.example.boundless.GPACatcherGame.falling_objects;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 
+import com.example.boundless.GPACatcherGame.GPACatcherGame;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
 
+/**
+ * A falling object that adds to lives when caught
+ */
 class Sleep extends FallingObject {
 
     Sleep() {
@@ -16,12 +19,12 @@ class Sleep extends FallingObject {
     }
 
     @Override
-    void caught() {
+    public void caught() {
         GPACatcherGame.addLife(1);
     }
 
     @Override
-    void missed() {
+    public void missed() {
         GPACatcherGame.addLife(0);
     }
 

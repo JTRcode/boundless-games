@@ -1,4 +1,4 @@
-package com.example.boundless.GPACatcherGame;
+package com.example.boundless.GPACatcherGame.falling_objects;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,21 +12,13 @@ import com.example.boundless.Panel;
  */
 public abstract class FallingObject {
     /**
-     * The coordinates of the object
-     */
-    private int coordX;
-    private int coordY;
-    /**
      * The appearance of the object
      */
     Bitmap appearance;
-    /**
-     * The size of the object
-     */
+
+    private int coordX;
+    private int coordY;
     private int size = 100;
-    /**
-     * The speed the object falls at
-     */
     private int fallingSpeed = 15;
     private Paint paintText = new Paint();
 
@@ -34,10 +26,9 @@ public abstract class FallingObject {
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
+        //TODO: move this to another method
         int x = (int) (Math.random() * Panel.SCREEN_WIDTH - size);
-        if (x <= size / 2) {
-            x = size;
-        }
+        x = (x <= size / 2) ? size : x;
         setCoordX(x);
     }
 
@@ -46,7 +37,7 @@ public abstract class FallingObject {
      *
      * @param size The size to set the object to
      */
-    void setSize(int size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
@@ -55,7 +46,7 @@ public abstract class FallingObject {
      *
      * @return The size of the object.
      */
-    int getSize() {
+    public int getSize() {
         return size;
     }
 
@@ -64,7 +55,7 @@ public abstract class FallingObject {
      *
      * @return The x coordinate of the object
      */
-    int getCoordX() {
+    public int getCoordX() {
         return coordX;
     }
 
@@ -73,7 +64,7 @@ public abstract class FallingObject {
      *
      * @param coordX The new x coordinate to set the object to
      */
-    void setCoordX(int coordX) {
+    public void setCoordX(int coordX) {
         this.coordX = coordX;
     }
 
@@ -82,7 +73,7 @@ public abstract class FallingObject {
      *
      * @return The y coordinate of the object
      */
-    int getCoordY() {
+    public int getCoordY() {
         return coordY;
     }
 
@@ -91,7 +82,7 @@ public abstract class FallingObject {
      *
      * @param coordY The new y coordinate to set the object to
      */
-    void setCoordY(int coordY) {
+    public void setCoordY(int coordY) {
         this.coordY = coordY;
     }
 
@@ -99,7 +90,7 @@ public abstract class FallingObject {
     /**
      * Makes the object fall down the screen when called.
      */
-    void fall() {
+    public void fall() {
         coordY += fallingSpeed;
     }
 
@@ -108,18 +99,24 @@ public abstract class FallingObject {
      *
      * @return If the object has hit the bottom of the screen
      */
-    boolean hitGround() {
+    public boolean hitGround() {
         return (coordY >= Panel.SCREEN_HEIGHT);
     }
 
     /**
      * @param canvas the canvas on which to draw this item.
      */
-    protected void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         canvas.drawBitmap(appearance, coordX, coordY, paintText);
     }
 
-    abstract void caught();
+    /**
+     * What happens when the object is caught
+     */
+    public abstract void caught();
 
-    abstract void missed();
+    /**
+     * What happens when the object is missed
+     */
+    public abstract void missed();
 }
