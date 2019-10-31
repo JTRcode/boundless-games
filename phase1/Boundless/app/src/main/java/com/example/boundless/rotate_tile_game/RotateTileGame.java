@@ -1,9 +1,12 @@
-package com.example.boundless.RotateTileGame;
+package com.example.boundless.rotate_tile_game;
 
 import android.content.Context;
-import android.graphics.Canvas;
 
+import com.example.boundless.DrawUtility;
 import com.example.boundless.Game;
+import com.example.boundless.rotate_tile_game.tiles.Rotation;
+import com.example.boundless.rotate_tile_game.tiles.Tile;
+import com.example.boundless.rotate_tile_game.tiles.TileFactory;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
@@ -16,12 +19,9 @@ public class RotateTileGame extends Game {
 
     public RotateTileGame(Context context) {
         super(context);
-        Tile startPipe = manager.createNewTile(TileEnum.I);
+        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
         startPipe.setTile(Rotation.EAST);
         userChoice = manager.getTileStage();
-        paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(40);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class RotateTileGame extends Game {
                 return true;
             }
         }
-        Tile startPipe = manager.createNewTile(TileEnum.I);
+        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
         startPipe.setTile(Rotation.EAST);
         return false;
     }

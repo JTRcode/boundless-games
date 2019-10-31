@@ -1,4 +1,4 @@
-package com.example.boundless.RotateTileGame;
+package com.example.boundless.rotate_tile_game;
 
 public class HardCodeSetUps {
     //The set-up for first level, nulls represent that any Tile can be placed

@@ -1,4 +1,4 @@
-package com.example.boundless.RotateTileGame;
+package com.example.boundless.rotate_tile_game.tiles;
 
 import java.util.HashMap;
 import java.util.Map;

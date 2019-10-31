@@ -1,4 +1,4 @@
-package com.example.boundless.RotateTileGame;
+package com.example.boundless.rotate_tile_game.tiles;
 
 import android.graphics.BitmapFactory;
 

@@ -1,4 +1,4 @@
-package com.example.boundless.RotateTileGame;
+package com.example.boundless.rotate_tile_game.tiles;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -10,24 +10,24 @@ public abstract class Tile {
 
     //TODO: add javadocs
     /**
-     * The pipe exits of the tile type.
-     */
-    private int[] exits;
-    /**
      * Used in checking if the game is over.
      */
-    boolean visited = true;
-
-    Bitmap originalImage;
-
-    Bitmap rotatedImage;
+    public boolean visited = true;
     /**
-     * The current rotation on this tile.
+     * The image of the tile, correctly rotated on the screen
      */
+    public Bitmap rotatedImage;
+    Bitmap originalImage;
+    private int[] exits;
     private Rotation rotation;
 
-
-    void resize(int newDimension){
+    /**
+     * Resizes the bitmap to fit it onto the grid
+     *
+     * @param newDimension The dimension to resize the bitmap to
+     */
+    void resize(int newDimension) {
+        //TODO: should be taken out of the tile class, put into some drawing class
         originalImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
     }
 
@@ -39,7 +39,7 @@ public abstract class Tile {
     /**
      * Get the exits of the tile.
      */
-    int[] getExits() {
+    public int[] getExits() {
         switch (rotation) {
             case EAST:
                 return rotatedExit(3);
@@ -52,12 +52,6 @@ public abstract class Tile {
         }
     }
 
-    /**
-     * Rotate the exits by the specified amount.
-     *
-     * @param newNorth the new north of the tile.
-     * @return The exits in the correct rotation.
-     */
     private int[] rotatedExit(int newNorth) {
         int[] newExits = new int[4];
         int count = 0;
@@ -71,7 +65,7 @@ public abstract class Tile {
     /**
      * Get the rotation of the tile.
      */
-    Rotation getRotation() {
+    public Rotation getRotation() {
         return rotation;
     }
 
@@ -88,21 +82,15 @@ public abstract class Tile {
     /**
      * Rotates the tile.
      */
-    void rotateTile() {
+    public void rotateTile() {
         rotation = Rotation.valueOf((rotation.getValue() + 90) % 360);
         setTile(rotation);
     }
 
-    /**
-     * Rotates the bitmap image.
-     *
-     * @param angle Angle to rotate to.
-     */
-    private void rotateBitmap(float angle)
-    {
+    private void rotateBitmap(float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        rotatedImage =  Bitmap.createBitmap(originalImage, 0, 0, originalImage.getWidth(),
+        rotatedImage = Bitmap.createBitmap(originalImage, 0, 0, originalImage.getWidth(),
                 originalImage.getHeight(), matrix, true);
     }
 }

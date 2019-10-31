@@ -1,9 +1,7 @@
-package com.example.boundless.RotateTileGame;
-
-import android.content.res.Resources;
-import android.util.Log;
+package com.example.boundless.rotate_tile_game;
 
 import com.example.boundless.Panel;
+import com.example.boundless.rotate_tile_game.tiles.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,26 +48,8 @@ public class TileManager {
      * @param type Enum of the tile to create
      * @return The new tile
      */
-    public Tile createNewTile(TileEnum type) {
-        Tile tile;
-        switch (type) {
-            case I:
-                tile = new StraightTile();
-                break;
-            case T:
-                tile = new TTile();
-                break;
-            case L:
-                tile = new LTile();
-                break;
-            case X:
-                tile = new CrossTile();
-                break;
-            default:
-                Log.e("TileManager", "TRIED CREATING NEW TILE< BUT DID NOT PASS CORRECT ENUM TYPE");
-                return null;
-        }
-        tile.resize(tileSize);
+    private Tile createNewTile(TileEnum type) {
+        Tile tile = TileFactory.createTile(type, tileSize);
         return tile;
     }
 
@@ -100,7 +80,7 @@ public class TileManager {
      * Initializes the tiles array and randomizes the rotation.
      */
     void setUpTiles() {
-        switch (currentLevel){
+        switch (currentLevel) {
             case 0:
                 setUpTilesEasy();
                 break;
@@ -231,7 +211,9 @@ public class TileManager {
                 userChoices[i][j].visited = false;
 
         boolean correct = gameOver(0, 0, 3, userChoices);
-        if (correct){currentLevel++;}
+        if (correct) {
+            currentLevel++;
+        }
         return correct;
     }
 
@@ -296,23 +278,8 @@ public class TileManager {
         Tile[][] output = new Tile[size][size];
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++) {
-                switch (input[i][j]) {
-                    case 'L':
-                        output[i][j] = new LTile();
-                        break;
-                    case 'T':
-                        output[i][j] = new TTile();
-                        break;
-                    case 'I':
-                        output[i][j] = new StraightTile();
-                        break;
-                    case 'X':
-                        output[i][j] = new CrossTile();
-                        break;
-                    default:
-                        break;
-                }
-                output[i][j].resize((Panel.SCREEN_WIDTH - 2 * startX) / size);
+                int newSize = (Panel.SCREEN_WIDTH - 2 * startX) / size;
+                output[i][j] = TileFactory.createTile(input[i][j], newSize);
             }
         return output;
     }

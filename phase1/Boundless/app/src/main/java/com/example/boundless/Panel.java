@@ -13,7 +13,7 @@ import android.view.SurfaceView;
 
 import com.example.boundless.GPACatcherGame.GPACatcherGame;
 import com.example.boundless.pixel_game.PixelGame;
-import com.example.boundless.RotateTileGame.RotateTileGame;
+import com.example.boundless.rotate_tile_game.RotateTileGame;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     //TODO: finish javadocs (including for class)
