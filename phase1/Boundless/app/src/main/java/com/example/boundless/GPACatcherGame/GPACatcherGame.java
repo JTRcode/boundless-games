@@ -49,7 +49,7 @@ public class GPACatcherGame extends Game {
         heart = Bitmap.createScaledBitmap(heart, heart_size, heart_size, true);
     }
 
-    static void addGpa(double gpa) {
+    public static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
         if(GPACatcherGame.gpa>4.0)
             GPACatcherGame.gpa = 4.0;
@@ -57,20 +57,20 @@ public class GPACatcherGame extends Game {
             GPACatcherGame.gpa = 0;
     }
 
-    static void addLife(int life) {
+    public static void addLife(int life) {
         GPACatcherGame.life += life;
         if(GPACatcherGame.life>3)
             GPACatcherGame.life = 3;
     }
 
 
-    static void addTime(int time) {
+    public static void addTime(int time) {
         GPACatcherGame.time += time;
         if(GPACatcherGame.time>max_time)
             GPACatcherGame.time = max_time;
     }
 
-    static void bomb_missed(){
+    public static void bomb_missed(){
         bomb_avoided += 1;
         if (bomb_avoided >= 10){
             life += 1;

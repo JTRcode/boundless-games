@@ -25,7 +25,7 @@ class Bomb extends FallingObject {
 
     @Override
     public void missed() {
-        GPACatcherGame.bombMissed();
+        GPACatcherGame.bomb_missed();
     }
 
 }

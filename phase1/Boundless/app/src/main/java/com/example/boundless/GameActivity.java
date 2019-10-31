@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.boundless.GPACatcherGame.GPACatcherGame;
 import com.example.boundless.pixel_game.PixelGame;
-import com.example.boundless..RotateTileGame.RotateTileGame;
+import com.example.boundless.RotateTileGame.RotateTileGame;
 
 import java.util.Observable;
 import java.util.Observer;

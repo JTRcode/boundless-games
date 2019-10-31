@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 
 import com.example.boundless.Panel;
 import com.example.boundless.R;
+import com.example.boundless.GPACatcherGame.falling_objects.FallingObject;
 
 /**
  * A basket for catching falling objects

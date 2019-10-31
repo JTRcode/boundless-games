@@ -56,6 +56,10 @@ public class GPAManager {
         }
     }
 
+    public void setMaxItems(int num){
+        this.maxItems = num;
+    }
+
     /**
      * Add a falling object to the screen
      */
