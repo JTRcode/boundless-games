@@ -1,7 +1,9 @@
-package com.example.boundless;
+package com.example.boundless.users;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.example.boundless.Session;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * Keeps track of users and loads/saves them
  */
-class UserAccountManager {
+public class UserAccountManager {
     /**
      * A list of all users
      */
@@ -31,7 +33,7 @@ class UserAccountManager {
      */
     private Context context;
 
-    UserAccountManager(Context context) {
+    public UserAccountManager(Context context) {
         this.context = context;
         path = context.getFilesDir() + File.pathSeparator;
         restorePreviousUsers();
@@ -45,7 +47,7 @@ class UserAccountManager {
      * @param password The password provided to sign in with.
      * @return If the user can sign in with those credentials.
      */
-    UserAccount signIn(String username, String password) {
+    public UserAccount signIn(String username, String password) {
         for (UserAccount user : users)
             if (user.checkCreds(username, password)) {
                 Session.setUser(username, password);
@@ -60,7 +62,7 @@ class UserAccountManager {
      * @param username The username to sign up with.
      * @param password The password to sign up with.
      */
-    boolean signUp(String username, String password) {
+    public boolean signUp(String username, String password) {
         //TODO: show a toast saying invalid username or password
         if (username.equals("") || password.equals("")) return false;
         for (UserAccount user : users) {
@@ -75,13 +77,10 @@ class UserAccountManager {
     /**
      * Logs the user out of the account.
      */
-    void signOut() {
+    public void signOut() {
         Session.clearUser();
     }
 
-    /**
-     * Restores the previous users and allows them to sign in again.
-     */
     private void restorePreviousUsers() {
         String line;
         try {
@@ -134,7 +133,7 @@ class UserAccountManager {
      *
      * @return If the user is signed in
      */
-    boolean notSignedIn() {
+    public boolean notSignedIn() {
         String[] credentials = Session.getUser();
         return (credentials.length == 0);
     }

@@ -1,17 +1,10 @@
-package com.example.boundless;
-
+package com.example.boundless.users;
 
 /**
  * An account for a user
  */
-class UserAccount {
-    /**
-     * The username of the user
-     */
+public class UserAccount {
     private String name;
-    /**
-     * The password of the user;
-     */
     private String password;
 
     UserAccount(String name, String password) {
@@ -26,8 +19,18 @@ class UserAccount {
         return (this.name.equals(name) && this.password.equals(password));
     }
 
+    /**
+     * Check if the user has the same username as another user
+     *
+     * @param name The name to check if they are equal to
+     * @return If the username is the same
+     */
     boolean sameUsername(String name) {
         //TODO: show a toast saying that someone already has this username
         return (this.name.equals(name));
+    }
+
+    public String getName() {
+        return name;
     }
 }

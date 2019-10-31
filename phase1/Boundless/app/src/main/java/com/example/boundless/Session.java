@@ -4,14 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-class Session {
+/**
+ * Saves the preferences of the user between opening and closing the app
+ */
+public class Session {
 
     /**
      * Saved preferenes
      */
     private static SharedPreferences prefs;
 
-    Session(Context context) {
+    public Session(Context context) {
         if (prefs == null)
             prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -22,7 +25,7 @@ class Session {
      * @param username The username of the user
      * @param password The password of the user
      */
-    static void setUser(String username, String password) {
+    public static void setUser(String username, String password) {
         prefs.edit().putString("username", username).apply();
         prefs.edit().putString("password", password).apply();
     }
@@ -30,7 +33,7 @@ class Session {
     /**
      * Clear the current user
      */
-    static void clearUser() {
+    public static void clearUser() {
         setUser(null, null);
     }
 
@@ -39,7 +42,7 @@ class Session {
      *
      * @return the username and password of the current user
      */
-    static String[] getUser() {
+    public static String[] getUser() {
         String username = prefs.getString("username", "");
         String password = prefs.getString("password", "");
         if (username.equals("") || password.equals("")) {

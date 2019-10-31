@@ -12,7 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.boundless.GPACatcherGame.GPACatcherGame;
-import com.example.boundless.PixelGame.PixelGame;
+import com.example.boundless.pixel_game.PixelGame;
 import com.example.boundless.RotateTileGame.RotateTileGame;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
