@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -120,7 +121,9 @@ public class GameActivity extends Activity implements Observer {
      */
     @Override
     public void onBackPressed(){
-        Statistics.end();
         super.onBackPressed();
+        Statistics.end();
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }

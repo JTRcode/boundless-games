@@ -50,7 +50,7 @@ public class TileManager {
      * @param type Enum of the tile to create
      * @return The new tile
      */
-    private Tile createNewTile(TileEnum type) {
+    public Tile createNewTile(TileEnum type) {
         Tile tile;
         switch (type) {
             case I:
