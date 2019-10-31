@@ -1,4 +1,4 @@
-package com.example.boundless.PixelGame;
+package com.example.boundless.pixel_game;
 
 public enum PixelOptions {
     EMPTY, X, COLOUR

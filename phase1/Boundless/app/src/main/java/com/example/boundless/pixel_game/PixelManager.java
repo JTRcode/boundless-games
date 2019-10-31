@@ -1,6 +1,4 @@
-package com.example.boundless.PixelGame;
-
-import android.graphics.Color;
+package com.example.boundless.pixel_game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,19 +7,8 @@ import java.util.List;
  * A manager for pixels.
  */
 public class PixelManager {
-    /**
-     * A list of all available levels.
-     */
     private List<int[][]> levels = new ArrayList<>();
-    /**
-     * The size of the pixel grid.
-     */
     private int gridSize;
-
-    /**
-     * array of the color;
-     */
-    private int[] colors = new int[3];
 
     public PixelManager() {
         this(10);
@@ -35,10 +22,7 @@ public class PixelManager {
     /**
      * add all the levels into the level
      */
-    public void setupLevels() {
-        colors[0] = Color.RED;
-        colors[1] = Color.GREEN;
-        colors[2] = Color.BLUE;
+    private void setupLevels() {
         if (gridSize == 10) {
             addLevel(hardCodeEasy());
             addLevel(hardCodeMed());
@@ -66,18 +50,12 @@ public class PixelManager {
         int[][] level = levels.get(currentLevel);
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
-                if (doesNotMatch(userChoices[row][col], level[col][row]))   //TODO: should be level[row][col], not sure whats wrong
+                if (doesNotMatch(userChoices[row][col], level[col][row]))
+                    //TODO: should be level[row][col], not sure whats wrong
                     return false;
         return true;
     }
 
-    /**
-     * Returns if the pixelOption matches the level answer for a pixel
-     *
-     * @param userOption  The user input of what the pixel is
-     * @param levelOption The answer of what the pixel is
-     * @return If the user input matches the correct answer
-     */
     private boolean doesNotMatch(PixelOptions userOption, int levelOption) {
         return ((levelOption == 0 && userOption == PixelOptions.COLOUR) || (levelOption != 0 && userOption != PixelOptions.COLOUR));
     }
@@ -122,15 +100,17 @@ public class PixelManager {
 
     /**
      * Get the number of levels
+     *
      * @return The number of levels in the game
      */
-    public int getNumOfLevels(){
+    public int getNumOfLevels() {
         return levels.size();
     }
 
     //-----------------------------------
     //Hardcode levels
     //TODO: move these hardcoded patterns to a new class
+
     /**
      * The first level
      *
@@ -138,20 +118,20 @@ public class PixelManager {
      */
     private int[][] hardCodeEasy() {
         int[][] heart = new int[gridSize][gridSize]; //The first level is a heart
-        heart[1][2] = colors[0];
-        heart[1][7] = colors[0];
+        heart[1][2] = 1;
+        heart[1][7] = 1;
         for (int i = 0; i < 3; i++) {
-            heart[2][1 + i] = colors[0];
-            heart[2][6 + i] = colors[0];
+            heart[2][1 + i] = 1;
+            heart[2][6 + i] = 1;
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 10; j++) {
-                heart[3 + i][j] = colors[0];
+                heart[3 + i][j] = 1;
             }
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 8 - 2 * i; j++) {
-                heart[6 + i][1 + i + j] = colors[0];
+                heart[6 + i][1 + i + j] = 1;
             }
         }
         return heart;
@@ -165,29 +145,29 @@ public class PixelManager {
     private int[][] hardCodeMed() {
         int[][] bugdroid = new int[gridSize][gridSize];//the second level is bugdroid
         //The head
-        bugdroid[0][4] = colors[1];
-        bugdroid[0][5] = colors[1];
+        bugdroid[0][4] = 1;
+        bugdroid[0][5] = 1;
         //The body and the arm
         for (int i = 0; i < 4; i++) {
-            bugdroid[1][3 + i] = colors[1];
+            bugdroid[1][3 + i] = 1;
         }
         for (int i = 0; i < 3; i++) {
-            bugdroid[4 + i][0] = colors[1];
-            bugdroid[4 + i][9] = colors[1];
+            bugdroid[4 + i][0] = 1;
+            bugdroid[4 + i][9] = 1;
         }
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                bugdroid[2 + i][2 + j] = colors[1];
+                bugdroid[2 + i][2 + j] = 1;
             }
         }
-        bugdroid[3][1] = colors[1];
-        bugdroid[3][8] = colors[1];
+        bugdroid[3][1] = 1;
+        bugdroid[3][8] = 1;
         bugdroid[2][3] = 0;
         bugdroid[2][6] = 0;
 
         //The leg
-        bugdroid[8][3] = colors[1];
-        bugdroid[8][6] = colors[1];
+        bugdroid[8][3] = 1;
+        bugdroid[8][6] = 1;
         return bugdroid;
     }
 
@@ -199,28 +179,28 @@ public class PixelManager {
     private int[][] hardCodeHard() {
         int[][] taiji = new int[gridSize][gridSize]; // The third one is taiji
         for (int i = 0; i < 4; i++) {
-            taiji[0][3 + i] = colors[2];
-            taiji[9][3 + i] = colors[2];
-            taiji[3 + i][0] = colors[2];
-            taiji[3 + i][9] = colors[2];
-            taiji[5][1 + i] = colors[2];
+            taiji[0][3 + i] = 1;
+            taiji[9][3 + i] = 1;
+            taiji[3 + i][0] = 1;
+            taiji[3 + i][9] = 1;
+            taiji[5][1 + i] = 1;
         }
         for (int i = 0; i < 6; i++) {
-            taiji[1][2 + i] = colors[2];
+            taiji[1][2 + i] = 1;
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 6; j++) {
-                taiji[i + 2][1 + j] = colors[2];
+                taiji[i + 2][1 + j] = 1;
             }
         }
         for (int i = 0; i < 2; i++) {
-            taiji[6 + i][1] = colors[2];
-            taiji[2 + i][8] = colors[2];
+            taiji[6 + i][1] = 1;
+            taiji[2 + i][8] = 1;
         }
-        taiji[8][2] = colors[2];
-        taiji[8][7] = colors[2];
-        taiji[7][6] = colors[2];
-        taiji[7][8] = colors[2];
+        taiji[8][2] = 1;
+        taiji[8][7] = 1;
+        taiji[7][6] = 1;
+        taiji[7][8] = 1;
         taiji[2][3] = 0;
         return taiji;
     }

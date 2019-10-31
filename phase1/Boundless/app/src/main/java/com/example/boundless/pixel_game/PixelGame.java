@@ -1,13 +1,12 @@
-package com.example.boundless.PixelGame;
+package com.example.boundless.pixel_game;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 
+import com.example.boundless.DrawUtility;
 import com.example.boundless.Game;
 import com.example.boundless.Panel;
-import com.example.boundless.Statistics;
 
 import java.util.List;
 
@@ -16,38 +15,13 @@ import java.util.List;
  */
 public class PixelGame extends Game {
 
-    /**
-     * The size of the pixel grid.
-     */
     private int gridSize;
-
-    /**
-     * The current level of the game.
-     */
     private int currentLevel = 0;
-    /**
-     * The starting coordinates of the grid on the screen.
-     */
-    private static final int startX = 100;
-    private static final int startY = Panel.SCREEN_HEIGHT / 4;
-    /**
-     * The width of each grid square.
-     */
+    private static final int START_X = 100;
+    private static final int START_Y = Panel.SCREEN_HEIGHT / 4;
     private int width;
-
-    private Paint paint = new Paint();
-    /**
-     * The user's choices of pixels.
-     */
     private PixelOptions[][] userChoice;
-
-    /**
-     * A manager for setting up levels and using them.
-     */
     private PixelManager pixelManager;
-    /**
-     * The labels on the top and side of the game.
-     */
     private List<List<Integer>> currentLabels;
 
     public PixelGame(Context context) {
@@ -59,7 +33,7 @@ public class PixelGame extends Game {
         gridSize = size;
         pixelManager = new PixelManager(gridSize);
         currentLabels = pixelManager.label(currentLevel);
-        width = (Panel.SCREEN_WIDTH - startX * 2) / gridSize;
+        width = (Panel.SCREEN_WIDTH - START_X * 2) / gridSize;
         userChoice = new PixelOptions[gridSize][gridSize];
         emptyUserChoices();
     }
@@ -77,9 +51,8 @@ public class PixelGame extends Game {
      */
     @Override
     public boolean gameOver() {
-        if (!pixelManager.checkPixels(userChoice, currentLevel)) {
-            return false;
-        }
+        if (!pixelManager.checkPixels(userChoice, currentLevel)) return false;
+
         currentLevel++;
         if (currentLevel < pixelManager.getNumOfLevels()) {
             currentLabels = pixelManager.label(currentLevel);
@@ -114,75 +87,47 @@ public class PixelGame extends Game {
             for (int j = 0; j < gridSize; j++) {
                 int filled = (userChoice[i][j] == PixelOptions.X) ? Color.DKGRAY : Color.BLACK;
                 filled = (userChoice[i][j] == PixelOptions.COLOUR) ? Color.CYAN : filled;
-                paint.setColor(filled);
                 int[] coords = convertIJToSquare(i, j);
-                canvas.drawRect(coords[0], coords[1], coords[2], coords[3], paint);
+                DrawUtility.drawRectangle(coords, filled);
             }
         }
-        drawOutlines(canvas);
-        drawLabels(canvas);
+        drawOutlines();
+        drawLabels();
     }
 
-    /**
-     * Draw the outlines of each grid square.
-     *
-     * @param canvas The canvas to draw on.
-     */
-    private void drawOutlines(Canvas canvas) {
-        paint.setColor(Color.RED);
+    private void drawOutlines() {
         //draw vertical lines
-        for (int x = startX; x <= startX + width * gridSize; x += width) {
-            if ((x - startX) % 5 == 0) paint.setStrokeWidth(4);
-            else paint.setStrokeWidth(1);
-            canvas.drawLine(x, startY, x, startY + width * gridSize, paint);
+        for (int x = START_X; x <= START_X + width * gridSize; x += width) {
+            int strokeWidth = ((x - START_X) % 5 == 0) ? 4 : 1;
+            DrawUtility.drawLines(new int[]{x, START_Y, x, START_Y + width * gridSize}, Color.RED, strokeWidth);
         }
         //draw horizontal lines
-        for (int y = startY; y <= startY + width * gridSize; y += width) {
-            if ((y - startY) % 5 == 0) paint.setStrokeWidth(4);
-            else paint.setStrokeWidth(1);
-            canvas.drawLine(startX, y, startX + width * gridSize, y, paint);
+        for (int y = START_Y; y <= START_Y + width * gridSize; y += width) {
+            int strokeWidth = ((y - START_Y) % 5 == 0) ? 4 : 1;
+            DrawUtility.drawLines(new int[]{START_X, y, START_X + width * gridSize, y}, Color.RED, strokeWidth);
         }
     }
 
-    /**
-     * Draw the labels of each row and column.
-     *
-     * @param canvas The canvas to draw on.
-     */
-    private void drawLabels(Canvas canvas) {
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(30);
+    private void drawLabels() {
         int buffer = 25;
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
-            int drawY = startY + rowNum * width + (width / 2);
-            int drawX = startX - 15 - row.size() * buffer;
+            int drawY = START_Y + rowNum * width + (width / 2);
+            int drawX = START_X - 15 - row.size() * buffer;
             for (int entryNum = 0; entryNum < row.size(); entryNum++)
-                drawString(canvas, row.get(entryNum).toString(), drawX + entryNum * buffer, drawY);
+                DrawUtility.drawString(row.get(entryNum).toString(), drawX + entryNum * buffer, drawY, Color.WHITE, 30);
         }
         for (int colNum = gridSize; colNum < gridSize * 2; colNum++) {
             List<Integer> col = currentLabels.get(colNum);
-            int drawX = startX + (colNum - gridSize) * width + (width / 2);
-            int drawY = startY - col.size() * buffer;
+            int drawX = START_X + (colNum - gridSize) * width + (width / 2);
+            int drawY = START_Y - col.size() * buffer;
             for (int entryNum = 0; entryNum < col.size(); entryNum++)
-                drawString(canvas, col.get(entryNum).toString(), drawX, drawY + entryNum * buffer);
+                DrawUtility.drawString(col.get(entryNum).toString(), drawX, drawY + entryNum * buffer, Color.WHITE, 30);
         }
     }
 
     /**
-     * Draw text on the canvas.
-     *
-     * @param canvas The canvas to draw on.
-     * @param text   The text to draw.
-     * @param x      The x location to draw text at.
-     * @param y      The y location to draw text at.
-     */
-    private void drawString(Canvas canvas, String text, int x, int y) {
-        canvas.drawText(text, x, y, paint);
-    }
-
-    /**
-     * Convert from userChoice ooordinates to a screen coordinate square section.
+     * Convert from userChoice coordinates to a screen coordinate square section.
      *
      * @param i First userChoice coordinate.
      * @param j Second userChoice coordinate.
@@ -190,10 +135,10 @@ public class PixelGame extends Game {
      */
     private int[] convertIJToSquare(int i, int j) {
         int[] newCoords = new int[4];
-        newCoords[0] = startX + width * i;
-        newCoords[1] = startY + width * j;
-        newCoords[2] = startX + width * (i + 1);
-        newCoords[3] = startY + width * (j + 1);
+        newCoords[0] = START_X + width * i;
+        newCoords[1] = START_Y + width * j;
+        newCoords[2] = START_X + width * (i + 1);
+        newCoords[3] = START_Y + width * (j + 1);
         return newCoords;
     }
 
@@ -206,8 +151,8 @@ public class PixelGame extends Game {
      */
     private int[] convertCoordToIJ(int x, int y) {
         int[] newIJ = new int[2];
-        newIJ[0] = (x - startX) / width;
-        newIJ[1] = (y - startY) / width;
+        newIJ[0] = (x - START_X) / width;
+        newIJ[1] = (y - START_Y) / width;
         return newIJ;
     }
 
