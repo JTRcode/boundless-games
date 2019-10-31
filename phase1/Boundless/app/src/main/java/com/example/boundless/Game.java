@@ -38,7 +38,7 @@ public abstract class Game extends Observable {
      */
     public abstract boolean gameOver();
 
-    public abstract void draw(Canvas canvas);
+    public abstract void draw();
 
     public abstract void screenTouched(int x, int y);
 

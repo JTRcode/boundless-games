@@ -1,6 +1,5 @@
 package com.example.boundless.GPACatcherGame;
 
-import android.graphics.Canvas;
 import android.util.Log;
 
 import com.example.boundless.GPACatcherGame.falling_objects.FallingObject;
@@ -26,9 +25,9 @@ public class GPAManager {
     /**
      * Draw all the falling objects on the screen
      */
-    public void draw(Canvas canvas) {
+    public void draw() {
         for (FallingObject f : fallingObjects) {
-            f.draw(canvas);
+            f.draw();
         }
     }
 

@@ -1,10 +1,8 @@
 package com.example.boundless.GPACatcherGame.falling_objects;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 
+import com.example.boundless.DrawUtility;
 import com.example.boundless.Panel;
 
 /**
@@ -20,11 +18,8 @@ public abstract class FallingObject {
     private int coordY;
     private int size = 100;
     private int fallingSpeed = 15;
-    private Paint paintText = new Paint();
 
     public FallingObject() {
-        paintText.setTextSize(36);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
         setCoordY(0);
         //TODO: move this to another method
         int x = (int) (Math.random() * Panel.SCREEN_WIDTH - size);
@@ -104,10 +99,10 @@ public abstract class FallingObject {
     }
 
     /**
-     * @param canvas the canvas on which to draw this item.
+     * Draws the object falling
      */
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(appearance, coordX, coordY, paintText);
+    public void draw() {
+        DrawUtility.drawBitmap(appearance, coordX, coordY);
     }
 
     /**

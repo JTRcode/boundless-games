@@ -1,5 +1,6 @@
 package com.example.boundless;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -55,4 +56,13 @@ public class DrawUtility {
         canvas.drawText(text, x, y, paint);
     }
 
+    /**
+     * Draw a bitmap image on the canvas
+     * @param bitmap The bitmap to draw
+     * @param x The x location to draw the bitmap at
+     * @param y The y location to draw the bitmap at
+     */
+    public static void drawBitmap(Bitmap bitmap, int x, int y){
+        canvas.drawBitmap(bitmap, x, y, paint);
+    }
 }

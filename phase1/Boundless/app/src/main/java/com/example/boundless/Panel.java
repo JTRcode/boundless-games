@@ -148,7 +148,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-            game.draw(canvas);
+            game.draw();
         }
     }
 

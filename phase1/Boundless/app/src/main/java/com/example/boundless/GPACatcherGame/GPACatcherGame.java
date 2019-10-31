@@ -3,81 +3,91 @@ package com.example.boundless.GPACatcherGame;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-//import java.awt.Graphics;
 
+import com.example.boundless.DrawUtility;
 import com.example.boundless.Game;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
-import com.example.boundless.Statistics;
 
 /**
  * A GPA catcher game, where you catch falling objects to get a good grade!
  */
 public class GPACatcherGame extends Game {
 
-    private static double gpa; // current GPA
-    private static int life; // current life remaining (max 3)
+    private static double gpa = 2.0; // current GPA
+    private static int life = 3; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
-    private static int bomb_avoided; // every 10 bombs avoided = +1 life
+    private static int bombAvoided = 0; // every 10 bombs avoided = +1 life
 
-//    private static int max_time = 1000;
-    private static int max_time = Panel.SCREEN_WIDTH;
+    private static int maxTime = Panel.SCREEN_WIDTH;
     private static Bitmap heart;
-    private static int heart_size = 60;
+    private static int heartSize = 60;
     private GPAManager manager;
-    Paint paint = new Paint();
 
     public GPACatcherGame(Context context) {
-        this(context, max_time);
+        this(context, maxTime);
     }
 
     public GPACatcherGame(Context context, int time) {
         super(context);
 
         GPACatcherGame.time = time;
-        gpa = 2.0;
-        life = 3;
-        bomb_avoided = 0;
         manager = new GPAManager();
         manager.basket = new Basket(50);
         manager.addFallingObject();
 
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
-        heart = Bitmap.createScaledBitmap(heart, heart_size, heart_size, true);
+        heart = Bitmap.createScaledBitmap(heart, heartSize, heartSize, true);
     }
 
+    /**
+     * Add to the total GPA
+     *
+     * @param gpa The amount to add to the GPA
+     */
     public static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
-        if(GPACatcherGame.gpa>4.0)
+        if (GPACatcherGame.gpa > 4.0)
             GPACatcherGame.gpa = 4.0;
-        else if(GPACatcherGame.gpa<0)
+        else if (GPACatcherGame.gpa < 0)
             GPACatcherGame.gpa = 0;
     }
 
+    /**
+     * Add to the total amount of lives
+     *
+     * @param life The number of lives to add
+     */
     public static void addLife(int life) {
         GPACatcherGame.life += life;
-        if(GPACatcherGame.life>3)
+        if (GPACatcherGame.life > 3)
             GPACatcherGame.life = 3;
     }
 
 
+    /**
+     * Add to the total amount of time
+     *
+     * @param time The time to add to the game
+     */
     public static void addTime(int time) {
         GPACatcherGame.time += time;
-        if(GPACatcherGame.time>max_time)
-            GPACatcherGame.time = max_time;
+        if (GPACatcherGame.time > maxTime)
+            GPACatcherGame.time = maxTime;
     }
 
-    public static void bomb_missed(){
-        bomb_avoided += 1;
-        if (bomb_avoided >= 10){
+    /**
+     * Count the number of times a bomb has been missed and add lives if above a threshold
+     */
+    public static void bombMissed() {
+        //TODO: move this to the bomb class, can make a static variable for bombAvoided and use the addLife() method
+        bombAvoided += 1;
+        if (bombAvoided >= 10) {
             life += 1;
-            bomb_avoided = 0;
+            bombAvoided = 0;
         }
     }
-
 
     @Override
     public boolean gameOver() {
@@ -85,36 +95,32 @@ public class GPACatcherGame extends Game {
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        if (time >= max_time/2){
-            paint.setColor(Color.GREEN);
-        }
-        else if (time >= max_time/4){
-            paint.setColor(Color.YELLOW);
-        }
-        else {
-            paint.setColor(Color.RED);
-        }
-        canvas.drawRect(0, 10, time, 70, paint);
+    public void draw() {
+        drawTimeBar();
+        drawGPA();
+        drawLives();
 
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(60);
+        manager.basket.draw();
+        manager.draw();
+    }
 
-        double roundedGPA = Math.round(gpa*100)/100.0;
-        canvas.drawText("GPA: " + roundedGPA, 50, 125, paint);
+    private void drawTimeBar() {
+        int color;
+        if (time >= maxTime / 2) color = Color.GREEN;
+        else if (time >= maxTime / 4) color = Color.YELLOW;
+        else color = Color.RED;
+        DrawUtility.drawRectangle(new int[] {0, 10, time, 70}, color);
+    }
 
-        if (life >= 1){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - heart_size, 80, paint);
-        }
-        if (life >= 2){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 2* heart_size, 80, paint);
-        }
+    private void drawGPA() {
+        double roundedGPA = Math.round(gpa * 100) / 100.0;
+        DrawUtility.drawString("GPA: " + roundedGPA, 50, 125, Color.WHITE, 60);
+    }
 
-        if (life == 3){
-            canvas.drawBitmap(heart, Panel.SCREEN_WIDTH - 3*heart_size, 80, paint);
+    private void drawLives() {
+        for (int lives = 1; lives <= life; lives++) {
+            DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * heartSize, 80);
         }
-        manager.basket.draw(canvas);
-        manager.draw(canvas);
     }
 
     @Override

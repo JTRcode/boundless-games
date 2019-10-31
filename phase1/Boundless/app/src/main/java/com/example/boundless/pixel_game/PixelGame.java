@@ -77,11 +77,9 @@ public class PixelGame extends Game {
 
     /**
      * Draw the grid with the pixels, and the labels on the row/column.
-     *
-     * @param canvas The canvas to draw on
      */
     @Override
-    public void draw(Canvas canvas) {
+    public void draw() {
         //note: [0][gridSize - 1] is the lower left pixel
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {

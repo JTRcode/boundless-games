@@ -1,12 +1,10 @@
 package com.example.boundless.GPACatcherGame;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.boundless.DrawUtility;
+import com.example.boundless.GPACatcherGame.falling_objects.FallingObject;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
 import com.example.boundless.GPACatcherGame.falling_objects.FallingObject;
@@ -19,30 +17,14 @@ class Basket {
      * The appearance of the basket
      */
     private Bitmap appearance;
-    private Paint paintText = new Paint();
-    /**
-     * The location of the basket
-     */
     private int coordX;
     private int coordY;
-    /**
-     * The size of the basket
-     */
-    private int size;
+    private int size = 250;
     private int speed;
-
-
-    /**
-     * the size of the screen
-     */
     private int screenWidth;
     private int screenHeight;
 
     public Basket(int speed) {
-        paintText.setTextSize(36);
-        paintText.setColor(Color.WHITE);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        this.size = 250;
 
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
         appearance = Bitmap.createScaledBitmap(appearance, size, size, true);
@@ -56,33 +38,37 @@ class Basket {
 
     /**
      * Get the x coordinate of the basket
+     *
      * @return The x coordinate of the basket
      */
-    public int getCoordX() {
+    int getCoordX() {
         return coordX;
     }
 
     /**
      * Set the x coordinate of the basket
+     *
      * @param coordX The new x coordinate to set the basket to
      */
-    public void setCoordX(int coordX) {
+    void setCoordX(int coordX) {
         this.coordX = coordX;
     }
 
     /**
      * Get the y coordinate of the basket
+     *
      * @return The y coordinate of the basket
      */
-    public int getCoordY() {
+    int getCoordY() {
         return coordY;
     }
 
     /**
      * Set the y coordinate of the basket
+     *
      * @param coordY The new y coordinate to set the basket to
      */
-    public void setCoordY(int coordY) {
+    void setCoordY(int coordY) {
         this.coordY = coordY;
     }
 
@@ -117,10 +103,8 @@ class Basket {
 
     /**
      * Draws the Basket
-     *
-     * @param canvas the canvas on which to draw this item.
      */
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(appearance, coordX, coordY, paintText);
+    public void draw() {
+        DrawUtility.drawBitmap(appearance, coordX, coordY);
     }
 }

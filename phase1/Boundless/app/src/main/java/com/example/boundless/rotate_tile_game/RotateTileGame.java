@@ -2,8 +2,6 @@ package com.example.boundless.RotateTileGame;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import com.example.boundless.Game;
 
@@ -12,18 +10,8 @@ import com.example.boundless.Game;
  */
 public class RotateTileGame extends Game {
 
-    /**
-     * The manager for this game
-     */
     private TileManager manager = new TileManager(4);
-    /**
-     * The users choices of the tiles
-     */
     private Tile[][] userChoice;
-    /**
-     * The width of each grid square.
-     */
-    private Paint paint;
 
 
     public RotateTileGame(Context context) {
@@ -53,16 +41,19 @@ public class RotateTileGame extends Game {
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        Tile startPipe = manager.createNewTile(TileEnum.I);
+    public void draw() {
+        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
         startPipe.setTile(Rotation.EAST);
-        canvas.drawBitmap(startPipe.rotatedImage, manager.getStartX() - manager.getTileSize(), manager.getStartY(), paint);
-        canvas.drawBitmap(startPipe.rotatedImage, manager.getStartX() + (manager.getGridSize()) * manager.getTileSize(), manager.getStartY() + (manager.getGridSize() - 1) * manager.getTileSize(), paint);
+        DrawUtility.drawBitmap(startPipe.rotatedImage, manager.getStartX() - manager.getTileSize(),
+                manager.getStartY());
+        DrawUtility.drawBitmap(startPipe.rotatedImage, manager.getStartX() +
+                (manager.getGridSize()) * manager.getTileSize(),
+                manager.getStartY() + (manager.getGridSize() - 1) * manager.getTileSize());
         for (int i = 0; i < userChoice.length; i++) {
             for (int j = 0; j < userChoice.length; j++) {
-                canvas.drawBitmap(userChoice[i][j].rotatedImage,
+                DrawUtility.drawBitmap(userChoice[i][j].rotatedImage,
                         manager.getStartX() + j * manager.getTileSize(),
-                        manager.getStartY() + manager.getTileSize() * i, paint);
+                        manager.getStartY() + manager.getTileSize() * i);
             }
         }
     }
