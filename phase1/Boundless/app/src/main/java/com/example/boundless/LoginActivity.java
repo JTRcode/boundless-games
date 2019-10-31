@@ -26,8 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //JACKSON check if I can remove the line below
-        Statistics.start();
+        Session.setupSession(this);
         userManager = new UserAccountManager(this);
         if (userManager.notSignedIn()) {
             setContentView(R.layout.login_page);

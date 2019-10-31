@@ -14,7 +14,15 @@ public class Session {
      */
     private static SharedPreferences prefs;
 
-    public Session(Context context) {
+    private Session() {
+    }
+
+    /**
+     * Sets up the session, must be called previous to any of the other methods.
+     *
+     * @param context The current context.
+     */
+    public static void setupSession(Context context) {
         if (prefs == null)
             prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -53,6 +61,7 @@ public class Session {
 
     /**
      * set the users' music
+     *
      * @param id the id of the music
      */
     static void setMusic(int id) {
@@ -61,6 +70,7 @@ public class Session {
 
     /**
      * get the users' music
+     *
      * @return the users' choice of the music
      */
     static int getMusic() {
@@ -69,33 +79,37 @@ public class Session {
 
     /**
      * set the background
+     *
      * @param id the id of the background
      */
-    static void setBackground(int id){
+    static void setBackground(int id) {
         prefs.edit().putInt("background", id).apply();
     }
 
     /**
      * return users' choice of background
+     *
      * @return the users' choice of background, default is backgroundone
      */
-    static int getBackground(){
+    static int getBackground() {
         return prefs.getInt("background", R.drawable.backgroundone);
     }
 
     /**
      * set the theme on
+     *
      * @param on determine if the theme is on or not
      */
-    static void setTheme(boolean on){
+    static void setTheme(boolean on) {
         prefs.edit().putBoolean("theme_on", on).apply();
     }
 
     /**
      * return the state of the theme
+     *
      * @return the theme is on
      */
-    static boolean getTheme(){
+    static boolean getTheme() {
         return prefs.getBoolean("theme_on", false);
     }
 

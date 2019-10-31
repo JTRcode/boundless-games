@@ -37,7 +37,6 @@ public class UserAccountManager {
         this.context = context;
         path = context.getFilesDir() + File.pathSeparator;
         restorePreviousUsers();
-        new Session(context);
     }
 
     /**

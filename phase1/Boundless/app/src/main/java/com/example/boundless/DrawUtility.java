@@ -25,7 +25,7 @@ public class DrawUtility {
         if (coords.length < 4)
             throw new ArrayIndexOutOfBoundsException("You must have at least 4 coordinates to draw a rectangle.");
         paint.setColor(color);
-        canvas.drawRect(coords[0], coords[1], coords[2], coords[3], paint);
+        MainThread.canvas.drawRect(coords[0], coords[1], coords[2], coords[3], paint);
     }
 
     /**
@@ -38,7 +38,7 @@ public class DrawUtility {
     public static void drawLines(int[] coords, int color, int width) {
         paint.setColor(color);
         paint.setStrokeWidth(width);
-        canvas.drawLine(coords[0], coords[1], coords[2], coords[3], paint);
+        MainThread.canvas.drawLine(coords[0], coords[1], coords[2], coords[3], paint);
     }
 
     /**
@@ -53,7 +53,7 @@ public class DrawUtility {
     public static void drawString(String text, int x, int y, int color, int size) {
         paint.setColor(color);
         paint.setTextSize(size);
-        canvas.drawText(text, x, y, paint);
+        MainThread.canvas.drawText(text, x, y, paint);
     }
 
     /**
@@ -63,6 +63,7 @@ public class DrawUtility {
      * @param y The y location to draw the bitmap at
      */
     public static void drawBitmap(Bitmap bitmap, int x, int y){
-        canvas.drawBitmap(bitmap, x, y, paint);
+        MainThread.canvas.drawBitmap(bitmap, x, y, paint);
+        System.out.println("CANVAS: "+ (canvas == null));
     }
 }
