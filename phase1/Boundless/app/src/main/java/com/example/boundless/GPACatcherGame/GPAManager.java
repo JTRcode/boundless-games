@@ -15,7 +15,7 @@ public class GPAManager {
      */
     LinkedList<FallingObject> fallingObjects = new LinkedList<>();
     Basket basket;
-    private static int num_items;
+    private int num_items;
     private static double add_chance;
     static int max_items = 10;
 
