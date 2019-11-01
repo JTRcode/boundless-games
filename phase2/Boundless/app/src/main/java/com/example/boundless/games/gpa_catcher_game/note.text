@@ -1,0 +1,86 @@
+For keeping track on every change and detailed explanation
+
+2019.10.16
+Writer :Huiqin Chen
+Changes Under commit message--
+    "Deleted GPAManager and named FallingObjectManager as GPAManager. Added note.txt."
+     1. Changed the the name of file FallingObjectManager.java into GPAManager as the Manager
+        class will contain all objects including basket. Therefore deleted th empty file GPAManager.java.
+     2. Added note.text for further explanation
+Changes Under commit message--
+    "Basic code for all objects"
+    1. wrote basic codes for falling objects
+    2. wrote basic codes for Basket.java
+    3. changed the accessibility of some variables and methods and added setters and getters
+
+
+ 2019.10.18
+ writer: Huiqin Chen
+ Changes under commit message--
+    "Set appearance for objects and methods in GPAManager"
+    1. Changed the arrayList in GPAManager to LinkedList, as it's better when items will be added
+       or removed frequently.
+    2. added variable paintText of type PaintText as we are using Text in Phase 1.
+    3. set appearance for falling objects
+    4. more code in GPAManager and FallingObjects
+
+ 2019.10.20
+ writer: Cynthia Song
+ Files affected:
+    Basket, GPACatcherGame
+ Changes:
+    1. added parameter int speed to init Basket.
+    2. added init, screentouched and draw to GPACatcherGame
+
+2019.10.23
+writer: Huiqin Chen
+Changes under commit message--
+    "Fixed NullPointerException "
+Files affected: GPACatherGame.java
+Flaw: NullPointerException
+Fix: the error was on the basket.The instance variable basket in GPACatherGame
+is deleted and use manager.basket to call basket instead .
+
+Changes under commit message--
+    "Got GPACatherGame to run"
+Files affected: GPACatherGame.java, Sleep.java, GPAManager.java, FallingObject.java, Basket.java
+Flaw:
+1. cannot see falling objects on the screen
+2. too many falling objects and they overlap
+Fix:
+1. added a manager.draw() method in GPACatherGame.
+2. rewrote the addFallingObject method so somethings no object is created when updating
+
+2019.10.24
+writer: Cynthia Song
+Files affected: all in GPACatcher
+
+Changes:
+    1. added visuals
+    2. decreased spawn rate for falling objects
+    3. implemented missed() for non-assignment falling objects
+    4. added static attribute to GPACatcherGame so 10 missed bombs = 1 extra life
+
+
+2019.10.25
+writer: Huiqin Chen
+Files affected: all files in the package
+
+Changes:
+1. Fixed some flaw that no object is considered hit the ground and basket may be out of screen
+2. Changes some values and set limitations
+
+2019.10.27
+writer: Cynthia Song
+Files affected: all in package
+
+Changes:
+   1. fixed issue where falling objects would appear at very edge where it's unreachable by basket
+   2. bomb_avoided now resets to 0 after it reaches 10
+   3. added time limit (countdown) and upper limit of falling objects
+   4. deleted some commented code
+
+2019.10.28
+writer: Huiqin Chen
+file affected: GPACatherGame.java
+change: gameOver() and show message when game over
