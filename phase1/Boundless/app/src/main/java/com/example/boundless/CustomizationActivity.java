@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.boundless.utilities.Session;
+
 /**
  * The CustomizationActivity handles customizations for users, for example,
  * set background music and background picture.

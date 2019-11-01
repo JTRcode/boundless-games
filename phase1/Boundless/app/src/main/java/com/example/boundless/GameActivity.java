@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.boundless.GPACatcherGame.GPACatcherGame;
-import com.example.boundless.PixelGame.PixelGame;
-import com.example.boundless.RotateTileGame.RotateTileGame;
+import com.example.boundless.games.GamesEnum;
+import com.example.boundless.games.GPACatcherGame;
+import com.example.boundless.games.Game;
+import com.example.boundless.games.PixelGame;
+import com.example.boundless.games.RotateTileGame;
+import com.example.boundless.utilities.Session;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -56,8 +58,7 @@ public class GameActivity extends Activity implements Observer {
         if (game != null) {
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
-            panel.chooseGame(this, game);
-
+            panel.chooseGame(game);
             Log.d("GameActivity", "Changing to game: " + game);
         } else {
             Log.d("GameActivity", "An error occurred trying to get the game chosen.");
@@ -75,8 +76,6 @@ public class GameActivity extends Activity implements Observer {
             player.release();
             player = null;
         }
-        //player.release();
-        //finish();
     }
 
     @Override
