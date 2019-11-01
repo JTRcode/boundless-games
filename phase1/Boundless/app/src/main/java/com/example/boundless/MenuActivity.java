@@ -2,10 +2,11 @@ package com.example.boundless;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
+import com.example.boundless.games.GamesEnum;
 import com.example.boundless.users.UserAccount;
+import com.example.boundless.utilities.Session;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -3,7 +3,7 @@ package com.example.boundless.users;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.boundless.Session;
+import com.example.boundless.utilities.Session;
 
 import java.io.BufferedReader;
 import java.io.File;

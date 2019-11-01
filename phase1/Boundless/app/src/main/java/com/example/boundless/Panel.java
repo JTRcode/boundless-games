@@ -11,9 +11,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.boundless.GPACatcherGame.GPACatcherGame;
-import com.example.boundless.pixel_game.PixelGame;
-import com.example.boundless.rotate_tile_game.RotateTileGame;
+import com.example.boundless.games.GPACatcherGame;
+import com.example.boundless.games.Game;
+import com.example.boundless.games.GamesEnum;
+import com.example.boundless.games.PixelGame;
+import com.example.boundless.games.RotateTileGame;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     //TODO: finish javadocs (including for class)
@@ -55,7 +57,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @return The game
      */
-    Game getGame() {
+    public Game getGame() {
         return game;
     }
 
@@ -64,18 +66,18 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @param gameToPlay The enum of the game to play
      */
-    void chooseGame(Context context, GamesEnum gameToPlay) {
+    public void chooseGame(GamesEnum gameToPlay) {
         setupPanel();
         setFocusable(true);
         switch (gameToPlay) {
             case PIXELS:
-                game = new PixelGame(context);
+                game = new PixelGame();
                 break;
             case GPACATCHER:
-                game = new GPACatcherGame(context);
+                game = new GPACatcherGame();
                 break;
             case ROTATETILE:
-                game = new RotateTileGame(context);
+                game = new RotateTileGame();
                 break;
             default:
                 break;
@@ -108,6 +110,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+        //Do nothing because there's nothing to do
     }
 
     @Override

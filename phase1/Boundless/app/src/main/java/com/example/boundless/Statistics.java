@@ -17,7 +17,7 @@ public class Statistics {
     /**
      * Starts measuring time
      */
-    static void start() {
+    public static void start() {
         startTime = new Date().getTime();
     }
 
@@ -48,7 +48,7 @@ public class Statistics {
     /**
      * counts the number of clicks on the screen during the game
      */
-    static void clickEvent() {
+    public static void clickEvent() {
         counterClicks += 1;
     }
 
@@ -62,7 +62,7 @@ public class Statistics {
     /**
      * returns string formatting the statistics (to be called at the end after all 3 games)
      */
-    static String printStats() {
+    public static String printStats() {
         return "Your Statistics:" + "\n" +
                 "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
                 "Total Points: " + totalScore + "\n" +

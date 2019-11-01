@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.boundless.users.UserAccount;
 import com.example.boundless.users.UserAccountManager;
+import com.example.boundless.utilities.Session;
 
 public class LoginActivity extends AppCompatActivity {
 
