@@ -66,12 +66,12 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      *
      * @param gameToPlay The enum of the game to play
      */
-    public void chooseGame(GamesEnum gameToPlay) {
+    public void chooseGame(GamesEnum gameToPlay, int level) {
         setupPanel();
         setFocusable(true);
         switch (gameToPlay) {
             case PIXELS:
-                game = new PixelGame();
+                game = new PixelGame(level);
                 break;
             case GPACATCHER:
                 game = new GPACatcherGame();

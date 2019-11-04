@@ -55,10 +55,15 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setCurrentGame() {
         GamesEnum game = (GamesEnum) getIntent().getSerializableExtra("GAME");
+        int level = 0;
+        if(game == GamesEnum.PIXELS){
+            level = (int) getIntent().getSerializableExtra("currentLevel");
+        }
+        //int level = (int) getIntent().getSerializableExtra("currentLevel");
         if (game != null) {
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
-            panel.chooseGame(game);
+            panel.chooseGame(game, level);
             Log.d("GameActivity", "Changing to game: " + game);
         } else {
             Log.d("GameActivity", "An error occurred trying to get the game chosen.");

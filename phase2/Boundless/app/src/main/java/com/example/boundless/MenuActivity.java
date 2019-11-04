@@ -49,9 +49,6 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.RotateTile:
                 intent.putExtra("GAME", GamesEnum.ROTATETILE);
                 break;
-            case R.id.PixelGame:
-                intent.putExtra("GAME", GamesEnum.PIXELS);
-                break;
             default:
                 break;
         }
@@ -78,6 +75,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void goStatistics(View v){
         Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    public void goPixelMenu(View v){
+        Intent intent = new Intent(this, PixelLevelActivity.class);
         startActivity(intent);
     }
 

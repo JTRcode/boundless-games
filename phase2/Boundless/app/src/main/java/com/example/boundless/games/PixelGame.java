@@ -15,7 +15,7 @@ import java.util.List;
 public class PixelGame extends Game {
 
     private int gridSize;
-    private int currentLevel = 0;
+    private int currentLevel;
     private static final int START_X = 100;
     private static final int START_Y = Panel.SCREEN_HEIGHT / 4;
     private int width;
@@ -24,11 +24,12 @@ public class PixelGame extends Game {
     private List<List<Integer>> currentLabels;
 
     public PixelGame() {
-        this(10);
+        this(0);
     }
 
-    public PixelGame(int size) {
-        gridSize = size;
+    public PixelGame(int level) {
+        gridSize = 10;
+        currentLevel = level;
         pixelManager = new PixelManager(gridSize);
         currentLabels = pixelManager.label(currentLevel);
         width = (Panel.SCREEN_WIDTH - START_X * 2) / gridSize;
