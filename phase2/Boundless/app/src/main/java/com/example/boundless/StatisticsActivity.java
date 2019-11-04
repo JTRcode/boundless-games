@@ -25,4 +25,9 @@ public class StatisticsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
+
+    public void goAchievements(View v){
+        Intent intent = new Intent(this, AchievementsActivity.class);
+        startActivity(intent);
+    }
 }

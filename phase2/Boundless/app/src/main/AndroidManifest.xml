@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PixelLevelActivity"></activity>
+        <activity android:name=".AchievementsActivity"></activity>
         <activity android:name=".StatisticsActivity" />
         <activity android:name=".CustomizationActivity" />
         <activity android:name=".LoginActivity">
