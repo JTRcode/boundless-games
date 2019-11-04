@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.boundless.stats.Statistics;
+import com.example.boundless.utilities.Session;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -17,6 +18,12 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         TextView stats = (TextView) findViewById(R.id.stats);
         stats.setText(Statistics.printStats());
+        if(Session.getTheme()){
+            //getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
+        }
+        else{
+            getWindow().setBackgroundDrawableResource(R.drawable.stats);
+        }
     }
 
     public void backToMenu(View view) {

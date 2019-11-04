@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.boundless.games.GamesEnum;
+import com.example.boundless.utilities.Session;
 
 public class LevelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
+        if(Session.getTheme()){
+            //getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
+        }
+        else{
+            getWindow().setBackgroundDrawableResource(R.drawable.level);
+        }
     }
 
     /**
