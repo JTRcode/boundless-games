@@ -3,13 +3,18 @@ package com.example.boundless;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+/**
+ * The thread that the panel runs on
+ */
 public class MainThread extends Thread {
     public static final int MAX_FPS = 30;
+    public static Canvas canvas;
+
     private Panel panel;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
     private boolean running;
-    public static Canvas canvas;
+    private boolean update = true;
 
 
     public MainThread(SurfaceHolder surfaceHolder, Panel panel) {
@@ -34,7 +39,7 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.panel.update();
+                    if (update) this.panel.update();
                     this.panel.draw(canvas);
                 }
             } catch (Exception e) {
@@ -69,7 +74,21 @@ public class MainThread extends Thread {
         }
     }
 
-    public void setRunning(boolean running) {
+    /**
+     * Starts or stops the thread.
+     *
+     * @param running Whether to run the thread
+     */
+    void setRunning(boolean running) {
         this.running = running;
+    }
+
+    /**
+     * Sets if the thread should update the panel
+     *
+     * @param update Whether to update the panel
+     */
+    void setUpdate(boolean update) {
+        this.update = update;
     }
 }

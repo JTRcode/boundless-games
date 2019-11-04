@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.boundless.R;
-import com.example.boundless.Statistics;
-import com.example.boundless.MenuActivity;
+import com.example.boundless.stats.Statistics;
 
 public class StatisticsActivity extends AppCompatActivity {
 

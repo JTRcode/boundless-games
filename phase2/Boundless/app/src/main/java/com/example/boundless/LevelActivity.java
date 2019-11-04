@@ -8,11 +8,11 @@ import android.view.View;
 
 import com.example.boundless.games.GamesEnum;
 
-public class PixelLevelActivity extends AppCompatActivity {
+public class LevelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pixel_level);
+        setContentView(R.layout.activity_levels);
     }
 
     /**

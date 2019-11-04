@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PixelLevelActivity"></activity>
+        <activity android:name=".LevelActivity"></activity>
         <activity android:name=".AchievementsActivity"></activity>
         <activity android:name=".StatisticsActivity" />
         <activity android:name=".CustomizationActivity" />

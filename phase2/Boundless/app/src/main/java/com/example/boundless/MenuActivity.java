@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
  * The main menu, controls log in and starting games
  */
 public class MenuActivity extends AppCompatActivity {
-    //TODO: show stats on the menu screen
-    //TODO: create customization options (will need a new class)
     //TODO: get current user from login activity
     /**
      * The current user, null if not logged in
@@ -79,7 +77,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void goPixelMenu(View v){
-        Intent intent = new Intent(this, PixelLevelActivity.class);
+        Intent intent = new Intent(this, LevelActivity.class);
         startActivity(intent);
     }
 

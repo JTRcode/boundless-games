@@ -1,26 +1,21 @@
 package com.example.boundless;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.GPACatcherGame;
 import com.example.boundless.games.Game;
-import com.example.boundless.games.PixelGame;
-import com.example.boundless.games.RotateTileGame;
 import com.example.boundless.utilities.Session;
 
 import java.util.Observable;
 import java.util.Observer;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
 
 public class GameActivity extends Activity implements Observer {
     MediaPlayer player;
@@ -33,7 +28,6 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Statistics.start();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setupGame();
@@ -66,67 +60,66 @@ public class GameActivity extends Activity implements Observer {
             panel.chooseGame(game, level);
             Log.d("GameActivity", "Changing to game: " + game);
         } else {
-            Log.d("GameActivity", "An error occurred trying to get the game chosen.");
+            Log.e("GameActivity", "An error occurred trying to get the game chosen.");
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
         Game currentGame = panel.getGame();
         currentGame.addObserver(this);
+        currentGame.showInstructions();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(player != null){
+        if (player != null) {
             player.release();
             player = null;
         }
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
-        moveToNextGame((Game) o);
-    }
-
     /**
-     * Changes the activity to the next game
+     * Show an overlay with info from the game
      *
-     * @param currentGame The current game being played
+     * @param text The text to show on the overlay
      */
-    public void moveToNextGame(Game currentGame) {
-        Statistics.end();
-        Intent intent = new Intent(this, GameActivity.class);
-        if (currentGame instanceof PixelGame) {
-            intent.putExtra("GAME", GamesEnum.ROTATETILE);
-        } else if (currentGame instanceof RotateTileGame) {
-            intent.putExtra("GAME", GamesEnum.GPACATCHER);
-        } else if (currentGame instanceof GPACatcherGame) {
-            intent = new Intent(this, MenuActivity.class);
+    private void showOverlay(String text, final boolean gameIsOver) {
+        panel.pause();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(text).setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (gameIsOver) onBackPressed();
+                        else panel.resume();
+                    }
+                })
+                .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onBackPressed();
+                    }
+                });
+        builder.create().show();
+    }
+
+    @Override
+    public void update(Observable observable, final Object o) {
+        try {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    showOverlay((String) o, panel.isGameOver());
+                }
+            });
+        } catch (ClassCastException e) {
+            Log.e("GameActivity", "The observer needs a string to show an alert!");
         }
-        startActivity(intent);
     }
 
     /**
-     * Shows the text on screen that the game is finished.
-     */
-    private void showGameOverText(){
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        params.bottomToBottom = params.topToTop =
-                params.startToStart = params.endToEnd = R.id.ConstraintLayout;
-        params.verticalBias = (float) 0.5;
-        TextView textView = new TextView(this);
-        textView.setText(R.string.game_over);
-        textView.setLayoutParams(params);
-        ((ConstraintLayout) findViewById(R.id.ConstraintLayout)).addView(textView);
-    }
-
-    /**
-     * Override hardware back button to include stopping time for statistics calculation
+     * Override hardware back button to go to main activity
      */
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
-        Statistics.end();
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }

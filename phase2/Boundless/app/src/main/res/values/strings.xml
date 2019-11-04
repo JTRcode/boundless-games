@@ -1,15 +1,23 @@
 <resources>
     <string name="app_name">Boundless</string>
+
+    //LoginActivity strings
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="create_account">Create Account</string>
     <string name="username">Username</string>
+    <string name="sign_in">Sign In</string>
+
+    //MenuActivity strings
     <string name="gpa_catcher">GPA Catcher</string>
     <string name="pixel">Pixel</string>
     <string name="rotate_tile">Rotate Tile</string>
-    <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign out</string>
-    <string name="game_over_button">Check your answer!</string>
+    <string name="customization">Customization</string>
+    <string name="stats">Statistics</string>
+
+    //Customization strings
+    <string name="back_to_menu">&lt;-</string>
     <string name="choose_music">Choose your music:</string>
     <string name="choose_background">Choose your background:</string>
     <string name="music_1">Music 1</string>
@@ -18,19 +26,25 @@
     <string name="background_1">Background 1</string>
     <string name="background_2">Background 2</string>
     <string name="background_3">Background 3</string>
-    <string name="customization">Customization</string>
-    <string name="stats">Statistics</string>
-    <string name="back_to_menu">&lt;-</string>
-    <string name="halloween">If you dare...</string>
+    <string name="halloween">If you dare&#8230;</string>
     <string name="halloween_theme">The Button of Spooks!</string>
-    <string name="turn_off_theme">Or...</string>
+    <string name="turn_off_theme">Or&#8230;</string>
     <string name="turn_off">Return back to normal</string>
+
+
+    //For games:
+    <string name="pixel_game_instructions">Use the column and row numbers as a guide to create a picture:
+        each row and column has a number of groupings of pixels (e.g. 10 means 10 pixels in a row in that row or column)</string>
+    <string name="gpa_catcher_game_instructions">Tap on the left or right sides of the screen to move the character.
+        Try to get all the assignments and sleep you can get, but be careful of bombs!</string>
+    <string name="rotate_tile_game_instructions">Rotate the tiles to get water from the upper left hand pipe to the lower right hand pipe.</string>
     <string name="game_over">Game over!</string>
+    <string name="exit_overlay">Click on this overlay to dismiss it</string>
+    <string name="achieve">Your Achievements</string>
+
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
     <string name="level_4">Level 4</string>
-    <string name="achieve">Your Achievements</string>
-
 
 </resources>

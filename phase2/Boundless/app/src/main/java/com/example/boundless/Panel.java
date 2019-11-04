@@ -16,13 +16,12 @@ import com.example.boundless.games.Game;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.PixelGame;
 import com.example.boundless.games.RotateTileGame;
+import com.example.boundless.stats.Statistics;
 
+/**
+ * The panel to show the game through
+ */
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
-    //TODO: finish javadocs (including for class)
-    /**
-     * The main thread to run on
-     */
-    private MainThread thread;
     /**
      * The width of the screen
      */
@@ -31,13 +30,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      * The height of the screen.
      */
     public static final int SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
-    /**
-     * The game contents.
-     */
+
+    private MainThread thread;
     private Game game;
-    /**
-     * The panel
-     */
     private static SurfaceView instance;
 
     public Panel(Context context) {
@@ -50,6 +45,14 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     public Panel(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    /**
+     * Tell if the game has finished.
+     * @return If the game is over
+     */
+    public boolean isGameOver() {
+        return game.isGameOver();
     }
 
     /**
@@ -85,6 +88,20 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
+     * Pauses the game
+     */
+    public void pause(){
+        thread.setUpdate(false);
+    }
+
+    /**
+     * Resumes the game
+     */
+    public void resume(){
+        thread.setUpdate(true);
+    }
+
+    /**
      * Setup the panel with a transparent background.
      */
     private void setupPanel() {
@@ -95,6 +112,9 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         holder.setFormat(PixelFormat.TRANSPARENT);
 
         thread = new MainThread(getHolder(), this);
+        thread.setRunning(true);
+        thread.start();
+        Statistics.start();
     }
 
     public static SurfaceView getPanel() {
@@ -103,9 +123,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        thread = new MainThread(getHolder(), this);
-        thread.setRunning(true);
-        thread.start();
+        if (thread == null) setupPanel();
     }
 
     @Override
@@ -139,10 +157,14 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         return super.onTouchEvent(event);
     }
 
+    /**
+     * Update the items on the panel
+     */
     public void update() {
         game.update();
         if (game.checkGameOver()){
-            thread.setRunning(false);
+            Statistics.sumTotalScore();
+            Statistics.end();
         }
     }
 

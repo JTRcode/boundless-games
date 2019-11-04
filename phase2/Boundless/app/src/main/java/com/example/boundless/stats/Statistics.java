@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.stats;
 
 import java.util.Date;
 import java.util.Random;

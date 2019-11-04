@@ -135,4 +135,20 @@ public class GPACatcherGame extends Game {
         manager.addFallingObject();
         manager.update();
     }
+
+    @Override
+    String getInstructions() {
+        return "Tap on the left or right sides of the screen to move the character.\n" +
+                "Try to get all the assignments and sleep you can get, but be careful of bombs!";
+    }
+
+    @Override
+    String getGameOverText(){
+        StringBuilder text = new StringBuilder("GAME OVER! \n");
+        if (time <= 0) text.append("You ran out of time!\n");
+        if (life <= 0) text.append("You ran out of lives!\n");
+        text.append("Final GPA: ");
+        text.append(Math.round(gpa * 100) / 100.0);
+        return text.toString();
+    }
 }

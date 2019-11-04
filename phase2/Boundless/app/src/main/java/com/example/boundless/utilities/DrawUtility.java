@@ -66,6 +66,5 @@ public class DrawUtility {
      */
     public static void drawBitmap(Bitmap bitmap, int x, int y){
         MainThread.canvas.drawBitmap(bitmap, x, y, paint);
-        System.out.println("CANVAS: "+ (canvas == null));
     }
 }

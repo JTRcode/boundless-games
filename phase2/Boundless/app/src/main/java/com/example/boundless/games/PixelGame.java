@@ -70,8 +70,19 @@ public class PixelGame extends Game {
     @Override
     public void screenTouched(int x, int y) {
         int[] coordsIJ = convertCoordToIJ(x, y);
-        if (coordsIJ[0] < gridSize && coordsIJ[1] < gridSize)
+        if (coordsIJ[0] < gridSize && coordsIJ[1] < gridSize && coordsIJ[0] >= 0 && coordsIJ[1] >= 0)
             switchPixel(coordsIJ[0], coordsIJ[1]);
+    }
+
+    @Override
+    String getInstructions() {
+        return "Use the column and row numbers as a guide to create a picture:\n" +
+                "each row and column has a number of groupings of pixels (e.g. 10 means 10 pixels in a row in that row or column)";
+    }
+
+    @Override
+    String getGameOverText(){
+        return "GAME OVER!\nYou just finished level "+currentLevel;
     }
 
     /**

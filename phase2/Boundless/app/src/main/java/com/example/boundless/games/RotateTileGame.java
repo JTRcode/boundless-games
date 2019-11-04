@@ -66,7 +66,18 @@ public class RotateTileGame extends Game {
     public void screenTouched(int x, int y) {
         int i = (y - manager.getStartY()) / manager.getTileSize();
         int j = (x - manager.getStartX()) / manager.getTileSize();
-        if (i < manager.getGridSize() && j < manager.getGridSize())
+        if (i < manager.getGridSize() && j < manager.getGridSize() && i >= 0 && j >= 0)
             userChoice[i][j].rotateTile();
+    }
+
+    @Override
+    String getInstructions() {
+        return "Rotate the tiles to get water from the upper left hand pipe to the lower right hand pipe.";
+    }
+
+
+    @Override
+    String getGameOverText(){
+        return "GAME OVER!\nYou just finished the rotate tiles game!";
     }
 }
