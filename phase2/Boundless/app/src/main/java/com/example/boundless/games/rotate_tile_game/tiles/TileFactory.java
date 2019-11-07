@@ -16,8 +16,8 @@ public class TileFactory {
      * @param tileToCreate The char version of the tile to create
      * @return The new tile created
      */
-    public static Tile createTile(char tileToCreate, int size) {
-        return createTile(TileEnum.valueOf(tileToCreate), size);
+    public static Tile createTile(char tileToCreate) {
+        return createTile(TileEnum.valueOf(tileToCreate));
     }
 
     /**
@@ -26,7 +26,7 @@ public class TileFactory {
      * @param tileToCreate The enum of the tile to create
      * @return The new tile created
      */
-    public static Tile createTile(TileEnum tileToCreate, int size) {
+    public static Tile createTile(TileEnum tileToCreate) {
         Tile newTile;
         switch (tileToCreate) {
             case X:
@@ -42,7 +42,6 @@ public class TileFactory {
                 newTile = new TTile();
                 break;
         }
-        newTile.resize(size);
         return newTile;
     }
 }

@@ -1,5 +1,8 @@
 package com.example.boundless.games;
 
+import android.graphics.Bitmap;
+
+import com.example.boundless.Panel;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.games.rotate_tile_game.TileEnum;
 import com.example.boundless.games.rotate_tile_game.TileManager;
@@ -12,46 +15,82 @@ import com.example.boundless.games.rotate_tile_game.tiles.TileFactory;
  */
 public class RotateTileGame extends Game {
 
-    private TileManager manager = new TileManager(4);
+    private TileManager manager = new TileManager();
     private Tile[][] userChoice;
-
+    private int startX;
+    private int startY;
+    private int tileSize;
+    private Tile startEndPipe;
 
     public RotateTileGame() {
-        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
-        startPipe.setTile(Rotation.EAST);
-        userChoice = manager.getTileStage();
+        setStartX(100);
+        setStartY(Panel.SCREEN_HEIGHT/4);
+        loadNextChoice();
+        createStartEndTile();
     }
+
+    private void loadNextChoice(){
+        userChoice = manager.getTileStage();
+        this.tileSize = (Panel.SCREEN_WIDTH - 2 * this.startX) / userChoice.length;
+        resizeUserChoice();
+    }
+    
+    private void createStartEndTile(){
+        startEndPipe = TileFactory.createTile(TileEnum.I);
+        startEndPipe.resize(tileSize);
+        startEndPipe.setTile(Rotation.EAST);
+        
+    }
+
+    public void setStartX(int newX){
+        this.startX = newX;
+    }
+
+    public void setStartY(int newY){
+        this.startY = newY;
+    }
+
+    private void resizeUserChoice(){
+        /*
+        Tile[][] resetedSize;
+        for (Tile[] tileArray : userChoice)
+            for (Tile tile : tileArray)
+                tile.resize(this.tileSize);
+            */
+        for (int i = 0; i < userChoice.length; i++)
+            for (int j = 0; j < userChoice.length; j++)
+                userChoice[i][j].resize(this.tileSize);
+    }
+
+
 
     @Override
     boolean gameOver() {
         //TODO don't use a try catch for phase 2
         if (manager.gameOver(userChoice)) {
             try {
-                userChoice = manager.getTileStage();
+                loadNextChoice();
+                createStartEndTile();
             } catch (IndexOutOfBoundsException e) {
                 //out of levels, throws an exception
                 return true;
             }
         }
-        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
-        startPipe.setTile(Rotation.EAST);
         return false;
     }
 
     @Override
     public void draw() {
-        Tile startPipe = TileFactory.createTile(TileEnum.I, manager.getTileSize());
-        startPipe.setTile(Rotation.EAST);
-        DrawUtility.drawBitmap(startPipe.rotatedImage, manager.getStartX() - manager.getTileSize(),
-                manager.getStartY());
-        DrawUtility.drawBitmap(startPipe.rotatedImage, manager.getStartX() +
-                (manager.getGridSize()) * manager.getTileSize(),
-                manager.getStartY() + (manager.getGridSize() - 1) * manager.getTileSize());
+        DrawUtility.drawBitmap(this.startEndPipe.rotatedImage, this.startX - this.tileSize,
+                this.startY);
+        DrawUtility.drawBitmap(this.startEndPipe.rotatedImage, this.startX +
+                (manager.getGridSize()) * this.tileSize,
+                this.startY + (manager.getGridSize() - 1) * this.tileSize);
         for (int i = 0; i < userChoice.length; i++) {
             for (int j = 0; j < userChoice.length; j++) {
                 DrawUtility.drawBitmap(userChoice[i][j].rotatedImage,
-                        manager.getStartX() + j * manager.getTileSize(),
-                        manager.getStartY() + manager.getTileSize() * i);
+                        this.startX + j * this.tileSize,
+                        this.startY + this.tileSize * i);
             }
         }
     }
@@ -64,8 +103,8 @@ public class RotateTileGame extends Game {
      */
     @Override
     public void screenTouched(int x, int y) {
-        int i = (y - manager.getStartY()) / manager.getTileSize();
-        int j = (x - manager.getStartX()) / manager.getTileSize();
+        int i = (y - this.startY) / this.tileSize;
+        int j = (x - this.startX) / this.tileSize;
         if (i < manager.getGridSize() && j < manager.getGridSize() && i >= 0 && j >= 0)
             userChoice[i][j].rotateTile();
     }

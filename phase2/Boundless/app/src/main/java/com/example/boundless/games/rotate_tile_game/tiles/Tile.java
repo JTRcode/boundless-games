@@ -24,16 +24,17 @@ public abstract class Tile {
     /**
      * Resizes the bitmap to fit it onto the grid
      *
-     * @param newDimension The dimension to resize the bitmap to
      */
-    void resize(int newDimension) {
-        //TODO: should be taken out of the tile class, put into some drawing class
-        originalImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
+    public void resize(int newDimension) {
+        originalImage = Bitmap.createScaledBitmap(originalImage, newDimension, newDimension, true);
+        rotatedImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
     }
 
-    Tile(int[] exits) {
+    Tile(int[] exits, Bitmap originalImage) {
         this.exits = exits;
-        rotation = Rotation.getRandom();
+        this.originalImage = originalImage;
+        rotatedImage = originalImage;
+        setTile(Rotation.getRandom());
     }
 
     /**
@@ -60,13 +61,6 @@ public abstract class Tile {
             count++;
         }
         return newExits;
-    }
-
-    /**
-     * Get the rotation of the tile.
-     */
-    public Rotation getRotation() {
-        return rotation;
     }
 
     /**

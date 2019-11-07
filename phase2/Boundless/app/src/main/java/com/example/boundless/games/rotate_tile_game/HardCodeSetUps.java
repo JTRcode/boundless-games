@@ -21,7 +21,7 @@ public class HardCodeSetUps {
     /**
      * Initializes the tiles array and randomizes the rotation (easy mode).
      */
-    public char[][] setUpTilesEasy() {
+    public static char[][] setUpTilesEasy() {
         return new char[][]{
                 {'L', 'L', 'I', 'X'},
                 {'L', 'I', 'I', 'L'},
@@ -32,7 +32,7 @@ public class HardCodeSetUps {
     /**
      * Initializes the tiles array and randomizes the rotation (medium mode).
      */
-    public char[][] setUpTilesMedium() {
+    public static char[][] setUpTilesMedium() {
         return new char[][] {
                 {'L', 'L', 'I', 'X', 'L', 'X'},
                 {'L', 'I', 'I', 'L', 'L', 'X'},
@@ -45,7 +45,7 @@ public class HardCodeSetUps {
     /**
      * Initializes the tiles array and randomizes the rotation (hard mode).
      */
-    public char[][] setUpTilesHard() {
+    public static char[][] setUpTilesHard() {
         return new char[][]{
                 {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I'},
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
@@ -61,7 +61,7 @@ public class HardCodeSetUps {
      * Initializes the tiles array and randomizes the rotation (expert mode), i.e. play all levels
      * and an expert stage.
      */
-    public char[][] setUpTilesExpert() {
+    public static char[][] setUpTilesExpert() {
         return new char[][] {
                 {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
                 {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},

@@ -11,8 +11,6 @@ import com.example.boundless.R;
 class CrossTile extends Tile {
 
     CrossTile() {
-        super(new int[]{1, 1, 1, 1});
-        originalImage = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.cross_pipe);
-        rotatedImage = originalImage;
+        super(new int[]{1, 1, 1, 1}, BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.cross_pipe));
     }
 }

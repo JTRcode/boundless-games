@@ -1,6 +1,7 @@
 package com.example.boundless.games.rotate_tile_game;
 
-import com.example.boundless.Panel;
+import android.util.Log;
+
 import com.example.boundless.games.rotate_tile_game.tiles.*;
 
 import java.util.ArrayList;
@@ -18,19 +19,14 @@ public class TileManager {
      * The size of the grid
      */
     private int gridSize;
-    private int startX = 100;
-    private int startY = Panel.SCREEN_HEIGHT / 4;
-    private int tileSize;
 
     /**
      * The current level being played.
      */
     private int currentLevel = 0;
 
-    public TileManager(int size) {
-        gridSize = size;
+    public TileManager() {
         levels = new ArrayList<>();
-        tileSize = (Panel.SCREEN_WIDTH - 2 * startX) / size;
     }
 
     /**
@@ -46,126 +42,38 @@ public class TileManager {
         return gridSize;
     }
 
-    public int getTileSize() {
-        return tileSize;
-    }
-
-    public int getStartX() {
-        return startX;
-    }
-
-    public int getStartY() {
-        return startY;
-    }
-
     public Tile[][] getTileStage() {
         setUpTiles();
         gridSize = (levels.get(currentLevel)).length;
-        tileSize = (Panel.SCREEN_WIDTH - 2 * startX) / gridSize;
         return levels.get(currentLevel);
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation.
      */
-    void setUpTiles() {
+    private void setUpTiles() {
+        char[][] layout;
         switch (currentLevel) {
             case 0:
-                setUpTilesEasy();
+                layout = HardCodeSetUps.setUpTilesEasy();
                 break;
             case 1:
-                setUpTilesMedium();
+                layout = HardCodeSetUps.setUpTilesMedium();
                 break;
             case 2:
-                setUpTilesHard();
+                layout = HardCodeSetUps.setUpTilesHard();
                 break;
             case 3:
-                setUpTilesExpert();
+                layout = HardCodeSetUps.setUpTilesExpert();
                 break;
             default:
+                layout = HardCodeSetUps.setUpTilesEasy();
+                Log.e(this.toString(), "current game level does not exist");
                 break;
         }
-    }
-
-    /**
-     * Initializes the tiles array and randomizes the rotation (easy mode).
-     */
-    private void setUpTilesEasy() {
-        gridSize = 4;
-
-        char[][] easyLayout = {
-                {'L', 'L', 'I', 'X'},
-                {'L', 'I', 'I', 'L'},
-                {'X', 'L', 'T', 'I'},
-                {'L', 'I', 'I', 'L'}};
-
-        Tile[][] easyTileLevel = this.convertCharToTile(easyLayout, 4);
-        this.randomizeTiles(easyTileLevel);
-        addLevel(easyTileLevel);
-    }
-
-    /**
-     * Initializes the tiles array and randomizes the rotation (medium mode).
-     */
-    private void setUpTilesMedium() {
-        gridSize = 6;
-
-        char[][] mediumLayout = {
-                {'L', 'L', 'I', 'X', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'X', 'L', 'T', 'I', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'}};
-
-        Tile[][] medTileLevel = this.convertCharToTile(mediumLayout, 6);
-        this.randomizeTiles(medTileLevel);
-        addLevel(medTileLevel);
-    }
-
-    /**
-     * Initializes the tiles array and randomizes the rotation (hard mode).
-     */
-    private void setUpTilesHard() {
-        gridSize = 8;
-
-        char[][] hardLayout = {
-                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I'}};
-
-        Tile[][] hardTileLevel = this.convertCharToTile(hardLayout, 8);
-        this.randomizeTiles(hardTileLevel);
-        addLevel(hardTileLevel);
-    }
-
-    /**
-     * Initializes the tiles array and randomizes the rotation (expert mode), i.e. play all levels
-     * and an expert stage.
-     */
-    private void setUpTilesExpert() {
-        gridSize = 10;
-
-        char[][] expertLayout = {
-                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I', 'I', 'I'}};
-
-        Tile[][] expertTileLevel = this.convertCharToTile(expertLayout, 10);
-        this.randomizeTiles(expertTileLevel);
-        addLevel(expertTileLevel);
+        Tile[][] stage = convertCharToTile(layout);
+        randomizeTiles(stage);
+        addLevel(stage);
     }
 
     /**
@@ -260,16 +168,12 @@ public class TileManager {
      * Converts a char array (using ONLY chars 'T', 'I', 'X', 'L') to a tile array.
      *
      * @param input The input char array using 'T', 'I', 'X', and 'L'
-     * @param size  The size of the input array.
-     * @return The corresponding tile array version of the char array.
      */
-    private Tile[][] convertCharToTile(char[][] input, int size) {
-        Tile[][] output = new Tile[size][size];
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++) {
-                int newSize = (Panel.SCREEN_WIDTH - 2 * startX) / size;
-                output[i][j] = TileFactory.createTile(input[i][j], newSize);
-            }
+    private Tile[][] convertCharToTile(char[][] input) {
+        Tile[][] output = new Tile[input.length][input.length];
+        for (int i = 0; i < input.length; i++)
+            for (int j = 0; j < input.length; j++)
+                output[i][j] = TileFactory.createTile(input[i][j]);
         return output;
     }
 
