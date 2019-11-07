@@ -23,6 +23,8 @@ public class GPACatcherGame extends Game {
     private static Bitmap heart;
     private static int heartSize = 60;
     private GPAManager manager;
+    private int speed = 50;
+    private int lastX = 0;
 
     public GPACatcherGame() {
         this(maxTime);
@@ -30,7 +32,7 @@ public class GPACatcherGame extends Game {
 
     public GPACatcherGame(int time) {
         GPACatcherGame.time = time;
-        manager = new GPAManager(50);
+        manager = new GPAManager(speed);
         manager.addFallingObject();
 
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
@@ -105,7 +107,7 @@ public class GPACatcherGame extends Game {
         if (time >= maxTime / 2) color = Color.GREEN;
         else if (time >= maxTime / 4) color = Color.YELLOW;
         else color = Color.RED;
-        DrawUtility.drawRectangle(new int[] {0, 10, time, 70}, color);
+        DrawUtility.drawRectangle(new int[]{0, 10, time, 70}, color);
     }
 
     private void drawGPA() {
@@ -121,12 +123,13 @@ public class GPACatcherGame extends Game {
 
     @Override
     public void screenTouched(int x, int y) {
-        int mid = Panel.SCREEN_WIDTH / 2;
-        if (x <= mid) {
+        if (Math.abs(lastX - x) < speed) return;
+        lastX = x;
+
+        if (x < manager.basket.getCoordX() + manager.basket.getSize() / 2)
             manager.basket.moveLeft();
-        } else {
+        else
             manager.basket.moveRight();
-        }
     }
 
     @Override
@@ -143,7 +146,7 @@ public class GPACatcherGame extends Game {
     }
 
     @Override
-    String getGameOverText(){
+    String getGameOverText() {
         StringBuilder text = new StringBuilder("GAME OVER! \n");
         if (time <= 0) text.append("You ran out of time!\n");
         if (life <= 0) text.append("You ran out of lives!\n");

@@ -40,7 +40,7 @@ public class Basket {
      *
      * @return The x coordinate of the basket
      */
-    int getCoordX() {
+    public int getCoordX() {
         return coordX;
     }
 
@@ -105,5 +105,14 @@ public class Basket {
      */
     public void draw() {
         DrawUtility.drawBitmap(appearance, coordX, coordY);
+    }
+
+    /**
+     * Gets the size of the object.
+     *
+     * @return The size of the object.
+     */
+    public int getSize() {
+        return appearance.getWidth();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.boundless.games;
 
+import android.view.MotionEvent;
+
 import java.util.Observable;
 
 /**
@@ -39,6 +41,15 @@ public abstract class Game extends Observable {
      * Draws the game
      */
     public abstract void draw();
+
+    public void screenTouched(MotionEvent event){
+        final int pointerCount = event.getPointerCount();
+        for (int pointer = 0; pointer < pointerCount; pointer++) {
+            MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
+            event.getPointerCoords(pointer, coords);
+            this.screenTouched((int) coords.x, (int) coords.y);
+        }
+    }
 
     /**
      * Handles the screen being touched
