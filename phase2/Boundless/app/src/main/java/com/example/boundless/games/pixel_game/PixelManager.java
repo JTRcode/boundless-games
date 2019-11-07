@@ -7,29 +7,29 @@ import java.util.List;
  * A manager for pixels.
  */
 public class PixelManager {
-    private List<int[][]> levels = new ArrayList<>();
-    private int gridSize;
-
+    private static List<int[][]> levels = new ArrayList<>();
 
     public PixelManager() {
-        this(10);
+        setupLevels();
     }
 
-    public PixelManager(int size) {
-        gridSize = size;
-        setupLevels();
+    /**
+     * Get the grid size of the current level
+     *
+     * @return The grid size
+     */
+    public static int getGridSize(int currentLevel) {
+        return levels.get(currentLevel).length;
     }
 
     /**
      * add all the levels into the level
      */
     private void setupLevels() {
-        if (gridSize == 10) {
-            addLevel(hardCodeLevel1());
-            addLevel(hardCodeLevel2());
-            addLevel(hardCodeLevel3());
-            addLevel(hardCodeLevel4());
-        }
+        addLevel(hardCodeLevel1());
+        addLevel(hardCodeLevel2());
+        addLevel(hardCodeLevel3());
+        addLevel(hardCodeLevel4());
     }
 
     /**
@@ -37,7 +37,7 @@ public class PixelManager {
      *
      * @param levelToAdd the array containing the pixels of the new level.
      */
-    public void addLevel(int[][] levelToAdd) {
+    private void addLevel(int[][] levelToAdd) {
         levels.add(levelToAdd.clone());
     }
 
@@ -50,6 +50,7 @@ public class PixelManager {
      */
     public boolean checkPixels(PixelOptions[][] userChoices, int currentLevel) {
         int[][] level = levels.get(currentLevel);
+        int gridSize = level.length;
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
                 if (doesNotMatch(userChoices[row][col], level[col][row]))
@@ -70,6 +71,7 @@ public class PixelManager {
      */
     public List<List<Integer>> label(int currentLevel) {
         int[][] level = levels.get(currentLevel);
+        int gridSize = level.length;
         List<List<Integer>> labels = new ArrayList<>();
         for (int row = 0; row < gridSize; row++) labels.add(labelSet(level, row, true));
         for (int col = 0; col < gridSize; col++) labels.add(labelSet(level, col, false));
@@ -86,6 +88,7 @@ public class PixelManager {
      */
     private List<Integer> labelSet(int[][] level, int i, boolean setIsRow) {
         int consecutivePixels = 0;
+        int gridSize = level.length;
         List<Integer> streaks = new ArrayList<>();
         for (int j = 0; j < gridSize; j++) {
             int current = setIsRow ? level[i][j] : level[j][i];
@@ -100,15 +103,6 @@ public class PixelManager {
         return streaks;
     }
 
-    /**
-     * Get the number of levels
-     *
-     * @return The number of levels in the game
-     */
-    public int getNumOfLevels() {
-        return levels.size();
-    }
-
     //-----------------------------------
     //Hardcode levels
     //TODO: move these hardcoded patterns to a new class
@@ -119,7 +113,7 @@ public class PixelManager {
      * @return the picture of the first level
      */
     private int[][] hardCodeLevel1() {
-        int[][] heart = new int[gridSize][gridSize]; //The first level is a heart
+        int[][] heart = new int[10][10]; //The first level is a heart
         heart[1][2] = 1;
         heart[1][7] = 1;
         for (int i = 0; i < 3; i++) {
@@ -145,7 +139,7 @@ public class PixelManager {
      * @return the picture of second level
      */
     private int[][] hardCodeLevel2() {
-        int[][] bugdroid = new int[gridSize][gridSize];//the second level is bugdroid
+        int[][] bugdroid = new int[10][10];//the second level is bugdroid
         //The head
         bugdroid[0][4] = 1;
         bugdroid[0][5] = 1;
@@ -173,29 +167,30 @@ public class PixelManager {
         return bugdroid;
     }
 
-    private int[][] hardCodeLevel3(){
-        int[][] panda = new int[gridSize][gridSize]; // the third one is panda
-        for(int i = 0; i < 2; i++){
-            panda[0][0+i] = 1;
-            panda[1][0+i] = 1;
-            panda[0][8+i] = 1;
-            panda[1][8+i] = 1;
-            panda[4][2+i] = 1;
-            panda[4][6+i] = 1;
-            panda[5][1+i] = 1;
-            panda[5][4+i] = 1;
-            panda[5][7+i] = 1;
-            panda[6][2+i] = 1;
-            panda[6][6+i] = 1;
-            panda[7][4+i] = 1;
+    private int[][] hardCodeLevel3() {
+
+        int[][] panda = new int[10][10]; // the third one is panda
+        for (int i = 0; i < 2; i++) {
+            panda[0][i] = 1;
+            panda[1][i] = 1;
+            panda[0][8 + i] = 1;
+            panda[1][8 + i] = 1;
+            panda[4][2 + i] = 1;
+            panda[4][6 + i] = 1;
+            panda[5][1 + i] = 1;
+            panda[5][4 + i] = 1;
+            panda[5][7 + i] = 1;
+            panda[6][2 + i] = 1;
+            panda[6][6 + i] = 1;
+            panda[7][4 + i] = 1;
         }
         panda[1][2] = 1;
         panda[9][2] = 1;
-        for(int j = 0; j< 5; j++){
-            panda[1][3+j] = 1;
-            panda[9][3+j] = 1;
-            panda[3+j][0] = 1;
-            panda[3+j][9] = 1;
+        for (int j = 0; j < 5; j++) {
+            panda[1][3 + j] = 1;
+            panda[9][3 + j] = 1;
+            panda[3 + j][0] = 1;
+            panda[3 + j][9] = 1;
         }
         panda[2][1] = 1;
         panda[2][8] = 1;
@@ -203,13 +198,14 @@ public class PixelManager {
         panda[8][8] = 1;
         return panda;
     }
+
     /**
      * The hardest level
      *
      * @return the picture of the hardest level
      */
     private int[][] hardCodeLevel4() {
-        int[][] taiji = new int[gridSize][gridSize]; // The third one is taiji
+        int[][] taiji = new int[10][10]; // The third one is taiji
         for (int i = 0; i < 4; i++) {
             taiji[0][3 + i] = 1;
             taiji[9][3 + i] = 1;

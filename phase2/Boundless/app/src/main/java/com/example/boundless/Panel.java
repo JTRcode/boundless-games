@@ -49,6 +49,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     /**
      * Tell if the game has finished.
+     *
      * @return If the game is over
      */
     public boolean isGameOver() {
@@ -90,14 +91,14 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     /**
      * Pauses the game
      */
-    public void pause(){
+    public void pause() {
         thread.setUpdate(false);
     }
 
     /**
      * Resumes the game
      */
-    public void resume(){
+    public void resume() {
         thread.setUpdate(true);
     }
 
@@ -133,28 +134,26 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-        while (retry) {
-            try {
-                thread.setRunning(false);
-                thread.join();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            retry = false;
+        Statistics.end();
+        try {
+            thread.setRunning(false);
+            thread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Deals with user input on the screen
+     *
+     * @param event The event of the user input
+     * @return If the game subscribes to the event
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        final int pointerCount = event.getPointerCount();
         Statistics.clickEvent();
-        for (int pointer = 0; pointer < pointerCount; pointer++) {
-            MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
-            event.getPointerCoords(pointer, coords);
-            game.screenTouched((int) coords.x, (int) coords.y);
-        }
-        return super.onTouchEvent(event);
+        game.screenTouched(event);
+        return !(game instanceof RotateTileGame);
     }
 
     /**
@@ -162,12 +161,16 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     public void update() {
         game.update();
-        if (game.checkGameOver()){
+        if (game.checkGameOver()) {
             Statistics.sumTotalScore();
             Statistics.end();
         }
     }
 
+    /**
+     * Draws the game on the panel
+     * @param canvas The canvas to draw on
+     */
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
