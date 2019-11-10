@@ -1,5 +1,4 @@
-package com.example.boundless;
-
+package com.example.boundless.stats;
 
 public class Achievements {
 
@@ -85,7 +84,7 @@ public class Achievements {
     }
 
     //TODO: Add above method calls into each game
-    static String printAchievements() {
+    public static String printAchievements() {
         return "Your Achievements:" + "\n" +
                 "GPA Catcher Game" + "\n" +
                 "Achieve a 4.0 GPA: " + maxGpaCompleted() + "\n" +

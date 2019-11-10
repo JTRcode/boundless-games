@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -13,14 +12,13 @@ import android.view.WindowManager;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.Game;
-import com.example.boundless.utilities.Session;
+import com.example.boundless.utilities.HandleCustomization;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class GameActivity extends Activity implements Observer {
 
-    MediaPlayer player;
     private Panel panel;
     private GamesEnum currentGame;
 
@@ -37,10 +35,8 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setupGame() {
         setCurrentGame();
-        findViewById(R.id.ConstraintLayout).setBackgroundResource(Session.getBackground(this));
-        player = MediaPlayer.create(this, Session.getMusic(this));
-        player.setLooping(true);
-        player.start();
+        HandleCustomization.setGameBackground(this, findViewById(R.id.ConstraintLayout));
+        HandleCustomization.startMusic(this);
     }
 
     /**
@@ -70,10 +66,7 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        if (player != null) {
-            player.release();
-            player = null;
-        }
+        HandleCustomization.pauseMusic(this);
     }
 
     /**

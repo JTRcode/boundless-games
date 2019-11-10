@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.utilities.Session;
+import com.example.boundless.utilities.HandleCustomization;
 
 public class LevelActivity extends AppCompatActivity {
     GamesEnum game;
@@ -19,11 +19,7 @@ public class LevelActivity extends AppCompatActivity {
         game = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
 
         createButtons();
-        if (Session.getTheme(this)) {
-            //getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
-        } else {
-            getWindow().setBackgroundDrawableResource(R.drawable.level);
-        }
+        HandleCustomization.setActivityBackground(this, getWindow());
     }
 
     private void createButtons(){

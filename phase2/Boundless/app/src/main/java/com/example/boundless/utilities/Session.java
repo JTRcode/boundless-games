@@ -11,9 +11,6 @@ import com.example.boundless.R;
  */
 public class Session {
 
-    /**
-     * Saved preferenes
-     */
     private static SharedPreferences prefs;
 
     private Session() {
@@ -25,6 +22,10 @@ public class Session {
      * @param context The current context.
      */
     public static void setupSession(Context context) {
+        checkSession(context);
+    }
+
+    private static void checkSession(Context context){
         if (prefs == null)
             prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -74,8 +75,10 @@ public class Session {
      * get the users' music
      *
      * @return the users' choice of the music
+     * @param context The current context
      */
-    public static int getMusic() {
+    public static int getMusic(Context context) {
+        checkSession(context);
         return prefs.getInt("music", R.raw.minnutesican);
     }
 
@@ -92,8 +95,10 @@ public class Session {
      * return users' choice of background
      *
      * @return the users' choice of background, default is backgroundone
+     * @param context The current context
      */
-    public static int getBackground() {
+    public static int getBackground(Context context) {
+        checkSession(context);
         return prefs.getInt("background", R.drawable.backgroundone);
     }
 
@@ -110,8 +115,10 @@ public class Session {
      * return the state of the theme
      *
      * @return the theme is on
+     * @param context The current context
      */
-    public static boolean getTheme() {
+    public static boolean getTheme(Context context) {
+        checkSession(context);
         return prefs.getBoolean("theme_on", false);
     }
 

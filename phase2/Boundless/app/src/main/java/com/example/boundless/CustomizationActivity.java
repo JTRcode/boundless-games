@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
 
 /**
@@ -19,12 +20,7 @@ public class CustomizationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customiztion);
-        if(Session.getTheme()){
-            getWindow().setBackgroundDrawableResource(R.drawable.halloween_custom);
-        }
-        else{
-            getWindow().setBackgroundDrawableResource(R.drawable.custom);
-        }
+        HandleCustomization.setActivityBackground(this, getWindow());
     }
 
     /**
@@ -33,7 +29,7 @@ public class CustomizationActivity extends AppCompatActivity {
      * @param view the button clicked
      */
     public void setMusic(View view) {
-        if(Session.getTheme()){
+        if(Session.getTheme(this)){
             showToast("Turn the theme off first");
         }
         else {
@@ -60,7 +56,7 @@ public class CustomizationActivity extends AppCompatActivity {
      * @param view the button that the user click
      */
     public void setBackground(View view) {
-        if(Session.getTheme()){
+        if(Session.getTheme(this)){
             showToast("Turn the theme off first");
         }
         else {

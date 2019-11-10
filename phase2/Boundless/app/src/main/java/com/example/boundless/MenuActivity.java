@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.users.UserAccount;
+import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +28,8 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-        if(Session.getTheme()){
-            getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
-        }
-        else{
-            getWindow().setBackgroundDrawableResource(R.drawable.menu);
-        }
+
+        HandleCustomization.setActivityBackground(this, getWindow());
     }
 
     /**
@@ -86,14 +83,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CustomizationActivity.class);
         startActivity(intent);
     }
-    /**
-    public void setBackground(){
-        Session.setBackground(R.drawable.menu);
-    }
-
-    public void setHalloweenMenu(){
-        Session.setBackground(R.drawable.halloween_main_menu);
-    }*/
 
     /**
      * Goes to the statistics page

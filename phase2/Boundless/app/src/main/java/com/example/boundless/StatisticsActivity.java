@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.boundless.stats.Statistics;
-import com.example.boundless.utilities.Session;
+import com.example.boundless.utilities.HandleCustomization;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -16,22 +16,26 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        TextView stats = (TextView) findViewById(R.id.stats);
+        TextView stats = findViewById(R.id.stats);
         stats.setText(Statistics.printStats());
-        if(Session.getTheme()){
-            //getWindow().setBackgroundDrawableResource(R.drawable.hallo_menu);
-        }
-        else{
-            getWindow().setBackgroundDrawableResource(R.drawable.stats);
-        }
+
+        HandleCustomization.setActivityBackground(this, getWindow());
     }
 
+    /**
+     * Go back to the main menu
+     * @param view The button clicked
+     */
     public void backToMenu(View view) {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 
-    public void goAchievements(View v){
+    /**
+     * Go to the achievements page
+     * @param view The button clicked
+     */
+    public void goAchievements(View view){
         Intent intent = new Intent(this, AchievementsActivity.class);
         startActivity(intent);
     }

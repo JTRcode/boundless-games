@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.boundless.stats.Achievements;
+
 public class AchievementsActivity extends AppCompatActivity {
 
     @Override

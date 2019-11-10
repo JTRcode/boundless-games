@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.boundless.users.UserAccount;
 import com.example.boundless.users.UserAccountManager;
+import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,12 +38,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
-        if(Session.getTheme()){
-            getWindow().setBackgroundDrawableResource(R.drawable.halloween_log_in);
-        }
-        else{
-            getWindow().setBackgroundDrawableResource(R.drawable.log_in);
-        }
+
+        HandleCustomization.setActivityBackground(this, getWindow());
     }
 
     /**
@@ -74,14 +71,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    /**
-    public void setBackground(){
-       Session.setBackground(R.drawable.login);
-    }
-
-    public void setHalloweenLogin(){
-        Session.setBackground(R.drawable.halloween_log_in);
-    }*/
 
     /**
      * Override hardware back button to exit the app
