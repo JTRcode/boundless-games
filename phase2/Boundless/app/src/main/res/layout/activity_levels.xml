@@ -8,21 +8,19 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_buffer"
-        android:layout_marginEnd="@dimen/side_buffer"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.59000003">
 
         <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:columnCount="3">
 
@@ -30,79 +28,79 @@
                 android:id="@+id/level_1"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_1"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
             <Button
                 android:id="@+id/level_2"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_2"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
             <Button
                 android:id="@+id/level_3"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_3"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
             <Button
                 android:id="@+id/level_4"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_4"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
             <Button
                 android:id="@+id/level_5"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_4"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
             <Button
                 android:id="@+id/level_6"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@drawable/gradient"
-                android:fontFamily="casual"
+                android:background="@drawable/level_button"
+                android:fontFamily="@font/baloo_da"
                 android:onClick="startLevel"
-                android:paddingTop="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
                 android:text="@string/level_4"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="56sp" />
 
         </GridLayout>
     </LinearLayout>

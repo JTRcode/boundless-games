@@ -2,7 +2,6 @@ package com.example.boundless.utilities;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.text.Layout;
 import android.view.View;
 import android.view.Window;
 
@@ -12,8 +11,6 @@ import com.example.boundless.LoginActivity;
 import com.example.boundless.MenuActivity;
 import com.example.boundless.R;
 import com.example.boundless.StatisticsActivity;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 /**
  * Handles the customizations for each page

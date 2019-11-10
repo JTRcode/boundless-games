@@ -1,7 +1,5 @@
 package com.example.boundless.games;
 
-import android.graphics.Bitmap;
-
 import com.example.boundless.Panel;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.games.rotate_tile_game.TileEnum;

@@ -4,9 +4,6 @@ import android.util.Log;
 
 import com.example.boundless.games.rotate_tile_game.tiles.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Sets up tiles and updates them
  */
@@ -144,5 +141,4 @@ public class TileManager {
                 output[i][j] = TileFactory.createTile(input[i][j]);
         return output;
     }
-
 }

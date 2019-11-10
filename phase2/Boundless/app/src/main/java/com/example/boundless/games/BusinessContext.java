@@ -9,6 +9,8 @@ public class BusinessContext {
 
     public static int getNumOfLevels(GamesEnum game){
         if (!needsLevels(game)) return 0;
-        return 4;
+        if (game == GamesEnum.ROTATETILE) return 4;
+        else if (game == GamesEnum.PIXELS) return 4;
+        return 0;
     }
 }

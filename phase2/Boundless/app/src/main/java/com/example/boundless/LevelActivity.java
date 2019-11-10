@@ -34,22 +34,8 @@ public class LevelActivity extends AppCompatActivity {
     public void startLevel(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(IntentExtras.gameEnum, game);
-        switch (view.getId()) {
-            case R.id.level_1:
-                intent.putExtra(IntentExtras.levelNumber, 0);
-                break;
-            case R.id.level_2:
-                intent.putExtra(IntentExtras.levelNumber, 1);
-                break;
-            case R.id.level_3:
-                intent.putExtra(IntentExtras.levelNumber, 2);
-                break;
-            case R.id.level_4:
-                intent.putExtra(IntentExtras.levelNumber, 3);
-                break;
-            default:
-                break;
-        }
+        int num = Integer.parseInt((String) ((Button)view).getText());
+        intent.putExtra(IntentExtras.levelNumber, num);
         startActivity(intent);
     }
 
