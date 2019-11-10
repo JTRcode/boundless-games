@@ -28,6 +28,9 @@ public class TileFactory {
      */
     public static Tile createTile(TileEnum tileToCreate) {
         Tile newTile;
+        if (tileToCreate == TileEnum.ANY)
+            tileToCreate = TileEnum.getRandom();
+
         switch (tileToCreate) {
             case X:
                 newTile = new CrossTile();

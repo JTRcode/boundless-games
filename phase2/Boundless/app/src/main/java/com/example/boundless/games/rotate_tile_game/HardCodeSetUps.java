@@ -1,78 +1,66 @@
 package com.example.boundless.games.rotate_tile_game;
 
-public class HardCodeSetUps {
-    //The set-up for first level, nulls represent that any Tile can be placed
-    public static TileEnum[][] game1_null =
-                    {{TileEnum.I, TileEnum.L, null, null, null},
-                    {TileEnum.L, TileEnum.X, null, null, null},
-                    {TileEnum.I, null,TileEnum.T, TileEnum.L, null},
-                    {TileEnum.T, null, TileEnum.I, TileEnum.L, TileEnum.X},
-                    {TileEnum.X, TileEnum.I, TileEnum.L, null,TileEnum.L}};
-    public static TileEnum[][] game1 =
-            {{TileEnum.I, TileEnum.L, TileEnum.I, TileEnum.I, TileEnum.I},
-                    {TileEnum.L, TileEnum.X, TileEnum.L, TileEnum.T, TileEnum.I},
-                    {TileEnum.I,TileEnum.I,TileEnum.T, TileEnum.L, TileEnum.L},
-                    {TileEnum.T, TileEnum.L, TileEnum.I, TileEnum.L, TileEnum.X},
-                    {TileEnum.X, TileEnum.I, TileEnum.L, TileEnum.X,TileEnum.L}};
-    //TODO: eventually, would be cool to make these null values choose a random tile and generate "random" maps that way
-
-
+/**
+ * Holds the levels for the tilegame
+ */
+class HardCodeSetUps {
+    private HardCodeSetUps(){}
 
     /**
      * Initializes the tiles array and randomizes the rotation (easy mode).
      */
-    public static char[][] setUpTilesEasy() {
+    static char[][] setUpTilesEasy() {
         return new char[][]{
-                {'L', 'L', 'I', 'X'},
-                {'L', 'I', 'I', 'L'},
-                {'X', 'L', 'T', 'I'},
-                {'L', 'I', 'I', 'L'}};
+                {'L', 'A', 'A', 'A'},
+                {'T', 'I', 'T', 'L'},
+                {'A', 'A', 'A', 'I'},
+                {'A', 'A', 'A', 'L'}};
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation (medium mode).
      */
-    public static char[][] setUpTilesMedium() {
+    static char[][] setUpTilesMedium() {
         return new char[][] {
-                {'L', 'L', 'I', 'X', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'X', 'L', 'T', 'I', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'},
-                {'L', 'I', 'I', 'L', 'L', 'X'}};
+                {'L', 'A', 'A', 'A', 'A', 'A'},
+                {'T', 'I', 'T', 'L', 'A', 'A'},
+                {'A', 'A', 'A', 'I', 'A', 'A'},
+                {'A', 'A', 'A', 'L', 'L', 'A'},
+                {'A', 'A', 'A', 'A', 'L', 'T'},
+                {'A', 'A', 'A', 'A', 'A', 'L'}};
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation (hard mode).
      */
-    public static char[][] setUpTilesHard() {
+    static char[][] setUpTilesHard() {
         return new char[][]{
-                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I'},
-                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I'}};
+                {'L', 'L', 'L', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'I', 'I', 'A', 'A', 'A', 'A', 'A'},
+                {'T', 'I', 'I', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'T', 'I', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'I', 'T', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'I', 'I', 'A', 'A', 'T', 'L', 'A'},
+                {'I', 'T', 'I', 'A', 'A', 'I', 'I', 'A'},
+                {'L', 'L', 'L', 'I', 'I', 'L', 'I', 'I'}};
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation (expert mode), i.e. play all levels
      * and an expert stage.
      */
-    public static char[][] setUpTilesExpert() {
+    static char[][] setUpTilesExpert() {
         return new char[][] {
-                {'L', 'L', 'L', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'I', 'I', 'I', 'X', 'T', 'I', 'I', 'I', 'I', 'I'},
-                {'L', 'L', 'L', 'I', 'I', 'I', 'I', 'I', 'I', 'I'}};
+                {'L', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'T', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'L', 'T', 'T', 'L', 'A', 'A', 'A', 'A', 'A'},
+                {'I', 'I', 'L', 'I', 'T', 'A', 'A', 'T', 'I', 'L'},
+                {'I', 'I', 'I', 'A', 'A', 'A', 'A', 'I', 'A', 'I'},
+                {'L', 'L', 'L', 'T', 'I', 'I', 'T', 'L', 'A', 'T'}};
     }
 
 }
