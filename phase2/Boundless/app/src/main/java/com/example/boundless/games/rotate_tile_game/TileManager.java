@@ -14,44 +14,26 @@ public class TileManager {
     /**
      * The grid of tiles on the screen
      */
-    private List<Tile[][]> levels;
+    private Tile[][] level;
     /**
      * The size of the grid
      */
     private int gridSize;
 
-    /**
-     * The current level being played.
-     */
-    private int currentLevel = 0;
-
-    public TileManager() {
-        levels = new ArrayList<>();
-    }
-
-    /**
-     * Gets the number of levels we have
-     *
-     * @return The total number of levels
-     */
-    public int getNumOfLevels() {
-        return levels.size();
-    }
-
     public int getGridSize() {
         return gridSize;
     }
 
-    public Tile[][] getTileStage() {
-        setUpTiles();
-        gridSize = (levels.get(currentLevel)).length;
-        return levels.get(currentLevel);
+    public Tile[][] getTileStage(int currentLevel) {
+        setUpTiles(currentLevel);
+        gridSize = level.length;
+        return level;
     }
 
     /**
      * Initializes the tiles array and randomizes the rotation.
      */
-    private void setUpTiles() {
+    private void setUpTiles(int currentLevel) {
         char[][] layout;
         switch (currentLevel) {
             case 0:
@@ -71,9 +53,9 @@ public class TileManager {
                 Log.e(this.toString(), "current game level does not exist");
                 break;
         }
-        Tile[][] stage = convertCharToTile(layout);
-        randomizeTiles(stage);
-        addLevel(stage);
+        level = convertCharToTile(layout);
+        randomizeTiles(level);
+
     }
 
     /**
@@ -88,15 +70,6 @@ public class TileManager {
     }
 
     /**
-     * Add a level to this game
-     *
-     * @param levelToAdd the array containing the pixels of the new level.
-     */
-    private void addLevel(Tile[][] levelToAdd) {
-        levels.add(levelToAdd.clone());
-    }
-
-    /**
      * Checks if the user rotated the tiles to win the game.
      *
      * @param userChoices The user's choices of the tile rotations.
@@ -106,12 +79,7 @@ public class TileManager {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j].visited = false;
-
-        boolean correct = gameOver(0, 0, 3, userChoices);
-        if (correct) {
-            currentLevel++;
-        }
-        return correct;
+        return gameOver(0, 0, 3, userChoices);
     }
 
     /**

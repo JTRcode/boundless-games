@@ -82,4 +82,13 @@ public class LoginActivity extends AppCompatActivity {
     public void setHalloweenLogin(){
         Session.setBackground(R.drawable.halloween_log_in);
     }*/
+
+    /**
+     * Override hardware back button to exit the app
+     */
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        finish();
+    }
 }

@@ -21,36 +21,38 @@ public class RotateTileGame extends Game {
     private int startY;
     private int tileSize;
     private Tile startEndPipe;
+    private int currentLevel;
 
-    public RotateTileGame() {
+    public RotateTileGame(int level) {
+        currentLevel = level;
         setStartX(100);
-        setStartY(Panel.SCREEN_HEIGHT/4);
+        setStartY(Panel.SCREEN_HEIGHT / 4);
         loadNextChoice();
         createStartEndTile();
     }
 
-    private void loadNextChoice(){
-        userChoice = manager.getTileStage();
+    private void loadNextChoice() {
+        userChoice = manager.getTileStage(currentLevel);
         this.tileSize = (Panel.SCREEN_WIDTH - 2 * this.startX) / userChoice.length;
         resizeUserChoice();
     }
-    
-    private void createStartEndTile(){
+
+    private void createStartEndTile() {
         startEndPipe = TileFactory.createTile(TileEnum.I);
         startEndPipe.resize(tileSize);
         startEndPipe.setTile(Rotation.EAST);
-        
+
     }
 
-    public void setStartX(int newX){
+    public void setStartX(int newX) {
         this.startX = newX;
     }
 
-    public void setStartY(int newY){
+    public void setStartY(int newY) {
         this.startY = newY;
     }
 
-    private void resizeUserChoice(){
+    private void resizeUserChoice() {
         /*
         Tile[][] resetedSize;
         for (Tile[] tileArray : userChoice)
@@ -63,20 +65,9 @@ public class RotateTileGame extends Game {
     }
 
 
-
     @Override
     boolean gameOver() {
-        //TODO don't use a try catch for phase 2
-        if (manager.gameOver(userChoice)) {
-            try {
-                loadNextChoice();
-                createStartEndTile();
-            } catch (IndexOutOfBoundsException e) {
-                //out of levels, throws an exception
-                return true;
-            }
-        }
-        return false;
+        return manager.gameOver(userChoice);
     }
 
     @Override
@@ -84,7 +75,7 @@ public class RotateTileGame extends Game {
         DrawUtility.drawBitmap(this.startEndPipe.rotatedImage, this.startX - this.tileSize,
                 this.startY);
         DrawUtility.drawBitmap(this.startEndPipe.rotatedImage, this.startX +
-                (manager.getGridSize()) * this.tileSize,
+                        (manager.getGridSize()) * this.tileSize,
                 this.startY + (manager.getGridSize() - 1) * this.tileSize);
         for (int i = 0; i < userChoice.length; i++) {
             for (int j = 0; j < userChoice.length; j++) {
@@ -116,7 +107,7 @@ public class RotateTileGame extends Game {
 
 
     @Override
-    String getGameOverText(){
-        return "GAME OVER!\nYou just finished the rotate tiles game!";
+    String getGameOverText() {
+        return "GAME OVER!\nYou just finished the rotate tiles game level: " + (currentLevel + 1) + "!";
     }
 }

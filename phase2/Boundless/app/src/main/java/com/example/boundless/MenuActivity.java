@@ -1,9 +1,12 @@
 package com.example.boundless;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.users.UserAccount;
 import com.example.boundless.utilities.Session;
@@ -38,27 +41,48 @@ public class MenuActivity extends AppCompatActivity {
      * @param view The chosen button that was clicked
      */
     public void startGame(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent;
+        GamesEnum gameToPlay = getGame(view);
 
-        switch (view.getId()) {
-            case R.id.GPACatcherGame:
-                intent.putExtra("GAME", GamesEnum.GPACATCHER);
-                break;
-            case R.id.RotateTile:
-                intent.putExtra("GAME", GamesEnum.ROTATETILE);
-                break;
-            default:
-                break;
-        }
+        if (BusinessContext.needsLevels(gameToPlay))
+            intent = new Intent(this, LevelActivity.class);
+        else
+            intent = new Intent(this, GameActivity.class);
+
+        intent.putExtra(IntentExtras.gameEnum, gameToPlay);
         startActivity(intent);
     }
 
-    public void signOut(View v) {
+    private GamesEnum getGame(View view){
+        switch (view.getId()) {
+            case R.id.PixelGame:
+                return GamesEnum.PIXELS;
+            case R.id.RotateTile:
+                return GamesEnum.ROTATETILE;
+            default:
+                return GamesEnum.GPACATCHER;
+        }
+    }
+
+    /**
+     * Signs the user out
+     * @param view The button clicked
+     */
+    public void signOut(View view) {
+        signOut();
+    }
+
+    private void signOut(){
         Session.clearUser();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-    public void goCustomization(View v){
+
+    /**
+     * Goes to the customization page
+     * @param view The button clicked
+     */
+    public void goCustomization(View view){
         Intent intent = new Intent(this, CustomizationActivity.class);
         startActivity(intent);
     }
@@ -71,14 +95,31 @@ public class MenuActivity extends AppCompatActivity {
         Session.setBackground(R.drawable.halloween_main_menu);
     }*/
 
-    public void goStatistics(View v){
+    /**
+     * Goes to the statistics page
+     * @param view The button clicked
+     */
+    public void goStatistics(View view){
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
 
-    public void goPixelMenu(View v){
-        Intent intent = new Intent(this, LevelActivity.class);
-        startActivity(intent);
+    /**
+     * Override hardware back button to log out of
+     */
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to sign out?").setCancelable(false)
+                .setPositiveButton("Sign out", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        signOut();
+                    }
+                })
+                .setNegativeButton("Stay signed in", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        builder.create().show();
     }
-
 }

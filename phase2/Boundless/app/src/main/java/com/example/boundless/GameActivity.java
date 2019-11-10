@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.Game;
 import com.example.boundless.utilities.Session;
@@ -18,12 +19,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class GameActivity extends Activity implements Observer {
-    MediaPlayer player;
 
-    /**
-     * The panel playing the game
-     */
+    MediaPlayer player;
     private Panel panel;
+    private GamesEnum currentGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +37,8 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setupGame() {
         setCurrentGame();
-        findViewById(R.id.ConstraintLayout).setBackgroundResource(Session.getBackground());
-        player = MediaPlayer.create(this, Session.getMusic());
+        findViewById(R.id.ConstraintLayout).setBackgroundResource(Session.getBackground(this));
+        player = MediaPlayer.create(this, Session.getMusic(this));
         player.setLooping(true);
         player.start();
     }
@@ -48,19 +47,18 @@ public class GameActivity extends Activity implements Observer {
      * Sets up the views for the current game.
      */
     private void setCurrentGame() {
-        GamesEnum game = (GamesEnum) getIntent().getSerializableExtra("GAME");
+        currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
         int level = 0;
-        if(game == GamesEnum.PIXELS){
-            level = (int) getIntent().getSerializableExtra("currentLevel");
-        }
-        //int level = (int) getIntent().getSerializableExtra("currentLevel");
-        if (game != null) {
+        if (BusinessContext.needsLevels(currentGame))
+            level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
+
+        if (currentGame != null) {
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
-            panel.chooseGame(game, level);
-            Log.d("GameActivity", "Changing to game: " + game);
+            panel.chooseGame(currentGame, level);
+            Log.d("GameActivity", "Changing to currentGame: " + currentGame);
         } else {
-            Log.e("GameActivity", "An error occurred trying to get the game chosen.");
+            Log.e("GameActivity", "An error occurred trying to get the currentGame chosen.");
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
@@ -115,12 +113,16 @@ public class GameActivity extends Activity implements Observer {
     }
 
     /**
-     * Override hardware back button to go to main activity
+     * Override hardware back button to go to main activity or level activity
      */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, MenuActivity.class);
+        if (BusinessContext.needsLevels(currentGame)) {
+            intent = new Intent(this, LevelActivity.class);
+            intent.putExtra(IntentExtras.gameEnum, currentGame);
+        }
         startActivity(intent);
     }
 }

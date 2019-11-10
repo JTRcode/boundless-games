@@ -81,7 +81,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
                 game = new GPACatcherGame();
                 break;
             case ROTATETILE:
-                game = new RotateTileGame();
+                game = new RotateTileGame(level);
                 break;
             default:
                 break;

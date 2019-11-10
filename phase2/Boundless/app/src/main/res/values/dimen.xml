@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="level_button_size">50dp</dimen>
+    <dimen name="side_buffer">55dp</dimen>
+    <dimen name="top_buffer">60dp</dimen>
+</resources>
