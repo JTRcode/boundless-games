@@ -106,6 +106,6 @@ public class RotateTileGame extends Game {
 
     @Override
     String getGameOverText() {
-        return "GAME OVER!\nYou just finished the rotate tiles game level: " + (currentLevel + 1) + "!";
+        return "GAME OVER!\nYou just finished the rotate tiles game level #" + (currentLevel + 1) + "!";
     }
 }
