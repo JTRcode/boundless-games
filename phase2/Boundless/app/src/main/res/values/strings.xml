@@ -15,6 +15,45 @@
     <string name="sign_out">Sign out</string>
     <string name="customization">Customization</string>
     <string name="stats">Statistics</string>
+    <string name="achievement">Achievement</string>
+
+    //Achievement strings
+    <string name="pixel_achieve">Pixel Game Achievements</string>
+    <string name="rotate_achieve">Rotate Tile Game Achievements</string>
+    <string name="gpa_achieve">GPA Catcher Achievements</string>
+
+    //Achievement Pixel strings
+    <string name="pixel_achieve1">Achievement 1 Pixel</string>
+    <string name="pixel_achieve2">Achievement 2 Pixel </string>
+    <string name="pixel_achieve3">Achievement 3 Pixel </string>
+    <string name="pixel_achieve_cross1">Achievement 1 Pixel Status</string>
+    <string name="pixel_achieve_cross2">Achievement 2 Pixel Status</string>
+    <string name="pixel_achieve_cross3">Achievement 3 Pixel Status</string>
+    <string name="pixel_message1">Get the correct answer on your first try.</string>
+    <string name="pixel_message2">Get the incorrect answer five or more times.</string>
+    <string name="pixel_message3">Get the correct answer in less than 20 seconds.</string>
+
+    //Achievement Rotate Tile strings
+    <string name="rotate_achieve1">Achievement 1 Rotate</string>
+    <string name="rotate_achieve2">Achievement 2 Rotate</string>
+    <string name="rotate_achieve3">Achievement 3 Rotate</string>
+    <string name="rotate_achieve_cross1">Achievement 1 Rotate Status</string>
+    <string name="rotate_achieve_cross2">Achievement 2 Rotate Status</string>
+    <string name="rotate_achieve_cross3">Achievement 3 Rotate Status</string>
+    <string name="rotate_message1">Get the correct answer on your first try.</string>
+    <string name="rotate_message2">Get the incorrect answer five or more times.</string>
+    <string name="rotate_message3">Get the correct answer in less than 20 seconds.</string>
+
+    //Achievement Rotate Tile strings
+    <string name="gpa_achieve1">Achievement 1 GPA</string>
+    <string name="gpa_achieve2">Achievement 2 GPA</string>
+    <string name="gpa_achieve3">Achievement 3 GPA</string>
+    <string name="gpa_achieve_cross1">Achievement 1 GPA Status</string>
+    <string name="gpa_achieve_cross2">Achievement 2 GPA Status</string>
+    <string name="gpa_achieve_cross3">Achievement 3 GPA Status</string>
+    <string name="gpa_message1">Get a 4.0 GPA.</string>
+    <string name="gpa_message2">Get a 3.0 GPA.</string>
+    <string name="gpa_message3">Get a 0.0 GPA.</string>
 
     //Customization strings
     <string name="back_to_menu">&lt;-</string>
