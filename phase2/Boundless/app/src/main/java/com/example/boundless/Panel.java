@@ -11,10 +11,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.boundless.games.GPACatcherGame;
 import com.example.boundless.games.Game;
+import com.example.boundless.games.GameCreator;
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.PixelGame;
 import com.example.boundless.games.RotateTileGame;
 import com.example.boundless.stats.Statistics;
 
@@ -71,21 +70,10 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      * @param gameToPlay The enum of the game to play
      */
     public void chooseGame(GamesEnum gameToPlay, int level) {
+        GameCreator gameCreator = new GameCreator();
         setupPanel();
         setFocusable(true);
-        switch (gameToPlay) {
-            case PIXELS:
-                game = new PixelGame(level);
-                break;
-            case GPACATCHER:
-                game = new GPACatcherGame();
-                break;
-            case ROTATETILE:
-                game = new RotateTileGame(level);
-                break;
-            default:
-                break;
-        }
+        game = gameCreator.createGame(gameToPlay, level);
     }
 
     /**

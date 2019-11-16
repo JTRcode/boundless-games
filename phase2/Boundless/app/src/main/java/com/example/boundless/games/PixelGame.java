@@ -2,10 +2,7 @@ package com.example.boundless.games;
 
 import android.view.MotionEvent;
 
-import com.example.boundless.games.pixel_game.PixelDrawer;
-import com.example.boundless.games.pixel_game.PixelTouchHandler;
-import com.example.boundless.Panel;
-import com.example.boundless.games.pixel_game.PixelManager;
+import com.example.boundless.games.game_utilities.*;
 import com.example.boundless.games.pixel_game.PixelOptions;
 
 /**
@@ -14,32 +11,15 @@ import com.example.boundless.games.pixel_game.PixelOptions;
 public class PixelGame extends Game {
 
     private int currentLevel;
-    private static final int START_X = 150;
-    private PixelOptions[][] userChoice;
-    private PixelManager pixelManager;
-    private PixelTouchHandler pixelTouchHandler;
-    private PixelDrawer pixelDrawer;
+    private IGridManager pixelManager;
+    private ITouchHandler pixelTouchHandler;
+    private IGridDrawer pixelDrawer;
 
-    public PixelGame(int level) {
-        currentLevel = level;
-        pixelManager = new PixelManager();
-        int width = (int) (Panel.SCREEN_WIDTH - START_X * 1.3) / getGridSize();
-
-        userChoice = new PixelOptions[getGridSize()][getGridSize()];
-        emptyUserChoices();
-
-        pixelDrawer = new PixelDrawer(width, pixelManager.label(level), START_X);
-        pixelTouchHandler = new PixelTouchHandler(userChoice, width, pixelDrawer);
-    }
-
-    private void emptyUserChoices() {
-        for (int i = 0; i < getGridSize(); i++)
-            for (int j = 0; j < getGridSize(); j++)
-                userChoice[i][j] = PixelOptions.EMPTY;
-    }
-
-    private int getGridSize() {
-        return PixelManager.getGridSize(currentLevel);
+    public PixelGame(GameBuilder builder) {
+        currentLevel = builder.getLevel();
+        this.pixelDrawer = builder.getPixelDrawer();
+        this.pixelTouchHandler = builder.getTouchHandler();
+        this.pixelManager = builder.getManager();
     }
 
     /**
@@ -49,7 +29,7 @@ public class PixelGame extends Game {
      */
     @Override
     boolean gameOver() {
-        return pixelManager.checkPixels(userChoice, currentLevel);
+        return pixelManager.checkAnswer();
     }
 
     @Override
@@ -63,13 +43,12 @@ public class PixelGame extends Game {
 
     @Override
     String getInstructions() {
-        return "Use the column and row numbers as a guide to create a picture:\n" +
-                "each row and column has a number of groupings of pixels (e.g. 10 means 10 pixels in a row in that row or column)";
+        return GameResources.getPixelInstructions();
     }
 
     @Override
     String getGameOverText() {
-        return "GAME OVER!\nYou just finished level " + (currentLevel + 1);
+        return GameResources.getPixelGameOver(currentLevel + 1);
     }
 
     /**
@@ -77,6 +56,6 @@ public class PixelGame extends Game {
      */
     @Override
     public void draw() {
-        pixelDrawer.draw(userChoice);
+        pixelDrawer.draw();
     }
 }

@@ -2,36 +2,34 @@ package com.example.boundless.games.pixel_game;
 
 import android.view.MotionEvent;
 
+import com.example.boundless.games.game_utilities.*;
+
 import static com.example.boundless.games.pixel_game.PixelOptions.*;
 
 /**
  * Handles the touch input to the pixel game
  */
-public class PixelTouchHandler {
+public class PixelTouchHandler implements ITouchHandler {
 
     private int newI = -1;
     private int newJ = -1;
     private int oldI = -1;
     private int oldJ = -1;
-    private int startX = PixelDrawer.getStartX();
-    private int startY = PixelDrawer.getStartY();
+    private int startX = GameResources.PIXEL_START_X;
+    private int startY = GameResources.PIXEL_START_Y;
     private int width;
     private int gridSize;
-    private PixelOptions[][] userChoice;
+    private PixelOptions[][] userChoices;
 
     /**
      * Create a new touch handler for the pixel game
      *
-     * @param userChoice  The array of user's choices
-     * @param width       The width of each pixel
-     * @param pixelDrawer The drawer that draws the pixels on screen
+     * @param drawer The drawer that draws the game
      */
-    public PixelTouchHandler(PixelOptions[][] userChoice, int width, PixelDrawer pixelDrawer) {
-        //note that the startX and startY variables have a dependency on a PixelDrawer being created
-        //the pixelDrawer is added to the parameters so users know it must be created before the touch handler
-        this.userChoice = userChoice;
-        this.width = width;
-        this.gridSize = userChoice.length;
+    public PixelTouchHandler(IGridDrawer<PixelOptions> drawer) {
+        width = drawer.getWidth();
+        userChoices = drawer.getUserChoices();
+        this.gridSize = userChoices.length;
     }
 
     /**
@@ -45,13 +43,13 @@ public class PixelTouchHandler {
         int[] oldCoords = convertCoordToIJ((int) event.getHistoricalX(0), (int) event.getHistoricalY(0));
         if (!changeIfCoords(oldCoords)) newI = newJ = -1;
 
-        for (int pos = 0; pos < event.getHistorySize(); pos++){
+        for (int pos = 0; pos < event.getHistorySize(); pos++) {
             int[] coordsIJ = convertCoordToIJ((int) event.getHistoricalX(pos), (int) event.getHistoricalY(pos));
             changeIfCoords(coordsIJ);
         }
     }
 
-    private boolean ifCancelEvent(MotionEvent event){
+    private boolean ifCancelEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             oldI = -1;
             return true;
@@ -96,15 +94,15 @@ public class PixelTouchHandler {
      * @param j the j coordinate of the pixel that the user what to change
      */
     private void switchPixel(int i, int j) {
-        switch (userChoice[i][j]) {
+        switch (userChoices[i][j]) {
             case EMPTY: //empty, change to color
-                userChoice[i][j] = PixelOptions.COLOUR;
+                userChoices[i][j] = PixelOptions.COLOUR;
                 break;
             case COLOUR: //has color, change to X
-                userChoice[i][j] = PixelOptions.X;
+                userChoices[i][j] = PixelOptions.X;
                 break;
             case X: //has an X, change to empty
-                userChoice[i][j] = EMPTY;
+                userChoices[i][j] = EMPTY;
                 break;
             default:
                 break;

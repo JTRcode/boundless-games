@@ -3,6 +3,7 @@ package com.example.boundless.games.pixel_game;
 import android.graphics.Color;
 
 import com.example.boundless.Panel;
+import com.example.boundless.games.game_utilities.*;
 import com.example.boundless.utilities.DrawUtility;
 
 import java.util.List;
@@ -10,37 +11,66 @@ import java.util.List;
 /**
  * Draws the pixel game
  */
-public class PixelDrawer {
+public class PixelDrawer implements IGridDrawer<PixelOptions> {
 
-    private static int START_X;
-    private static int START_Y = Panel.SCREEN_HEIGHT / 4;
+    private int startX = GameResources.PIXEL_START_X;
+    private int startY = GameResources.PIXEL_START_Y;
     private int width;
+    private int gridSize;
     private List<List<Integer>> currentLabels;
+    private PixelOptions[][] userChoices;
 
     /**
      * Creates a pixel drawer
-     *
-     * @param width         The width of each pixel
-     * @param currentLabels The labels of the current level
      */
-    public PixelDrawer(int width, List<List<Integer>> currentLabels, int startX) {
-        START_X = startX;
+    public PixelDrawer(IGridManager<PixelOptions> manager) {
+        gridSize = manager.getGridSize();
+        currentLabels = manager.label();
+        userChoices = manager.getUserChoices();
+
+        width = (int) (Panel.SCREEN_WIDTH - startX * 1.3) / gridSize;
         setupLevel(width, currentLabels);
+        emptyUserChoices();
+    }
+
+    private void emptyUserChoices() {
+        for (int i = 0; i < gridSize; i++)
+            for (int j = 0; j < gridSize; j++)
+                userChoices[i][j] = PixelOptions.EMPTY;
+    }
+
+    /**
+     * Gets the user's choices for the grid
+     *
+     * @return The user's choices
+     */
+    public PixelOptions[][] getUserChoices() {
+        return userChoices;
+    }
+
+    /**
+     * Get the width of a pixel
+     */
+    public int getWidth() {
+        return width;
     }
 
     /**
      * Get the starting x position
+     *
      * @return The x position to start at
      */
-    static int getStartX() {
-        return START_X;
+    public int getStartX() {
+        return startX;
     }
+
     /**
      * Get the starting y position
+     *
      * @return The y position to start at
      */
-    static int getStartY() {
-        return START_Y;
+    public int getStartY() {
+        return startY;
     }
 
     private void setupLevel(int width, List<List<Integer>> currentLabels) {
@@ -50,15 +80,14 @@ public class PixelDrawer {
 
     /**
      * Draw the game
-     * @param userChoice The user's choices of each pixel
      */
-    public void draw(PixelOptions[][] userChoice) {
-        int gridSize = userChoice.length;
+    public void draw() {
+        int gridSize = userChoices.length;
         //note: [0][gridSize - 1] is the lower left pixel
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                int filled = (userChoice[i][j] == PixelOptions.X) ? Color.DKGRAY : Color.BLACK;
-                filled = (userChoice[i][j] == PixelOptions.COLOUR) ? Color.CYAN : filled;
+                int filled = (userChoices[i][j] == PixelOptions.X) ? Color.DKGRAY : Color.BLACK;
+                filled = (userChoices[i][j] == PixelOptions.COLOUR) ? Color.CYAN : filled;
                 int[] coords = convertIJToSquare(i, j, width);
                 DrawUtility.drawRectangle(coords, filled);
             }
@@ -69,14 +98,14 @@ public class PixelDrawer {
 
     private void drawOutlines(int gridSize, int width) {
         //draw vertical lines
-        for (int x = START_X; x <= START_X + width * gridSize; x += width) {
-            int strokeWidth = ((x - START_X) % 5 == 0) ? 4 : 1;
-            DrawUtility.drawLines(new int[]{x, START_Y, x, START_Y + width * gridSize}, Color.RED, strokeWidth);
+        for (int x = startX; x <= startX + width * gridSize; x += width) {
+            int strokeWidth = ((x - startX) % 5 == 0) ? 4 : 1;
+            DrawUtility.drawLines(new int[]{x, startY, x, startY + width * gridSize}, Color.RED, strokeWidth);
         }
         //draw horizontal lines
-        for (int y = START_Y; y <= START_Y + width * gridSize; y += width) {
-            int strokeWidth = ((y - START_Y) % 5 == 0) ? 4 : 1;
-            DrawUtility.drawLines(new int[]{START_X, y, START_X + width * gridSize, y}, Color.RED, strokeWidth);
+        for (int y = startY; y <= startY + width * gridSize; y += width) {
+            int strokeWidth = ((y - startY) % 5 == 0) ? 4 : 1;
+            DrawUtility.drawLines(new int[]{startX, y, startX + width * gridSize, y}, Color.RED, strokeWidth);
         }
     }
 
@@ -84,15 +113,15 @@ public class PixelDrawer {
         int buffer = 25;
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
-            int drawY = START_Y + rowNum * width + (width / 2);
-            int drawX = START_X - 15 - row.size() * buffer;
+            int drawY = startY + rowNum * width + (width / 2);
+            int drawX = startX - 15 - row.size() * buffer;
             for (int entryNum = 0; entryNum < row.size(); entryNum++)
                 DrawUtility.drawString(row.get(entryNum).toString(), drawX + entryNum * buffer, drawY, Color.WHITE, 30);
         }
         for (int colNum = gridSize; colNum < gridSize * 2; colNum++) {
             List<Integer> col = currentLabels.get(colNum);
-            int drawX = START_X + (colNum - gridSize) * width + (width / 2);
-            int drawY = START_Y - col.size() * buffer;
+            int drawX = startX + (colNum - gridSize) * width + (width / 2);
+            int drawY = startY - col.size() * buffer;
             for (int entryNum = 0; entryNum < col.size(); entryNum++)
                 DrawUtility.drawString(col.get(entryNum).toString(), drawX, drawY + entryNum * buffer, Color.WHITE, 30);
         }
@@ -107,10 +136,10 @@ public class PixelDrawer {
      */
     private int[] convertIJToSquare(int i, int j, int width) {
         int[] newCoords = new int[4];
-        newCoords[0] = START_X + width * i;
-        newCoords[1] = START_Y + width * j;
-        newCoords[2] = START_X + width * (i + 1);
-        newCoords[3] = START_Y + width * (j + 1);
+        newCoords[0] = startX + width * i;
+        newCoords[1] = startY + width * j;
+        newCoords[2] = startX + width * (i + 1);
+        newCoords[3] = startY + width * (j + 1);
         return newCoords;
     }
 }

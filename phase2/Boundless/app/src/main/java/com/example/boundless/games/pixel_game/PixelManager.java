@@ -1,16 +1,26 @@
 package com.example.boundless.games.pixel_game;
 
+import com.example.boundless.games.game_utilities.IGridManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A manager for pixels.
  */
-public class PixelManager {
+public class PixelManager implements IGridManager<PixelOptions> {
     private static List<int[][]> levels = new ArrayList<>();
+    private int[][] currentLevel;
+    private PixelOptions[][] userChoices;
 
-    public PixelManager() {
+    public PixelManager(int level) {
         setupLevels();
+        currentLevel = levels.get(level);
+        userChoices = new PixelOptions[getGridSize()][getGridSize()];
+    }
+
+    public PixelOptions[][] getUserChoices() {
+        return userChoices;
     }
 
     /**
@@ -18,8 +28,8 @@ public class PixelManager {
      *
      * @return The grid size
      */
-    public static int getGridSize(int currentLevel) {
-        return levels.get(currentLevel).length;
+    public int getGridSize() {
+        return currentLevel.length;
     }
 
     /**
@@ -44,16 +54,13 @@ public class PixelManager {
     /**
      * Checks if the users choices are correct.
      *
-     * @param userChoices  An array of user's choices.
-     * @param currentLevel The current level the user is playing.
      * @return A boolean telling if the answer is correct.
      */
-    public boolean checkPixels(PixelOptions[][] userChoices, int currentLevel) {
-        int[][] level = levels.get(currentLevel);
-        int gridSize = level.length;
+    public boolean checkAnswer() {
+        int gridSize = currentLevel.length;
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
-                if (doesNotMatch(userChoices[row][col], level[col][row]))
+                if (doesNotMatch(userChoices[row][col], currentLevel[col][row]))
                     //TODO: should be level[row][col], not sure whats wrong
                     return false;
         return true;
@@ -66,15 +73,13 @@ public class PixelManager {
     /**
      * Labels the top and side with the correct numbers.
      *
-     * @param currentLevel The number of the current level.
      * @return A list with the first half as rows and the second half as column labels.
      */
-    public List<List<Integer>> label(int currentLevel) {
-        int[][] level = levels.get(currentLevel);
-        int gridSize = level.length;
+    public List<List<Integer>> label() {
+        int gridSize = currentLevel.length;
         List<List<Integer>> labels = new ArrayList<>();
-        for (int row = 0; row < gridSize; row++) labels.add(labelSet(level, row, true));
-        for (int col = 0; col < gridSize; col++) labels.add(labelSet(level, col, false));
+        for (int row = 0; row < gridSize; row++) labels.add(labelSet(currentLevel, row, true));
+        for (int col = 0; col < gridSize; col++) labels.add(labelSet(currentLevel, col, false));
         return labels;
     }
 
