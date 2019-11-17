@@ -111,4 +111,9 @@ public class MenuActivity extends AppCompatActivity {
                 });
         builder.create().show();
     }
+
+    public void goShop(View view) {
+        Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
 }
