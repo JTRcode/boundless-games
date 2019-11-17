@@ -1,14 +1,21 @@
 package com.example.boundless.games.game_utilities;
 
+import android.graphics.Color;
+
 import com.example.boundless.Panel;
 
 /**
- * Holds the resources for each game, e.g. game over strings and magic constants
+ * Holds the resources for each game, e.g. "game over" strings and magic constants
  */
 public final class GameResources {
     private GameResources() {
     }
 
+    //region Pixel game
+    /**
+     * The alpha value of the pixels
+     */
+    public static final int ALPHA_VALUE = 200;
     /**
      * The x start position for the pixel grid on the screen
      */
@@ -17,6 +24,14 @@ public final class GameResources {
      * The y start position for the pixel grid on the screen
      */
     public static final int PIXEL_START_Y = Panel.SCREEN_HEIGHT / 4;
+    /**
+     * The color of the unfilled pixels in the pixel game
+     */
+    public static final int PIXEL_EMPTY_COLOR = Color.argb(ALPHA_VALUE, 0, 0, 0);
+    /**
+     * The color of the X pixels in the  pixel game
+     */
+    public static final int PIXEL_X_COLOR = Color.argb(ALPHA_VALUE, 143, 143, 143);
 
     /**
      * Gets the game over text for the pixel game
@@ -25,7 +40,7 @@ public final class GameResources {
      * @return The string to show to the user.
      */
     public static String getPixelGameOver(int finishedLevel) {
-        return "GAME OVER!\nYou just finished level " + finishedLevel;
+        return "GAME COMPLETED!\nYou just finished level " + finishedLevel;
     }
 
     /**
@@ -37,4 +52,16 @@ public final class GameResources {
         return "Use the column and row numbers as a guide to create a picture:\n" +
                 "each row and column has a number of groupings of pixels (e.g. 10 means 10 pixels in a row in that row or column)";
     }
+    //endregion
+
+    //region Tile game
+
+    //constants for the tile game go here
+
+    //endregion
+    //region GPA catcher game
+
+    //constants for the gpa catcher game go here
+
+    //endregion
 }

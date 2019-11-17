@@ -3,19 +3,23 @@ package com.example.boundless.games;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
-import com.example.boundless.games.pixel_game.PixelOptions;
 
 /**
  * A game where you use pixels to recreate an image.
  */
-public class PixelGame extends Game {
+public class PixelGameFacade extends Game {
 
     private int currentLevel;
     private IGridManager pixelManager;
     private ITouchHandler pixelTouchHandler;
     private IGridDrawer pixelDrawer;
 
-    public PixelGame(GameBuilder builder) {
+    /**
+     * A new pixel game
+     *
+     * @param builder The builder building the pixel game
+     */
+    PixelGameFacade(GameBuilder builder) {
         currentLevel = builder.getLevel();
         this.pixelDrawer = builder.getPixelDrawer();
         this.pixelTouchHandler = builder.getTouchHandler();

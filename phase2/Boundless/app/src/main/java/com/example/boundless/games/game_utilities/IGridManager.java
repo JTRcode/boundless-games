@@ -1,13 +1,12 @@
 package com.example.boundless.games.game_utilities;
 
-import java.util.List;
-
 /**
  * A manager for a game with a grid.
  *
  * @param <T> The type of the user's choices.
+ * @param <E> The type of the Game's level.
  */
-public interface IGridManager<T> {
+public interface IGridManager<T, E> {
     /**
      * Gets the grid size of the game.
      *
@@ -30,9 +29,9 @@ public interface IGridManager<T> {
     T[][] getUserChoices();
 
     /**
-     * Labels a level, if necessary
+     * Gets a representation of the current level
      *
-     * @return The labels of the current level
+     * @return The current level's representation.
      */
-    List<List<Integer>> label();
+    E getLevel();
 }

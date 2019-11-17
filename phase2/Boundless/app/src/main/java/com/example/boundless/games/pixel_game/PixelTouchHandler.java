@@ -24,11 +24,11 @@ public class PixelTouchHandler implements ITouchHandler {
     /**
      * Create a new touch handler for the pixel game
      *
-     * @param drawer The drawer that draws the game
+     * @param manager The manager for the pixel game
      */
-    public PixelTouchHandler(IGridDrawer<PixelOptions> drawer) {
-        width = drawer.getWidth();
-        userChoices = drawer.getUserChoices();
+    public PixelTouchHandler(IGridManager<PixelOptions, PixelLevel> manager) {
+        width = manager.getLevel().getWidth(startX);
+        userChoices = manager.getUserChoices();
         this.gridSize = userChoices.length;
     }
 

@@ -2,19 +2,19 @@ package com.example.boundless.games.pixel_game;
 
 import android.graphics.Color;
 
-import com.example.boundless.Panel;
 import com.example.boundless.games.game_utilities.*;
 import com.example.boundless.utilities.DrawUtility;
 
 import java.util.List;
 
 /**
- * Draws the pixel game
+ * Draws the pixel game with labels on the top and side
  */
-public class PixelDrawer implements IGridDrawer<PixelOptions> {
+public class PixelDrawer implements IGridDrawer {
 
     private int startX = GameResources.PIXEL_START_X;
     private int startY = GameResources.PIXEL_START_Y;
+    private int levelColor;
     private int width;
     private int gridSize;
     private List<List<Integer>> currentLabels;
@@ -23,12 +23,15 @@ public class PixelDrawer implements IGridDrawer<PixelOptions> {
     /**
      * Creates a pixel drawer
      */
-    public PixelDrawer(IGridManager<PixelOptions> manager) {
+    public PixelDrawer(IGridManager<PixelOptions, PixelLevel> manager) {
+        PixelLevel level = manager.getLevel();
         gridSize = manager.getGridSize();
-        currentLabels = manager.label();
         userChoices = manager.getUserChoices();
 
-        width = (int) (Panel.SCREEN_WIDTH - startX * 1.3) / gridSize;
+        levelColor = level.getColor();
+        currentLabels = level.getLabels();
+        width = level.getWidth(startX);
+
         setupLevel(width, currentLabels);
         emptyUserChoices();
     }
@@ -37,22 +40,6 @@ public class PixelDrawer implements IGridDrawer<PixelOptions> {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j] = PixelOptions.EMPTY;
-    }
-
-    /**
-     * Gets the user's choices for the grid
-     *
-     * @return The user's choices
-     */
-    public PixelOptions[][] getUserChoices() {
-        return userChoices;
-    }
-
-    /**
-     * Get the width of a pixel
-     */
-    public int getWidth() {
-        return width;
     }
 
     /**
@@ -82,12 +69,11 @@ public class PixelDrawer implements IGridDrawer<PixelOptions> {
      * Draw the game
      */
     public void draw() {
-        int gridSize = userChoices.length;
         //note: [0][gridSize - 1] is the lower left pixel
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                int filled = (userChoices[i][j] == PixelOptions.X) ? Color.DKGRAY : Color.BLACK;
-                filled = (userChoices[i][j] == PixelOptions.COLOUR) ? Color.CYAN : filled;
+                int filled = (userChoices[i][j] == PixelOptions.X) ? GameResources.PIXEL_X_COLOR : GameResources.PIXEL_EMPTY_COLOR;
+                filled = (userChoices[i][j] == PixelOptions.COLOUR) ? levelColor : filled;
                 int[] coords = convertIJToSquare(i, j, width);
                 DrawUtility.drawRectangle(coords, filled);
             }
