@@ -5,7 +5,7 @@ import android.graphics.Color;
 /**
  * Holds the hardcoded levels for the pixel game
  */
-final class HardCodePixelSetups {
+public final class HardCodePixelSetups {
 
     private HardCodePixelSetups() {
     }
@@ -16,8 +16,10 @@ final class HardCodePixelSetups {
      * @param level The level to get
      * @return The level
      */
-    static PixelLevel getLevel(int level) {
+    public static PixelLevel getLevel(int level) {
         switch (level) {
+            case 0:
+                return hardCodeLevel1();
             case 1:
                 return hardCodeLevel2();
             case 2:
@@ -25,7 +27,7 @@ final class HardCodePixelSetups {
             case 3:
                 return hardCodeLevel4();
             default:
-                return hardCodeLevel1();
+                return introLevel();
         }
     }
 
@@ -156,6 +158,19 @@ final class HardCodePixelSetups {
         PixelLevel level = new PixelLevel();
         level.setPixels(taiji);
         level.setColor(Color.WHITE);
+        return level;
+    }
+
+    private static PixelLevel introLevel() {
+        int[][] intro = new int[10][10];
+        for (int i = 0; i < 10; i++) {
+            intro[3][i] = 1;
+            intro[4][i] = 1;
+        }
+        intro[4][4] = 0;
+        PixelLevel level = new PixelLevel();
+        level.setPixels(intro);
+        level.setColor(Color.CYAN);
         return level;
     }
 }

@@ -4,8 +4,6 @@ import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
 
-import static com.example.boundless.games.pixel_game.PixelOptions.*;
-
 /**
  * Handles the touch input to the pixel game
  */
@@ -19,6 +17,7 @@ public class PixelTouchHandler implements ITouchHandler {
     private int startY = GameResources.PIXEL_START_Y;
     private int width;
     private int gridSize;
+    private PixelOptions firstChangedOption;
     private PixelOptions[][] userChoices;
 
     /**
@@ -32,36 +31,42 @@ public class PixelTouchHandler implements ITouchHandler {
         this.gridSize = userChoices.length;
     }
 
-    /**
-     * Deal with the screen being touched
-     *
-     * @param event The event that occurred on the screen
-     */
+    @Override
     public void screenTouched(MotionEvent event) {
-        if (ifCancelEvent(event)) return;
+        if (isTripleTap(event)) PixelDrawer.showHint();
 
-        int[] oldCoords = convertCoordToIJ((int) event.getHistoricalX(0), (int) event.getHistoricalY(0));
-        if (!changeIfCoords(oldCoords)) newI = newJ = -1;
+        int[] oldCoords;
 
-        for (int pos = 0; pos < event.getHistorySize(); pos++) {
-            int[] coordsIJ = convertCoordToIJ((int) event.getHistoricalX(pos), (int) event.getHistoricalY(pos));
-            changeIfCoords(coordsIJ);
+        switch (event.getAction()) {
+            case (MotionEvent.ACTION_MOVE):
+                if (event.getHistorySize() < 1) return;
+                oldCoords = convertCoordToIJ((int) event.getHistoricalX(0), (int) event.getHistoricalY(0));
+                break;
+            case (MotionEvent.ACTION_DOWN):
+                oldCoords = convertCoordToIJ((int) event.getX(0), (int) event.getY(0));
+                break;
+            default:
+                oldI = -1;
+                return;
         }
+        if (!changeIfCoords(oldCoords, event.getAction() == MotionEvent.ACTION_DOWN))
+            newI = newJ = -1;
     }
 
-    private boolean ifCancelEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            oldI = -1;
-            return true;
-        }
-        return (event.getHistorySize() < 1);
+    private boolean isTripleTap(MotionEvent event) {
+        int action = event.getAction();
+        int count = 0;
+        if ((action & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_DOWN)
+            count = event.getPointerCount();
+        return count == 3;
     }
 
-    private boolean changeIfCoords(int[] coordsIJ) {
+    private boolean changeIfCoords(int[] coordsIJ, boolean actionDown) {
         newI = coordsIJ[0];
         newJ = coordsIJ[1];
         if ((newI != oldI || newJ != oldJ) && isInBoundsIJ(newI, newJ)) {
-            switchPixel(newI, newJ);
+            if (actionDown) firstChangedOption = switchPixel(newI, newJ);
+            else switchPixel(newI, newJ, firstChangedOption);
             oldI = newI;
             oldJ = newJ;
             return true;
@@ -87,13 +92,11 @@ public class PixelTouchHandler implements ITouchHandler {
         return newIJ;
     }
 
-    /**
-     * Switches the pixel at the given coordinates from empty to a colour to an X.
-     *
-     * @param i the i coordinate of the pixel that the user what to change
-     * @param j the j coordinate of the pixel that the user what to change
-     */
-    private void switchPixel(int i, int j) {
+    private void switchPixel(int i, int j, PixelOptions option) {
+        userChoices[i][j] = option;
+    }
+
+    private PixelOptions switchPixel(int i, int j) {
         switch (userChoices[i][j]) {
             case EMPTY: //empty, change to color
                 userChoices[i][j] = PixelOptions.COLOUR;
@@ -102,10 +105,11 @@ public class PixelTouchHandler implements ITouchHandler {
                 userChoices[i][j] = PixelOptions.X;
                 break;
             case X: //has an X, change to empty
-                userChoices[i][j] = EMPTY;
+                userChoices[i][j] = PixelOptions.EMPTY;
                 break;
             default:
                 break;
         }
+        return userChoices[i][j];
     }
 }

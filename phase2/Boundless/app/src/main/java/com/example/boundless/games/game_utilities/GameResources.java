@@ -32,7 +32,10 @@ public final class GameResources {
      * The color of the X pixels in the  pixel game
      */
     public static final int PIXEL_X_COLOR = Color.argb(ALPHA_VALUE, 143, 143, 143);
-
+    /**
+     * The number of frames to show the pixel hint for
+     */
+    public static final int PIXEL_HINT_FRAMES = 8;
     /**
      * Gets the game over text for the pixel game
      *

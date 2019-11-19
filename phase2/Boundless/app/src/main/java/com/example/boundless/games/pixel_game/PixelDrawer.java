@@ -17,14 +17,16 @@ public class PixelDrawer implements IGridDrawer {
     private int levelColor;
     private int width;
     private int gridSize;
+    private PixelLevel level;
     private List<List<Integer>> currentLabels;
     private PixelOptions[][] userChoices;
+    private static int hint = 0;
 
     /**
      * Creates a pixel drawer
      */
     public PixelDrawer(IGridManager<PixelOptions, PixelLevel> manager) {
-        PixelLevel level = manager.getLevel();
+        level = manager.getLevel();
         gridSize = manager.getGridSize();
         userChoices = manager.getUserChoices();
 
@@ -66,9 +68,22 @@ public class PixelDrawer implements IGridDrawer {
     }
 
     /**
+     * User needs a hint
+     */
+    public static void showHint() {
+        hint += GameResources.PIXEL_HINT_FRAMES;
+    }
+
+    /**
      * Draw the game
      */
+    @Override
     public void draw() {
+        if (hint > 0) {
+            drawHint();
+            hint--;
+            return;
+        }
         //note: [0][gridSize - 1] is the lower left pixel
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -80,6 +95,17 @@ public class PixelDrawer implements IGridDrawer {
         }
         drawOutlines(gridSize, width);
         drawLabels(gridSize, width);
+    }
+
+    private void drawHint() {
+        int[][] answer = level.getPixels();
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                int filled = (answer[j][i] > 0) ? levelColor : GameResources.PIXEL_EMPTY_COLOR;
+                int[] coords = convertIJToSquare(i, j, width);
+                DrawUtility.drawRectangle(coords, filled);
+            }
+        }
     }
 
     private void drawOutlines(int gridSize, int width) {
