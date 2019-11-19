@@ -42,6 +42,11 @@ public abstract class Game extends Observable {
      */
     public abstract void draw();
 
+    /**
+     * Handles the screen being touched
+     *
+     * @param event The motion event of the screen being touched
+     */
     public void screenTouched(MotionEvent event){
         final int pointerCount = event.getPointerCount();
         for (int pointer = 0; pointer < pointerCount; pointer++) {
@@ -94,5 +99,11 @@ public abstract class Game extends Observable {
     public void showInstructions() {
         setChanged();
         notifyObservers(getInstructions());
+    }
+
+    /**
+     * Sets a hint for the game
+     */
+    public void setHint() {
     }
 }

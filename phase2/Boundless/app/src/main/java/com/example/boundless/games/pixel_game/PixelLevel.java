@@ -30,7 +30,7 @@ public class PixelLevel {
      *
      * @return The array of pixels
      */
-    int[][] getPixels() {
+    public int[][] getPixels() {
         return pixels;
     }
 
@@ -51,7 +51,7 @@ public class PixelLevel {
      *
      * @return The color the level is set to
      */
-    int getColor() {
+    public int getColor() {
         return color;
     }
 
@@ -61,7 +61,7 @@ public class PixelLevel {
      * @param startX The starting x location of the grid
      * @return The width of a pixel
      */
-    int getWidth(int startX) {
+    public int getWidth(int startX) {
         return (int) (Panel.SCREEN_WIDTH - startX * 1.3) / pixels.length;
     }
 
@@ -70,7 +70,7 @@ public class PixelLevel {
      *
      * @return The labels for this level
      */
-    List<List<Integer>> getLabels() {
+    public List<List<Integer>> getLabels() {
         if (labels != null)
             return labels;
         labels = label();

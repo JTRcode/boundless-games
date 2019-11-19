@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.Game;
+import com.example.boundless.users.UserAccountManager;
 import com.example.boundless.utilities.HandleCustomization;
 
 import java.util.Observable;
@@ -19,6 +20,7 @@ public class GameActivity extends Activity implements Observer {
 
     private Panel panel;
     private GamesEnum currentGame;
+    private int level = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,6 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setCurrentGame() {
         currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
-        int level = 0;
         if (BusinessContext.needsLevels(currentGame))
             level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
 
@@ -56,7 +57,8 @@ public class GameActivity extends Activity implements Observer {
         }
         Game currentGame = panel.getGame();
         currentGame.addObserver(this);
-        currentGame.showInstructions();
+        if (level < 1)
+            currentGame.showInstructions();
     }
 
     @Override
@@ -110,7 +112,9 @@ public class GameActivity extends Activity implements Observer {
         Intent intent = new Intent(this, MenuActivity.class);
         if (BusinessContext.needsLevels(currentGame)) {
             intent = new Intent(this, LevelActivity.class);
-            intent.putExtra(IntentExtras.gameEnum, currentGame);
+            if (BusinessContext.isInstructions(currentGame))
+                intent.putExtra(IntentExtras.gameEnum, BusinessContext.getRegularLevel(currentGame));
+            else intent.putExtra(IntentExtras.gameEnum, currentGame);
         }
         startActivity(intent);
     }

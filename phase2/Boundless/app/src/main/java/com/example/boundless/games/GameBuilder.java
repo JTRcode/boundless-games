@@ -35,6 +35,9 @@ class GameBuilder {
             case PIXELS:
                 if (touchHandler == null || pixelDrawer == null || manager == null) return null;
                 return new PixelGameFacade(this);
+            case PIXEL_INSTRUCTIONS:
+                if (touchHandler == null || pixelDrawer == null || manager == null) return null;
+                return new PixelInstructions(this);
             case GPACATCHER:
             case ROTATETILE:
             default:

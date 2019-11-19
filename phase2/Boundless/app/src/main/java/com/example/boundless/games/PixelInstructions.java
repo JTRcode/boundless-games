@@ -3,25 +3,14 @@ package com.example.boundless.games;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
-import com.example.boundless.games.pixel_game.PixelDrawer;
 
-/**
- * A game where you use pixels to recreate an image.
- */
-public class PixelGameFacade extends Game {
+public class PixelInstructions extends Game {
 
-    private int currentLevel;
     private IGridManager pixelManager;
     private ITouchHandler pixelTouchHandler;
     private IGridDrawer pixelDrawer;
 
-    /**
-     * A new pixel game
-     *
-     * @param builder The builder building the pixel game
-     */
-    PixelGameFacade(GameBuilder builder) {
-        currentLevel = builder.getLevel();
+    PixelInstructions(GameBuilder builder) {
         this.pixelDrawer = builder.getPixelDrawer();
         this.pixelTouchHandler = builder.getTouchHandler();
         this.pixelManager = builder.getManager();
@@ -34,7 +23,7 @@ public class PixelGameFacade extends Game {
 
     @Override
     public void setHint() {
-        PixelDrawer.showHint();
+        //no hints for instructions
     }
 
     @Override
@@ -49,12 +38,12 @@ public class PixelGameFacade extends Game {
 
     @Override
     String getInstructions() {
-        return GameResources.getPixelInstructions();
+        return "";
     }
 
     @Override
     String getGameOverText() {
-        return GameResources.getPixelGameOver(currentLevel + 1);
+        return "Good job! This is the end of the tutorial.\nClick ok to exit.";
     }
 
     /**
@@ -65,3 +54,4 @@ public class PixelGameFacade extends Game {
         pixelDrawer.draw();
     }
 }
+

@@ -11,10 +11,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.Game;
 import com.example.boundless.games.GameCreator;
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.RotateTileGame;
 import com.example.boundless.stats.Statistics;
 
 /**
@@ -32,6 +32,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
     private Game game;
+    private GamesEnum gameEnum;
     private static SurfaceView instance;
 
     public Panel(Context context) {
@@ -73,7 +74,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         GameCreator gameCreator = new GameCreator();
         setupPanel();
         setFocusable(true);
-        game = gameCreator.createGame(gameToPlay, level);
+        gameEnum = gameToPlay;
+        game = gameCreator.createGame(gameToPlay, level, getResources());
     }
 
     /**
@@ -141,7 +143,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         Statistics.clickEvent();
         game.screenTouched(event);
-        return !(game instanceof RotateTileGame);
+        return BusinessContext.subscribesToTouch(gameEnum);
     }
 
     /**
@@ -167,5 +169,4 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
             game.draw();
         }
     }
-
 }
