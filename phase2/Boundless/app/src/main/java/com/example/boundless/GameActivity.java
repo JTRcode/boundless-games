@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
@@ -16,6 +18,8 @@ import com.example.boundless.utilities.HandleCustomization;
 import java.util.Observable;
 import java.util.Observer;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class GameActivity extends Activity implements Observer {
 
     private Panel panel;
@@ -25,7 +29,22 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupGame();
+
+        Log.d("GameActivity", "oh no it's creating again, why don't you just resume, ugh");
+        if(savedInstanceState==null)
+
+            Log.d("GameActivity", "no saved instance state");
+    }
+
+    @Override
+    protected void onStart(){
+
+            super.onStart();
+
+
+            Log.d("GameActivity", "onStart is running  before resume");
+            setupGame();
+
     }
 
     /**
@@ -42,10 +61,12 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setCurrentGame() {
         currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
+        int level = 0;
         if (BusinessContext.needsLevels(currentGame))
             level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
-
+        Log.d("GameActivity","setting current game");
         if (currentGame != null) {
+            Log.d("GameActivity","current game is not null");
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
             panel.chooseGame(currentGame, level);
@@ -65,6 +86,22 @@ public class GameActivity extends Activity implements Observer {
     protected void onPause() {
         super.onPause();
         HandleCustomization.pauseMusic(this);
+    }
+
+    public void pauseButtonPressed(View view) {
+        this.onPause();
+        Intent intent = new Intent(this, PauseMenuActivity.class);
+        intent.putExtra(IntentExtras.gameEnum, currentGame);
+        intent.putExtra(IntentExtras.levelNumber,level );
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        panel.resume();
+        HandleCustomization.startMusic(this);
+        Log.d("GameActivity", "onResume()!!!");
     }
 
     /**
@@ -116,6 +153,7 @@ public class GameActivity extends Activity implements Observer {
                 intent.putExtra(IntentExtras.gameEnum, BusinessContext.getRegularLevel(currentGame));
             else intent.putExtra(IntentExtras.gameEnum, currentGame);
         }
+        HandleCustomization.startMusic(this);
         startActivity(intent);
     }
 }
