@@ -92,6 +92,8 @@ public class GameActivity extends Activity implements Observer {
 
     @Override
     public void update(Observable observable, final Object o) {
+        if (panel.isGameOver() && UserAccountManager.currentUser.getUnlocked(currentGame) == level)
+            UserAccountManager.currentUser.addUnlocked(currentGame);
         try {
             runOnUiThread(new Runnable() {
                 public void run() {

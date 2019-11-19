@@ -56,9 +56,6 @@ public class Session {
     public static String[] getUser() {
         String username = prefs.getString("username", "");
         String password = prefs.getString("password", "");
-        if (username.equals("") || password.equals("")) {
-            return new String[]{};
-        }
         return new String[]{username, password};
     }
 

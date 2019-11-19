@@ -3,6 +3,7 @@ package com.example.boundless.users;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.boundless.games.GamesEnum;
 import com.example.boundless.utilities.Session;
 
 import java.io.BufferedReader;
@@ -19,23 +20,17 @@ import java.util.List;
  */
 public class UserAccountManager {
     /**
-     * A list of all users
+     * The current user
      */
+    public static UserAccount currentUser = null;
     private static List<UserAccount> users = new ArrayList<>();
-    /**
-     * The path to store users at
-     */
-    private final String path;
-    private static final String FILE_NAME = "prfs.ckz";
+    private static final String FILE_NAME = "/prfs.ckz";
     private static final String TAG = "UserAccountManager";
-    /**
-     * The current context, used to get the file directory
-     */
     private Context context;
+    private String dataSeparator = "`";
 
     public UserAccountManager(Context context) {
         this.context = context;
-        path = context.getFilesDir() + File.pathSeparator;
         restorePreviousUsers();
     }
 
@@ -47,9 +42,11 @@ public class UserAccountManager {
      * @return If the user can sign in with those credentials.
      */
     public UserAccount signIn(String username, String password) {
+        if (username == "" || password == "") return null;
         for (UserAccount user : users)
             if (user.checkCreds(username, password)) {
                 Session.setUser(username, password);
+                currentUser = user;
                 return user;
             }
         return null;
@@ -70,7 +67,9 @@ public class UserAccountManager {
             }
         }
         Session.setUser(username, password);
-        return (saveUserToFile(username, password) && users.add(new UserAccount(username, password)));
+        currentUser = new UserAccount(username, password);
+
+        return saveUserToFile(username, password, currentUser) && users.add(new UserAccount(username, password));
     }
 
     /**
@@ -78,26 +77,36 @@ public class UserAccountManager {
      */
     public void signOut() {
         Session.clearUser();
+        currentUser = null;
     }
 
     private void restorePreviousUsers() {
         String line;
         try {
-            File file = new File(path + FILE_NAME);
+            File file = new File(context.getFilesDir() + FILE_NAME);
             if (!file.exists()) return;
 
-            FileInputStream fileInputStream = context.openFileInput(FILE_NAME);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            Log.w("MANAGER", "FILE " + context.getFilesDir() + FILE_NAME + " has been opened!!");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             while ((line = bufferedReader.readLine()) != null) {
                 //separate line by `, restore name and password...
-                String[] userInfo = line.split("`", 2);
-                users.add(new UserAccount(userInfo[0], userInfo[1]));
+                String[] userInfo = line.split(dataSeparator, 4);
+                addToUsers(userInfo);
             }
             fileInputStream.close();
             bufferedReader.close();
         } catch (IOException ex) {
             Log.d(TAG, ex.getMessage());
+        }
+    }
+
+    private void addToUsers(String[] userInfo) {
+        try {
+            users.add(new UserAccount(userInfo[0], userInfo[1], Integer.getInteger(userInfo[2]), Integer.getInteger(userInfo[3])));
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+            users.add(new UserAccount(userInfo[0], userInfo[1]));
         }
     }
 
@@ -108,18 +117,17 @@ public class UserAccountManager {
      * @param password The password of the user.
      * @return If saving the user was successful.
      */
-    private boolean saveUserToFile(String name, String password) {
-        String data = name + "`" + password;
+    private boolean saveUserToFile(String name, String password, UserAccount user) {
+        String data = name + dataSeparator + password + dataSeparator + user.getUnlocked(GamesEnum.PIXELS) + dataSeparator + user.getUnlocked(GamesEnum.ROTATETILE);
         FileOutputStream fileOutputStream = null;
         try {
-            File storageDir = new File(context.getFilesDir(), path);
-            if (!storageDir.exists() && !storageDir.mkdirs())
-                Log.d(TAG, "Failed to create directory");
-            File usersFile = new File(path + FILE_NAME);
+            File usersFile = new File(context.getFilesDir() + FILE_NAME);
+            if (!usersFile.exists()) Log.w(TAG, "FILE didn't exist before");
             if (!usersFile.exists() && !usersFile.createNewFile())
                 Log.d(TAG, "Failed to create usersFile");
             fileOutputStream = new FileOutputStream(usersFile, true);
             fileOutputStream.write((data + System.getProperty("line.separator")).getBytes());
+            Log.w(TAG, "reached end of saveUserToFile");
             return true;
         } catch (IOException ex) {
             Log.d(TAG, ex.getMessage());
@@ -134,6 +142,7 @@ public class UserAccountManager {
      */
     public boolean notSignedIn() {
         String[] credentials = Session.getUser();
-        return (credentials.length == 0);
+        currentUser = signIn(credentials[0], credentials[1]);
+        return currentUser == null;
     }
 }
