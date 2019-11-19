@@ -78,5 +78,8 @@
     <string name="Game">Game</string>
     <string name="my_inventory">my inventory</string>
     <string name="shop">shop</string>
+    <string name="pause">Paused</string>
+    <string name="pause_back_to_main">Back to Menu</string>
+    <string name="pause_back_to_levels">Back to Levels</string>
 
 </resources>

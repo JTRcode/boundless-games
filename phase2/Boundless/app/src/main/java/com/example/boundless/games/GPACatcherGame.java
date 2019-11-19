@@ -14,8 +14,8 @@ import com.example.boundless.games.gpa_catcher_game.GPAManager;
  */
 public class GPACatcherGame extends Game {
 
-    private static double gpa = 2.0; // current GPA
-    private static int life = 3; // current life remaining (max 3)
+    private  static double gpa ; // current GPA
+    private  static int life ; // current life remaining (max 3)
     private static int time; // current time remaining  (overall time to be determined)
     private static int bombAvoided = 0; // every 10 bombs avoided = +1 life
 
@@ -32,6 +32,8 @@ public class GPACatcherGame extends Game {
 
     public GPACatcherGame(int time) {
         GPACatcherGame.time = time;
+        gpa = 2.0;
+        life = 3;
         manager = new GPAManager(speed);
         manager.addFallingObject();
 
@@ -44,12 +46,12 @@ public class GPACatcherGame extends Game {
      *
      * @param gpa The amount to add to the GPA
      */
-    public static void addGpa(double gpa) {
+    public  static void addGpa(double gpa) {
         GPACatcherGame.gpa += gpa;
-        if (GPACatcherGame.gpa > 4.0)
+        if (gpa > 4.0)
             GPACatcherGame.gpa = 4.0;
         else if (GPACatcherGame.gpa < 0)
-            GPACatcherGame.gpa = 0;
+        GPACatcherGame.gpa = 0;
     }
 
     /**

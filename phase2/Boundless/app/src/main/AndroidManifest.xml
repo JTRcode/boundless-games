@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".PauseMenuActivity"/>
+            //android:theme="@android:style/Theme.Holo.Dialog"
+
+        <activity android:name=".ShopActivity" />
         <activity android:name=".LevelActivity" />
         <activity android:name=".AchievementsActivity" />
         <activity android:name=".StatisticsActivity" />

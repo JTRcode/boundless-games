@@ -15,6 +15,7 @@ import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.Game;
 import com.example.boundless.games.GameCreator;
 import com.example.boundless.games.GamesEnum;
+
 import com.example.boundless.stats.Statistics;
 
 /**
@@ -169,4 +170,5 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
             game.draw();
         }
     }
+
 }
