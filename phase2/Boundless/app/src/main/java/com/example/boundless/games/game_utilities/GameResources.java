@@ -59,7 +59,33 @@ public final class GameResources {
 
     //region Tile game
 
-    //constants for the tile game go here
+    /**
+     * The x start position for the pixel grid on the screen
+     */
+    public static final int TILE_START_X = 100;
+    /**
+     * The y start position for the pixel grid on the screen
+     */
+    public static final int TILE_START_Y = Panel.SCREEN_HEIGHT / 4;
+
+    /**
+     * Gets the game over text for the tile game
+     *
+     * @param finishedLevel The level the user has finished
+     * @return The string to show to the user.
+     */
+    public static String getRotateTileGameOver(int finishedLevel) {
+        return "GAME COMPLETED!\nYou just finished the rotate tiles game level #" + finishedLevel;
+    }
+
+    /**
+     * Gets the instructions text for the tile game
+     *
+     * @return The string to show the user.
+     */
+    public static String getRotateTileInstructions() {
+        return "Rotate the tiles to get water from the upper left hand pipe" + " to the lower right hand pipe.";
+    }
 
     //endregion
     //region GPA catcher game

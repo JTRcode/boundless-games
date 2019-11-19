@@ -1,66 +1,43 @@
 package com.example.boundless.games.rotate_tile_game;
 
-import android.util.Log;
-
+import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.rotate_tile_game.tiles.*;
 
 /**
  * Sets up tiles and updates them
  */
-public class TileManager {
-    /**
-     * The grid of tiles on the screen
-     */
-    private Tile[][] level;
-    /**
-     * The size of the grid
-     */
-    private int gridSize;
-
-    public int getGridSize() {
-        return gridSize;
-    }
-
-    public Tile[][] getTileStage(int currentLevel) {
-        setUpTiles(currentLevel);
-        gridSize = level.length;
-        return level;
-    }
+public class TileManager implements IGridManager<Tile, TileLevel> {
+    private TileLevel currentLevel;
+    private Tile[][] userChoices;
 
     /**
-     * Initializes the tiles array and randomizes the rotation.
-     */
-    private void setUpTiles(int currentLevel) {
-        char[][] layout;
-        switch (currentLevel) {
-            case 0:
-                layout = HardCodeSetUps.setUpTilesEasy();
-                break;
-            case 1:
-                layout = HardCodeSetUps.setUpTilesMedium();
-                break;
-            case 2:
-                layout = HardCodeSetUps.setUpTilesHard();
-                break;
-            case 3:
-                layout = HardCodeSetUps.setUpTilesExpert();
-                break;
-            default:
-                layout = HardCodeSetUps.setUpTilesEasy();
-                Log.e(this.toString(), "current game level does not exist");
-                break;
-        }
-        level = convertCharToTile(layout);
-        randomizeTiles(level);
-
-    }
-
-    /**
-     * Randomizes the tile rotation
+     * Creates a new tile manager
      *
-     * @param level the level to randomize the tiles of.
+     * @param levelToPlay The level to manage
      */
+    public TileManager(int levelToPlay) {
+        currentLevel = HardCodeSetUps.getLevel(levelToPlay);
+        userChoices = currentLevel.getTiles();
+        randomizeTiles(userChoices);
+    }
+
+    @Override
+    public Tile[][] getUserChoices() {
+        return userChoices;
+    }
+
+    @Override
+    public TileLevel getLevel() {
+        return currentLevel;
+    }
+
+    @Override
+    public int getGridSize() {
+        return currentLevel.getGridSize();
+    }
+
     private void randomizeTiles(Tile[][] level) {
+        int gridSize = getGridSize();
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
                 level[row][col].setTile(Rotation.getRandom());
@@ -69,10 +46,11 @@ public class TileManager {
     /**
      * Checks if the user rotated the tiles to win the game.
      *
-     * @param userChoices The user's choices of the tile rotations.
      * @return If the user has correctly completed the puzzle.
      */
-    public boolean gameOver(Tile[][] userChoices) {
+    @Override
+    public boolean checkAnswer() {
+        int gridSize = getGridSize();
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j].visited = false;
@@ -119,6 +97,7 @@ public class TileManager {
      * Checks if the current tile can end the game.
      */
     private boolean atEnd(int x, int y, int[] exits) {
+        int gridSize = getGridSize();
         return (x == gridSize - 1 && y == gridSize - 1 && exits[1] == 1);
     }
 
@@ -126,19 +105,7 @@ public class TileManager {
      * Checks if the current coordinates are valid.
      */
     private boolean valid(int x, int y) {
+        int gridSize = getGridSize();
         return (x < gridSize && y < gridSize && x >= 0 && y >= 0);
-    }
-
-    /**
-     * Converts a char array (using ONLY chars 'T', 'I', 'X', 'L') to a tile array.
-     *
-     * @param input The input char array using 'T', 'I', 'X', and 'L'
-     */
-    private Tile[][] convertCharToTile(char[][] input) {
-        Tile[][] output = new Tile[input.length][input.length];
-        for (int i = 0; i < input.length; i++)
-            for (int j = 0; j < input.length; j++)
-                output[i][j] = TileFactory.createTile(input[i][j]);
-        return output;
     }
 }

@@ -12,6 +12,11 @@ import com.example.boundless.games.pixel_game.PixelOptions;
 import com.example.boundless.games.pixel_game.PixelTouchHandler;
 import com.example.boundless.games.pixel_instructions.PixelInstructionDrawer;
 import com.example.boundless.games.pixel_instructions.PixelInstructionTouchHandler;
+import com.example.boundless.games.rotate_tile_game.RotateTileDrawer;
+import com.example.boundless.games.rotate_tile_game.RotateTileTouchHandler;
+import com.example.boundless.games.rotate_tile_game.TileLevel;
+import com.example.boundless.games.rotate_tile_game.TileManager;
+import com.example.boundless.games.rotate_tile_game.tiles.Tile;
 
 /**
  * Creates and builds each game
@@ -39,15 +44,19 @@ public class GameCreator {
     public Game createGame(GamesEnum gameToCreate, int level, Resources res) {
         switch (gameToCreate) {
             case PIXELS:
-                IGridManager<PixelOptions, PixelLevel> manager = new PixelManager(level);
-                IGridDrawer drawer = new PixelDrawer(manager);
-                ITouchHandler touchHandler = new PixelTouchHandler(manager);
-                return gameBuilder.buildTouchHandler(touchHandler).buildDrawer(drawer)
-                        .buildLevel(level).buildManager(manager).buildGame(gameToCreate);
+                IGridManager<PixelOptions, PixelLevel> pixelManager = new PixelManager(level);
+                IGridDrawer pixelDrawer = new PixelDrawer(pixelManager);
+                ITouchHandler pixelTouchHandler = new PixelTouchHandler(pixelManager);
+                return gameBuilder.buildTouchHandler(pixelTouchHandler).buildDrawer(pixelDrawer)
+                        .buildLevel(level).buildManager(pixelManager).buildGame(gameToCreate);
             case GPACATCHER:
                 return new GPACatcherGame();
             case ROTATETILE:
-                return new RotateTileGame(level);
+                IGridManager<Tile, TileLevel> tileManager = new TileManager(level);
+                IGridDrawer tileDrawer = new RotateTileDrawer(tileManager);
+                ITouchHandler tileTouchHandler = new RotateTileTouchHandler(tileManager);
+                return gameBuilder.buildTouchHandler(tileTouchHandler).buildDrawer(tileDrawer)
+                        .buildLevel(level).buildManager(tileManager).buildGame(gameToCreate);
             case PIXEL_INSTRUCTIONS:
                 return createPixelInstructions(gameToCreate, level, res);
             default:

@@ -1,15 +1,43 @@
 package com.example.boundless.games.rotate_tile_game;
 
 /**
- * Holds the levels for the tilegame
+ * Holds the hardcoded levels for the Tile Game
  */
 class HardCodeSetUps {
+
     private HardCodeSetUps(){}
 
     /**
-     * Initializes the tiles array and randomizes the rotation (easy mode).
+     * Get the given level from the game
+     *
+     * @param level The level to get
+     * @return The level
      */
-    static char[][] setUpTilesEasy() {
+    public static TileLevel getLevel(int level) {
+        char[][] layout;
+        switch (level) {
+            case 0:
+                layout = setUpTilesEasy();
+                break;
+            case 1:
+                layout = setUpTilesMedium();
+                break;
+            case 2:
+                layout = setUpTilesHard();
+                break;
+            case 3:
+                layout = setUpTilesExpert();
+                break;
+            default:
+                layout = setUpTilesIntro();
+                break;
+        }
+        TileLevel tileLevel = new TileLevel();
+        tileLevel.setTiles(layout);
+        return tileLevel;
+    }
+
+    private static char[][] setUpTilesEasy() {
         return new char[][]{
                 {'L', 'A', 'A', 'A'},
                 {'T', 'I', 'T', 'L'},
@@ -17,10 +45,7 @@ class HardCodeSetUps {
                 {'A', 'A', 'A', 'L'}};
     }
 
-    /**
-     * Initializes the tiles array and randomizes the rotation (medium mode).
-     */
-    static char[][] setUpTilesMedium() {
+    private static char[][] setUpTilesMedium() {
         return new char[][] {
                 {'L', 'A', 'A', 'A', 'A', 'A'},
                 {'T', 'I', 'T', 'L', 'A', 'A'},
@@ -30,10 +55,7 @@ class HardCodeSetUps {
                 {'A', 'A', 'A', 'A', 'A', 'L'}};
     }
 
-    /**
-     * Initializes the tiles array and randomizes the rotation (hard mode).
-     */
-    static char[][] setUpTilesHard() {
+    private static char[][] setUpTilesHard() {
         return new char[][]{
                 {'L', 'L', 'L', 'A', 'A', 'A', 'A', 'A'},
                 {'I', 'I', 'I', 'A', 'A', 'A', 'A', 'A'},
@@ -45,11 +67,7 @@ class HardCodeSetUps {
                 {'L', 'L', 'L', 'I', 'I', 'L', 'I', 'I'}};
     }
 
-    /**
-     * Initializes the tiles array and randomizes the rotation (expert mode), i.e. play all levels
-     * and an expert stage.
-     */
-    static char[][] setUpTilesExpert() {
+    private static char[][] setUpTilesExpert() {
         return new char[][] {
                 {'L', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
                 {'I', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
@@ -61,6 +79,12 @@ class HardCodeSetUps {
                 {'I', 'I', 'L', 'I', 'T', 'A', 'A', 'T', 'I', 'L'},
                 {'I', 'I', 'I', 'A', 'A', 'A', 'A', 'I', 'A', 'I'},
                 {'L', 'L', 'L', 'T', 'I', 'I', 'T', 'L', 'A', 'T'}};
+    }
+
+    private static char[][] setUpTilesIntro() {
+        return new char[][]{
+                {'L', 'L'},
+                {'L', 'L'}};
     }
 
 }

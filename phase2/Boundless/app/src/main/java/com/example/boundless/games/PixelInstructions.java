@@ -11,7 +11,7 @@ public class PixelInstructions extends Game {
     private IGridDrawer pixelDrawer;
 
     PixelInstructions(GameBuilder builder) {
-        this.pixelDrawer = builder.getPixelDrawer();
+        this.pixelDrawer = builder.getDrawer();
         this.pixelTouchHandler = builder.getTouchHandler();
         this.pixelManager = builder.getManager();
     }

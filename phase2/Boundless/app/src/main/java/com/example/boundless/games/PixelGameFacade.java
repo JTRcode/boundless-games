@@ -22,7 +22,7 @@ public class PixelGameFacade extends Game {
      */
     PixelGameFacade(GameBuilder builder) {
         currentLevel = builder.getLevel();
-        this.pixelDrawer = builder.getPixelDrawer();
+        this.pixelDrawer = builder.getDrawer();
         this.pixelTouchHandler = builder.getTouchHandler();
         this.pixelManager = builder.getManager();
     }
@@ -53,7 +53,7 @@ public class PixelGameFacade extends Game {
     }
 
     @Override
-    String getGameOverText() {
+    String getGameOverText() {//[][][]
         return GameResources.getPixelGameOver(currentLevel + 1);
     }
 
