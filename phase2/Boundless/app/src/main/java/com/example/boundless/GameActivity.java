@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
@@ -18,8 +17,6 @@ import com.example.boundless.utilities.HandleCustomization;
 import java.util.Observable;
 import java.util.Observer;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class GameActivity extends Activity implements Observer {
 
     private Panel panel;
@@ -29,22 +26,16 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Log.d("GameActivity", "oh no it's creating again, why don't you just resume, ugh");
         if(savedInstanceState==null)
-
             Log.d("GameActivity", "no saved instance state");
     }
 
     @Override
     protected void onStart(){
-
             super.onStart();
-
-
             Log.d("GameActivity", "onStart is running  before resume");
             setupGame();
-
     }
 
     /**
@@ -61,7 +52,6 @@ public class GameActivity extends Activity implements Observer {
      */
     private void setCurrentGame() {
         currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
-        int level = 0;
         if (BusinessContext.needsLevels(currentGame))
             level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
         Log.d("GameActivity","setting current game");
@@ -89,17 +79,14 @@ public class GameActivity extends Activity implements Observer {
     }
 
     public void pauseButtonPressed(View view) {
-        this.onPause();
-        Intent intent = new Intent(this, PauseMenuActivity.class);
-        intent.putExtra(IntentExtras.gameEnum, currentGame);
-        intent.putExtra(IntentExtras.levelNumber,level );
-        startActivity(intent);
+        //TODO: Huiqin, add your logic here to pull the other layout forwards
+        showOverlay("PAUSED", false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        panel.resume();
+        //panel.resume();
         HandleCustomization.startMusic(this);
         Log.d("GameActivity", "onResume()!!!");
     }
