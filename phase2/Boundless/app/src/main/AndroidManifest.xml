@@ -10,8 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PauseMenuActivity"/>
-            //android:theme="@android:style/Theme.Holo.Dialog"
-
         <activity android:name=".ShopActivity" />
         <activity android:name=".LevelActivity" />
         <activity android:name=".AchievementsActivity" />
