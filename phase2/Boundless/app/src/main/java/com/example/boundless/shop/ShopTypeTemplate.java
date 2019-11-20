@@ -1,6 +1,6 @@
-package com.example.boundless;
+package com.example.boundless.shop;
 
-public abstract class ShopItems {
+public abstract class ShopTypeTemplate {
     public abstract int[] itemsImage();
 
     public abstract String[] itemsDescription();

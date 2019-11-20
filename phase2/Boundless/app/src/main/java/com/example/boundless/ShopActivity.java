@@ -2,8 +2,11 @@ package com.example.boundless;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.boundless.shop.ShopItemsBuilder;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -37,5 +40,8 @@ public class ShopActivity extends AppCompatActivity {
         builder.build();
     }
 
-
+    public void backToMenu(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+    }
 }

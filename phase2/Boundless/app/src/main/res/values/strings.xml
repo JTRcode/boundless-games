@@ -81,5 +81,6 @@
     <string name="pause">Paused</string>
     <string name="pause_back_to_main">Back to Menu</string>
     <string name="pause_back_to_levels">Back to Levels</string>
+    <string name="points">points:</string>
 
 </resources>

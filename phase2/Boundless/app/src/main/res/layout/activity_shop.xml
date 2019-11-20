@@ -46,7 +46,7 @@
     <ScrollView
             android:id="@+id/shop_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="460dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tile">
@@ -185,6 +185,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shop_scrollview" />
 
+    <TextView
+            android:id="@+id/point_remaining"
+            android:layout_width="89dp"
+            android:layout_height="43dp"
+            android:text="@string/points"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/backToMenu"
+            app:layout_constraintTop_toBottomOf="@+id/inventory_view" />
+
+    <Button
+            android:id="@+id/backToMenu"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="@string/back_to_menu"
+            android:onClick="backToMenu"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inventory_view" />
+
 
     <ScrollView
             android:id="@+id/inventory_view"
@@ -195,10 +217,11 @@
             app:layout_constraintTop_toBottomOf="@+id/text_my_inventory">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/inventory_linearlayout"
-            android:orientation="horizontal">
+                android:id="@+id/inventory_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
         </LinearLayout>
     </ScrollView>
 

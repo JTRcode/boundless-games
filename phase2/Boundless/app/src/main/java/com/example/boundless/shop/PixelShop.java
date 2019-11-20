@@ -1,9 +1,8 @@
-package com.example.boundless;
+package com.example.boundless.shop;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.boundless.R;
 
-public class PixelShop extends ShopItems {
+public class PixelShop extends ShopTypeTemplate {
 
     public PixelShop(){
     }

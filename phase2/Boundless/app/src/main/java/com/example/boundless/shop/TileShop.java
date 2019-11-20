@@ -1,15 +1,17 @@
-package com.example.boundless;
+package com.example.boundless.shop;
 
-public class GpaShop extends ShopItems {
-    public GpaShop(){}
+import com.example.boundless.R;
+
+public class TileShop extends ShopTypeTemplate {
+    public TileShop(){}
 
     public int[] itemsImage(){
         int[] items = new int[5];
-        items[0] = R.drawable.basket;
-        items[1] = R.drawable.bomb;
-        items[2] = R.drawable.sleep;
-        items[3] = R.drawable.heart;
-        items[4] = R.drawable.time;
+        items[0] = R.drawable.cross_pipe;
+        items[1] = R.drawable.cross_filled_pipe;
+        items[2] = R.drawable.t_filled_pipe;
+        items[3] = R.drawable.t_pipe;
+        items[4] = R.drawable.straight_filled_pipe;
         return items;
 
     }
@@ -23,5 +25,4 @@ public class GpaShop extends ShopItems {
         items[4] = "coming soon-5";
         return items;
     }
-
 }

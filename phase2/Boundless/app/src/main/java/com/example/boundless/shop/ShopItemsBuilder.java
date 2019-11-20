@@ -1,13 +1,20 @@
-package com.example.boundless;
+package com.example.boundless.shop;
 
 import android.app.Activity;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.boundless.R;
+import com.example.boundless.shop.GameShop;
+import com.example.boundless.shop.GpaShop;
+import com.example.boundless.shop.PixelShop;
+import com.example.boundless.shop.ShopTypeTemplate;
+import com.example.boundless.shop.TileShop;
+
 public class ShopItemsBuilder {
 
     Activity activity;
-    ShopItems shop;
+    ShopTypeTemplate shop;
 
     public ShopItemsBuilder(Activity activity, String category){
 

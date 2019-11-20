@@ -1,6 +1,8 @@
-package com.example.boundless;
+package com.example.boundless.shop;
 
-public class GameShop extends ShopItems{
+import com.example.boundless.R;
+
+public class GameShop extends ShopTypeTemplate {
     public GameShop(){}
 
     public int[] itemsImage(){
