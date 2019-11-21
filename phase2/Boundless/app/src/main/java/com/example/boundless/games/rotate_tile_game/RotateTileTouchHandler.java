@@ -6,6 +6,7 @@ import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
+import com.example.boundless.stats.Achievements;
 
 /**
  * Handles touch input for the rotate tile game
@@ -30,6 +31,7 @@ public class RotateTileTouchHandler implements ITouchHandler {
 
     @Override
     public void screenTouched(MotionEvent event) {
+        Achievements.numRotateTaps += 1;
         final int pointerCount = event.getPointerCount();
         for (int pointer = 0; pointer < pointerCount; pointer++) {
             MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();

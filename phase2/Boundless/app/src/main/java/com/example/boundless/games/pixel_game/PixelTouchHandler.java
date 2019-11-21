@@ -3,6 +3,7 @@ package com.example.boundless.games.pixel_game;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
+import com.example.boundless.stats.Achievements;
 
 /**
  * Handles the touch input to the pixel game
@@ -110,6 +111,7 @@ public class PixelTouchHandler implements ITouchHandler {
             default:
                 break;
         }
+        Achievements.numPixelTaps += 1;
         return userChoices[i][j];
     }
 }

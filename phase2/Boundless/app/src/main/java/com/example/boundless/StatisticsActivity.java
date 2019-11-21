@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.example.boundless.stats.Statistics;
 import com.example.boundless.utilities.HandleCustomization;
 
+/**
+ * The StatisticsActivity handles statistics displays their values for the user.
+ */
 public class StatisticsActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +27,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     /**
      * Go back to the main menu
+     *
      * @param view The button clicked
      */
     public void backToMenu(View view) {
@@ -33,6 +37,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     /**
      * Go to the achievements page
+     *
      * @param view The button clicked
      */
     public void goAchievements(View view){

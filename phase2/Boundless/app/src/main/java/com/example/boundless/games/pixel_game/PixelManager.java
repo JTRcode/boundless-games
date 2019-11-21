@@ -1,6 +1,9 @@
 package com.example.boundless.games.pixel_game;
 
+import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.game_utilities.IGridManager;
+import com.example.boundless.stats.Achievements;
+import com.example.boundless.stats.Statistics;
 
 /**
  * A manager for pixels.
@@ -59,6 +62,7 @@ public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
             for (int col = 0; col < gridSize; col++)
                 if (doesNotMatch(userChoices[row][col], levelPixels[col][row]))
                     return false;
+        Statistics.endTimeByGame(GamesEnum.PIXELS);
         return true;
     }
 
