@@ -127,7 +127,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Statistics.end();
         try {
             thread.setRunning(false);
             thread.join();
@@ -144,7 +143,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Statistics.clickEvent();
         game.screenTouched(event);
         return BusinessContext.subscribesToTouch(gameEnum);
     }
