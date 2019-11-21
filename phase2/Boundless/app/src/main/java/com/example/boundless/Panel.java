@@ -127,6 +127,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        Statistics.end();
         try {
             thread.setRunning(false);
             thread.join();
@@ -154,7 +155,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         game.update();
         if (game.checkGameOver()) {
             Statistics.sumTotalScore();
-            Statistics.end();
         }
     }
 
