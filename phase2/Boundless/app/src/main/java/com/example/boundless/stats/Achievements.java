@@ -25,11 +25,12 @@ public class Achievements {
 
 
     public static void gpaChecker(double gpa) {
-        if (gpa == 4.0) {
+        Double gpa_holder = gpa;
+        if (gpa_holder.equals(4.0)) {
             maxGpaAchieve = true;
-        } else if (gpa == 3.0) {
+        } else if (gpa_holder.equals(3.0)) {
             threeGpaAchieve = true;
-        } else if (gpa == 0.0) {
+        } else if (gpa_holder.equals(0.0)) {
             failGpaAchieve = true;
         }
     }

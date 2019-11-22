@@ -101,11 +101,21 @@ public class Statistics {
      * returns string formatting the statistics (to be called at the end after all 3 games)
      */
     public static String printStats() {
-        return "Your Statistics:" + "\n" +
-                "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
+        return "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
                 "Total Points: " + totalScore + "\n" +
                 "Total Number of Taps on Screen: " + counterClicks + "\n" +
                 "Thanks for Playing!";
     }
 
+    public static String printTime() {
+        return "Total Time in Game (Seconds): " + timeElapsedSeconds;
+    }
+
+    public static String printPoints() {
+        return "Total Points: " + totalScore;
+    }
+
+    public static String printTaps() {
+        return "Total Number of Taps on Screen: " + counterClicks;
+    }
 }

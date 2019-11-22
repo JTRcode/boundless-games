@@ -92,7 +92,11 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        return (time <= 0 || life <= 0);
+        if (time <= 0 || life <= 0) {
+            Achievements.gpaChecker(Math.round(gpa * 100) / 100.0);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -155,7 +159,6 @@ public class GPACatcherGame extends Game {
         if (life <= 0) text.append("You ran out of lives!\n");
         text.append("Final GPA: ");
         text.append(Math.round(gpa * 100) / 100.0);
-        Achievements.gpaChecker(gpa);
         return text.toString();
     }
 }
