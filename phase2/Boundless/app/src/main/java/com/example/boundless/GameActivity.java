@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
@@ -22,6 +27,7 @@ public class GameActivity extends Activity implements Observer {
     private Panel panel;
     private GamesEnum currentGame;
     private int level = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +81,27 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        HandleCustomization.pauseMusic(this);
+
     }
 
     public void pauseButtonPressed(View view) {
         //TODO: Huiqin, add your logic here to pull the other layout forwards
-        showOverlay("PAUSED", false);
+        //showOverlay("PAUSED", false);
+
+        panel.pause();
+        findViewById(R.id.pauseLayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.pauseLayout).bringToFront();
+
+        HandleCustomization.pauseMusic(this);
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //panel.resume();
+
+    public void resumePressed(View view){
+
+        findViewById(R.id.pauseLayout).setVisibility(View.INVISIBLE);
         HandleCustomization.startMusic(this);
+        panel.resume();
         Log.d("GameActivity", "onResume()!!!");
     }
 
@@ -142,7 +156,19 @@ public class GameActivity extends Activity implements Observer {
                 intent.putExtra(IntentExtras.gameEnum, BusinessContext.getRegularLevel(currentGame));
             else intent.putExtra(IntentExtras.gameEnum, currentGame);
         }
-        HandleCustomization.startMusic(this);
+        HandleCustomization.pauseMusic(this);
+        startActivity(intent);
+    }
+
+    public void backToMain(View view){
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void backToLevels(View view){
+        Intent intent = new Intent(this, LevelActivity.class);
+        intent.putExtra(IntentExtras.gameEnum,currentGame);
+        intent.putExtra(IntentExtras.levelNumber,level);
         startActivity(intent);
     }
 }
