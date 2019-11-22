@@ -19,7 +19,7 @@ public class AchievementsActivity extends AppCompatActivity {
     }
 
     public void backToStats(View view) {
-        Intent intent = new Intent(this, StatisticsActivity.class);
+        Intent intent = new Intent(this,StatisticsActivity.class);
         startActivity(intent);
     }
 
