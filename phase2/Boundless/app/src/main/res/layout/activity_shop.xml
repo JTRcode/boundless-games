@@ -69,6 +69,7 @@
                         android:layout_marginStart="10dp"
                         android:onClick="purchase1"
                         android:scaleType="fitXY"
+                        android:tag="0"
                         app:srcCompat="@android:drawable/btn_dialog" />
 
                 <Button
@@ -93,6 +94,7 @@
                         android:layout_marginStart="10dp"
                         android:scaleType="fitXY"
                         android:onClick="purchase2"
+                        android:tag="0"
                         app:srcCompat="@android:drawable/btn_dialog"/>
 
                 <Button
@@ -117,6 +119,7 @@
                         android:layout_marginStart="10dp"
                         android:scaleType="fitXY"
                         android:onClick="purchase3"
+                        android:tag="0"
                         app:srcCompat="@android:drawable/btn_dialog"/>
 
                 <Button
@@ -141,6 +144,7 @@
                         android:layout_marginStart="10dp"
                         android:scaleType="fitXY"
                         android:onClick="purchase4"
+                        android:tag="0"
                         app:srcCompat="@android:drawable/btn_dialog"/>
 
                 <Button
@@ -165,6 +169,7 @@
                         android:layout_marginStart="10dp"
                         android:scaleType="fitXY"
                         android:onClick="purchase5"
+                        android:tag="0"
                         app:srcCompat="@android:drawable/btn_dialog"/>
 
                 <Button
