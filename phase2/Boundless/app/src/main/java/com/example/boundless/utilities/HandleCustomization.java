@@ -1,6 +1,7 @@
 package com.example.boundless.utilities;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.view.Window;
@@ -16,54 +17,77 @@ import com.example.boundless.StatisticsActivity;
  * Handles the customizations for each page
  */
 public class HandleCustomization {
-
+    private static boolean themeOn = false;
     private static MediaPlayer player;
 
     /**
      * Sets the background for an activity
+     *
      * @param context The context of the activity
-     * @param window The window of the activity
+     * @param window  The window of the activity
      */
-    public static void setActivityBackground(Context context, Window window){
+    public static void setActivityBackground(Context context, Window window) {
         int background = getBackgroundDrawable(context);
 
         window.setBackgroundDrawableResource(background);
     }
 
     private static int getBackgroundDrawable(Context context) {
-        boolean themeOn = Session.getTheme(context);
+        themeOn = Session.getTheme(context);
         if (context instanceof MenuActivity)
-            return themeOn ? R.drawable.hallo_menu : R.drawable.menu;
+            return themeOn ? R.drawable.christ_menu : R.drawable.menu;
         else if (context instanceof LoginActivity)
-            return themeOn ? R.drawable.halloween_log_in : R.drawable.log_in;
+            return themeOn ? R.drawable.christ_login : R.drawable.log_in;
         else if (context instanceof CustomizationActivity)
-            return themeOn ? R.drawable.halloween_custom : R.drawable.custom;
+            return themeOn ? R.drawable.christ_custom : R.drawable.custom;
         else if (context instanceof StatisticsActivity)
-            return R.drawable.stats;
+            return themeOn ? R.drawable.christ_stats : R.drawable.stats;
         else if (context instanceof LevelActivity)
-            return R.drawable.level;
+            return themeOn ? R.drawable.christ_level : R.drawable.level;
         return Session.getBackground(context);
     }
 
     /**
      * Sets the background for a game
+     *
      * @param context The context for the game
-     * @param layout The ConstraintLayout for the background of the game
+     * @param layout  The ConstraintLayout for the background of the game
      */
-    public static void setGameBackground(Context context, View layout){
+    public static void setGameBackground(Context context, View layout) {
+        themeOn = Session.getTheme(context);
         layout.setBackgroundResource(Session.getBackground(context));
     }
 
-    public static void startMusic(Context context){
+    /**
+     * Start the music
+     *
+     * @param context The current context
+     */
+    public static void startMusic(Context context) {
         player = MediaPlayer.create(context, Session.getMusic(context));
         player.setLooping(true);
         player.start();
     }
 
-    public static void pauseMusic(Context context){
+    /**
+     * Pause the music
+     *
+     * @param context The current context
+     */
+    public static void pauseMusic(Context context) {
         if (player != null) {
+            player.stop();
             player.release();
             player = null;
         }
+    }
+
+    /**
+     * Get the label color of the pixels.
+     *
+     * @return The color that the pixel's labels should be.
+     */
+    public static int getPixelLabelColor() {
+        return (themeOn) ? Color.RED : Color.WHITE;
     }
 }

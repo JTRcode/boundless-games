@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 
 import com.example.boundless.games.BusinessContext;
@@ -44,7 +45,7 @@ public class GameActivity extends Activity implements Observer {
     private void setupGame() {
         setCurrentGame();
         HandleCustomization.setGameBackground(this, findViewById(R.id.ConstraintLayout));
-        HandleCustomization.startMusic(this);
+        //HandleCustomization.startMusic(this);
     }
 
     /**
@@ -142,7 +143,7 @@ public class GameActivity extends Activity implements Observer {
                 intent.putExtra(IntentExtras.gameEnum, BusinessContext.getRegularLevel(currentGame));
             else intent.putExtra(IntentExtras.gameEnum, currentGame);
         }
-        HandleCustomization.startMusic(this);
+        //HandleCustomization.startMusic(this);
         startActivity(intent);
     }
 }
