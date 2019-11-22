@@ -47,12 +47,12 @@ public class LevelActivity extends AppCompatActivity {
             newButton.setTextColor(Color.WHITE);
             newButton.setTextSize(56);
             grid.addView(newButton);
-            if (UserAccountManager.currentUser.getUnlocked(game) >= i) {
+            //if (UserAccountManager.currentUser.getUnlocked(game) >= i) {
                 newButton.setBackgroundResource(R.drawable.level_button);
                 newButton.setText(String.valueOf(i + 1));
-            } else {
-                newButton.setBackgroundResource(R.drawable.level_button_locked);
-            }
+           // } else {
+               // newButton.setBackgroundResource(R.drawable.level_button_locked);
+            //}
         }
     }
 
