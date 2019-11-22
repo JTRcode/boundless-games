@@ -4,6 +4,7 @@ import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
 import com.example.boundless.stats.Achievements;
+import com.example.boundless.stats.Statistics;
 
 /**
  * Handles the touch input to the pixel game
@@ -68,6 +69,8 @@ public class PixelTouchHandler implements ITouchHandler {
         if ((newI != oldI || newJ != oldJ) && isInBoundsIJ(newI, newJ)) {
             if (actionDown) firstChangedOption = switchPixel(newI, newJ);
             else switchPixel(newI, newJ, firstChangedOption);
+            Achievements.numPixelTaps += 1;
+            Statistics.clickEvent();
             oldI = newI;
             oldJ = newJ;
             return true;
@@ -111,7 +114,6 @@ public class PixelTouchHandler implements ITouchHandler {
             default:
                 break;
         }
-        Achievements.numPixelTaps += 1;
         return userChoices[i][j];
     }
 }

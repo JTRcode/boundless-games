@@ -3,6 +3,7 @@ package com.example.boundless.games.gpa_catcher_game;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.boundless.stats.Statistics;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 import com.example.boundless.Panel;
@@ -75,6 +76,7 @@ public class Basket {
      * Moves the basket left on the screen
      */
     public void moveLeft() {
+        Statistics.clickEvent();
         if (coordX >= 0)
             coordX -= speed;
     }
@@ -83,6 +85,7 @@ public class Basket {
      * Moves the basket right on the screen
      */
     public void moveRight() {
+        Statistics.clickEvent();
         if (coordX + size < screenWidth)
             coordX += speed;
     }
