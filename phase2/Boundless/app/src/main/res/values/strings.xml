@@ -29,8 +29,8 @@
     <string name="pixel_achieve_cross1">Achievement 1 Pixel Status</string>
     <string name="pixel_achieve_cross2">Achievement 2 Pixel Status</string>
     <string name="pixel_achieve_cross3">Achievement 3 Pixel Status</string>
-    <string name="pixel_message1">Get the correct answer on your first try.</string>
-    <string name="pixel_message2">Get the incorrect answer five or more times.</string>
+    <string name="pixel_message1">Touch the pixels at least 50 times.</string>
+    <string name="pixel_message2">Touch the pixels at least 200 times.</string>
     <string name="pixel_message3">Get the correct answer in less than 20 seconds.</string>
 
     //Achievement Rotate Tile strings
@@ -40,8 +40,8 @@
     <string name="rotate_achieve_cross1">Achievement 1 Rotate Status</string>
     <string name="rotate_achieve_cross2">Achievement 2 Rotate Status</string>
     <string name="rotate_achieve_cross3">Achievement 3 Rotate Status</string>
-    <string name="rotate_message1">Get the correct answer on your first try.</string>
-    <string name="rotate_message2">Get the incorrect answer five or more times.</string>
+    <string name="rotate_message1">Rotate the tiles at least 50 times.</string>
+    <string name="rotate_message2">Rotate the tiles at least 200 times.</string>
     <string name="rotate_message3">Get the correct answer in less than 20 seconds.</string>
 
     //Achievement Rotate Tile strings
@@ -55,6 +55,13 @@
     <string name="gpa_message2">Get a 3.0 GPA.</string>
     <string name="gpa_message3">Get a 0.0 GPA.</string>
 
+    //Statistics Achievements
+    <string name="your_stats">Your Statistics (While In-Game)</string>
+    <string name="time_in_game">Total Time (seconds):</string>
+    <string name="total_pts">Total Points:</string>
+    <string name="tap_screen">Total Number of Taps on Screen</string>
+    <string name="thank_you">Thanks for Playing!</string>
+
     //Customization strings
     <string name="back_to_menu">&lt;-</string>
     <string name="choose_music">Choose your music:</string>
@@ -65,8 +72,8 @@
     <string name="background_1">Background 1</string>
     <string name="background_2">Background 2</string>
     <string name="background_3">Background 3</string>
-    <string name="halloween">If you dare&#8230;</string>
-    <string name="halloween_theme">The Button of Spooks!</string>
+    <string name="halloween">If you want&#8230;</string>
+    <string name="halloween_theme">The Button of Happiness!</string>
     <string name="turn_off_theme">Or&#8230;</string>
     <string name="turn_off">Return back to normal</string>
 

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +28,6 @@ public class GameActivity extends Activity implements Observer {
     private Panel panel;
     private GamesEnum currentGame;
     private int level = -1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class GameActivity extends Activity implements Observer {
     private void setupGame() {
         setCurrentGame();
         HandleCustomization.setGameBackground(this, findViewById(R.id.ConstraintLayout));
-        HandleCustomization.startMusic(this);
+        //HandleCustomization.startMusic(this);
     }
 
     /**

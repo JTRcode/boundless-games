@@ -101,8 +101,8 @@ public class CustomizationActivity extends AppCompatActivity {
      * @param view the button clicked
      */
     public void themeOn(View view){
-        Session.setBackground(R.drawable.halloween_background);
-        Session.setMusic(R.raw.thriller);
+        Session.setBackground(R.drawable.christ_background);
+        Session.setMusic(R.raw.jinglebells);
         Session.setTheme(true);
         showToast("Spooky Magic happens!!!");
     }

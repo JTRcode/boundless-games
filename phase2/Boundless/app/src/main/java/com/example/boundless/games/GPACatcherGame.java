@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
+import com.example.boundless.stats.Achievements;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
@@ -91,7 +92,11 @@ public class GPACatcherGame extends Game {
 
     @Override
     public boolean gameOver() {
-        return (time <= 0 || life <= 0);
+        if (time <= 0 || life <= 0) {
+            Achievements.gpaChecker(Math.round(gpa * 100) / 100.0);
+            return true;
+        }
+        return false;
     }
 
     @Override

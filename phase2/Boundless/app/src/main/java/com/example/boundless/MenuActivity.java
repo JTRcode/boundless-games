@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
+import com.example.boundless.stats.Achievements;
 import com.example.boundless.users.UserAccount;
 import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
@@ -53,8 +54,10 @@ public class MenuActivity extends AppCompatActivity {
     private GamesEnum getGame(View view){
         switch (view.getId()) {
             case R.id.PixelGame:
+                Achievements.pixelPlayed = true;
                 return GamesEnum.PIXELS;
             case R.id.RotateTile:
+                Achievements.rotatePlayed = true;
                 return GamesEnum.ROTATETILE;
             default:
                 return GamesEnum.GPACATCHER;

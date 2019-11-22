@@ -41,18 +41,23 @@ public class ShopItemsBuilder {
         int[] images = shop.itemsImage();
         ImageButton item = activity.findViewById(R.id.item1);
         item.setImageResource(images[0]);
+        item.setTag(images[0]);
 
         item = activity.findViewById(R.id.item2);
         item.setImageResource(images[1]);
+        item.setTag(images[1]);
 
         item = activity.findViewById(R.id.item3);
         item.setImageResource(images[2]);
+        item.setTag(images[2]);
 
         item = activity.findViewById(R.id.item4);
         item.setImageResource(images[3]);
+        item.setTag(images[3]);
 
         item = activity.findViewById(R.id.item5);
         item.setImageResource(images[4]);
+        item.setTag(images[4]);
 
     }
     private void buildDescriptions(){

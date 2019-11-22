@@ -1,5 +1,7 @@
 package com.example.boundless.stats;
 
+import com.example.boundless.games.GamesEnum;
+
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +12,9 @@ import java.util.concurrent.TimeUnit;
 public class Statistics {
 
     private static long startTime;
+    private static long startTimePixel;
+    private static long startTimeRotate;
+
     private static long timeElapsedSeconds;
     private static int totalScore;
     private static int counterClicks;
@@ -21,6 +26,16 @@ public class Statistics {
         startTime = new Date().getTime();
     }
 
+    public static void startTimeByGame(GamesEnum gamesEnum) {
+
+        if (gamesEnum == GamesEnum.PIXELS) {
+            startTimePixel = new Date().getTime();
+        }
+        else if (gamesEnum == GamesEnum.ROTATETILE) {
+            startTimeRotate = new Date().getTime();
+        }
+    }
+
     /**
      * Stops measuring time
      */
@@ -28,6 +43,29 @@ public class Statistics {
         long endTime = new Date().getTime();
         long timeElapsed = endTime - startTime;
         timeElapsedSeconds += TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+    }
+
+    public static void endTimeByGame(GamesEnum gamesEnum) {
+
+        if (gamesEnum == GamesEnum.PIXELS) {
+
+            long timeElapsedSecondsPixel = 0;
+            long endTime = new Date().getTime();
+            long timeElapsed = endTime - startTimePixel;
+            timeElapsedSecondsPixel += TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+            if (timeElapsedSecondsPixel <= 20) {
+                Achievements.checkTime(gamesEnum, timeElapsedSecondsPixel);
+            }
+        } else if (gamesEnum == GamesEnum.ROTATETILE) {
+
+            long timeElapsedSecondsRotate = 0;
+            long endTime = new Date().getTime();
+            long timeElapsed = endTime - startTimeRotate;
+            timeElapsedSecondsRotate += TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+            if (timeElapsedSecondsRotate <= 20) {
+                Achievements.checkTime(gamesEnum, timeElapsedSecondsRotate);
+            }
+        }
     }
 
     /**
@@ -63,11 +101,21 @@ public class Statistics {
      * returns string formatting the statistics (to be called at the end after all 3 games)
      */
     public static String printStats() {
-        return "Your Statistics:" + "\n" +
-                "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
+        return "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
                 "Total Points: " + totalScore + "\n" +
                 "Total Number of Taps on Screen: " + counterClicks + "\n" +
                 "Thanks for Playing!";
     }
 
+    public static String printTime() {
+        return "Total Time in Game (Seconds): " + timeElapsedSeconds;
+    }
+
+    public static String printPoints() {
+        return "Total Points: " + totalScore;
+    }
+
+    public static String printTaps() {
+        return "Total Number of Taps on Screen: " + counterClicks;
+    }
 }

@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.example.boundless.games.game_utilities.*;
 import com.example.boundless.utilities.DrawUtility;
+import com.example.boundless.utilities.HandleCustomization;
 
 import java.util.List;
 
@@ -122,20 +123,21 @@ public class PixelDrawer implements IGridDrawer {
     }
 
     private void drawLabels(int gridSize, int width) {
+        int color = HandleCustomization.getPixelLabelColor();
         int buffer = 25;
         for (int rowNum = 0; rowNum < gridSize; rowNum++) {
             List<Integer> row = currentLabels.get(rowNum);
             int drawY = startY + rowNum * width + (width / 2);
             int drawX = startX - 15 - row.size() * buffer;
             for (int entryNum = 0; entryNum < row.size(); entryNum++)
-                DrawUtility.drawString(row.get(entryNum).toString(), drawX + entryNum * buffer, drawY, Color.WHITE, 30);
+                DrawUtility.drawString(row.get(entryNum).toString(), drawX + entryNum * buffer, drawY, color, 30);
         }
         for (int colNum = gridSize; colNum < gridSize * 2; colNum++) {
             List<Integer> col = currentLabels.get(colNum);
             int drawX = startX + (colNum - gridSize) * width + (width / 2);
             int drawY = startY - col.size() * buffer;
             for (int entryNum = 0; entryNum < col.size(); entryNum++)
-                DrawUtility.drawString(col.get(entryNum).toString(), drawX, drawY + entryNum * buffer, Color.WHITE, 30);
+                DrawUtility.drawString(col.get(entryNum).toString(), drawX, drawY + entryNum * buffer, color, 30);
         }
     }
 

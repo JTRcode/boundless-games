@@ -16,7 +16,7 @@ public class BusinessContext {
     }
 
     private static void setup() {
-        gameLevels.put(GamesEnum.PIXELS, 4);
+        gameLevels.put(GamesEnum.PIXELS, 6);
         gameLevels.put(GamesEnum.ROTATETILE, 4);
         gameLevels.put(GamesEnum.PIXEL_INSTRUCTIONS, -1);
         instructionsToGame.put(GamesEnum.PIXEL_INSTRUCTIONS, GamesEnum.PIXELS);
