@@ -55,6 +55,13 @@
     <string name="gpa_message2">Get a 3.0 GPA.</string>
     <string name="gpa_message3">Get a 0.0 GPA.</string>
 
+    //Statistics Achievements
+    <string name="your_stats">Your Statistics (While In-Game)</string>
+    <string name="time_in_game">Total Time (seconds):</string>
+    <string name="total_pts">Total Points:</string>
+    <string name="tap_screen">Total Number of Taps on Screen</string>
+    <string name="thank_you">Thanks for Playing!</string>
+
     //Customization strings
     <string name="back_to_menu">&lt;-</string>
     <string name="choose_music">Choose your music:</string>

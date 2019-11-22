@@ -18,9 +18,22 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_statistics);
+
         TextView stats = findViewById(R.id.stats);
         stats.setText(Statistics.printStats());
+
+
+        //TextView time = findViewById(R.id.total_time);
+        //time.setText(Statistics.printTime());
+
+        //TextView points = findViewById(R.id.points);
+        //points.setText(Statistics.printPoints());
+
+        //TextView taps = findViewById(R.id.taps);
+        //taps.setText(Statistics.printTaps());
+
 
         HandleCustomization.setActivityBackground(this, getWindow());
     }
