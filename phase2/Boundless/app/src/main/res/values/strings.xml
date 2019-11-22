@@ -29,8 +29,8 @@
     <string name="pixel_achieve_cross1">Achievement 1 Pixel Status</string>
     <string name="pixel_achieve_cross2">Achievement 2 Pixel Status</string>
     <string name="pixel_achieve_cross3">Achievement 3 Pixel Status</string>
-    <string name="pixel_message1">Get the correct answer on your first try.</string>
-    <string name="pixel_message2">Get the incorrect answer five or more times.</string>
+    <string name="pixel_message1">Touch the pixels at least 50 times.</string>
+    <string name="pixel_message2">Touch the pixels at least 200 times.</string>
     <string name="pixel_message3">Get the correct answer in less than 20 seconds.</string>
 
     //Achievement Rotate Tile strings
@@ -40,8 +40,8 @@
     <string name="rotate_achieve_cross1">Achievement 1 Rotate Status</string>
     <string name="rotate_achieve_cross2">Achievement 2 Rotate Status</string>
     <string name="rotate_achieve_cross3">Achievement 3 Rotate Status</string>
-    <string name="rotate_message1">Get the correct answer on your first try.</string>
-    <string name="rotate_message2">Get the incorrect answer five or more times.</string>
+    <string name="rotate_message1">Rotate the tiles at least 50 times.</string>
+    <string name="rotate_message2">Rotate the tiles at least 200 times.</string>
     <string name="rotate_message3">Get the correct answer in less than 20 seconds.</string>
 
     //Achievement Rotate Tile strings

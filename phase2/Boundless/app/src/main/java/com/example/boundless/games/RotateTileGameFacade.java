@@ -3,6 +3,7 @@ package com.example.boundless.games;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
+import com.example.boundless.stats.Statistics;
 
 /**
  * A game where you rotate tiles to get from point A to point B.
@@ -28,6 +29,9 @@ public class RotateTileGameFacade extends Game {
 
     @Override
     boolean gameOver() {
+        boolean gameIsOver = manager.checkAnswer();
+        if (gameIsOver) {
+            Statistics.endTimeByGame(GamesEnum.ROTATETILE);}
         return manager.checkAnswer();
     }
 

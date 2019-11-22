@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
+import com.example.boundless.stats.Achievements;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
@@ -154,6 +155,7 @@ public class GPACatcherGame extends Game {
         if (life <= 0) text.append("You ran out of lives!\n");
         text.append("Final GPA: ");
         text.append(Math.round(gpa * 100) / 100.0);
+        Achievements.gpaChecker(gpa);
         return text.toString();
     }
 }

@@ -16,6 +16,7 @@ import com.example.boundless.games.Game;
 import com.example.boundless.games.GameCreator;
 import com.example.boundless.games.GamesEnum;
 
+import com.example.boundless.stats.Achievements;
 import com.example.boundless.stats.Statistics;
 
 /**
@@ -77,6 +78,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
         gameEnum = gameToPlay;
         game = gameCreator.createGame(gameToPlay, level, getResources());
+        Statistics.start();
+        Statistics.startTimeByGame(gameToPlay);
     }
 
     /**
@@ -106,7 +109,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
-        Statistics.start();
     }
 
     public static SurfaceView getPanel() {
@@ -142,7 +144,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Statistics.clickEvent();
         game.screenTouched(event);
         return BusinessContext.subscribesToTouch(gameEnum);
     }
@@ -154,7 +155,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         game.update();
         if (game.checkGameOver()) {
             Statistics.sumTotalScore();
-            Statistics.end();
         }
     }
 

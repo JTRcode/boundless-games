@@ -6,222 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AchievementsActivity">
 
-    <ImageView
-        android:id="@+id/gpa_achieve1"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="18dp"
-        android:contentDescription="@string/gpa_achieve1"
-        android:clickable="true"
-        android:onClick="showGpaDescription1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.769"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/rotate_cross3"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:contentDescription="@string/rotate_achieve_cross3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve3"
-        app:layout_constraintVertical_bias="0.04"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/gpa_cross3"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="9dp"
-        android:contentDescription="@string/rotate_achieve_cross3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpa_achieve3"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/rotate_cross2"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:contentDescription="@string/rotate_achieve_cross2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve2"
-        app:layout_constraintVertical_bias="0.036"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/gpa_cross2"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:contentDescription="@string/gpa_achieve_cross2"
-        android:clickable="true"
-        android:onClick="showGpaDescription2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpa_achieve2"
-        app:layout_constraintVertical_bias="0.333"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/rotate_cross1"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/rotate_achieve_cross1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pixel_achieve1"
-        app:layout_constraintVertical_bias="0.481"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/gpa_cross1"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:contentDescription="@string/gpa_achieve_cross1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpa_achieve1"
-        app:layout_constraintVertical_bias="0.36"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/rotate_achieve3"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="18dp"
-        android:contentDescription="@string/rotate_achieve3"
-        android:clickable="true"
-        android:onClick="showRotateDescription3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.003"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/gpa_achieve3"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="18dp"
-        android:contentDescription="@string/gpa_achieve3"
-        android:clickable="true"
-        android:onClick="showGpaDescription3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.773"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/rotate_achieve2"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:contentDescription="@string/pixel_achieve_cross2"
-        android:clickable="true"
-        android:onClick="showRotateDescription2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.069"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/gpa_achieve2"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:contentDescription="@string/gpa_achieve2"
-        android:clickable="true"
-        android:onClick="showGpaDescription2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.788"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/rotate_achieve1"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="18dp"
-        android:contentDescription="@string/rotate_achieve1"
-        android:clickable="true"
-        android:onClick="showRotateDescription1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/pixel_cross1"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/pixel_achieve_cross1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pixel_achieve1"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/pixel_achieve3"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:contentDescription="@string/pixel_achieve3"
-        android:clickable="true"
-        android:onClick="showPixelDescription3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/pixel_achieve2"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:clickable="true"
-        android:contentDescription="@string/pixel_achieve2"
-        android:onClick="showPixelDescription2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298"
-        app:srcCompat="@drawable/medal" />
 
     <TextView
         android:id="@+id/gpa_achieve"
@@ -236,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <TextView
         android:id="@+id/rotate_achieve"
@@ -248,10 +32,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <Button
         android:id="@+id/backButton"
@@ -274,53 +58,280 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintVertical_bias="0.164" />
 
-    <ImageView
-        android:id="@+id/pixel_achieve1"
-        android:layout_width="95dp"
-        android:layout_height="87dp"
-        android:contentDescription="@string/pixel_achieve1"
-        android:clickable="true"
-        android:onClick="showPixelDescription1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298"
-        app:srcCompat="@drawable/medal" />
-
-    <ImageView
-        android:id="@+id/pixel_cross3"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/pixel_achieve_cross3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pixel_achieve3"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/red_cross" />
-
-    <ImageView
-        android:id="@+id/pixel_cross2"
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/pixel_achieve_cross2"
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout1"
+        android:layout_width="329dp"
+        android:layout_height="141dp"
+        app:columnCount="1"
         app:layout_constraintBottom_toTopOf="@+id/rotate_achieve"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pixel_achieve2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/red_cross" />
+        app:layout_constraintTop_toBottomOf="@+id/pixel_achieve"
+        app:rowCount="2">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="326dp"
+            android:layout_height="93dp"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/pixel_achieve1"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/pixel_achieve1"
+                android:onClick="showPixelDescription1"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/pixel_achieve2"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/pixel_achieve2"
+                android:onClick="showPixelDescription2"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/pixel_achieve3"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/pixel_achieve3"
+                android:onClick="showPixelDescription3"
+                app:srcCompat="@drawable/medal" />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="333dp"
+            android:layout_height="41dp"
+            app:columnCount="3"
+            app:rowCount="1"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/pixel_cross1"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginEnd="49dp"
+                android:contentDescription="@string/pixel_achieve_cross1"
+                app:srcCompat="@drawable/red_cross" />
+
+            <ImageView
+                android:id="@+id/pixel_cross2"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="50dp"
+                android:contentDescription="@string/pixel_achieve_cross2"
+                app:srcCompat="@drawable/red_cross" />
+
+            <ImageView
+                android:id="@+id/pixel_cross3"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:contentDescription="@string/pixel_achieve_cross3"
+                app:srcCompat="@drawable/red_cross" />
+        </androidx.gridlayout.widget.GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="333dp"
+        android:layout_height="142dp"
+        app:columnCount="1"
+        app:layout_constraintBottom_toTopOf="@+id/gpa_achieve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rotate_achieve"
+        app:rowCount="2">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="326dp"
+            android:layout_height="93dp"
+            app:columnCount="3"
+            app:rowCount="1"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/rotate_achieve1"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/rotate_achieve1"
+                android:onClick="showRotateDescription1"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/rotate_achieve2"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/pixel_achieve_cross2"
+                android:onClick="showRotateDescription2"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/rotate_achieve3"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/rotate_achieve3"
+                android:onClick="showRotateDescription3"
+                app:srcCompat="@drawable/medal" />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="333dp"
+            android:layout_height="41dp"
+            app:columnCount="3"
+            app:rowCount="1"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/rotate_cross1"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginEnd="49dp"
+                android:contentDescription="@string/rotate_achieve_cross1"
+                app:layout_column="0"
+                app:layout_row="0"
+                app:srcCompat="@drawable/red_cross" />
+
+            <ImageView
+                android:id="@+id/rotate_cross2"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="50dp"
+                android:contentDescription="@string/rotate_achieve_cross2"
+                app:srcCompat="@drawable/red_cross" />
+
+            <ImageView
+                android:id="@+id/rotate_cross3"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:contentDescription="@string/rotate_achieve_cross3"
+                app:srcCompat="@drawable/red_cross" />
+        </androidx.gridlayout.widget.GridLayout>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:columnCount="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpa_achieve"
+        app:rowCount="2">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:columnCount="3"
+            app:rowCount="1"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/gpa_achieve1"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/gpa_achieve1"
+                android:onClick="showGpaDescription1"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/gpa_achieve2"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/gpa_achieve2"
+                android:onClick="showGpaDescription2"
+                app:srcCompat="@drawable/medal" />
+
+            <ImageView
+                android:id="@+id/gpa_achieve3"
+                android:layout_width="95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/gpa_achieve3"
+                android:onClick="showGpaDescription3"
+                app:srcCompat="@drawable/medal" />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="333dp"
+            android:layout_height="41dp"
+            app:columnCount="3"
+            app:rowCount="1"
+            app:useDefaultMargins="true">
+
+            <ImageView
+                android:id="@+id/gpa_cross1"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginEnd="49dp"
+                android:contentDescription="@string/gpa_achieve_cross1"
+                app:srcCompat="@drawable/red_cross"
+                tools:layout_editor_absoluteX="59dp"
+                tools:layout_editor_absoluteY="732dp" />
+
+            <ImageView
+                android:id="@+id/gpa_cross2"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="50dp"
+                android:clickable="true"
+                android:contentDescription="@string/gpa_achieve_cross2"
+                android:onClick="showGpaDescription2"
+                app:srcCompat="@drawable/red_cross"
+                tools:layout_editor_absoluteX="177dp"
+                tools:layout_editor_absoluteY="732dp" />
+
+            <ImageView
+                android:id="@+id/gpa_cross3"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="27dp"
+                android:contentDescription="@string/rotate_achieve_cross3"
+                app:srcCompat="@drawable/red_cross"
+                tools:layout_editor_absoluteX="295dp"
+                tools:layout_editor_absoluteY="730dp" />
+
+        </androidx.gridlayout.widget.GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

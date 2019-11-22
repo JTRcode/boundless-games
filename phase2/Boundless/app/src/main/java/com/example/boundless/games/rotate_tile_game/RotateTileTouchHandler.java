@@ -6,6 +6,8 @@ import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
+import com.example.boundless.stats.Achievements;
+import com.example.boundless.stats.Statistics;
 
 /**
  * Handles touch input for the rotate tile game
@@ -41,7 +43,10 @@ public class RotateTileTouchHandler implements ITouchHandler {
     private void screenTouched(int x, int y) {
         int i = (y - this.startY) / width;
         int j = (x - this.startX) / width;
-        if (i < gridSize && j < gridSize && i >= 0 && j >= 0)
+        if (i < gridSize && j < gridSize && i >= 0 && j >= 0) {
             userChoices[i][j].rotateTile();
+            Statistics.clickEvent();
+            Achievements.numRotateTaps++;
+        }
     }
 }
