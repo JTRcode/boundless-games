@@ -1,6 +1,8 @@
 package com.example.boundless.games.rotate_tile_game;
 
 import com.example.boundless.games.game_utilities.IGridManager;
+import com.example.boundless.games.rotate_tile_game.stage_creation.DifficultyEnum;
+import com.example.boundless.games.rotate_tile_game.stage_creation.RotateStageBuilder;
 import com.example.boundless.games.rotate_tile_game.tiles.*;
 
 /**
@@ -16,7 +18,8 @@ public class TileManager implements IGridManager<Tile, TileLevel> {
      * @param levelToPlay The level to manage
      */
     public TileManager(int levelToPlay) {
-        currentLevel = HardCodeSetUps.getLevel(levelToPlay);
+        RotateStageBuilder builder = new RotateStageBuilder();
+        currentLevel = builder.setDifficulty(DifficultyEnum.EASY).setGridLength(15).makeLevel();
         userChoices = currentLevel.getTiles();
         randomizeTiles(userChoices);
     }

@@ -17,8 +17,17 @@ public class TileLevel {
      *
      * @param tiles The characters of the tiles to set the level to (using 'T', 'I', 'X', 'L', 'A')
      */
-    void setTiles(char[][] tiles) {
+    public void setTiles(char[][] tiles) {
         level = convertCharToTile(tiles);
+    }
+
+    /**
+     * Set the tiles of the tile game
+     *
+     * @param tiles The characters of the tiles to set the level to (using 'T', 'I', 'X', 'L', 'A')
+     */
+    public void setTiles(Tile[][] tiles) {
+        level = tiles.clone();
     }
 
     /**
