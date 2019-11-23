@@ -6,7 +6,7 @@ import android.graphics.Matrix;
 /**
  * An individual tile that can be rotated.
  */
-public abstract class Tile {
+public abstract class Tile implements Cloneable {
 
     //TODO: add javadocs
     /**

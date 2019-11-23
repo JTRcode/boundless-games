@@ -1,8 +1,5 @@
 package com.example.boundless;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
@@ -47,12 +47,12 @@ public class LevelActivity extends AppCompatActivity {
             newButton.setTextColor(Color.WHITE);
             newButton.setTextSize(56);
             grid.addView(newButton);
-            //if (UserAccountManager.currentUser.getUnlocked(game) >= i) {
+            if (UserAccountManager.currentUser.getUnlocked(game) >= i) {
                 newButton.setBackgroundResource(R.drawable.level_button);
                 newButton.setText(String.valueOf(i + 1));
-           // } else {
-               // newButton.setBackgroundResource(R.drawable.level_button_locked);
-            //}
+            } else {
+                newButton.setBackgroundResource(R.drawable.level_button_locked);
+            }
         }
     }
 

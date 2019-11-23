@@ -17,9 +17,19 @@ public class BusinessContext {
 
     private static void setup() {
         gameLevels.put(GamesEnum.PIXELS, 6);
-        gameLevels.put(GamesEnum.ROTATETILE, 4);
+        gameLevels.put(GamesEnum.ROTATETILE, 1);
         gameLevels.put(GamesEnum.PIXEL_INSTRUCTIONS, -1);
         instructionsToGame.put(GamesEnum.PIXEL_INSTRUCTIONS, GamesEnum.PIXELS);
+    }
+
+    /**
+     * Add a level to the given game
+     *
+     * @param game The game to add a level to
+     */
+    public static void addLevel(GamesEnum game) {
+        if (!needsLevels(game)) return;
+        gameLevels.put(game, gameLevels.get(game) + 1);
     }
 
     /**

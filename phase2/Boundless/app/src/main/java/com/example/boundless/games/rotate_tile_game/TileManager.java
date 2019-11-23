@@ -1,16 +1,24 @@
 package com.example.boundless.games.rotate_tile_game;
 
+import com.example.boundless.games.BusinessContext;
+import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.rotate_tile_game.stage_creation.DifficultyEnum;
 import com.example.boundless.games.rotate_tile_game.stage_creation.RotateStageBuilder;
-import com.example.boundless.games.rotate_tile_game.tiles.*;
+import com.example.boundless.games.rotate_tile_game.tiles.Rotation;
+import com.example.boundless.games.rotate_tile_game.tiles.Tile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Sets up tiles and updates them
  */
 public class TileManager implements IGridManager<Tile, TileLevel> {
+    private static List<TileLevel> allStageList = new ArrayList<>();
     private TileLevel currentLevel;
     private Tile[][] userChoices;
+    private int levelToPlay;
 
     /**
      * Creates a new tile manager
@@ -18,10 +26,23 @@ public class TileManager implements IGridManager<Tile, TileLevel> {
      * @param levelToPlay The level to manage
      */
     public TileManager(int levelToPlay) {
-        RotateStageBuilder builder = new RotateStageBuilder();
-        currentLevel = builder.setDifficulty(DifficultyEnum.EASY).setGridLength(15).makeLevel();
-        userChoices = currentLevel.getTiles();
+        this.levelToPlay = levelToPlay;
+        loadStage();
         randomizeTiles(userChoices);
+    }
+
+    /**
+     * Handles creating and assigning currentLevel and userChoices
+     */
+    private void loadStage() {
+        if (levelToPlay != BusinessContext.getNumOfLevels(GamesEnum.ROTATETILE) - 1) {
+            currentLevel = allStageList.get(levelToPlay);
+        } else {
+            RotateStageBuilder builder = new RotateStageBuilder();
+            currentLevel = builder.setDifficulty(DifficultyEnum.HARD).setGridLength(10).makeLevel();
+            allStageList.add(currentLevel);
+        }
+        userChoices = currentLevel.getTiles();
     }
 
     @Override
@@ -57,7 +78,21 @@ public class TileManager implements IGridManager<Tile, TileLevel> {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j].visited = false;
-        return gameOver(0, 0, 3, userChoices);
+        if (gameOver(0, 0, 3, userChoices)) {
+            addLevel();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * when it's the last game, add another game
+     */
+    private void addLevel() {
+        if (levelToPlay == BusinessContext.getNumOfLevels(GamesEnum.ROTATETILE) - 1) {
+            BusinessContext.addLevel(GamesEnum.ROTATETILE);
+        }
     }
 
     /**
@@ -111,4 +146,5 @@ public class TileManager implements IGridManager<Tile, TileLevel> {
         int gridSize = getGridSize();
         return (x < gridSize && y < gridSize && x >= 0 && y >= 0);
     }
+
 }
