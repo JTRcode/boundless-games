@@ -77,7 +77,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         setupPanel();
         setFocusable(true);
         gameEnum = gameToPlay;
-        game = gameCreator.createGame(gameToPlay, level, getResources());
+        game = gameCreator.createGame(gameToPlay, level);
         Statistics.start();
         Statistics.startTimeByGame(gameToPlay);
     }

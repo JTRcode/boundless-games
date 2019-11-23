@@ -2,7 +2,7 @@ package com.example.boundless.games.rotate_tile_game;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.game_utilities.IGridManager;
+import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.games.rotate_tile_game.stage_creation.DifficultyEnum;
 import com.example.boundless.games.rotate_tile_game.stage_creation.RotateStageBuilder;
 import com.example.boundless.games.rotate_tile_game.tiles.Rotation;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Sets up tiles and updates them
  */
-public class TileManager implements IGridManager<Tile, TileLevel> {
+public class TileManager extends GridManager<Tile, TileLevel> {
     private static List<TileLevel> allStageList = new ArrayList<>();
     private TileLevel currentLevel;
     private Tile[][] userChoices;

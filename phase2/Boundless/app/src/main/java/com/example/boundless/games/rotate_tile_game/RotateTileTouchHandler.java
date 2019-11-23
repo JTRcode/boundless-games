@@ -3,7 +3,7 @@ package com.example.boundless.games.rotate_tile_game;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.GameResources;
-import com.example.boundless.games.game_utilities.IGridManager;
+import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
 import com.example.boundless.stats.Achievements;
@@ -24,7 +24,7 @@ public class RotateTileTouchHandler implements ITouchHandler {
      *
      * @param manager The manager for the tile game
      */
-    public RotateTileTouchHandler(IGridManager<Tile, TileLevel> manager) {
+    public RotateTileTouchHandler(GridManager<Tile, TileLevel> manager) {
         width = manager.getLevel().getWidth(startX);
         userChoices = manager.getUserChoices();
         gridSize = manager.getGridSize();

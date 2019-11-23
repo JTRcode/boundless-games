@@ -11,7 +11,7 @@ import com.example.boundless.games.pixel_game.PixelDrawer;
 public class PixelGameFacade extends Game {
 
     private int currentLevel;
-    private IGridManager pixelManager;
+    private GridManager pixelManager;
     private ITouchHandler pixelTouchHandler;
     private IGridDrawer pixelDrawer;
 

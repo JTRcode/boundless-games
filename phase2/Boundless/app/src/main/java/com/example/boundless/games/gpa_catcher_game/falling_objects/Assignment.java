@@ -3,7 +3,7 @@ package com.example.boundless.games.gpa_catcher_game.falling_objects;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
 
-import com.example.boundless.games.GPACatcherGame;
+import com.example.boundless.games.GPACatcherGameFacade;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
 
@@ -20,13 +20,13 @@ class Assignment extends FallingObject {
 
     @Override
     public void caught() {
-        GPACatcherGame.addGpa(0.1);
+        GPACatcherGameFacade.addGpa(0.1);
     }
 
     @Override
     public void missed() {
-        GPACatcherGame.addGpa(-0.1);
-        GPACatcherGame.addLife(-1);
+        GPACatcherGameFacade.addGpa(-0.1);
+        GPACatcherGameFacade.addLife(-1);
     }
 
 }

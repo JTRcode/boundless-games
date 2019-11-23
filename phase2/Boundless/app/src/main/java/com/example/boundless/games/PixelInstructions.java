@@ -6,7 +6,7 @@ import com.example.boundless.games.game_utilities.*;
 
 public class PixelInstructions extends Game {
 
-    private IGridManager pixelManager;
+    private GridManager pixelManager;
     private ITouchHandler pixelTouchHandler;
     private IGridDrawer pixelDrawer;
 

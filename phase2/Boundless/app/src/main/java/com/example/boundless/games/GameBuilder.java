@@ -1,7 +1,7 @@
 package com.example.boundless.games;
 
+import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.games.game_utilities.IGridDrawer;
-import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
 
 /**
@@ -10,7 +10,7 @@ import com.example.boundless.games.game_utilities.ITouchHandler;
 class GameBuilder {
     private ITouchHandler touchHandler;
     private IGridDrawer drawer;
-    private IGridManager manager;
+    private GridManager manager;
     private int level;
 
     /**
@@ -49,10 +49,10 @@ class GameBuilder {
     /**
      * Store the touch handler for the game
      *
-     * @param manager The IGridManager for the game
+     * @param manager The GridManager for the game
      * @return The game builder
      */
-    GameBuilder buildManager(IGridManager manager) {
+    GameBuilder buildManager(GridManager manager) {
         this.manager = manager;
         return this;
     }
@@ -75,6 +75,7 @@ class GameBuilder {
                 if (touchHandler == null || drawer == null || manager == null) return null;
                 return new RotateTileGameFacade(this);
             case GPACATCHER:
+                if (touchHandler == null || drawer == null || manager == null) return null;
             default:
                 return null;
         }
@@ -101,9 +102,9 @@ class GameBuilder {
     /**
      * Get the grid manager for the game
      *
-     * @return The IGridManager for the game
+     * @return The GridManager for the game
      */
-    IGridManager getManager() {
+    GridManager getManager() {
         return manager;
     }
 

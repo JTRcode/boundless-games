@@ -11,7 +11,7 @@ import com.example.boundless.stats.Statistics;
 public class RotateTileGameFacade extends Game {
 
     private int currentLevel;
-    private IGridManager manager;
+    private GridManager manager;
     private ITouchHandler touchHandler;
     private IGridDrawer drawer;
 

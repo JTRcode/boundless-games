@@ -1,8 +1,8 @@
 package com.example.boundless.games.rotate_tile_game;
 
 import com.example.boundless.games.game_utilities.GameResources;
+import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.games.game_utilities.IGridDrawer;
-import com.example.boundless.games.game_utilities.IGridManager;
 import com.example.boundless.games.rotate_tile_game.tiles.Rotation;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
 import com.example.boundless.games.rotate_tile_game.tiles.TileFactory;
@@ -25,7 +25,7 @@ public class RotateTileDrawer implements IGridDrawer {
      *
      * @param manager The manager for the Rotate Tile game
      */
-    public RotateTileDrawer(IGridManager<Tile, TileLevel> manager) {
+    public RotateTileDrawer(GridManager<Tile, TileLevel> manager) {
         width = manager.getLevel().getWidth(startX);
         userChoices = manager.getUserChoices();
         gridSize = manager.getGridSize();
@@ -36,16 +36,6 @@ public class RotateTileDrawer implements IGridDrawer {
         startEndPipe = TileFactory.createTile(TileEnum.I);
         startEndPipe.resize(width);
         startEndPipe.setTile(Rotation.EAST);
-    }
-
-    @Override
-    public int getStartX() {
-        return startX;
-    }
-
-    @Override
-    public int getStartY() {
-        return startY;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.example.boundless.games.gpa_catcher_game.falling_objects;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.boundless.games.GPACatcherGame;
+import com.example.boundless.games.GPACatcherGameFacade;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
 
@@ -20,12 +20,12 @@ class Sleep extends FallingObject {
 
     @Override
     public void caught() {
-        GPACatcherGame.addLife(1);
+        GPACatcherGameFacade.addLife(1);
     }
 
     @Override
     public void missed() {
-        GPACatcherGame.addLife(0);
+        GPACatcherGameFacade.addLife(0);
     }
 
 }

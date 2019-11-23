@@ -1,14 +1,13 @@
 package com.example.boundless.games.pixel_game;
 
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.game_utilities.IGridManager;
-import com.example.boundless.stats.Achievements;
+import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.stats.Statistics;
 
 /**
  * A manager for pixels.
  */
-public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
+public class PixelManager extends GridManager<PixelOptions, PixelLevel> {
     private PixelLevel currentLevel;
     private int[][] levelPixels;
     private PixelOptions[][] userChoices;
@@ -29,6 +28,7 @@ public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
      *
      * @return The user's choices
      */
+    @Override
     public PixelOptions[][] getUserChoices() {
         return userChoices;
     }
@@ -38,6 +38,7 @@ public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
      *
      * @return The current level
      */
+    @Override
     public PixelLevel getLevel() {
         return currentLevel;
     }
@@ -47,6 +48,7 @@ public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
      *
      * @return The grid size
      */
+    @Override
     public int getGridSize() {
         return levelPixels.length;
     }
@@ -56,6 +58,7 @@ public class PixelManager implements IGridManager<PixelOptions, PixelLevel> {
      *
      * @return A boolean telling if the answer is correct.
      */
+    @Override
     public boolean checkAnswer() {
         int gridSize = getGridSize();
         for (int row = 0; row < gridSize; row++)

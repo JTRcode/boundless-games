@@ -26,7 +26,7 @@ public class PixelDrawer implements IGridDrawer {
     /**
      * Creates a pixel drawer
      */
-    public PixelDrawer(IGridManager<PixelOptions, PixelLevel> manager) {
+    public PixelDrawer(GridManager<PixelOptions, PixelLevel> manager) {
         level = manager.getLevel();
         gridSize = manager.getGridSize();
         userChoices = manager.getUserChoices();
@@ -43,24 +43,6 @@ public class PixelDrawer implements IGridDrawer {
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
                 userChoices[i][j] = PixelOptions.EMPTY;
-    }
-
-    /**
-     * Get the starting x position
-     *
-     * @return The x position to start at
-     */
-    public int getStartX() {
-        return startX;
-    }
-
-    /**
-     * Get the starting y position
-     *
-     * @return The y position to start at
-     */
-    public int getStartY() {
-        return startY;
     }
 
     private void setupLevel(int width, List<List<Integer>> currentLabels) {

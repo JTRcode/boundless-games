@@ -13,7 +13,7 @@ import com.example.boundless.games.gpa_catcher_game.GPAManager;
 /**
  * A GPA catcher game, where you catch falling objects to get a good grade!
  */
-public class GPACatcherGame extends Game {
+public class GPACatcherGameFacade extends Game {
 
     private  static double gpa ; // current GPA
     private  static int life ; // current life remaining (max 3)
@@ -27,12 +27,12 @@ public class GPACatcherGame extends Game {
     private int speed = 50;
     private int lastX = 0;
 
-    public GPACatcherGame() {
+    public GPACatcherGameFacade() {
         this(maxTime);
     }
 
-    public GPACatcherGame(int time) {
-        GPACatcherGame.time = time;
+    public GPACatcherGameFacade(int time) {
+        GPACatcherGameFacade.time = time;
         gpa = 2.0;
         life = 3;
         manager = new GPAManager(speed);
@@ -48,11 +48,11 @@ public class GPACatcherGame extends Game {
      * @param gpa The amount to add to the GPA
      */
     public  static void addGpa(double gpa) {
-        GPACatcherGame.gpa += gpa;
+        GPACatcherGameFacade.gpa += gpa;
         if (gpa > 4.0)
-            GPACatcherGame.gpa = 4.0;
-        else if (GPACatcherGame.gpa < 0)
-        GPACatcherGame.gpa = 0;
+            GPACatcherGameFacade.gpa = 4.0;
+        else if (GPACatcherGameFacade.gpa < 0)
+        GPACatcherGameFacade.gpa = 0;
     }
 
     /**
@@ -61,9 +61,9 @@ public class GPACatcherGame extends Game {
      * @param life The number of lives to add
      */
     public static void addLife(int life) {
-        GPACatcherGame.life += life;
-        if (GPACatcherGame.life > 3)
-            GPACatcherGame.life = 3;
+        GPACatcherGameFacade.life += life;
+        if (GPACatcherGameFacade.life > 3)
+            GPACatcherGameFacade.life = 3;
     }
 
 
@@ -73,9 +73,9 @@ public class GPACatcherGame extends Game {
      * @param time The time to add to the game
      */
     public static void addTime(int time) {
-        GPACatcherGame.time += time;
-        if (GPACatcherGame.time > maxTime)
-            GPACatcherGame.time = maxTime;
+        GPACatcherGameFacade.time += time;
+        if (GPACatcherGameFacade.time > maxTime)
+            GPACatcherGameFacade.time = maxTime;
     }
 
     /**

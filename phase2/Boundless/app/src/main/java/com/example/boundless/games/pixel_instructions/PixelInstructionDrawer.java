@@ -13,7 +13,7 @@ import com.example.boundless.games.pixel_game.PixelLevel;
 import com.example.boundless.games.pixel_game.PixelOptions;
 import com.example.boundless.utilities.DrawUtility;
 
-public class PixelInstructionDrawer extends PixelDrawer implements IGridDrawer {
+public class PixelInstructionDrawer extends PixelDrawer{
 
     private static int startX = GameResources.PIXEL_START_X;
     private int startY = GameResources.PIXEL_START_Y;
@@ -25,12 +25,12 @@ public class PixelInstructionDrawer extends PixelDrawer implements IGridDrawer {
     private static int pointerX;
     private PixelOptions[][] userChoices;
 
-    public PixelInstructionDrawer(IGridManager<PixelOptions, PixelLevel> manager, Resources res) {
+    public PixelInstructionDrawer(GridManager<PixelOptions, PixelLevel> manager) {
         super(manager);
         currentStep = 0;
         pointerX = startX;
         userChoices = manager.getUserChoices();
-        pointer = BitmapFactory.decodeResource(res, R.drawable.pointer);
+        pointer = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.pointer);
         pointer = Bitmap.createScaledBitmap(pointer, 46 * 3, 80 * 3, true);
         level = manager.getLevel();
         width = level.getWidth(startX);

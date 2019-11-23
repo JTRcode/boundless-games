@@ -27,7 +27,7 @@ public class PixelTouchHandler implements ITouchHandler {
      *
      * @param manager The manager for the pixel game
      */
-    public PixelTouchHandler(IGridManager<PixelOptions, PixelLevel> manager) {
+    public PixelTouchHandler(GridManager<PixelOptions, PixelLevel> manager) {
         width = manager.getLevel().getWidth(startX);
         userChoices = manager.getUserChoices();
         this.gridSize = userChoices.length;
