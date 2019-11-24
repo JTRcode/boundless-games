@@ -64,7 +64,7 @@ public class LevelActivity extends AppCompatActivity {
     public void startLevel(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         int num;
-        if (view.getId() == R.id.button2) {
+        if (view.getId() == R.id.directions) {
             num = Integer.MAX_VALUE;
             intent.putExtra(IntentExtras.gameEnum, GamesEnum.PIXEL_INSTRUCTIONS);
         } else {

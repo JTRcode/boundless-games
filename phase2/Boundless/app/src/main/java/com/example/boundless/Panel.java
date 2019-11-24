@@ -35,6 +35,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Game game;
     private GamesEnum gameEnum;
+    private boolean shouldDraw = true;
     private static SurfaceView instance;
 
     public Panel(Context context) {
@@ -87,6 +88,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     public void pause() {
         thread.setUpdate(false);
+        shouldDraw = false;
     }
 
     /**
@@ -94,6 +96,11 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
      */
     public void resume() {
         thread.setUpdate(true);
+        shouldDraw = true;
+    }
+
+    public void setHint() {
+        game.setHint();
     }
 
     /**
@@ -167,7 +174,8 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-            game.draw();
+            if (shouldDraw)
+                game.draw();
         }
     }
 

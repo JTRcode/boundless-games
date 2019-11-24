@@ -86,7 +86,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/pixel_achieve1"
-                android:onClick="showPixelDescription1"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -97,7 +97,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/pixel_achieve2"
-                android:onClick="showPixelDescription2"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -108,7 +108,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/pixel_achieve3"
-                android:onClick="showPixelDescription3"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
         </androidx.gridlayout.widget.GridLayout>
 
@@ -173,7 +173,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/rotate_achieve1"
-                android:onClick="showRotateDescription1"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -184,7 +184,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/pixel_achieve_cross2"
-                android:onClick="showRotateDescription2"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -195,7 +195,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/rotate_achieve3"
-                android:onClick="showRotateDescription3"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
         </androidx.gridlayout.widget.GridLayout>
 
@@ -263,7 +263,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/gpa_achieve1"
-                android:onClick="showGpaDescription1"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -274,7 +274,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/gpa_achieve2"
-                android:onClick="showGpaDescription2"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
 
             <ImageView
@@ -285,7 +285,7 @@
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
                 android:contentDescription="@string/gpa_achieve3"
-                android:onClick="showGpaDescription3"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/medal" />
         </androidx.gridlayout.widget.GridLayout>
 
@@ -315,7 +315,7 @@
                 android:layout_marginEnd="50dp"
                 android:clickable="true"
                 android:contentDescription="@string/gpa_achieve_cross2"
-                android:onClick="showGpaDescription2"
+                android:onClick="showDescription"
                 app:srcCompat="@drawable/red_cross"
                 tools:layout_editor_absoluteX="177dp"
                 tools:layout_editor_absoluteY="732dp" />

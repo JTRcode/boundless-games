@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
+import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.stats.Achievements;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.Panel;
@@ -20,7 +21,6 @@ public class GPACatcherGameFacade extends Game {
     private static int time; // current time remaining  (overall time to be determined)
     private static int bombAvoided = 0; // every 10 bombs avoided = +1 life
 
-    private static int maxTime = Panel.SCREEN_WIDTH;
     private static Bitmap heart;
     private static int heartSize = 60;
     private GPAManager manager;
@@ -28,19 +28,77 @@ public class GPACatcherGameFacade extends Game {
     private int lastX = 0;
 
     public GPACatcherGameFacade() {
-        this(maxTime);
+        this(GameResources.GPA_MAX_TIME);
     }
 
-    public GPACatcherGameFacade(int time) {
-        GPACatcherGameFacade.time = time;
-        gpa = 2.0;
-        life = 3;
+    public GPACatcherGame(int time) {
+        this.time = time;
+        setGpa(2.0);
+        setLife(3);
+        setSpeed(20);
         manager = new GPAManager(speed);
         manager.addFallingObject();
 
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
         heart = Bitmap.createScaledBitmap(heart, heartSize, heartSize, true);
     }
+
+    public static int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        GPACatcherGame.life = life;
+        if (checkItems("life")){
+            GPACatcherGame.life+=1;
+        }
+    }
+
+
+    public static double getGpa() {
+        return gpa;
+    }
+
+    public  void setGpa(double gpa) {
+        GPACatcherGame.gpa = gpa;
+        if(checkItems("gpa"))
+            GPACatcherGame.gpa +=0.5;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+        if(checkItems("speed"))
+            this.speed = this.speed*2;
+    }
+
+    /**
+     *  if shopInventory has items then use them automatically
+     */
+
+    private boolean checkItems(String item){
+        //TODO will add more details after shopInventory is completed
+        // this if-else statement can also be in GPA shop. But I don't know what change
+        // will be made in GPAshop
+        if (item.equals("extraLife")){
+            //if number of extralife >=1
+            // number of extralife -=1;
+            return true;
+        }else if(item.equals("extraTime")){
+            //if number of extraTime >=1
+            // number of extraTime -=1;
+            return true;
+        }else if (item.equals("doubleSpeed")) {
+            //if number of doubleSpeed >=1
+            // number of doubleSpeed -=1;
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * Add to the total GPA
@@ -74,8 +132,8 @@ public class GPACatcherGameFacade extends Game {
      */
     public static void addTime(int time) {
         GPACatcherGameFacade.time += time;
-        if (GPACatcherGameFacade.time > maxTime)
-            GPACatcherGameFacade.time = maxTime;
+        if (GPACatcherGameFacade.time > GameResources.GPA_MAX_TIME)
+            GPACatcherGameFacade.time = GameResources.GPA_MAX_TIME;
     }
 
     /**
@@ -111,8 +169,8 @@ public class GPACatcherGameFacade extends Game {
 
     private void drawTimeBar() {
         int color;
-        if (time >= maxTime / 2) color = Color.GREEN;
-        else if (time >= maxTime / 4) color = Color.YELLOW;
+        if (time >= GameResources.GPA_MAX_TIME / 2) color = Color.GREEN;
+        else if (time >=GameResources.GPA_MAX_TIME  / 4) color = Color.YELLOW;
         else color = Color.RED;
         DrawUtility.drawRectangle(new int[]{0, 10, time, 70}, color);
     }
@@ -124,7 +182,7 @@ public class GPACatcherGameFacade extends Game {
 
     private void drawLives() {
         for (int lives = 1; lives <= life; lives++) {
-            DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * heartSize, 80);
+            DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * heartSize, 140);
         }
     }
 

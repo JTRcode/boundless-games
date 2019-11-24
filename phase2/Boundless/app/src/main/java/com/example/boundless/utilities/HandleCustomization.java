@@ -1,8 +1,10 @@
 package com.example.boundless.utilities;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -20,6 +22,9 @@ public class HandleCustomization {
     private static boolean themeOn = false;
     private static MediaPlayer player;
 
+    private HandleCustomization() {
+    }
+
     /**
      * Sets the background for an activity
      *
@@ -28,8 +33,13 @@ public class HandleCustomization {
      */
     public static void setActivityBackground(Context context, Window window) {
         int background = getBackgroundDrawable(context);
-
-        window.setBackgroundDrawableResource(background);
+        try {
+            window.setBackgroundDrawableResource(background);
+        } catch (Resources.NotFoundException e) {
+            Log.e("HandleCustomization", "Window resource not found, defaulting");
+            window.setBackgroundDrawableResource(R.drawable.backgroundone);
+            Session.setTheme(false);
+        }
     }
 
     private static int getBackgroundDrawable(Context context) {
@@ -54,8 +64,20 @@ public class HandleCustomization {
      * @param layout  The ConstraintLayout for the background of the game
      */
     public static void setGameBackground(Context context, View layout) {
-        themeOn = Session.getTheme(context);
-        layout.setBackgroundResource(Session.getBackground(context));
+        try {
+            themeOn = Session.getTheme(context);
+            layout.setBackgroundResource(Session.getBackground(context));
+        } catch (Resources.NotFoundException e) {
+            setDefaultBackground(layout);
+        }
+    }
+
+    private static void setDefaultBackground(View view) {
+        Log.e("HandleCustomization", "Resource not found, defaulting");
+        Session.setTheme(false);
+        Session.setBackground(R.drawable.backgroundtwo);
+        view.setBackgroundResource(R.drawable.backgroundone);
+
     }
 
     /**
@@ -64,7 +86,12 @@ public class HandleCustomization {
      * @param context The current context
      */
     public static void startMusic(Context context) {
-        player = MediaPlayer.create(context, Session.getMusic(context));
+        try {
+            player = MediaPlayer.create(context, Session.getMusic(context));
+        } catch (Resources.NotFoundException e) {
+            player = MediaPlayer.create(context, R.raw.minnutesican);
+            Session.setTheme(false);
+        }
         player.setLooping(true);
         player.start();
     }
