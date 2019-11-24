@@ -90,7 +90,6 @@ public final class GameResources {
     //endregion
     //region GPA catcher game
 
-    //constants for the gpa catcher game go here
     public static final int GPA_MAX_TIME = Panel.SCREEN_WIDTH;
     //endregion
 }

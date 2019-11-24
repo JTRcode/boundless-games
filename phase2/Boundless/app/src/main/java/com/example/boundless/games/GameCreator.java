@@ -1,21 +1,9 @@
 package com.example.boundless.games;
 
-import android.content.res.Resources;
-
-import com.example.boundless.games.game_utilities.IGridDrawer;
-import com.example.boundless.games.game_utilities.GridManager;
-import com.example.boundless.games.game_utilities.ITouchHandler;
-import com.example.boundless.games.pixel_game.PixelDrawer;
-import com.example.boundless.games.pixel_game.PixelLevel;
-import com.example.boundless.games.pixel_game.PixelManager;
-import com.example.boundless.games.pixel_game.PixelOptions;
-import com.example.boundless.games.pixel_game.PixelTouchHandler;
-import com.example.boundless.games.pixel_instructions.PixelInstructionDrawer;
-import com.example.boundless.games.pixel_instructions.PixelInstructionTouchHandler;
-import com.example.boundless.games.rotate_tile_game.RotateTileDrawer;
-import com.example.boundless.games.rotate_tile_game.RotateTileTouchHandler;
-import com.example.boundless.games.rotate_tile_game.TileLevel;
-import com.example.boundless.games.rotate_tile_game.TileManager;
+import com.example.boundless.games.game_utilities.*;
+import com.example.boundless.games.pixel_game.*;
+import com.example.boundless.games.pixel_instructions.*;
+import com.example.boundless.games.rotate_tile_game.*;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
 
 /**
@@ -50,7 +38,7 @@ public class GameCreator {
                 return gameBuilder.buildTouchHandler(pixelTouchHandler).buildDrawer(pixelDrawer)
                         .buildLevel(level).buildManager(pixelManager).buildGame(gameToCreate);
             case GPACATCHER:
-                return new GPACatcherGameFacade();
+                return new GPACatcherGameFacade(GameResources.GPA_MAX_TIME);
             case ROTATETILE:
                 GridManager<Tile, TileLevel> tileManager = new TileManager(level);
                 IGridDrawer tileDrawer = new RotateTileDrawer(tileManager);
