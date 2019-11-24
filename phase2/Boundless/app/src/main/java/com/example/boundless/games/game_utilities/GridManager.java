@@ -15,19 +15,10 @@ public abstract class GridManager<T, E> implements  IGameManager{
     public abstract int getGridSize();
 
     /**
-     * Checks if the user's choices are correct
-     *
-     * @return If the choices are correct
-     */
-    @Override
-    public abstract boolean checkAnswer();
-
-    /**
      * Get the user's choices for the grid
      *
      * @return The user's choices
      */
-    @Override
     public abstract T[][] getUserChoices();
 
     /**
@@ -35,6 +26,5 @@ public abstract class GridManager<T, E> implements  IGameManager{
      *
      * @return The current level's representation.
      */
-    @Override
-     public abstract E getLevel();
+    public abstract E getLevel();
 }

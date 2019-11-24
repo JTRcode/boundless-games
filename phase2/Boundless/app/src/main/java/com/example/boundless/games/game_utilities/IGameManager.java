@@ -1,10 +1,7 @@
 package com.example.boundless.games.game_utilities;
 
-public interface IGameManager<T, E> {
+public interface IGameManager {
 
     boolean checkAnswer();
 
-    T getUserChoices();
-
-    E getLevel();
 }
