@@ -27,11 +27,7 @@ public class GPACatcherGameFacade extends Game {
     private int speed = 50;
     private int lastX = 0;
 
-    public GPACatcherGameFacade() {
-        this(GameResources.GPA_MAX_TIME);
-    }
-
-    public GPACatcherGame(int time) {
+    public GPACatcherGameFacade(int time) {
         this.time = time;
         setGpa(2.0);
         setLife(3);
@@ -48,9 +44,9 @@ public class GPACatcherGameFacade extends Game {
     }
 
     public void setLife(int life) {
-        GPACatcherGame.life = life;
+        GPACatcherGameFacade.life = life;
         if (checkItems("life")){
-            GPACatcherGame.life+=1;
+            GPACatcherGameFacade.life+=1;
         }
     }
 
@@ -60,9 +56,9 @@ public class GPACatcherGameFacade extends Game {
     }
 
     public  void setGpa(double gpa) {
-        GPACatcherGame.gpa = gpa;
+        GPACatcherGameFacade.gpa = gpa;
         if(checkItems("gpa"))
-            GPACatcherGame.gpa +=0.5;
+            GPACatcherGameFacade.gpa +=0.5;
     }
 
     public int getSpeed() {
