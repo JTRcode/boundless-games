@@ -11,11 +11,25 @@ import com.example.boundless.shop.PixelShop;
 import com.example.boundless.shop.ShopTypeTemplate;
 import com.example.boundless.shop.TileShop;
 
+/**
+ * Builds the shop items
+ */
 public class ShopItemsBuilder {
-
+    /**
+     * The current activity on the screen
+     */
     Activity activity;
+    /**
+     * The current template for the shop layout
+     */
     ShopTypeTemplate shop;
 
+    /**
+     * The shop builder
+     *
+     * @param activity The current activity on the screen
+     * @param category The category for the shop
+     */
     public ShopItemsBuilder(Activity activity, String category){
 
         this.activity = activity;
@@ -60,6 +74,7 @@ public class ShopItemsBuilder {
         item.setTag(images[4]);
 
     }
+
     private void buildDescriptions(){
         String[] descriptions = shop.itemsDescription();
         Button item = activity.findViewById(R.id.item1_description);
@@ -83,7 +98,4 @@ public class ShopItemsBuilder {
         buildImages();
         buildDescriptions();
     }
-
-
-
 }

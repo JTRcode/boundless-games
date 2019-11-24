@@ -22,7 +22,7 @@ public class UserAccountManager {
     /**
      * The current user
      */
-    public static UserAccount currentUser = null;
+    public static UserAccount currentUser;
     private static List<UserAccount> users = new ArrayList<>();
     private static final String FILE_NAME = "/prfs.ckz";
     private static final String TAG = "UserAccountManager";
@@ -142,7 +142,7 @@ public class UserAccountManager {
      */
     public boolean notSignedIn() {
         String[] credentials = Session.getUser();
-        currentUser = signIn(credentials[0], credentials[1]);
+        signIn(credentials[0], credentials[1]);
         return currentUser == null;
     }
 }

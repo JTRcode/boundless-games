@@ -8,12 +8,12 @@
 
     <Button
         android:id="@+id/sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="55dp"
+        android:background="@drawable/log_out"
         android:onClick="signOut"
-        android:text="@string/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,60 +30,72 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.52">
 
-        <Button
-                android:id="@+id/PixelGame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="startGame"
-                android:text="@string/pixel" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-                android:id="@+id/RotateTile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="startGame"
-                android:text="@string/rotate_tile" />
-
-        <Button
+            <Button
                 android:id="@+id/GPACatcherGame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/gpa_game"
                 android:onClick="startGame"
                 android:text="@string/gpa_catcher" />
 
+            <Button
+                android:id="@+id/PixelGame"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/pixel_game"
+                android:onClick="startGame"
+                android:text="@string/pixel" />
+
+            <Button
+                android:id="@+id/RotateTile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/tile_game"
+                android:onClick="startGame"
+                android:text="@string/rotate_tile" />
+
+        </LinearLayout>
+
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
-                    android:id="@+id/customization"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50"
-                    android:onClick="goCustomization"
-                    android:text="@string/customization" />
+                android:id="@+id/customization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customization_button"
+                android:onClick="goCustomization" />
 
             <Button
-                    android:id="@+id/stats"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50"
-                    android:onClick="goStatistics"
-                    android:text="@string/stats" />
+                android:id="@+id/stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stats_button"
+                android:onClick="goStatistics" />
+
+            <Button
+                android:id="@+id/shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shop_button"
+                android:gravity="center"
+                android:onClick="goShop" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-            android:id="@+id/shop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/shop"
-            android:onClick="goShop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

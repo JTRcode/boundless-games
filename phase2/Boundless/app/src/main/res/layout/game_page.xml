@@ -19,14 +19,14 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="37dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:id="@+id/pause_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/pause_button"
         android:onClick="pauseButtonPressed"
-        android:text="||"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -39,6 +39,7 @@
         android:layout_marginBottom="100dp"
         android:background="#0A0A0A"
         android:orientation="vertical"
+        android:textAlignment="center"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +50,7 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:text="@string/pause"
@@ -61,22 +62,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="173dp"
-            android:layout_height="233dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/resume_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="resumePressed"
             android:scaleType="fitCenter"
-            android:src="@drawable/pause_resume"
-            app:layout_constraintBottom_toTopOf="@+id/pauseMenu_back_menu2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView4" />
+            android:src="@drawable/play_button"
+            android:contentDescription="@string/pause" />
 
         <Button
             android:id="@+id/pauseMenu_back_menu2"
@@ -92,11 +87,11 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageButton2" />
+            app:layout_constraintTop_toBottomOf="@id/resume_button" />
 
         <Button
             android:id="@+id/pauseMenu_back_levels2"
@@ -111,11 +106,12 @@
             android:text="@string/pause_back_to_levels"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pauseMenu_back_menu2" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

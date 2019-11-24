@@ -9,9 +9,9 @@
     <string name="sign_in">Sign In</string>
 
     //MenuActivity strings
-    <string name="gpa_catcher">GPA Catcher</string>
-    <string name="pixel">Pixel</string>
-    <string name="rotate_tile">Rotate Tile</string>
+    <string name="gpa_catcher">GPA Game</string>
+    <string name="pixel">Pixel Game</string>
+    <string name="rotate_tile">Tile Game</string>
     <string name="sign_out">Sign out</string>
     <string name="customization">Customization</string>
     <string name="stats">Statistics</string>
