@@ -8,36 +8,40 @@
 
     <Button
             android:id="@+id/game"
-            android:layout_width="wrap_content"
+            android:layout_width="68dp"
             android:layout_height="wrap_content"
             android:text="@string/Game"
+            android:textSize="17sp"
             android:onClick="shopGame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
             android:id="@+id/pixel"
-            android:layout_width="wrap_content"
+            android:layout_width="68dp"
             android:layout_height="wrap_content"
             android:text="@string/pixel"
+            android:textSize="17sp"
             android:onClick="shopPixel"
             app:layout_constraintStart_toEndOf="@+id/game"
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
             android:id="@+id/tile"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="@string/rotate_tile"
+            android:textSize="17sp"
             android:onClick="shopTile"
             app:layout_constraintStart_toEndOf="@+id/pixel"
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
             android:id="@+id/gpa"
-            android:layout_width="wrap_content"
+            android:layout_width="132dp"
             android:layout_height="wrap_content"
             android:text="@string/gpa_catcher"
+            android:textSize="17sp"
             android:onClick="shopGpa"
             app:layout_constraintStart_toEndOf="@+id/tile"
             app:layout_constraintTop_toTopOf="parent" />

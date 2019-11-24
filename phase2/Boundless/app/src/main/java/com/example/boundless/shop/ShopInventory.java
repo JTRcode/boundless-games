@@ -10,12 +10,12 @@ import com.example.boundless.users.UserAccountManager;
 
 
 public class ShopInventory {
-    Activity activity;
-    int[] inventory = new int[20]; //each inventory item is stored by their image id
-    String user = UserAccountManager.currentUser.getName();;
-    int numItems;
-    LinearLayout layout;
-    SharedPreferences preferences;
+    private Activity activity;
+    private int[] inventory = new int[20]; //each inventory item is stored by their image id
+    private String user = UserAccountManager.currentUser.getName();;
+    private int numItems;
+    private LinearLayout layout;
+    private SharedPreferences preferences;
 
 
     public ShopInventory(Activity activity){
@@ -28,6 +28,7 @@ public class ShopInventory {
         for (int i=0; i<numItems; i++){
             inventory[i] = preferences.getInt(user+i, 0);
         }
+        displayInventory();
 
     }
 
@@ -39,11 +40,10 @@ public class ShopInventory {
         displayImage(numItems);
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(user, numItems);
         editor.putInt(user+numItems, image);
-        editor.apply();
-
         numItems++;
+        editor.putInt(user, numItems);
+        editor.apply();
 
 
 
@@ -69,6 +69,15 @@ public class ShopInventory {
             numItems--;
         }
         inventory = newInventory;
+
+        SharedPreferences.Editor editor = preferences.edit();
+        for (int i=0; i<numItems; i++){
+            editor.putInt(user+i, image);
+        }
+        editor.putInt(user, numItems);
+        editor.apply();
+
+
         return deleted;
     }
 
@@ -79,14 +88,14 @@ public class ShopInventory {
         ImageView image = new ImageView(activity);
         image.setImageResource(inventory[index]);
         image.setScaleType(ImageView.ScaleType.FIT_XY);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(150, 150);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(160, 160);
         layoutParams.setMargins(10, 10, 10, 10);
         image.setLayoutParams(layoutParams);
         layout.addView(image);
 
     }
 
-    public void displayInventory(){
+    private void displayInventory(){
         layout.removeAllViews();
         for (int i=0; i < numItems; i++){
             displayImage(i);
