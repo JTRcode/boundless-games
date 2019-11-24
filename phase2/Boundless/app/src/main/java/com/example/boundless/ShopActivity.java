@@ -52,32 +52,28 @@ public class ShopActivity extends AppCompatActivity {
 
         int imageID = (int) findViewById(R.id.item1).getTag();
         inventory.addItem(imageID);
-        inventory.displayInventory();
     }
 
     public void purchase2(View view) {
         int imageID = (int) findViewById(R.id.item2).getTag();
         inventory.addItem(imageID);
-        inventory.displayInventory();
     }
 
     public void purchase3(View view) {
         int imageID = (int) findViewById(R.id.item3).getTag();
         inventory.addItem(imageID);
-        inventory.displayInventory();
     }
 
     public void purchase4(View view) {
         int imageID = (int) findViewById(R.id.item4).getTag();
         inventory.addItem(imageID);
-        inventory.displayInventory();
     }
 
     public void purchase5(View view) {
         int imageID = (int) findViewById(R.id.item5).getTag();
         inventory.addItem(imageID);
-        inventory.displayInventory();
     }
+
 
 
 }
