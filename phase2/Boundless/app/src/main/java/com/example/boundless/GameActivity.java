@@ -4,27 +4,29 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SurfaceHolder;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.core.content.res.ResourcesCompat;
+import android.widget.Toast;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.Game;
+import com.example.boundless.shop.InventoryItem;
+import com.example.boundless.shop.ShopInventory;
 import com.example.boundless.users.UserAccountManager;
 import com.example.boundless.utilities.HandleCustomization;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * The activity that holds the game itself
+ */
 public class GameActivity extends Activity implements Observer {
-
     private Panel panel;
     private GamesEnum currentGame;
     private int level = -1;
@@ -33,36 +35,31 @@ public class GameActivity extends Activity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("GameActivity", "oh no it's creating again, why don't you just resume, ugh");
-        if(savedInstanceState==null)
+        if (savedInstanceState == null)
             Log.d("GameActivity", "no saved instance state");
     }
 
     @Override
-    protected void onStart(){
-            super.onStart();
-            Log.d("GameActivity", "onStart is running  before resume");
-            setupGame();
+    protected void onStart() {
+        super.onStart();
+        Log.d("GameActivity", "onStart is running  before resume");
+        setupGame();
     }
 
-    /**
-     * Sets up the game
-     */
     private void setupGame() {
         setCurrentGame();
+        setHintButtons(currentGame);
         HandleCustomization.setGameBackground(this, findViewById(R.id.ConstraintLayout));
-        //HandleCustomization.startMusic(this);
+        HandleCustomization.startMusic(this);
     }
 
-    /**
-     * Sets up the views for the current game.
-     */
     private void setCurrentGame() {
         currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
         if (BusinessContext.needsLevels(currentGame))
             level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
-        Log.d("GameActivity","setting current game");
+        Log.d("GameActivity", "setting current game");
         if (currentGame != null) {
-            Log.d("GameActivity","current game is not null");
+            Log.d("GameActivity", "current game is not null");
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
             panel.chooseGame(currentGame, level);
@@ -78,38 +75,53 @@ public class GameActivity extends Activity implements Observer {
             currentGame.showInstructions();
     }
 
+    private void setHintButtons(final GamesEnum game) {
+        LinearLayout pauseLayout = findViewById(R.id.inventory_layout);
+        List<InventoryItem> inventory = ShopInventory.getInventoryForGame(this, game);
+        for (final InventoryItem item : inventory) {
+            Button inventoryButton = new Button(this);
+            inventoryButton.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+            inventoryButton.setBackgroundResource(item.getImageId());
+            inventoryButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    item.useItem();
+                }
+            });
+            inventoryButton.setTag(item.getImageId());
+            pauseLayout.addView(inventoryButton);
+        }
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
-
     }
 
+    /**
+     * Deals with the pause button on the screen being pressed
+     *
+     * @param view The button pressed
+     */
     public void pauseButtonPressed(View view) {
-        //TODO: Huiqin, add your logic here to pull the other layout forwards
-        //showOverlay("PAUSED", false);
-
         panel.pause();
         findViewById(R.id.pauseLayout).setVisibility(View.VISIBLE);
         findViewById(R.id.pauseLayout).bringToFront();
-
         HandleCustomization.pauseMusic(this);
-
     }
 
-
-    public void resumePressed(View view){
-
+    /**
+     * Deals with the resume button being pressed
+     *
+     * @param view The button pressed
+     */
+    public void resumePressed(View view) {
         findViewById(R.id.pauseLayout).setVisibility(View.INVISIBLE);
         HandleCustomization.startMusic(this);
         panel.resume();
         Log.d("GameActivity", "onResume()!!!");
     }
 
-    /**
-     * Show an overlay with info from the game
-     *
-     * @param text The text to show on the overlay
-     */
     private void showOverlay(String text, final boolean gameIsOver) {
         panel.pause();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -160,15 +172,25 @@ public class GameActivity extends Activity implements Observer {
         startActivity(intent);
     }
 
-    public void backToMain(View view){
+    /**
+     * Goes back to the main menu
+     *
+     * @param view The button clicked
+     */
+    public void backToMain(View view) {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 
-    public void backToLevels(View view){
+    /**
+     * Goes back to the level screen
+     *
+     * @param view The button clicked
+     */
+    public void backToLevels(View view) {
         Intent intent = new Intent(this, LevelActivity.class);
-        intent.putExtra(IntentExtras.gameEnum,currentGame);
-        intent.putExtra(IntentExtras.levelNumber,level);
+        intent.putExtra(IntentExtras.gameEnum, currentGame);
+        intent.putExtra(IntentExtras.levelNumber, level);
         startActivity(intent);
     }
 }

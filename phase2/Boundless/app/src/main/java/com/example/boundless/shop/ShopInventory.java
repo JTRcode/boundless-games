@@ -6,98 +6,132 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.boundless.R;
+import com.example.boundless.games.GamesEnum;
 import com.example.boundless.users.UserAccountManager;
 
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * An inventory for the shop
+ */
 public class ShopInventory {
     private Activity activity;
-    private int[] inventory = new int[20]; //each inventory item is stored by their image id
-    private String user = UserAccountManager.currentUser.getName();;
+    private static List<Integer> inventory = new ArrayList<>(); //each inventory item is stored by their image id
+    private static String user = UserAccountManager.currentUser.getName();
     private int numItems;
     private LinearLayout layout;
-    private SharedPreferences preferences;
+    private static SharedPreferences preferences;
 
-
-    public ShopInventory(Activity activity){
+    /**
+     * A new shop inventory
+     *
+     * @param activity The current activity
+     */
+    public ShopInventory(Activity activity) {
         this.activity = activity;
         layout = activity.findViewById(R.id.inventory_linearlayout);
 
-        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
-
-        numItems = preferences.getInt(user, 0);
-        for (int i=0; i<numItems; i++){
-            inventory[i] = preferences.getInt(user+i, 0);
-        }
+        updateInventory(activity);
         displayInventory();
-
     }
 
-    public void addItem(int image){
-        if (numItems == 20){
-            return;
+    private static void updateInventory(Activity activity) {
+        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
+
+        int numItems = preferences.getInt(user, 0);
+        for (int i = 0; i < numItems; i++) {
+            inventory.add(preferences.getInt(user + i, 0));
         }
-        inventory[numItems] = image;
-        displayImage(numItems);
+    }
+
+    /**
+     * Gets the inventory for the game
+     *
+     * @param activity The current activity
+     * @param game     The game to get the inventory for
+     * @return A list of image id's for this game
+     */
+    public static List<InventoryItem> getInventoryForGame(Activity activity, GamesEnum game) {
+        if (inventory.isEmpty()) updateInventory(activity);
+        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
+        ShopTypeTemplate shop;
+        switch (game) {
+            case PIXELS:
+                shop = new PixelShop();
+                break;
+            case ROTATETILE:
+                shop = new TileShop();
+                break;
+            default:
+                shop = new GpaShop();
+                break;
+        }
+        List<InventoryItem> shopInventory = new ArrayList<>(shop.shopItems);
+        shopInventory.removeIf(item -> inventory.contains(item.getImageId()));
+        return shopInventory;
+    }
+
+    /**
+     * Adds an item to the inventory
+     *
+     * @param image The image of the item to add
+     */
+    public void addItem(int image) {
+        if (inventory.size() >= 20) return;
+        inventory.add(image);
+        displayImage(inventory.size() - 1);
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(user+numItems, image);
+        editor.putInt(user + numItems, image);
         numItems++;
         editor.putInt(user, numItems);
         editor.apply();
-
-
-
     }
 
-    public boolean deleteItem(int image){
+    /**
+     * Deletes an item from the shop inventory
+     *
+     * @param image The item image to delete
+     * @return If the delete was successful
+     */
+    static boolean deleteItem(int image) {
         // removes the first item in inventory that matches int image
         // returns true when the item has been deleted
         boolean deleted = false;
-        int[] newInventory = new int[20];
-        int index = 0;
+        List<Integer> newInventory = new ArrayList<>();
 
-        for (int i=0; i < numItems; i++){
-            if (inventory[i] == image && !deleted){
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) == image && !deleted)
                 deleted = true;
-            }
-            else {
-                newInventory[index] = inventory[i];
-                index++;
-            }
-        }
-        if (deleted){
-            numItems--;
+            else
+                newInventory.add(inventory.get(i));
         }
         inventory = newInventory;
 
         SharedPreferences.Editor editor = preferences.edit();
-        for (int i=0; i<numItems; i++){
-            editor.putInt(user+i, image);
+        for (int i = 0; i < inventory.size(); i++) {
+            editor.putInt(user + i, image);
         }
-        editor.putInt(user, numItems);
+        editor.putInt(user, inventory.size());
         editor.apply();
-
 
         return deleted;
     }
 
-    private void displayImage(int index){
-        if (index > numItems){
-            return;
-        }
+    private void displayImage(int index) {
         ImageView image = new ImageView(activity);
-        image.setImageResource(inventory[index]);
+        image.setImageResource(inventory.get(index));
         image.setScaleType(ImageView.ScaleType.FIT_XY);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(160, 160);
         layoutParams.setMargins(10, 10, 10, 10);
         image.setLayoutParams(layoutParams);
         layout.addView(image);
-
     }
 
-    private void displayInventory(){
+    private void displayInventory() {
         layout.removeAllViews();
-        for (int i=0; i < numItems; i++){
+        for (int i = 0; i < inventory.size(); i++) {
             displayImage(i);
         }
     }
