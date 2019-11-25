@@ -18,6 +18,7 @@ public class RotateTileTouchHandler implements ITouchHandler {
     private int startX = GameResources.TILE_START_X;
     private int startY = GameResources.TILE_START_Y;
     private Tile[][] userChoices;
+    private static char hintTile = Character.MIN_VALUE;
 
     /**
      * Creates a RotateTileTouchHandler
@@ -25,7 +26,7 @@ public class RotateTileTouchHandler implements ITouchHandler {
      * @param manager The manager for the tile game
      */
     public RotateTileTouchHandler(GridManager<Tile, TileLevel> manager) {
-        width = manager.getLevel().getWidth(startX);
+        width = manager.getLevel().getTileWidth(startX);
         userChoices = manager.getUserChoices();
         gridSize = manager.getGridSize();
     }
@@ -48,5 +49,14 @@ public class RotateTileTouchHandler implements ITouchHandler {
             Statistics.clickEvent();
             Achievements.numRotateTaps++;
         }
+    }
+
+    /**
+     * Allows the user to place a given tile anywhere on the grid
+     *
+     * @param tile The tile the user can place
+     */
+    public static void setFreeTile(char tile) {
+        hintTile = tile;
     }
 }

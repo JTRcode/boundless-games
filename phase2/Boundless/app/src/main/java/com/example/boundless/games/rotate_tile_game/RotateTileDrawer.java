@@ -26,7 +26,7 @@ public class RotateTileDrawer implements IGridDrawer {
      * @param manager The manager for the Rotate Tile game
      */
     public RotateTileDrawer(GridManager<Tile, TileLevel> manager) {
-        width = manager.getLevel().getWidth(startX);
+        width = manager.getLevel().getTileWidth(startX);
         userChoices = manager.getUserChoices();
         gridSize = manager.getGridSize();
         createStartEndTile();

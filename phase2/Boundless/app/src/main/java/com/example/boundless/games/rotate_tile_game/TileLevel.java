@@ -10,7 +10,7 @@ import com.example.boundless.games.rotate_tile_game.tiles.TileFactory;
  */
 public class TileLevel {
     private Tile[][] level;
-    private int width;
+    private int tileWidth;
 
     /**
      * Set the tiles of the tile game
@@ -36,9 +36,9 @@ public class TileLevel {
      * @return The tiles for this level
      */
     Tile[][] getTiles() {
-        width = (width <= 0) ? getWidth(GameResources.TILE_START_X) : width;
-        if (level[0][0] != null && level[0][0].rotatedImage.getHeight() != width)
-            resizeUserChoices(width);
+        tileWidth = (tileWidth <= 0) ? getTileWidth(GameResources.TILE_START_X) : tileWidth;
+        if (level[0][0] != null && level[0][0].rotatedImage.getHeight() != tileWidth)
+            resizeUserChoices(tileWidth);
         return level;
     }
 
@@ -48,11 +48,11 @@ public class TileLevel {
      * @param startX The starting x
      * @return The width of each pixel
      */
-    int getWidth(int startX) {
+    int getTileWidth(int startX) {
         if (level == null) return 0;
         int newWidth = (Panel.SCREEN_WIDTH - 2 * startX) / getGridSize();
-        if (width != newWidth) {
-            width = newWidth;
+        if (tileWidth != newWidth) {
+            tileWidth = newWidth;
             resizeUserChoices(newWidth);
         }
         return newWidth;
