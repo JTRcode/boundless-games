@@ -1,5 +1,7 @@
 package com.example.boundless.shop;
 
+import android.app.Activity;
+
 import com.example.boundless.games.GamesEnum;
 
 /**
@@ -30,7 +32,7 @@ public class InventoryItem {
     /**
      * Set the action to be used immediately after purchasing it
      */
-    public void setImmediate() {
+    void setImmediate() {
         this.isUsedImmediately = true;
     }
 
@@ -46,9 +48,9 @@ public class InventoryItem {
     /**
      * Use the item
      */
-    public void useItem() {
+    public void useItem(Activity activity) {
         action.run();
-        if (!isUsedImmediately) ShopInventory.deleteItem(imageId);
+        if (!isUsedImmediately) ShopInventory.deleteItem(activity, imageId);
     }
 
     /**
@@ -75,7 +77,7 @@ public class InventoryItem {
      *
      * @return The description of the item
      */
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 }

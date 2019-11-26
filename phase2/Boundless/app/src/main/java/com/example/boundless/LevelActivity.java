@@ -33,12 +33,8 @@ public class LevelActivity extends AppCompatActivity {
     private void createButtons() {
         GridLayout grid = findViewById(R.id.gridLayout);
         final Typeface font = ResourcesCompat.getFont(this, R.font.baloo_da);
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startLevel(view);
-            }
-        };
+        View.OnClickListener listener = this::startLevel;
+
         for (int i = 0; i < BusinessContext.getNumOfLevels(game); i++) {
             Button newButton = new Button(this);
             newButton.setTypeface(font);

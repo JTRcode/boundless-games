@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
@@ -19,7 +18,7 @@ import com.example.boundless.shop.ShopInventory;
 import com.example.boundless.users.UserAccountManager;
 import com.example.boundless.utilities.HandleCustomization;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -77,19 +76,21 @@ public class GameActivity extends Activity implements Observer {
 
     private void setHintButtons(final GamesEnum game) {
         LinearLayout pauseLayout = findViewById(R.id.inventory_layout);
-        List<InventoryItem> inventory = ShopInventory.getInventoryForGame(this, game);
-        for (final InventoryItem item : inventory) {
-            Button inventoryButton = new Button(this);
-            inventoryButton.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-            inventoryButton.setBackgroundResource(item.getImageId());
-            inventoryButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    item.useItem();
-                }
-            });
-            inventoryButton.setTag(item.getImageId());
-            pauseLayout.addView(inventoryButton);
+        pauseLayout.removeAllViews();
+        Map<InventoryItem, Integer> inventory = ShopInventory.getInventoryForGame(this, game);
+        for (final InventoryItem item : inventory.keySet()) {
+            for (int i = 0; i < inventory.get(item); i++) {
+                Button inventoryButton = new Button(this);
+                inventoryButton.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+                inventoryButton.setBackgroundResource(item.getImageId());
+                inventoryButton.setPaddingRelative(10, 0, 10, 0);
+                inventoryButton.setOnClickListener(view -> {
+                    item.useItem(this);
+                    setHintButtons(game);
+                });
+                inventoryButton.setTag(item.getImageId());
+                pauseLayout.addView(inventoryButton);
+            }
         }
     }
 

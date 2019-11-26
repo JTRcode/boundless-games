@@ -56,7 +56,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for maxGpaAchieve's value
      *
      * @return boolean for whether player got 4.0 GPA
@@ -66,7 +65,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for threeGpaAchieve's value
      *
      * @return boolean for whether player got 3.0 GPA
@@ -76,7 +74,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for failGpaAchieve's value
      *
      * @return boolean for whether player got 0.0 GPA
@@ -86,7 +83,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for numPixelTaps
      *
      * @return int for number of screen clicks in Pixel Game
@@ -103,7 +99,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for twentySecondsOrLessPixel boolean value
      *
      * @return boolean for whether player finished pixel game in less than 20 seconds
@@ -113,16 +108,11 @@ public class Achievements {
     }
 
     /**
-     *
      * Setter for twentySecondsOrLessPixel value
-     *
-     * @param twentySecondsOrLessPixel sets twentySecondsOrLessPixel boolean value to this boolean
-     *                                 if Pixel game stage is completed in less than twenty seconds
      */
-    public static void setTwentySecondsOrLessPixel(boolean twentySecondsOrLessPixel) {
-        Achievements.twentySecondsOrLessPixel = twentySecondsOrLessPixel;
+    public static void setTwentySecondsOrLessPixel() {
+        Achievements.twentySecondsOrLessPixel = true;
     }
-
 
     /**
      * Getter for numRotateTaps
@@ -141,7 +131,6 @@ public class Achievements {
     }
 
     /**
-     *
      * Getter for TwentySecondsOrLessRotate
      *
      * @return boolean for whether player has finished Rotate game in less than twenty seconds
@@ -151,13 +140,9 @@ public class Achievements {
     }
 
     /**
-     *
      * Setter for TwentySecondsOrLessRotate
-     *
-     * @param twentySecondsOrLessRotate sets twentySecondsOrLessRotate boolean value to this boolean
-     *                                  if Rotate game stage is completed in less than twenty seconds
      */
-    public static void setTwentySecondsOrLessRotate(boolean twentySecondsOrLessRotate) {
-        Achievements.twentySecondsOrLessRotate = twentySecondsOrLessRotate;
+    public static void setTwentySecondsOrLessRotate() {
+        Achievements.twentySecondsOrLessRotate = true;
     }
 }

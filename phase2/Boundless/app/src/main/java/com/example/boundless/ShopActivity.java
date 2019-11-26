@@ -116,7 +116,7 @@ public class ShopActivity extends AppCompatActivity {
         for (InventoryItem item : inventoryItems) {
             if (item.getImageId() == imageID) {
                 if (item.isImmediate()) {
-                    item.useItem();
+                    item.useItem(this);
                     showToast("Purchased, and used!");
                     return;
                 }

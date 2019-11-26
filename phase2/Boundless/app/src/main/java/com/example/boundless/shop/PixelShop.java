@@ -31,29 +31,8 @@ public class PixelShop extends ShopTypeTemplate {
         inventoryList.add(new InventoryItem("View the solution for a second",
                 R.drawable.pixel_game, GamesEnum.PIXELS, PixelDrawer::showHint));
         inventoryList.add(new InventoryItem("Unlock the 'Get the correct answer is less than 20 seconds' achievement",
-                R.drawable.medal, GamesEnum.PIXELS, () -> Achievements.setTwentySecondsOrLessPixel(true)));
+                R.drawable.medal, GamesEnum.PIXELS, Achievements::setTwentySecondsOrLessPixel));
         inventoryList.get(2).setImmediate();
         return inventoryList;
-    }
-
-    public int[] itemsImage(){
-        int[] items = new int[5];
-        items[0] = R.drawable.heart;
-        items[1] = R.drawable.heart;
-        items[2] = R.drawable.heart;
-        items[3] = R.drawable.heart;
-        items[4] = R.drawable.heart;
-        return items;
-
-    }
-
-    public String[] itemsDescription(){
-        String[] items = new String[6];
-        items[0] = "coming soon-1";
-        items[1] = "coming soon-2";
-        items[2] = "coming soon-3";
-        items[3] = "coming soon-4";
-        items[4] = "coming soon-5";
-        return items;
     }
 }
