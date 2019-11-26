@@ -49,4 +49,9 @@ Once fulfilled, a checkmark will be displayed below the achievement to mark its 
 
 The sign in saves the user's credentials between the user closing/opening the app so that you will stay signed in until you decide to sign back out by clicking the 'Sign out' button.
 
-5) Shop (TODO)
+5) Shop
+
+The shop contains "consumable items" that the user can purchase using in-game points, obtained from playing any of the three games.
+Each item is game specific, and is automatically "consumed" if it exists in the user's inventory the next time the user plays that game.
+Although multiples of the same item can be purchased, only one of them can be used at a time.
+Clicking on either the image or description of any item will automatically add the item to the shop inventory, which can contain a maximum of 20 items at any given time.
