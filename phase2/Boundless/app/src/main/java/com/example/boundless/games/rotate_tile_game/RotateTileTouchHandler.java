@@ -47,7 +47,7 @@ public class RotateTileTouchHandler implements ITouchHandler {
         if (i < gridSize && j < gridSize && i >= 0 && j >= 0) {
             userChoices[i][j].rotateTile();
             Statistics.clickEvent();
-            Achievements.numRotateTaps++;
+            Achievements.setNumRotateTaps();
         }
     }
 

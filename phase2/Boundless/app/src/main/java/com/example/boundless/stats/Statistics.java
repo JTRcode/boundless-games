@@ -26,6 +26,12 @@ public class Statistics {
         startTime = new Date().getTime();
     }
 
+    /**
+     *
+     * Start measuring time for Pixel or Rotate game depending on enum passed in
+     *
+     * @param gamesEnum the enum representing the game we want to measure time for
+     */
     public static void startTimeByGame(GamesEnum gamesEnum) {
 
         if (gamesEnum == GamesEnum.PIXELS) {
@@ -45,6 +51,12 @@ public class Statistics {
         timeElapsedSeconds += TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
     }
 
+    /**
+     *
+     * Stop measuring time for Pixel or Rotate game depending on enum passed in
+     *
+     * @param gamesEnum the enum representing the game we want to stop measuring time for
+     */
     public static void endTimeByGame(GamesEnum gamesEnum) {
 
         if (gamesEnum == GamesEnum.PIXELS) {
@@ -69,7 +81,7 @@ public class Statistics {
     }
 
     /**
-     * returns a random number between 400-600
+     * returns a random integer between 400-600
      */
     private static int addRandomScore() {
         Random ran = new Random();
@@ -91,31 +103,19 @@ public class Statistics {
     }
 
     /**
-     * returns the total number of clicks
+     * returns an integer representing the total number of clicks
      */
     public static int totalClicks() {
         return counterClicks;
     }
 
     /**
-     * returns string formatting the statistics (to be called at the end after all 3 games)
+     * returns string formatting of the statistics
      */
     public static String printStats() {
         return "Total Time in Game (Seconds): " + timeElapsedSeconds + "\n" +
                 "Total Points: " + totalScore + "\n" +
                 "Total Number of Taps on Screen: " + counterClicks + "\n" +
                 "Thanks for Playing!";
-    }
-
-    public static String printTime() {
-        return "Total Time in Game (Seconds): " + timeElapsedSeconds;
-    }
-
-    public static String printPoints() {
-        return "Total Points: " + totalScore;
-    }
-
-    public static String printTaps() {
-        return "Total Number of Taps on Screen: " + counterClicks;
     }
 }

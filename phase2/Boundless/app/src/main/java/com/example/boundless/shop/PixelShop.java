@@ -31,7 +31,7 @@ public class PixelShop extends ShopTypeTemplate {
         inventoryList.add(new InventoryItem("View the solution for a second",
                 R.drawable.pixel_game, GamesEnum.PIXELS, PixelDrawer::showHint));
         inventoryList.add(new InventoryItem("Unlock the 'Get the correct answer is less than 20 seconds' achievement",
-                R.drawable.medal, GamesEnum.PIXELS, () -> Achievements.twentySecondsOrLessPixel = true));
+                R.drawable.medal, GamesEnum.PIXELS, () -> Achievements.setTwentySecondsOrLessPixel(true)));
         inventoryList.get(2).setImmediate();
         return inventoryList;
     }

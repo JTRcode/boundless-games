@@ -54,10 +54,8 @@ public class MenuActivity extends AppCompatActivity {
     private GamesEnum getGame(View view){
         switch (view.getId()) {
             case R.id.PixelGame:
-                Achievements.pixelPlayed = true;
                 return GamesEnum.PIXELS;
             case R.id.RotateTile:
-                Achievements.rotatePlayed = true;
                 return GamesEnum.ROTATETILE;
             default:
                 return GamesEnum.GPACATCHER;

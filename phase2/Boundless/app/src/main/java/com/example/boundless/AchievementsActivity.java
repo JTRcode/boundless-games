@@ -37,23 +37,23 @@ public class AchievementsActivity extends AppCompatActivity {
         ImageView gpa_cross3 = findViewById(R.id.gpa_cross3);
 
 
-        if (Achievements.numPixelTaps >= 50)
+        if (Achievements.getNumPixelTaps() >= 50)
             pixel_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.numPixelTaps >= 200)
+        if (Achievements.getNumPixelTaps() >= 200)
             pixel_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.twentySecondsOrLessPixel)
+        if (Achievements.isTwentySecondsOrLessPixel())
             pixel_cross3.setImageResource(R.drawable.checkmark);
-        if (Achievements.numRotateTaps >= 50)
+        if (Achievements.getNumRotateTaps() >= 50)
             rotate_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.numRotateTaps >= 200)
+        if (Achievements.getNumRotateTaps() >= 200)
             rotate_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.twentySecondsOrLessRotate)
+        if (Achievements.isTwentySecondsOrLessRotate())
             rotate_cross3.setImageResource(R.drawable.checkmark);
-        if (Achievements.maxGpaAchieve)
+        if (Achievements.isMaxGpaAchieve())
             gpa_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.threeGpaAchieve)
+        if (Achievements.isThreeGpaAchieve())
             gpa_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.failGpaAchieve)
+        if (Achievements.isFailGpaAchieve())
             gpa_cross3.setImageResource(R.drawable.checkmark);
 
         descriptions.put(R.id.pixel_achieve1, R.string.pixel_message1);
@@ -73,7 +73,7 @@ public class AchievementsActivity extends AppCompatActivity {
      * @param view The button clicked
      */
     public void backToStats(View view) {
-        Intent intent = new Intent(this,StatisticsActivity.class);
+        Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
 

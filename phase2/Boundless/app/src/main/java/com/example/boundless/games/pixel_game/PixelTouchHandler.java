@@ -69,7 +69,7 @@ public class PixelTouchHandler implements ITouchHandler {
         if ((newI != oldI || newJ != oldJ) && isInBoundsIJ(newI, newJ)) {
             if (actionDown) firstChangedOption = switchPixel(newI, newJ);
             else switchPixel(newI, newJ, firstChangedOption);
-            Achievements.numPixelTaps += 1;
+            Achievements.setNumPixelTaps();
             Statistics.clickEvent();
             oldI = newI;
             oldJ = newJ;

@@ -25,7 +25,7 @@ public class TileShop extends ShopTypeTemplate {
     private List<InventoryItem> setItems() {
         List<InventoryItem> inventoryList = new ArrayList<>();
         inventoryList.add(new InventoryItem("Unlock the 'Get the correct answer in less than 20 seconds' achievement",
-                R.drawable.medal, GamesEnum.ROTATETILE, () -> Achievements.twentySecondsOrLessRotate = true));
+                R.drawable.medal, GamesEnum.ROTATETILE, () -> Achievements.setTwentySecondsOrLessRotate(true)));
         inventoryList.get(0).setImmediate();
         inventoryList.add(new InventoryItem("Skip the next level",
                 R.drawable.cross_filled_pipe, GamesEnum.ROTATETILE,
