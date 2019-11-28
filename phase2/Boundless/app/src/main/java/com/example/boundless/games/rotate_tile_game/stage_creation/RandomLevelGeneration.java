@@ -17,44 +17,24 @@ public class RandomLevelGeneration {
     private int gridLength;
     //signifies the difficulty, higher difficulty means fewer solutions
     private DifficultyEnum difficulty;
-    //if True, there may be tiles that have no pipes, basically a unusable tile
-    private boolean hasWall;
-    //if True, the must use the special tile as part of their solution
-    private boolean mustUseTile;
-    private int[] start;
-    private int[] end;
     private List<Integer> pathToFinish;
-    private FindSolution findSolution;
 
     /**
      * the logic behind creating a Tile Level object, called by the RotateStageBuilder
      *
-     * @param builder
+     * @param builder The builder that builds the stage
      */
     public RandomLevelGeneration(RotateStageBuilder builder) {
         this.pathToFinish = new ArrayList<>();
         this.gridLength = builder.gridLength;
         this.difficulty = builder.difficulty;
-        this.hasWall = builder.hasWall;
-        this.mustUseTile = builder.mustUseTile;
-        makeStage();
+        makeStage(new int[]{0, 0}, new int[]{gridLength - 1, gridLength - 1});
     }
 
-
-    private void makeStage() {
+    private void makeStage(int[] start, int[] end) {
         stage = new Tile[gridLength][gridLength];
-        start = new int[]{0, 0};
-        end = new int[]{gridLength - 1, gridLength - 1};
-        findSolution = new FindSolution(start, end, gridLength, difficulty);
-        pathToFinish = findSolution.getPathToFinish();
-        System.out.println(pathToFinish);
+        pathToFinish = (new FindSolution(start, end, gridLength, difficulty)).getPathToFinish();
         makePath(3, 1);
-        if (hasWall) {
-            placeWalls();
-        }
-        if (mustUseTile) {
-            placeMustUseTile();
-        }
         fillBlanks();
     }
 
@@ -71,7 +51,7 @@ public class RandomLevelGeneration {
             diff = Math.abs(entry - exit) % 4;
 
             stage[coord[1]][coord[0]] = addPipe(diff);
-            findSolution.calculateNewCoord(coord, exit);
+            calculateNewCoord(coord, exit);
         }
     }
 
@@ -79,21 +59,30 @@ public class RandomLevelGeneration {
         return TileFactory.createTile((diff % 2 == 0) ? TileEnum.I : TileEnum.L);
     }
 
-    private void placeWalls() {
-        //not yet implemented
-    }
-
-    private void placeMustUseTile() {
-        //not yet implemented
-    }
-
     private void fillBlanks() {
         int size = stage.length;
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 if (stage[i][j] == null)
-                    //stage[i][j] = TileFactory.createTile(TileEnum.X);
                     stage[i][j] = TileFactory.createTile(TileEnum.ANY);
+    }
+
+    private void calculateNewCoord(int[] coord, int move) {
+        switch (move) {
+            case 0:
+                coord[1] -= 1;
+                break;
+            case 1:
+                coord[0] += 1;
+                break;
+            case 2:
+                coord[1] += 1;
+                break;
+            case 3:
+                coord[0] -= 1;
+                break;
+            default:
+        }
     }
 
     /**

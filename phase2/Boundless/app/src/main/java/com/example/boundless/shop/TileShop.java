@@ -1,6 +1,7 @@
 package com.example.boundless.shop;
 
 import com.example.boundless.R;
+import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.rotate_tile_game.RotateTileTouchHandler;
 import com.example.boundless.stats.Achievements;
@@ -29,7 +30,10 @@ public class TileShop extends ShopTypeTemplate {
         inventoryList.get(0).setImmediate();
         inventoryList.add(new InventoryItem("Skip the next level",
                 R.drawable.cross_filled_pipe, GamesEnum.ROTATETILE,
-                () -> UserAccountManager.currentUser.addUnlocked(GamesEnum.ROTATETILE)));
+                () -> {
+                    UserAccountManager.currentUser.addUnlocked(GamesEnum.ROTATETILE);
+                    BusinessContext.addLevel(GamesEnum.ROTATETILE);
+                }));
         inventoryList.get(1).setImmediate();
         inventoryList.add(new InventoryItem("Put a cross-pipe anywhere",
                 R.drawable.cross_pipe, GamesEnum.ROTATETILE, () -> RotateTileTouchHandler.setFreeTile('X')));

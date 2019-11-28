@@ -1,6 +1,5 @@
 package com.example.boundless.games.pixel_instructions;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -13,18 +12,25 @@ import com.example.boundless.games.pixel_game.PixelLevel;
 import com.example.boundless.games.pixel_game.PixelOptions;
 import com.example.boundless.utilities.DrawUtility;
 
-public class PixelInstructionDrawer extends PixelDrawer{
+/**
+ * Draws the pixel instructions
+ */
+public class PixelInstructionDrawer extends PixelDrawer {
 
     private static int startX = GameResources.PIXEL_START_X;
     private int startY = GameResources.PIXEL_START_Y;
     private int width;
-    private PixelLevel level;
     private Bitmap pointer;
     private int[] oldCoords = new int[]{-1, -1};
     private static int currentStep;
     private static int pointerX;
     private PixelOptions[][] userChoices;
 
+    /**
+     * A new pixel instruction drawer
+     *
+     * @param manager The manager managing the instructions
+     */
     public PixelInstructionDrawer(GridManager<PixelOptions, PixelLevel> manager) {
         super(manager);
         currentStep = 0;
@@ -32,8 +38,7 @@ public class PixelInstructionDrawer extends PixelDrawer{
         userChoices = manager.getUserChoices();
         pointer = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.pointer);
         pointer = Bitmap.createScaledBitmap(pointer, 46 * 3, 80 * 3, true);
-        level = manager.getLevel();
-        width = level.getWidth(startX);
+        width = manager.getLevel().getWidth(startX);
     }
 
     private void showTap() {
@@ -49,10 +54,18 @@ public class PixelInstructionDrawer extends PixelDrawer{
         oldCoords = coordsIJ;
     }
 
+    /**
+     * Tells if the instructions are ready for a user to complete the rest of the example
+     *
+     * @return If the user can try to complete the level yet
+     */
     public static boolean readyForUser() {
         return currentStep > 4;
     }
 
+    /**
+     * Goes to the next step in the instruction list
+     */
     static void nextStep() {
         currentStep++;
         pointerX = startX;

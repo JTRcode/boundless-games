@@ -1,31 +1,36 @@
 package com.example.boundless.games.rotate_tile_game.stage_creation;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class FindSolution {
-
-    private static final String TAG = "TileGame_FindSolution";
+/**
+ * Finds a solution for a given size of rotate tile grid
+ */
+class FindSolution {
     private int[][] pastLocation;
     private int gridLength;
     private DifficultyEnum difficulty;
     private List<Integer> pathToFinish;
     private int[] end;
 
+    /**
+     * A new solution finder
+     *
+     * @param start      The position for the solution to start at
+     * @param end        The position for the solution to end at
+     * @param gridLength The size of the grid
+     * @param difficulty The difficulty to make the solution
+     */
     FindSolution(int[] start, int[] end, int gridLength, DifficultyEnum difficulty) {
         pastLocation = new int[gridLength][gridLength];
         pathToFinish = new ArrayList<>();
         this.difficulty = difficulty;
         this.end = end;
         this.gridLength = gridLength;
-        while (!path(start, pastLocation, 1)) {
+        while (!path(start, pastLocation, 1))
             pastLocation = new int[gridLength][gridLength];
-        }
-        System.out.println(pathToFinish);
     }
 
     private boolean isOnFinishGrid(int[] position) {
@@ -41,14 +46,11 @@ public class FindSolution {
             return true;
         }
         pastLocation[location[1]][location[0]] = 1;
-        printPastLocation(pastLocation);
         ArrayList<Integer> choices = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
-        Log.d(TAG, "Size of choices is +" + choices.size());
         Random r = new Random();
         for (int i = 0; i < 4; i++) {
             int index = r.nextInt(choices.size());
             int move = choices.get(index);
-            Log.d(TAG, "MOVE is " + move);
             choices.remove(index);
             int[] newLocation = location.clone();
             calculateNewCoord(newLocation, move);
@@ -81,17 +83,6 @@ public class FindSolution {
         return pastLocation[position[1]][position[0]] == 1;
     }
 
-    private void printPastLocation(int[][] pastLocation) {
-        Log.d(TAG, "Grid of Past locations");
-        for (int[] row : pastLocation) {
-            for (int value : row) {
-                System.out.print(value);
-            }
-            System.out.println();
-        }
-        System.out.print(pathToFinish);
-    }
-
     private boolean outOfRange(int[] location) {
         for (int xy_position : location)
             if (xy_position >= gridLength || xy_position < 0) {
@@ -100,7 +91,7 @@ public class FindSolution {
         return false;
     }
 
-    void calculateNewCoord(int[] coord, int move) {
+    private void calculateNewCoord(int[] coord, int move) {
         switch (move) {
             case 0:
                 coord[1] -= 1;
@@ -118,6 +109,11 @@ public class FindSolution {
         }
     }
 
+    /**
+     * Get the path to finish
+     *
+     * @return The path to finish
+     */
     List<Integer> getPathToFinish() {
         return pathToFinish;
     }

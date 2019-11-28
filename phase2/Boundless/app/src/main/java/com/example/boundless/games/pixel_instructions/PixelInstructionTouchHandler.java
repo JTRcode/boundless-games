@@ -8,8 +8,10 @@ import com.example.boundless.games.pixel_game.PixelLevel;
 import com.example.boundless.games.pixel_game.PixelOptions;
 import com.example.boundless.games.pixel_game.PixelTouchHandler;
 
+/**
+ * A touch handler for the pixel instructions
+ */
 public class PixelInstructionTouchHandler extends PixelTouchHandler implements ITouchHandler {
-    GridManager<PixelOptions, PixelLevel> manager;
 
     /**
      * Create a new touch handler for the pixel game
@@ -18,7 +20,6 @@ public class PixelInstructionTouchHandler extends PixelTouchHandler implements I
      */
     public PixelInstructionTouchHandler(GridManager<PixelOptions, PixelLevel> manager) {
         super(manager);
-        this.manager = manager;
     }
 
     @Override

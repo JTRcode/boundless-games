@@ -48,7 +48,7 @@ public class TileLevel {
      * @param startX The starting x
      * @return The width of each pixel
      */
-    int getTileWidth(int startX) {
+    public int getTileWidth(int startX) {
         if (level == null) return 0;
         int newWidth = (Panel.SCREEN_WIDTH - 2 * startX) / getGridSize();
         if (tileWidth != newWidth) {
