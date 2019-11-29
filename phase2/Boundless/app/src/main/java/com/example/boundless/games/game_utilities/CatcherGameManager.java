@@ -1,16 +1,15 @@
 package com.example.boundless.games.game_utilities;
 
-public abstract class CatcherGameManager implements IGameManager {
+import com.example.boundless.games.gpa_catcher_game.Basket;
+import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 
-    abstract public void addFallingObject();
+public abstract class CatcherGameManager<E> implements IGameManager<E> {
 
-    abstract public void caughtObject();
+    abstract public boolean hitsGround(FallingObject object);
 
-    abstract public void missedObject();
+    abstract public boolean overlap(Basket basket, FallingObject object);
 
-    abstract public boolean checkGameOver();
+    abstract public double getScore();
 
-
-
-
+    abstract public String getGameOverText();
 }

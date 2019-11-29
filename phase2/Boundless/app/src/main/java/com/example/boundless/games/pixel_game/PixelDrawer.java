@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Draws the pixel game with labels on the top and side
  */
-public class PixelDrawer implements IGridDrawer {
+public class PixelDrawer implements IGameDrawer {
 
     private int startX = GameResources.PIXEL_START_X;
     private int startY = GameResources.PIXEL_START_Y;

@@ -3,9 +3,9 @@ package com.example.boundless.games.gpa_catcher_game.falling_objects;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.boundless.games.GPACatcherGameFacade;
 import com.example.boundless.Panel;
 import com.example.boundless.R;
+import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
 
 /**
  * A falling clock, adds time
@@ -19,13 +19,12 @@ class Clock extends FallingObject {
     }
 
     @Override
-    public void caught() {
-        GPACatcherGameFacade.addTime(50);
+    public void caught(GPAGameStatus status) {
+        status.setTime(status.getTime()+50);
     }
 
     @Override
-    public void missed() {
-        GPACatcherGameFacade.addTime(0);
+    public void missed(GPAGameStatus status) {
     }
 
 }

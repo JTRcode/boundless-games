@@ -8,6 +8,7 @@ import com.example.boundless.Panel;
  * Holds the resources for each game, e.g. "game over" strings and magic constants
  */
 public final class GameResources {
+
     private GameResources() {
     }
 
@@ -88,8 +89,45 @@ public final class GameResources {
     }
 
     //endregion
+
     //region GPA catcher game
 
-    public static final int GPA_MAX_TIME = Panel.SCREEN_WIDTH;
+    public static final int GPAGAME_BASKET_SIZE = 250;
+
+    public static final int GPAGAME_STARTING_LIVES = 3;
+
+    public static final int GPAGAME_DEFAULT_FALLING_SPEED = 2;
+
+    public static final double GPAGAME_MAX_TIME = 1000;
+
+    public static final double GPAGAME_STARTING_GPA = 3.0;
+
+    public static final int HEART_SIZE = 60;
+
+    public static final int GPAGAME_DEFAULT_BASKET_SPEED = 15;
+
+    public static final int GPAGAME_DEFAULT_TIME_DECREMENT = 1;
+
+    public static final int GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS = 10;
+
+    /**
+     * Gets the game over text for the GPA Game
+     *
+     * @return The string to show to the user.
+     */
+    public static StringBuilder getGPAGameOver() {
+        return new StringBuilder("GAME OVER! \n");
+    }
+
+    /**
+     * Gets the instructions text for the GPA Game
+     *
+     * @return The string to show the user.
+     */
+    public static String getGPAGameInstructions() {
+        return "Tap on the left or right sides of the screen to move the character.\n" +
+                "Try to get all the assignments and sleep you can get, but be careful of bombs!";
+    }
+
     //endregion
 }

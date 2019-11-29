@@ -2,6 +2,7 @@ package com.example.boundless.games.gpa_catcher_game.falling_objects;
 
 import android.graphics.Bitmap;
 
+import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.Panel;
 
@@ -44,6 +45,13 @@ public abstract class FallingObject {
     public int getSize() {
         return size;
     }
+
+    /**
+     * Get the bitmap image of this Falling Object
+     *
+     * @return Bitmap image
+     */
+    public Bitmap getAppearance(){return appearance;}
 
     /**
      * Get the x coordinate of the object
@@ -108,10 +116,10 @@ public abstract class FallingObject {
     /**
      * What happens when the object is caught
      */
-    public abstract void caught();
+    public abstract void caught(GPAGameStatus level);
 
     /**
      * What happens when the object is missed
      */
-    public abstract void missed();
+    public abstract void missed(GPAGameStatus level);
 }

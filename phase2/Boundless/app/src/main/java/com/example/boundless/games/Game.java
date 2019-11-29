@@ -47,22 +47,7 @@ public abstract class Game extends Observable {
      *
      * @param event The motion event of the screen being touched
      */
-    public void screenTouched(MotionEvent event){
-        final int pointerCount = event.getPointerCount();
-        for (int pointer = 0; pointer < pointerCount; pointer++) {
-            MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords();
-            event.getPointerCoords(pointer, coords);
-            this.screenTouched((int) coords.x, (int) coords.y);
-        }
-    }
-
-    /**
-     * Handles the screen being touched
-     *
-     * @param x The x coordinate of the touched location
-     * @param y The y coordinate of the touched location
-     */
-    public abstract void screenTouched(int x, int y);
+    public abstract void screenTouched(MotionEvent event);
 
     /**
      * Updates the screen, if necessary

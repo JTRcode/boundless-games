@@ -13,7 +13,7 @@ public class PixelGameFacade extends Game {
     private int currentLevel;
     private GridManager pixelManager;
     private ITouchHandler pixelTouchHandler;
-    private IGridDrawer pixelDrawer;
+    private IGameDrawer pixelDrawer;
 
     /**
      * A new pixel game
@@ -24,12 +24,12 @@ public class PixelGameFacade extends Game {
         currentLevel = builder.getLevel();
         this.pixelDrawer = builder.getDrawer();
         this.pixelTouchHandler = builder.getTouchHandler();
-        this.pixelManager = builder.getManager();
+        this.pixelManager = (GridManager) builder.getManager();
     }
 
     @Override
     boolean gameOver() {
-        return pixelManager.checkAnswer();
+        return pixelManager.checkGameOver();
     }
 
     @Override
@@ -40,11 +40,6 @@ public class PixelGameFacade extends Game {
     @Override
     public void screenTouched(MotionEvent event) {
         pixelTouchHandler.screenTouched(event);
-    }
-
-    @Override
-    public void screenTouched(int x, int y) {
-        //not implemented here
     }
 
     @Override

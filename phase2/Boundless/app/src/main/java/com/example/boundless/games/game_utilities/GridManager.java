@@ -6,7 +6,7 @@ package com.example.boundless.games.game_utilities;
  * @param <T> The type of the user's choices.
  * @param <E> The type of the Game's level.
  */
-public abstract class GridManager<T, E> implements  IGameManager{
+public abstract class GridManager<T, E> implements  IGameManager<E>{
     /**
      * Gets the grid size of the game.
      *
@@ -21,10 +21,4 @@ public abstract class GridManager<T, E> implements  IGameManager{
      */
     public abstract T[][] getUserChoices();
 
-    /**
-     * Gets a representation of the current level
-     *
-     * @return The current level's representation.
-     */
-    public abstract E getLevel();
 }

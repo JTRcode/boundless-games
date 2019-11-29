@@ -3,6 +3,7 @@ package com.example.boundless.games.gpa_catcher_game;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.stats.Statistics;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
@@ -19,21 +20,14 @@ public class Basket {
     private Bitmap appearance;
     private int coordX;
     private int coordY;
-    private int size = 250;
-    private int speed;
-    private int screenWidth;
-    private int screenHeight;
 
-    public Basket(int speed) {
+    public Basket() {
 
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
+        int size = GameResources.GPAGAME_BASKET_SIZE;
         appearance = Bitmap.createScaledBitmap(appearance, size, size, true);
 
-        this.screenWidth = Panel.SCREEN_WIDTH;
-        this.screenHeight = Panel.SCREEN_HEIGHT;
-        setCoordX(screenWidth / 2);
-        setCoordY(screenHeight - 250);
-        this.speed = speed;
+        //this.speed = speed;
     }
 
     /**
@@ -71,43 +65,23 @@ public class Basket {
     void setCoordY(int coordY) {
         this.coordY = coordY;
     }
-
+//TODO should not be caring about screen width
     /**
      * Moves the basket left on the screen
      */
-    public void moveLeft() {
-        Statistics.clickEvent();
-        if (coordX >= 0)
-            coordX -= speed;
+    public void moveLeft(int steps) {
+        coordX -= steps;
     }
 
     /**
      * Moves the basket right on the screen
      */
-    public void moveRight() {
-        Statistics.clickEvent();
-        if (coordX + size < screenWidth)
-            coordX += speed;
+    public void moveRight(int steps) {
+        coordX += steps;
     }
 
-    /**
-     * Checks if an item is in range to be caught by the basket
-     *
-     * @param object The object that being examined if it is caught by the basket
-     * @return return true if it's in the range of basket
-     */
-    boolean inRange(FallingObject object) {
-        int middle = object.getCoordX() + object.getSize() / 2;
-        int bottom = object.getCoordY() + object.getSize();
-
-        return (middle >= coordX && middle <= coordX + size && bottom >= coordY);
-    }
-
-    /**
-     * Draws the Basket
-     */
-    public void draw() {
-        DrawUtility.drawBitmap(appearance, coordX, coordY);
+    public Bitmap getAppearance() {
+        return appearance;
     }
 
     /**

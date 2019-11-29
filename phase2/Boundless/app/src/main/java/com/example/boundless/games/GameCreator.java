@@ -1,6 +1,12 @@
 package com.example.boundless.games;
 
+import android.os.AsyncTask;
+
 import com.example.boundless.games.game_utilities.*;
+import com.example.boundless.games.gpa_catcher_game.GPAGameDrawer;
+import com.example.boundless.games.gpa_catcher_game.GPAGameManager;
+import com.example.boundless.games.gpa_catcher_game.GPAGameTouchHandler;
+import com.example.boundless.games.gpa_catcher_game.StatusUpdater;
 import com.example.boundless.games.pixel_game.*;
 import com.example.boundless.games.pixel_instructions.*;
 import com.example.boundless.games.rotate_tile_game.*;
@@ -34,15 +40,20 @@ public class GameCreator {
         switch (gameToCreate) {
             case PIXELS:
                 GridManager<PixelOptions, PixelLevel> pixelManager = new PixelManager(level);
-                IGridDrawer pixelDrawer = new PixelDrawer(pixelManager);
+                IGameDrawer pixelDrawer = new PixelDrawer(pixelManager);
                 ITouchHandler pixelTouchHandler = new PixelTouchHandler(pixelManager);
                 return gameBuilder.buildTouchHandler(pixelTouchHandler).buildDrawer(pixelDrawer)
                         .buildLevel(level).buildManager(pixelManager).buildGame(gameToCreate);
             case GPACATCHER:
-                return new GPACatcherGameFacade(GameResources.GPA_MAX_TIME);
+                CatcherGameManager GPAGameManager = new GPAGameManager();
+                IGameDrawer GPAGameDrawer = new GPAGameDrawer(GPAGameManager);
+                ITouchHandler GPAGameTouchHandler = new GPAGameTouchHandler(GPAGameManager);
+                StatusUpdater gpaGameStatus = new StatusUpdater(GPAGameManager);
+                return gameBuilder.buildTouchHandler(GPAGameTouchHandler).buildDrawer(GPAGameDrawer)
+                        .buildLevel(level).buildManager(GPAGameManager).buildStatusUpdater(gpaGameStatus).buildGame(gameToCreate);
             case ROTATETILE:
                 GridManager<Tile, TileLevel> tileManager = new TileManager(level);
-                IGridDrawer tileDrawer = new RotateTileDrawer(tileManager);
+                IGameDrawer tileDrawer = new RotateTileDrawer(tileManager);
                 ITouchHandler tileTouchHandler = new RotateTileTouchHandler(tileManager);
                 return gameBuilder.buildTouchHandler(tileTouchHandler).buildDrawer(tileDrawer)
                         .buildLevel(level).buildManager(tileManager).buildGame(gameToCreate);
@@ -57,7 +68,7 @@ public class GameCreator {
 
     private Game createTileInstructions(GamesEnum gameToCreate, int level) {
         GridManager<Tile, TileLevel> tileManager = new TileManager(level);
-        IGridDrawer tileDrawer = new RotateTileInstructionDrawer(tileManager);
+        IGameDrawer tileDrawer = new RotateTileInstructionDrawer(tileManager);
         ITouchHandler tileTouchHandler = new RotateTileTouchHandler(tileManager);
         return gameBuilder.buildTouchHandler(tileTouchHandler).buildDrawer(tileDrawer)
                 .buildLevel(level).buildManager(tileManager).buildGame(gameToCreate);
@@ -65,7 +76,7 @@ public class GameCreator {
 
     private Game createPixelInstructions(GamesEnum gameToCreate, int level) {
         GridManager<PixelOptions, PixelLevel> manager = new PixelManager(level);
-        IGridDrawer drawer = new PixelInstructionDrawer(manager);
+        IGameDrawer drawer = new PixelInstructionDrawer(manager);
         ITouchHandler touchHandler = new PixelInstructionTouchHandler(manager);
         return gameBuilder.buildTouchHandler(touchHandler).buildDrawer(drawer)
                 .buildLevel(level).buildManager(manager).buildGame(gameToCreate);

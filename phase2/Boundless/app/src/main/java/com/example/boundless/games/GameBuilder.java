@@ -1,16 +1,21 @@
 package com.example.boundless.games;
 
+import android.os.AsyncTask;
+
 import com.example.boundless.games.game_utilities.GridManager;
-import com.example.boundless.games.game_utilities.IGridDrawer;
+import com.example.boundless.games.game_utilities.IGameDrawer;
+import com.example.boundless.games.game_utilities.IGameManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
+import com.example.boundless.games.gpa_catcher_game.StatusUpdater;
 
 /**
  * Builds a game using given interface inputs
  */
 class GameBuilder {
     private ITouchHandler touchHandler;
-    private IGridDrawer drawer;
-    private GridManager manager;
+    private IGameDrawer drawer;
+    private IGameManager manager;
+    private StatusUpdater statusUpdater;
     private int level;
 
     /**
@@ -30,7 +35,7 @@ class GameBuilder {
      * @param drawer The IDrawer for the game
      * @return The game builder
      */
-    GameBuilder buildDrawer(IGridDrawer drawer) {
+    GameBuilder buildDrawer(IGameDrawer drawer) {
         this.drawer = drawer;
         return this;
     }
@@ -46,13 +51,20 @@ class GameBuilder {
         return this;
     }
 
+    //TODO create updater Interface
+    GameBuilder buildStatusUpdater(StatusUpdater updater){
+        this.statusUpdater = updater;
+        return this;
+    }
+
+
     /**
      * Store the touch handler for the game
      *
      * @param manager The GridManager for the game
      * @return The game builder
      */
-    GameBuilder buildManager(GridManager manager) {
+    GameBuilder buildManager(IGameManager manager) {
         this.manager = manager;
         return this;
     }
@@ -76,7 +88,8 @@ class GameBuilder {
                 if (touchHandler == null || drawer == null || manager == null) return null;
                 return new RotateTileGameFacade(this);
             case GPACATCHER:
-                if (touchHandler == null || drawer == null || manager == null) return null;
+                if (touchHandler == null || drawer == null || manager == null || statusUpdater == null) return null;
+                return new GPACatcherGameFacade(this);
             default:
                 return null;
         }
@@ -94,9 +107,9 @@ class GameBuilder {
     /**
      * Get the grid drawer for the game
      *
-     * @return The IGridDrawer for the game
+     * @return The IGameDrawer for the game
      */
-    IGridDrawer getDrawer() {
+    IGameDrawer getDrawer() {
         return drawer;
     }
 
@@ -105,10 +118,13 @@ class GameBuilder {
      *
      * @return The GridManager for the game
      */
-    GridManager getManager() {
+    IGameManager getManager() {
         return manager;
     }
 
+    StatusUpdater getStatusUpdater(){
+        return statusUpdater;
+    }
     /**
      * Get the level number for the game
      *

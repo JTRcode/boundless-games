@@ -2,7 +2,7 @@ package com.example.boundless.games.rotate_tile_game;
 
 import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.GridManager;
-import com.example.boundless.games.game_utilities.IGridDrawer;
+import com.example.boundless.games.game_utilities.IGameDrawer;
 import com.example.boundless.games.rotate_tile_game.tiles.Rotation;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
 import com.example.boundless.games.rotate_tile_game.tiles.TileFactory;
@@ -11,7 +11,7 @@ import com.example.boundless.utilities.DrawUtility;
 /**
  * Draws the Rotate Tile Game
  */
-public class RotateTileDrawer implements IGridDrawer {
+public class RotateTileDrawer implements IGameDrawer {
 
     private int startX = GameResources.TILE_START_X;
     private int startY = GameResources.TILE_START_Y;

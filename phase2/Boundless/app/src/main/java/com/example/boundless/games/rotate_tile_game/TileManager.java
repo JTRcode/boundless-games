@@ -78,7 +78,7 @@ public class TileManager extends GridManager<Tile, TileLevel> {
      * @return If the user has correctly completed the puzzle.
      */
     @Override
-    public boolean checkAnswer() {
+    public boolean checkGameOver() {
         int gridSize = getGridSize();
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)

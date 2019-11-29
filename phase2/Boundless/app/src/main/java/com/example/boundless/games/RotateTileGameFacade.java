@@ -14,7 +14,7 @@ public class RotateTileGameFacade extends Game {
     private int currentLevel;
     private GridManager manager;
     private ITouchHandler touchHandler;
-    private IGridDrawer drawer;
+    private IGameDrawer drawer;
 
     /**
      * A new rotate tile game
@@ -25,15 +25,15 @@ public class RotateTileGameFacade extends Game {
         currentLevel = builder.getLevel();
         touchHandler = builder.getTouchHandler();
         drawer = builder.getDrawer();
-        manager = builder.getManager();
+        manager = (GridManager) builder.getManager();
     }
 
     @Override
     boolean gameOver() {
-        boolean gameIsOver = manager.checkAnswer();
+        boolean gameIsOver = manager.checkGameOver();
         if (gameIsOver) {
             Statistics.endTimeByGame(GamesEnum.ROTATETILE);}
-        return manager.checkAnswer();
+        return manager.checkGameOver();
     }
 
     @Override
@@ -44,11 +44,6 @@ public class RotateTileGameFacade extends Game {
     @Override
     public void screenTouched(MotionEvent event) {
         touchHandler.screenTouched(event);
-    }
-
-    @Override
-    public void screenTouched(int x, int y) {
-        //not implemented here
     }
 
     @Override

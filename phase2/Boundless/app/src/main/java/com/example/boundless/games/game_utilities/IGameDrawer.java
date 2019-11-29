@@ -3,7 +3,7 @@ package com.example.boundless.games.game_utilities;
 /**
  * A drawer for a game with a grid.
  */
-public interface IGridDrawer {
+public interface IGameDrawer {
     /**
      * Draw the game layout
      */

@@ -59,7 +59,7 @@ public class PixelManager extends GridManager<PixelOptions, PixelLevel> {
      * @return A boolean telling if the answer is correct.
      */
     @Override
-    public boolean checkAnswer() {
+    public boolean checkGameOver() {
         int gridSize = getGridSize();
         for (int row = 0; row < gridSize; row++)
             for (int col = 0; col < gridSize; col++)
