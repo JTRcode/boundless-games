@@ -5,6 +5,7 @@ import com.example.boundless.games.pixel_game.*;
 import com.example.boundless.games.pixel_instructions.*;
 import com.example.boundless.games.rotate_tile_game.*;
 import com.example.boundless.games.rotate_tile_game.tiles.Tile;
+import com.example.boundless.games.rotate_tile_instructions.RotateTileInstructionDrawer;
 
 /**
  * Creates and builds each game
@@ -47,9 +48,19 @@ public class GameCreator {
                         .buildLevel(level).buildManager(tileManager).buildGame(gameToCreate);
             case PIXEL_INSTRUCTIONS:
                 return createPixelInstructions(gameToCreate, level);
+            case TILE_INSTRUCTIONS:
+                return createTileInstructions(gameToCreate, 0);
             default:
                 return null;
         }
+    }
+
+    private Game createTileInstructions(GamesEnum gameToCreate, int level) {
+        GridManager<Tile, TileLevel> tileManager = new TileManager(level);
+        IGridDrawer tileDrawer = new RotateTileInstructionDrawer(tileManager);
+        ITouchHandler tileTouchHandler = new RotateTileTouchHandler(tileManager);
+        return gameBuilder.buildTouchHandler(tileTouchHandler).buildDrawer(tileDrawer)
+                .buildLevel(level).buildManager(tileManager).buildGame(gameToCreate);
     }
 
     private Game createPixelInstructions(GamesEnum gameToCreate, int level) {

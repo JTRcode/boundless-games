@@ -72,6 +72,7 @@ class GameBuilder {
                 if (touchHandler == null || drawer == null || manager == null) return null;
                 return new PixelInstructions(this);
             case ROTATETILE:
+            case TILE_INSTRUCTIONS:
                 if (touchHandler == null || drawer == null || manager == null) return null;
                 return new RotateTileGameFacade(this);
             case GPACATCHER:
