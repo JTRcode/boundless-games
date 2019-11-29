@@ -3,6 +3,7 @@ package com.example.boundless.shop;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import java.util.List;
 public class ShopItemsBuilder {
     private Activity activity;
     private ShopTypeTemplate shop;
+    private static final int BUTTON_HEIGHT = 240;
 
     /**
      * The shop builder
@@ -30,10 +32,6 @@ public class ShopItemsBuilder {
      */
     public ShopItemsBuilder(Activity activity, GamesEnum game) {
         this.activity = activity;
-        if (game == null) {
-            shop = new GameShop();
-            return;
-        }
         switch (game) {
             case PIXELS:
                 shop = new PixelShop();
@@ -43,9 +41,6 @@ public class ShopItemsBuilder {
                 break;
             case GPACATCHER:
                 shop = new GpaShop();
-                break;
-            default:
-                shop = new GameShop();
                 break;
         }
     }
@@ -64,28 +59,25 @@ public class ShopItemsBuilder {
             tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
 
-            tableRow.addView(createItemImage(item.getImageId(), onClickListener, 190));
-            tableRow.addView(createItemDescription(item, onClickListener, 190));
+            tableRow.addView(createItemImage(item.getImageId(), onClickListener));
+            tableRow.addView(createItemDescription(item, onClickListener));
             layout.addView(tableRow);
         }
     }
 
-    private ImageButton createItemImage(int resourceId, OnClickListener onClickListener, int height) {
+    private ImageButton createItemImage(int resourceId, OnClickListener onClickListener) {
         ImageButton image = new ImageButton(activity.getApplicationContext());
-        image.layout(10, 10, 0, 0);
         image.setOnClickListener(onClickListener);
         image.setTag(resourceId);
         image.setScaleType(ImageView.ScaleType.FIT_XY);
         image.setBackgroundResource(resourceId);
-        image.setLayoutParams(new TableRow.LayoutParams(0, height, 1.0f));
+        image.setLayoutParams(new TableRow.LayoutParams(0, BUTTON_HEIGHT, 1.0f));
         return image;
     }
 
-    private Button createItemDescription(InventoryItem item, OnClickListener onClickListener, int height) {
+    private Button createItemDescription(InventoryItem item, OnClickListener onClickListener) {
         Button itemDescription = new Button(activity.getApplicationContext());
-
-        itemDescription.setLayoutParams(new TableRow.LayoutParams(0, height, 3.0f));
-        itemDescription.layout(10, 10, 0, 0);
+        itemDescription.setLayoutParams(new TableRow.LayoutParams(0, BUTTON_HEIGHT, 3.0f));
         itemDescription.setOnClickListener(onClickListener);
         itemDescription.setTag(item.getImageId());
         itemDescription.setText(item.getDescription());

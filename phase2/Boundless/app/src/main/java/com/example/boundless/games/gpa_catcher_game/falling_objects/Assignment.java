@@ -19,7 +19,11 @@ class Assignment extends FallingObject {
     }
 
     public void caught(GPAGameStatus level) {
-        level.setGpa(level.getGpa()+0.1);
+        double caughtValue = 0.1;
+        if (level.getDoubleGPA()){
+            caughtValue *= 2;
+        }
+        level.setGpa(level.getGpa() + caughtValue);
     }
 
     public void missed(GPAGameStatus level) {

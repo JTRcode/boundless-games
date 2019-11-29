@@ -16,6 +16,9 @@ public class StatusUpdater {
     private CatcherGameManager<GPAGameStatus> manager;
     private GPAGameStatus status;
 
+    private static boolean moreSleep;
+    private static boolean moreTime;
+
     private static final String TAG = "StatusUpdater";
     public StatusUpdater(CatcherGameManager<GPAGameStatus> manager){
         status = manager.getLevel();
@@ -53,15 +56,38 @@ public class StatusUpdater {
     public void addFallingObject() {
 
         if (status.getAllFallingObjects().size() >= status.getMaxItem()) return;
+        double increaseSleep = 0;
+        if (moreSleep){
+            increaseSleep = 0.1;
+        }
+        double increaseTime = 0;
+        if (moreTime){
+            increaseTime = 0.1;
+        }
 
         double d = Math.random();
         FallingObjects newItem = null;
-        if (d < 0.12) newItem = FallingObjects.ASSIGNMENT;
-        else if (d < 0.125) newItem = FallingObjects.BOMB;
-        else if (d < 0.126) newItem = FallingObjects.SLEEP;
-        else if (d < 0.127) newItem = FallingObjects.CLOCK;
+        if (d < 0.05) newItem = FallingObjects.ASSIGNMENT;
+        else if (d < 0.06) newItem = FallingObjects.BOMB;
+        else if (d < 0.061 + increaseSleep) newItem = FallingObjects.SLEEP;
+        else if (d < 0.062 + increaseSleep + increaseTime) newItem = FallingObjects.CLOCK;
         if (newItem != null){
             status.addFallingObject(FallingObjectFactory.createFallingObject(newItem));
         }
     }
+
+    /**
+     * Increased drop rate for sleep
+     */
+    public static void moreSleep(){
+        moreSleep = true;
+    }
+
+    /**
+     * Increased drop rate for time
+     */
+    public static void moreTime(){
+        moreTime = true;
+    }
+
 }

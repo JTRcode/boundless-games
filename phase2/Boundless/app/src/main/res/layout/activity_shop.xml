@@ -7,41 +7,31 @@
         android:layout_height="match_parent">
 
     <Button
-            android:id="@+id/game"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:text="@string/Game"
-            android:textSize="16sp"
-            android:onClick="shopGame"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
             android:id="@+id/pixel"
-            android:layout_width="115dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="@string/pixel"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:onClick="shopPixel"
-            app:layout_constraintStart_toEndOf="@+id/game"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
             android:id="@+id/tile"
-            android:layout_width="105dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="@string/rotate_tile"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:onClick="shopTile"
             app:layout_constraintStart_toEndOf="@+id/pixel"
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
             android:id="@+id/gpa"
-            android:layout_width="110dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="@string/gpa_catcher"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:onClick="shopGpa"
             app:layout_constraintStart_toEndOf="@+id/tile"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,130 +51,7 @@
                 android:id="@+id/scrollview_linear_layout"
                 android:orientation="vertical">
 
-            <TableRow
-                android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                <ImageButton
-                        android:id="@+id/item1"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                        android:scaleType="fitXY"
-                        android:tag="0"
-                    android:layout_weight="2"
-                        app:srcCompat="@android:drawable/btn_dialog" />
-
-                <Button
-                        android:id="@+id/item1_description"
-                    android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                    android:layout_weight="1"
-                        android:text="@string/customization" />
-            </TableRow>
-
-            <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <ImageButton
-                        android:id="@+id/item2"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:scaleType="fitXY"
-                    android:onClick="purchase"
-                        android:tag="0"
-                        app:srcCompat="@android:drawable/btn_dialog"/>
-
-                <Button
-                        android:id="@+id/item2_description"
-                        android:layout_width="250dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                        android:text="@string/customization" />
-            </TableRow>
-
-            <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <ImageButton
-                        android:id="@+id/item3"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:scaleType="fitXY"
-                    android:onClick="purchase"
-                        android:tag="0"
-                        app:srcCompat="@android:drawable/btn_dialog"/>
-
-                <Button
-                        android:id="@+id/item3_description"
-                        android:layout_width="250dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                        android:text="@string/customization" />
-            </TableRow>
-
-            <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <ImageButton
-                        android:id="@+id/item4"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:scaleType="fitXY"
-                    android:onClick="purchase"
-                        android:tag="0"
-                        app:srcCompat="@android:drawable/btn_dialog"/>
-
-                <Button
-                        android:id="@+id/item4_description"
-                        android:layout_width="250dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                        android:text="@string/customization" />
-            </TableRow>
-
-            <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <ImageButton
-                        android:id="@+id/item5"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:scaleType="fitXY"
-                    android:onClick="purchase"
-                        android:tag="0"
-                        app:srcCompat="@android:drawable/btn_dialog"/>
-
-                <Button
-                        android:id="@+id/item5_description"
-                        android:layout_width="250dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                    android:onClick="purchase"
-                        android:text="@string/customization" />
-            </TableRow>
         </LinearLayout>
     </ScrollView>
 

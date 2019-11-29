@@ -20,6 +20,9 @@ class Bomb extends FallingObject {
 
     @Override
     public void caught(GPAGameStatus status) {
+        if (status.getBombProtection()){
+            return;
+        }
         status.setLives(status.getLives()+1);
     }
 

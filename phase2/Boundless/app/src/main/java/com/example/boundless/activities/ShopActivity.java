@@ -37,28 +37,15 @@ public class ShopActivity extends AppCompatActivity {
 
         inventory = new ShopInventory(this);
         refreshButtonColour();
-        findViewById(R.id.game).setBackgroundColor(Color.GREEN);
-        ShopItemsBuilder builder = new ShopItemsBuilder(this, null);
+        findViewById(R.id.pixel).setBackgroundColor(Color.GREEN);
+        ShopItemsBuilder builder = new ShopItemsBuilder(this, GamesEnum.PIXELS);
         inventoryItems = builder.build(this);
     }
 
     private void refreshButtonColour() {
-        findViewById(R.id.game).setBackgroundColor(Color.WHITE);
         findViewById(R.id.pixel).setBackgroundColor(Color.WHITE);
         findViewById(R.id.tile).setBackgroundColor(Color.WHITE);
         findViewById(R.id.gpa).setBackgroundColor(Color.WHITE);
-    }
-
-    /**
-     * Opens the general game shop
-     *
-     * @param view The button clicked
-     */
-    public void shopGame(View view) {
-        refreshButtonColour();
-        findViewById(R.id.game).setBackgroundColor(Color.GREEN);
-        ShopItemsBuilder builder = new ShopItemsBuilder(this, null);
-        inventoryItems = builder.build(this);
     }
 
     /**

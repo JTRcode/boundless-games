@@ -57,7 +57,7 @@ public class GPAGameManager extends CatcherGameManager {
 
     @Override
     public boolean checkGameOver() {
-        //return(level.getTime() < 0 || level.getLives() <= 0);
-        return false;
+        return(level.getTime() < 0 || level.getLives() <= 0);
+//        return false;
     }
 }

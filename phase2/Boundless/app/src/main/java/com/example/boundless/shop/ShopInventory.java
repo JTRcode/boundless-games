@@ -29,14 +29,14 @@ public class ShopInventory {
     /**
      * A new shop inventory
      *
-     * @param activity The current activity
+     * @param act The current activity
      */
-    public ShopInventory(Activity activity) {
-        this.activity = activity;
+    public ShopInventory(Activity act) {
+        activity = act;
         layout = activity.findViewById(R.id.inventory_linearlayout);
 
         if (inventory.isEmpty())
-            updateInventory(activity);
+            updateInventory(act);
         displayInventory();
     }
 
