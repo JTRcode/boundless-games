@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.boundless.R;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.shop.InventoryItem;
 import com.example.boundless.shop.ShopInventory;
@@ -128,9 +129,7 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     private void showToast(String message) {
-        CharSequence text = message;
-
-        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
 }

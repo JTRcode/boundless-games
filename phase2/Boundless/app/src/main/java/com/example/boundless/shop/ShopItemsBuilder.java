@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 
 import com.example.boundless.R;
-import com.example.boundless.ShopActivity;
+import com.example.boundless.activities.ShopActivity;
 import com.example.boundless.games.GamesEnum;
 
 import java.util.List;

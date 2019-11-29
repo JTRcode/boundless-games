@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.boundless.R;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.stats.Achievements;
 import com.example.boundless.users.UserAccount;
+import com.example.boundless.users.UserAccountManager;
 import com.example.boundless.utilities.HandleCustomization;
-import com.example.boundless.utilities.Session;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
  * The main menu, controls log in and starting games
  */
 public class MenuActivity extends AppCompatActivity {
-    //TODO: get current user from login activity
     /**
      * The current user, null if not logged in
      */
@@ -51,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private GamesEnum getGame(View view){
+    private GamesEnum getGame(View view) {
         switch (view.getId()) {
             case R.id.PixelGame:
                 return GamesEnum.PIXELS;
@@ -64,33 +63,46 @@ public class MenuActivity extends AppCompatActivity {
 
     /**
      * Signs the user out
+     *
      * @param view The button clicked
      */
     public void signOut(View view) {
         signOut();
     }
 
-    private void signOut(){
-        Session.clearUser();
+    private void signOut() {
+        UserAccountManager.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     /**
      * Goes to the customization page
+     *
      * @param view The button clicked
      */
-    public void goCustomization(View view){
+    public void goCustomization(View view) {
         Intent intent = new Intent(this, CustomizationActivity.class);
         startActivity(intent);
     }
 
     /**
      * Goes to the statistics page
+     *
      * @param view The button clicked
      */
-    public void goStatistics(View view){
+    public void goStatistics(View view) {
         Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Goes to the shop page
+     *
+     * @param view The button clicked
+     */
+    public void goShop(View view) {
+        Intent intent = new Intent(this, ShopActivity.class);
         startActivity(intent);
     }
 
@@ -101,20 +113,9 @@ public class MenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to sign out?").setCancelable(false)
-                .setPositiveButton("Sign out", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        signOut();
-                    }
-                })
-                .setNegativeButton("Stay signed in", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                    }
+                .setPositiveButton("Sign out", (DialogInterface dialog, int id) -> signOut())
+                .setNegativeButton("Stay signed in", (DialogInterface dialog, int id) -> {
                 });
         builder.create().show();
-    }
-
-    public void goShop(View view) {
-        Intent intent = new Intent(this, ShopActivity.class);
-        startActivity(intent);
     }
 }

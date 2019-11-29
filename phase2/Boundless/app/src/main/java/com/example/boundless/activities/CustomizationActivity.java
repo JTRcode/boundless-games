@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.boundless.R;
 import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
 

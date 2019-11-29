@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.boundless.R;
 import com.example.boundless.stats.Achievements;
 
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class AchievementsActivity extends AppCompatActivity {
      *
      * @param message String message
      */
-    public void displayToast(String message) {
+    private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message,
                 Toast.LENGTH_SHORT).show();
     }
@@ -94,6 +95,6 @@ public class AchievementsActivity extends AppCompatActivity {
      */
     public void showDescription(View view) {
         if (descriptions.get(view.getId()) == null) return;
-        displayToast(getString(descriptions.get(view.getId())));
+        showToast(getString(descriptions.get(view.getId())));
     }
 }

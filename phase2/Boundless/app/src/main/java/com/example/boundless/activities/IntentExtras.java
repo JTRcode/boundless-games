@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 /**
  * Strings for the intent extras that are passed between activities.

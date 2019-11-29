@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.boundless.Panel;
+import com.example.boundless.R;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.games.Game;
@@ -33,7 +35,6 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("GameActivity", "oh no it's creating again, why don't you just resume, ugh");
         if (savedInstanceState == null)
             Log.d("GameActivity", "no saved instance state");
     }
@@ -41,7 +42,6 @@ public class GameActivity extends Activity implements Observer {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("GameActivity", "onStart is running  before resume");
         setupGame();
     }
 
@@ -56,22 +56,20 @@ public class GameActivity extends Activity implements Observer {
         currentGame = (GamesEnum) getIntent().getSerializableExtra(IntentExtras.gameEnum);
         if (BusinessContext.needsLevels(currentGame))
             level = (int) getIntent().getSerializableExtra(IntentExtras.levelNumber);
-        Log.d("GameActivity", "setting current game");
         if (currentGame != null) {
-            Log.d("GameActivity", "current game is not null");
+            Log.d("GameActivity", "Changing to currentGame: " + currentGame);
             setContentView(R.layout.game_page);
             panel = findViewById(R.id.panel);
             panel.chooseGame(currentGame, level);
-            Log.d("GameActivity", "Changing to currentGame: " + currentGame);
         } else {
             Log.e("GameActivity", "An error occurred trying to get the currentGame chosen.");
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
-        Game currentGame = panel.getGame();
-        currentGame.addObserver(this);
+        Game gameInstance = panel.getGame();
+        gameInstance.addObserver(this);
         if (level < 1)
-            currentGame.showInstructions();
+            gameInstance.showInstructions();
     }
 
     private void setHintButtons(final GamesEnum game) {
@@ -146,11 +144,7 @@ public class GameActivity extends Activity implements Observer {
         if (panel.isGameOver() && UserAccountManager.currentUser.getUnlocked(currentGame) == level)
             UserAccountManager.currentUser.addUnlocked(currentGame);
         try {
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    showOverlay((String) o, panel.isGameOver());
-                }
-            });
+            runOnUiThread(() -> showOverlay((String) o, panel.isGameOver()));
         } catch (ClassCastException e) {
             Log.e("GameActivity", "The observer needs a string to show an alert!");
         }

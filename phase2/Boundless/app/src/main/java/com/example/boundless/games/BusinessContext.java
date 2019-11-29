@@ -20,6 +20,7 @@ public class BusinessContext {
         gameLevels.put(GamesEnum.ROTATETILE, 1);
         gameLevels.put(GamesEnum.PIXEL_INSTRUCTIONS, -1);
         instructionsToGame.put(GamesEnum.PIXEL_INSTRUCTIONS, GamesEnum.PIXELS);
+        instructionsToGame.put(GamesEnum.TILE_INSTRUCTIONS, GamesEnum.ROTATETILE);
     }
 
     /**
@@ -76,6 +77,18 @@ public class BusinessContext {
     public static boolean isInstructions(GamesEnum game) {
         if (instructionsToGame.size() == 0) setup();
         return instructionsToGame.get(game) != null;
+    }
+
+    /**
+     * Gets the corresponding instructions for a game, if it exists
+     *
+     * @param game The game to find the instructions enum for
+     * @return The instructions enum, if it exists or the original enum otherwise
+     */
+    public static GamesEnum getInstructionsEnum(GamesEnum game) {
+        for (Map.Entry entry : instructionsToGame.entrySet())
+            if (entry.getValue() == game) return (GamesEnum) entry.getKey();
+        return game;
     }
 
     /**

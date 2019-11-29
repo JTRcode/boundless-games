@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.widget.GridLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.boundless.R;
 import com.example.boundless.games.BusinessContext;
 import com.example.boundless.games.GamesEnum;
 import com.example.boundless.users.UserAccountManager;
@@ -62,7 +63,7 @@ public class LevelActivity extends AppCompatActivity {
         int num;
         if (view.getId() == R.id.directions) {
             num = Integer.MAX_VALUE;
-            intent.putExtra(IntentExtras.gameEnum, GamesEnum.PIXEL_INSTRUCTIONS);
+            intent.putExtra(IntentExtras.gameEnum, BusinessContext.getInstructionsEnum(game));
         } else {
             intent.putExtra(IntentExtras.gameEnum, game);
             try {
@@ -85,9 +86,5 @@ public class LevelActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
-    }
-
-    public void goInstructions(View view) {
-        startLevel(view);
     }
 }

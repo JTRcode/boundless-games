@@ -1,4 +1,4 @@
-package com.example.boundless;
+package com.example.boundless.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,21 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.boundless.R;
 import com.example.boundless.users.UserAccount;
 import com.example.boundless.users.UserAccountManager;
 import com.example.boundless.utilities.HandleCustomization;
 import com.example.boundless.utilities.Session;
 
+/**
+ * The login screen
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    /**
-     * Manages user accounts and saves them
-     */
     private UserAccountManager userManager;
-
-    /**
-     * The username and password input boxes
-     */
     private EditText username;
     private EditText password;
 
@@ -38,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }
-
         HandleCustomization.setActivityBackground(this, getWindow());
     }
 
@@ -52,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         String pass = password.getText().toString();
         UserAccount user = userManager.signIn(name, pass);
         if (user != null) {
-            //TODO: Send user to MenuActivity
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
         }

@@ -75,7 +75,7 @@ public class UserAccountManager {
     /**
      * Logs the user out of the account.
      */
-    public void signOut() {
+    public static void signOut() {
         Session.clearUser();
         currentUser = null;
     }

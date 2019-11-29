@@ -99,13 +99,6 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         shouldDraw = true;
     }
 
-    public void setHint() {
-        game.setHint();
-    }
-
-    /**
-     * Setup the panel with a transparent background.
-     */
     private void setupPanel() {
         instance = this;
         instance.setZOrderOnTop(true);
@@ -118,6 +111,11 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
     }
 
+    /**
+     * Get the last created instance of the panel
+     *
+     * @return The instance of the panel
+     */
     public static SurfaceView getPanel() {
         return instance;
     }
@@ -167,6 +165,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
     /**
      * Draws the game on the panel
+     *
      * @param canvas The canvas to draw on
      */
     @Override
@@ -178,5 +177,4 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
                 game.draw();
         }
     }
-
 }

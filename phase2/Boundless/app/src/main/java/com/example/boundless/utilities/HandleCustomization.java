@@ -8,12 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
-import com.example.boundless.CustomizationActivity;
-import com.example.boundless.LevelActivity;
-import com.example.boundless.LoginActivity;
-import com.example.boundless.MenuActivity;
+import com.example.boundless.activities.CustomizationActivity;
+import com.example.boundless.activities.LevelActivity;
+import com.example.boundless.activities.LoginActivity;
+import com.example.boundless.activities.MenuActivity;
 import com.example.boundless.R;
-import com.example.boundless.StatisticsActivity;
+import com.example.boundless.activities.StatisticsActivity;
 
 /**
  * Handles the customizations for each page
