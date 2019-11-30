@@ -69,6 +69,7 @@ public class ShopItemsBuilder {
         ImageButton image = new ImageButton(activity.getApplicationContext());
         image.setOnClickListener(onClickListener);
         image.setTag(resourceId);
+        image.layout(10, 10, 0, 0);
         image.setScaleType(ImageView.ScaleType.FIT_XY);
         image.setBackgroundResource(resourceId);
         image.setLayoutParams(new TableRow.LayoutParams(0, BUTTON_HEIGHT, 1.0f));
@@ -80,6 +81,7 @@ public class ShopItemsBuilder {
         itemDescription.setLayoutParams(new TableRow.LayoutParams(0, BUTTON_HEIGHT, 3.0f));
         itemDescription.setOnClickListener(onClickListener);
         itemDescription.setTag(item.getImageId());
+        itemDescription.layout(10, 10, 0, 0);
         itemDescription.setText(item.getDescription());
         return itemDescription;
     }

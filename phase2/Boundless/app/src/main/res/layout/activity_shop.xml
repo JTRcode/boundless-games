@@ -46,9 +46,9 @@
             app:layout_constraintTop_toBottomOf="@+id/tile">
 
         <LinearLayout
+                android:id="@+id/scrollview_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/scrollview_linear_layout"
                 android:orientation="vertical">
 
 
@@ -103,14 +103,25 @@
                 android:id="@+id/inventory_linearlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:orientation="horizontal">
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            android:onClick="clearInventory"
+            app:layout_constraintBottom_toTopOf="@+id/inventory_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_my_inventory"
+            app:layout_constraintTop_toBottomOf="@+id/shop_scrollview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

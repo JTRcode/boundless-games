@@ -9,5 +9,5 @@ public abstract class ShopTypeTemplate {
     /**
      * A list of the items in this shop
      */
-    List<InventoryItem> shopItems;
+    static List<InventoryItem> shopItems;
 }

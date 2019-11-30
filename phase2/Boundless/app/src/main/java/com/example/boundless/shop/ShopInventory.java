@@ -95,16 +95,26 @@ public class ShopInventory {
         editor.apply();
     }
 
+    public void deleteAll(){
+        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        inventory = new ArrayList<>();
+        editor.putInt(user, inventory.size());
+        editor.apply();
+
+        displayInventory();
+    }
+
     /**
      * Deletes an item from the shop inventory
      *
      * @param image The item image to delete
      * @return If the delete was successful
      */
-    static boolean deleteItem(Activity activity, int image) {
+    static boolean deleteItem(int image) {
+        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
         // removes the first item in inventory that matches int image
         // returns true when the item has been deleted
-        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
         boolean deleted = false;
         List<Integer> newInventory = new ArrayList<>();
 

@@ -119,4 +119,8 @@ public class ShopActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    public void clearInventory(View view) {
+        inventory.deleteAll();
+    }
 }

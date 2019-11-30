@@ -10,6 +10,7 @@ import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGameDrawer;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
+import com.example.boundless.shop.GpaShop;
 import com.example.boundless.utilities.DrawUtility;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class GPAGameDrawer implements IGameDrawer {
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
         //TODO redundant scaling of bitmap, since when we deaw it we pass in the size
         heart = Bitmap.createScaledBitmap(heart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
+        GpaShop.useItems(); //todo useItems() doesn't work somehow???
     }
 
     @Override

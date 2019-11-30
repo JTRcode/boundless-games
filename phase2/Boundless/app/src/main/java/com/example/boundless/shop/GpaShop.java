@@ -53,4 +53,9 @@ public class GpaShop extends ShopTypeTemplate {
         return inventoryList;
 
     }
+    public static void useItems(){
+        for (InventoryItem item: shopItems){
+            item.useItem();
+        }
+    }
 }
