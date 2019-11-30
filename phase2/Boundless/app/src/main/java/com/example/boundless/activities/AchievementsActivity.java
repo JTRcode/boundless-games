@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.boundless.R;
 import com.example.boundless.stats.Achievements;
+import com.example.boundless.utilities.HandleCustomization;
 
 import java.util.HashMap;
 
@@ -24,6 +25,7 @@ public class AchievementsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         descriptions = new HashMap<>();
         setContentView(R.layout.activity_achievements);
+        HandleCustomization.setActivityBackground(this, getWindow());
 
         ImageView pixel_cross1 = findViewById(R.id.pixel_cross1);
         ImageView pixel_cross2 = findViewById(R.id.pixel_cross2);
