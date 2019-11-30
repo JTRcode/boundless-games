@@ -10,7 +10,6 @@ import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGameDrawer;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
-import com.example.boundless.shop.GpaShop;
 import com.example.boundless.utilities.DrawUtility;
 
 import java.util.List;
@@ -18,13 +17,16 @@ import java.util.List;
 public class GPAGameDrawer implements IGameDrawer {
     private GPAGameStatus level;
     private Bitmap heart;
+    private Bitmap missingHeart;
 
     public GPAGameDrawer(CatcherGameManager<GPAGameStatus> manager){
         level = manager.getLevel();
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
+        missingHeart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.unfilled_heart);
         //TODO redundant scaling of bitmap, since when we deaw it we pass in the size
         heart = Bitmap.createScaledBitmap(heart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
-        GpaShop.useItems(); //todo useItems() doesn't work somehow???
+        missingHeart = Bitmap.createScaledBitmap(missingHeart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
+//        GpaShop.useItems(); //todo useItems() doesn't work somehow???
     }
 
     @Override
@@ -58,7 +60,7 @@ public class GPAGameDrawer implements IGameDrawer {
         else if (level.getTime() >= maxTime  / 4) color = Color.YELLOW;
         else color = Color.RED;
         //TODO should not be casting Time. NEED TO rework entire TIme mechanic
-        int length = (int) ((level.getTime()/GameResources.GPAGAME_MAX_TIME) * Panel.SCREEN_WIDTH);
+        int length = (int) Math.round((level.getTime()/GameResources.GPAGAME_MAX_TIME) * Panel.SCREEN_WIDTH);
         DrawUtility.drawRectangle(new int[]{0, 10, length, 70}, color);
     }
 
@@ -68,6 +70,9 @@ public class GPAGameDrawer implements IGameDrawer {
     }
 
     private void drawLives() {
+        for (int missLives = 1; missLives <= level.getMaxLives(); missLives++){
+            DrawUtility.drawBitmap(missingHeart, Panel.SCREEN_WIDTH - missLives * GameResources.HEART_SIZE, 140);
+        }
         for (int lives = 1; lives <= level.getLives(); lives++) {
             DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * GameResources.HEART_SIZE, 140);
         }

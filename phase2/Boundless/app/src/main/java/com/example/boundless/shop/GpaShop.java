@@ -26,7 +26,7 @@ public class GpaShop extends ShopTypeTemplate {
         List<InventoryItem> inventoryList = new ArrayList<>();
 
         inventoryList.add(new InventoryItem(
-                "Maximum life +1 \n Start out with 4 lives instead of 3",
+                "Maximum life +1",
                 R.drawable.heart,
                 GamesEnum.GPACATCHER, GPAGameStatus::addLife));
 
@@ -52,10 +52,5 @@ public class GpaShop extends ShopTypeTemplate {
 
         return inventoryList;
 
-    }
-    public static void useItems(){
-        for (InventoryItem item: shopItems){
-            item.useItem();
-        }
     }
 }

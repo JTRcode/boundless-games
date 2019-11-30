@@ -26,6 +26,8 @@ public class ShopInventory {
     private LinearLayout layout;
     private static SharedPreferences preferences;
 
+    private int points;
+
     /**
      * A new shop inventory
      *
@@ -34,7 +36,7 @@ public class ShopInventory {
     public ShopInventory(Activity act) {
         activity = act;
         layout = activity.findViewById(R.id.inventory_linearlayout);
-
+        points = preferences.getInt(user+"points", 600);
         if (inventory.isEmpty())
             updateInventory(act);
         displayInventory();
@@ -151,4 +153,19 @@ public class ShopInventory {
         for (int i = 0; i < inventory.size(); i++)
             displayImage(i);
     }
+
+    public int getPoints(){
+        preferences = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+
+        return preferences.getInt(user, 0);
+    }
+
+    public void setPoints(int newPoints){
+        preferences = activity.getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(user+"points", newPoints);
+        editor.apply();
+    }
+
+
 }

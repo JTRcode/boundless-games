@@ -79,7 +79,7 @@ public class GameActivity extends Activity implements Observer {
         for (final InventoryItem item : inventory.keySet()) {
             for (int i = 0; i < inventory.get(item); i++) {
                 Button inventoryButton = new Button(this);
-                inventoryButton.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+                inventoryButton.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
                 inventoryButton.setBackgroundResource(item.getImageId());
                 inventoryButton.setPaddingRelative(10, 0, 10, 0);
                 inventoryButton.setOnClickListener(view -> {

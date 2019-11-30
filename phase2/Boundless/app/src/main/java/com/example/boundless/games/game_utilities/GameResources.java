@@ -12,6 +12,12 @@ public final class GameResources {
     private GameResources() {
     }
 
+    //region Shop
+    /**
+     * The cost of each shop item
+     */
+    public static final int ITEM_COST = 3;
+
     //region Pixel game
     /**
      * The alpha value of the pixels
@@ -109,6 +115,8 @@ public final class GameResources {
     public static final int GPAGAME_DEFAULT_TIME_DECREMENT = 1;
 
     public static final int GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS = 10;
+
+    public static final int MAXIMUM_NUMBER_OF_LIVES = 4;
 
     /**
      * Gets the game over text for the GPA Game

@@ -23,7 +23,8 @@ class Assignment extends FallingObject {
         if (level.getDoubleGPA()){
             caughtValue *= 2;
         }
-        level.setGpa(level.getGpa() + caughtValue);
+        double gpa = Math.max(4.0, level.getGpa() + caughtValue);
+        level.setGpa(gpa);
     }
 
     public void missed(GPAGameStatus level) {

@@ -17,24 +17,23 @@ public class GPAGameStatus {
     private double decayRate;
     private int maxItems = GameResources.GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS;
 
-    private static boolean addLife = false;
-    private static boolean bombProtection = false;
-    private static int doubleGPA = 0;
+    private static int maxLives;
+    private static boolean bombProtection;
+    private static int doubleGPA;
 
     public GPAGameStatus() {
         basket = new Basket();
         fallingObjectList = new ArrayList<>();
         lives = GameResources.GPAGAME_STARTING_LIVES;
-        if (addLife){
-            lives += 1;
-            addLife = false;
-        }
-
         fallingSpeed = GameResources.GPAGAME_DEFAULT_FALLING_SPEED;
         basketSpeed = GameResources.GPAGAME_DEFAULT_BASKET_SPEED;
         time = GameResources.GPAGAME_MAX_TIME;
         decayRate = GameResources.GPAGAME_DEFAULT_TIME_DECREMENT;
         gpa = GameResources.GPAGAME_STARTING_GPA;
+
+        maxLives = GameResources.GPAGAME_STARTING_LIVES;
+        bombProtection = false;
+        doubleGPA = 0;
     }
 
     public int getBasketSpeed(){return basketSpeed;}
@@ -62,7 +61,7 @@ public class GPAGameStatus {
     }
 
     public void setLives(int newLives) {
-        lives = newLives;
+        lives = Math.min(maxLives, newLives);
     }
 
     public void addFallingObject(FallingObject newFallingObject) {
@@ -91,10 +90,10 @@ public class GPAGameStatus {
 
 
     /**
-     * Increases life by 1 (from 3 to 4) for a level.
+     * Increases maximum life by 1 (from 3 to 4) for a level.
      */
     public static void addLife(){
-        addLife = true;
+        maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
     }
 
     /**
@@ -134,4 +133,9 @@ public class GPAGameStatus {
         }
         return false;
     }
+
+    public int getMaxLives(){
+        return maxLives;
+    }
+
 }

@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.boundless.R;
 import com.example.boundless.games.GamesEnum;
+import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.shop.InventoryItem;
 import com.example.boundless.shop.ShopInventory;
 import com.example.boundless.shop.ShopItemsBuilder;
@@ -25,6 +27,7 @@ public class ShopActivity extends AppCompatActivity {
      * The inventory for the shop
      */
     ShopInventory inventory;
+
     /**
      * A list of items in the inventory
      */
@@ -100,6 +103,14 @@ public class ShopActivity extends AppCompatActivity {
      * @param view The button clicked
      */
     public void purchase(View view) {
+        if (inventory.getPoints() - GameResources.ITEM_COST < 0){
+            showToast("Insufficient funds");
+            return;
+        }
+        inventory.setPoints(inventory.getPoints() - GameResources.ITEM_COST);
+        TextView points = findViewById(R.id.points_remaining);
+        points.setText(inventory.getPoints());
+
         int imageID = (int) view.getTag();
         for (InventoryItem item : inventoryItems) {
             if (item.getImageId() == imageID) {

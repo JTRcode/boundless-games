@@ -50,6 +50,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="25sp"
+                    android:text="@string/shop_info"/>
+
 
 
         </LinearLayout>
@@ -68,14 +77,25 @@
             app:layout_constraintTop_toBottomOf="@+id/shop_scrollview" />
 
     <TextView
-            android:id="@+id/point_remaining"
+            android:id="@+id/points_text"
             android:layout_width="89dp"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:text="@string/points"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/backToMenu"
+            app:layout_constraintTop_toBottomOf="@+id/inventory_view" />
+
+    <TextView
+            android:id="@+id/points_remaining"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text=""
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/points_text"
             app:layout_constraintTop_toBottomOf="@+id/inventory_view" />
 
     <Button
