@@ -24,33 +24,26 @@ public class GpaShop extends ShopTypeTemplate {
 
     private List<InventoryItem> setItems() {
         List<InventoryItem> inventoryList = new ArrayList<>();
-
         inventoryList.add(new InventoryItem(
-                "Maximum life +1",
+                "Add to the maximum number of lives",
                 R.drawable.heart,
-                GamesEnum.GPACATCHER, GPAGameStatus::addLife));
-
+                GamesEnum.GPACATCHER, GPAGameStatus::addToMaxLives));
         inventoryList.add(new InventoryItem(
-                "Protection from the first bomb you catch",
+                "Protection from catching a bomb",
                 R.drawable.bomb,
                 GamesEnum.GPACATCHER, GPAGameStatus::bombProtection));
-
         inventoryList.add(new InventoryItem(
-                "More sleep! \n Increased drop rate for sleep fot the game you are playing",
+                "More sleep! \nIncreased drop rate for sleep",
                 R.drawable.sleep,
                 GamesEnum.GPACATCHER, StatusUpdater::moreSleep));
-
         inventoryList.add(new InventoryItem(
-                "More time! \n Increased drop rate for time for the game you are playing",
+                "More time! \nIncreased drop rate for time",
                 R.drawable.time,
                 GamesEnum.GPACATCHER, StatusUpdater::moreTime));
-
         inventoryList.add(new InventoryItem(
                 "The first 12 assignments caught rewards 2x the normal GPA",
                 R.drawable.assignment,
                 GamesEnum.GPACATCHER, GPAGameStatus::doubleGPA));
-
         return inventoryList;
-
     }
 }

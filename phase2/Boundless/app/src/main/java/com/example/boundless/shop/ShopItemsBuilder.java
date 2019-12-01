@@ -42,18 +42,15 @@ public class ShopItemsBuilder {
             case GPACATCHER:
                 shop = new GpaShop();
                 break;
+            default:
+                break;
         }
     }
 
     private void buildImages(final ShopActivity shopActivity) {
         LinearLayout layout = activity.findViewById(R.id.scrollview_linear_layout);
         layout.removeAllViews();
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shopActivity.purchase(view);
-            }
-        };
+        View.OnClickListener onClickListener = shopActivity::purchase;
         for (InventoryItem item : shop.shopItems) {
             TableRow tableRow = new TableRow(activity.getApplicationContext());
             tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,

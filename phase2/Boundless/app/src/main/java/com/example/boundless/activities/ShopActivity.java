@@ -15,6 +15,8 @@ import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.shop.InventoryItem;
 import com.example.boundless.shop.ShopInventory;
 import com.example.boundless.shop.ShopItemsBuilder;
+import com.example.boundless.users.UserAccount;
+import com.example.boundless.users.UserAccountManager;
 
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class ShopActivity extends AppCompatActivity {
      * A list of items in the inventory
      */
     List<InventoryItem> inventoryItems;
+    private UserAccount user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class ShopActivity extends AppCompatActivity {
         findViewById(R.id.pixel).setBackgroundColor(Color.GREEN);
         ShopItemsBuilder builder = new ShopItemsBuilder(this, GamesEnum.PIXELS);
         inventoryItems = builder.build(this);
+        user = UserAccountManager.currentUser;
     }
 
     private void refreshButtonColour() {
@@ -103,26 +107,27 @@ public class ShopActivity extends AppCompatActivity {
      * @param view The button clicked
      */
     public void purchase(View view) {
-        if (inventory.getPoints() - GameResources.ITEM_COST < 0){
+        if (user.getUserPoints() - GameResources.ITEM_COST < 0) {
             showToast("Insufficient funds");
             return;
         }
-        inventory.setPoints(inventory.getPoints() - GameResources.ITEM_COST);
+
+        user.addUserPoints(-GameResources.ITEM_COST);
         TextView points = findViewById(R.id.points_remaining);
-        points.setText(inventory.getPoints());
+        points.setText(String.valueOf(user.getUserPoints()));
 
         int imageID = (int) view.getTag();
         for (InventoryItem item : inventoryItems) {
             if (item.getImageId() == imageID) {
                 if (item.isImmediate()) {
-                    item.useItem(this);
+                    item.useItem();
                     showToast("Purchased, and used!");
-                    return;// TODO why do we need to return?
+                    return;
                 }
+                inventory.addItem(item);
                 break;
             }
         }
-        inventory.addItem(imageID);
         showToast("Purchased!");
     }
 
@@ -131,6 +136,11 @@ public class ShopActivity extends AppCompatActivity {
         toast.show();
     }
 
+    /**
+     * Delete the user's inventory
+     *
+     * @param view The button clicked
+     */
     public void clearInventory(View view) {
         inventory.deleteAll();
     }

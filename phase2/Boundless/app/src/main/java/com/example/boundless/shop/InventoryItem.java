@@ -48,15 +48,9 @@ public class InventoryItem {
     /**
      * Use the item
      */
-    public void useItem(Activity activity) {
+    public void useItem() {
         action.run();
-        if (!isUsedImmediately) ShopInventory.deleteItem(imageId);
-    }
-
-    public void useItem(){
-        if (ShopInventory.deleteItem(imageId)){
-            action.run();
-        }
+        if (!isUsedImmediately) ShopInventory.deleteItem(this);
     }
 
     /**
