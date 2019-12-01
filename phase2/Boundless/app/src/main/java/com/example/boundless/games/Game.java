@@ -85,10 +85,4 @@ public abstract class Game extends Observable {
         setChanged();
         notifyObservers(getInstructions());
     }
-
-    /**
-     * Sets a hint for the game
-     */
-    public void setHint() {
-    }
 }

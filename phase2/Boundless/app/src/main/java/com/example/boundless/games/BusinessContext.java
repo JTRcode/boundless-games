@@ -1,6 +1,7 @@
 package com.example.boundless.games;
 
 import com.example.boundless.games.pixel_instructions.PixelInstructionDrawer;
+import com.example.boundless.users.UserAccountManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +53,8 @@ public class BusinessContext {
      */
     public static int getNumOfLevels(GamesEnum game) {
         if (!needsLevels(game)) return 0;
+        if (game == GamesEnum.ROTATETILE)
+            return UserAccountManager.currentUser.getUnlocked(game) + 1;
         return gameLevels.get(game);
     }
 

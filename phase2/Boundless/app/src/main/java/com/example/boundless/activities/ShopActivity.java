@@ -35,18 +35,22 @@ public class ShopActivity extends AppCompatActivity {
      */
     List<InventoryItem> inventoryItems;
     private UserAccount user;
+    private TextView points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+        user = UserAccountManager.currentUser;
+
+        points = findViewById(R.id.points_remaining);
+        points.setText(String.valueOf(user.getUserPoints()));
 
         inventory = new ShopInventory(this);
         refreshButtonColour();
         findViewById(R.id.pixel).setBackgroundColor(Color.GREEN);
         ShopItemsBuilder builder = new ShopItemsBuilder(this, GamesEnum.PIXELS);
         inventoryItems = builder.build(this);
-        user = UserAccountManager.currentUser;
     }
 
     private void refreshButtonColour() {
@@ -113,7 +117,6 @@ public class ShopActivity extends AppCompatActivity {
         }
 
         user.addUserPoints(-GameResources.ITEM_COST);
-        TextView points = findViewById(R.id.points_remaining);
         points.setText(String.valueOf(user.getUserPoints()));
 
         int imageID = (int) view.getTag();

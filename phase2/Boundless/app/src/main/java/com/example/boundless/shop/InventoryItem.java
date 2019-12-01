@@ -1,7 +1,5 @@
 package com.example.boundless.shop;
 
-import android.app.Activity;
-
 import com.example.boundless.games.GamesEnum;
 
 /**

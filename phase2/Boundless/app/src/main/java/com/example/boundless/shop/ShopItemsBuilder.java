@@ -3,7 +3,6 @@ package com.example.boundless.shop;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -83,6 +82,12 @@ public class ShopItemsBuilder {
         return itemDescription;
     }
 
+    /**
+     * Create the view for the shop items
+     *
+     * @param shopActivity The shop activity viewing the items
+     * @return A list of inventory items that were built
+     */
     public List<InventoryItem> build(ShopActivity shopActivity) {
         buildImages(shopActivity);
         return shop.shopItems;

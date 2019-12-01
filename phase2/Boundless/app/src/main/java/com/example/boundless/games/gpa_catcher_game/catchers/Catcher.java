@@ -4,13 +4,21 @@ import android.graphics.Bitmap;
 
 import com.example.boundless.games.game_utilities.GameResources;
 
-
+/**
+ * A catcher to catch falling objects
+ */
 public abstract class Catcher {
 
     private Bitmap appearance;
+    /**
+     * The x location of the catcher
+     */
     protected int coordX;
-    protected int coordY;
-    protected int speed = GameResources.GPAGAME_DEFAULT_BASKET_SPEED;
+    private int coordY;
+    /**
+     * The speed of the basket
+     */
+    int speed = GameResources.GPAGAME_DEFAULT_BASKET_SPEED;
 
 
     /**
@@ -49,19 +57,29 @@ public abstract class Catcher {
         this.coordY = coordY;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
+    /**
+     * Set the speed of the catcher
+     *
+     * @param speed The speed to set the catcher to
+     */
+    protected void setSpeed(int speed) {
         this.speed = speed;
     }
 
-
-    public void setAppearance(Bitmap appearance) {
+    /**
+     * Set the appearance of the catcher
+     *
+     * @param appearance The catcher's appearance
+     */
+    protected void setAppearance(Bitmap appearance) {
         this.appearance = appearance;
     }
 
+    /**
+     * Get teh appearance of the catcher
+     *
+     * @return The catcher's appearance
+     */
     public Bitmap getAppearance() {
         return appearance;
     }

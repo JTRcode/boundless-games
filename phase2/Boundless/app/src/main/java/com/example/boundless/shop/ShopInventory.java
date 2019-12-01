@@ -61,7 +61,7 @@ public class ShopInventory {
     public void deleteAll() {
         List<InventoryItem> inventory = new ArrayList<>(user.getInventoryItems());
         for (InventoryItem item : inventory)
-            user.removeInventoryItem(item);
+            deleteItem(item);
 
         displayInventory();
     }

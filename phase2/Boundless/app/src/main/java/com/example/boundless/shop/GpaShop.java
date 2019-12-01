@@ -2,7 +2,6 @@ package com.example.boundless.shop;
 
 import com.example.boundless.R;
 import com.example.boundless.games.GamesEnum;
-import com.example.boundless.games.gpa_catcher_game.GPAGameDrawer;
 import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
 import com.example.boundless.games.gpa_catcher_game.StatusUpdater;
 

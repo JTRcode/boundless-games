@@ -1,7 +1,6 @@
 package com.example.boundless.utilities;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.boundless.MainThread;
@@ -10,7 +9,6 @@ import com.example.boundless.MainThread;
  * Draws things on the screen
  */
 public class DrawUtility {
-    private static Canvas canvas = MainThread.canvas;
     private static Paint paint = new Paint();
 
     private DrawUtility() {

@@ -20,6 +20,11 @@ public class UserAccountManager {
     private static String userFileDirectory;
     private Context context;
 
+    /**
+     * A new user account manager
+     *
+     * @param context The current context
+     */
     public UserAccountManager(Context context) {
         this.context = context;
         userFileDirectory = context.getFilesDir().getPath();
@@ -52,6 +57,7 @@ public class UserAccountManager {
      *
      * @param username The username to sign up with.
      * @param password The password to sign up with.
+     * @return If the signup was successful
      */
     public boolean signUp(String username, String password) {
         if (username.equals("") || password.equals("")) return false;
@@ -61,7 +67,7 @@ public class UserAccountManager {
         Session.setUser(username, password);
         currentUser = new UserAccount(username, password);
         updateUser();
-        return saveUserToFile(username, password, currentUser) && users.add(new UserAccount(username, password));
+        return saveUserToFile(username, password, currentUser) && users.add(currentUser);
     }
 
     /**
@@ -77,7 +83,6 @@ public class UserAccountManager {
     public static void signOut() {
         currentUser = null;
         Session.clearUser();
-        FileStorage.saveUserData(userFileDirectory, null);
     }
 
     private void restorePreviousUsers() {

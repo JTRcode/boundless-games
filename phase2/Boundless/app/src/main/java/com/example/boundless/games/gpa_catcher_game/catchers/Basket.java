@@ -16,16 +16,16 @@ public class Basket extends Catcher {
      * A new basket to catch items in
      */
     public Basket() {
-        setAppearance(BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket));
+        Bitmap basket = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.basket);
         int size = GameResources.GPAGAME_BASKET_SIZE;
-        setAppearance(Bitmap.createScaledBitmap(getAppearance(), size, size, true));
+        setAppearance(Bitmap.createScaledBitmap(basket, size, size, true));
     }
 
     /**
      * Moves left on the screen
      */
     @Override
-    public void moveLeft(){
+    public void moveLeft() {
         coordX -= speed;
     }
 
@@ -33,8 +33,7 @@ public class Basket extends Catcher {
      * Moves right on the screen
      */
     @Override
-    public void moveRight(){
+    public void moveRight() {
         coordX += speed;
     }
-
 }

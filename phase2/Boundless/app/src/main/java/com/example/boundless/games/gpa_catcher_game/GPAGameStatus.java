@@ -31,9 +31,7 @@ public class GPAGameStatus {
         time = GameResources.GPAGAME_MAX_TIME;
         gpa = GameResources.GPAGAME_STARTING_GPA;
 
-        maxLives = GameResources.GPAGAME_STARTING_LIVES;
-        bombProtection = false;
-        doubleGPA = 0;
+        resetStatus();
     }
 
     /**
@@ -107,7 +105,7 @@ public class GPAGameStatus {
      *
      * @param catcher The catcher to use
      */
-    public void setCatcher(Basket catcher) {
+    public void setCatcher(Catcher catcher) {
         this.catcher = catcher;
     }
 

@@ -79,11 +79,11 @@ public class Statistics {
     }
 
     /**
-     * returns a random integer between 400-600
+     * returns a random integer between 2-7
      */
     private static int addRandomScore() {
         Random ran = new Random();
-        return ran.nextInt(201) + 400;
+        return ran.nextInt(6) + 2;
     }
 
     /**
