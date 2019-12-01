@@ -4,12 +4,16 @@ import android.util.Log;
 
 import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
+import com.example.boundless.games.gpa_catcher_game.catchers.Basket;
+import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjectFactory;
+import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjects;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class StatusUpdater {
 
@@ -23,32 +27,34 @@ public class StatusUpdater {
     public StatusUpdater(CatcherGameManager<GPAGameStatus> manager){
         status = manager.getLevel();
         this.manager = manager;
+
+        setTools();
     }
 
     public void update(){
         status.setTime(status.getTime()- GameResources.GPAGAME_DEFAULT_TIME_DECREMENT);
         addFallingObject();
         List<FallingObject> fallingObjects = status.getAllFallingObjects();
-        List<FallingObject> fallingObjectsCopy = new ArrayList<>(fallingObjects);
-        Basket basket = status.getBasket();
-        for (FallingObject object : fallingObjects){
-            if (manager.overlap(basket, object)) {
-                //TODO pass in level so caught can use it
-                object.caught(status);
-                fallingObjectsCopy.remove(object);
+        ListIterator<FallingObject> iterator = fallingObjects.listIterator();
+        Catcher catcher = status.getCatcher();
+        while(iterator.hasNext()){
+            FallingObject item = iterator.next();
+            if (manager.overlap(catcher, item)) {
+                item.caught(status);
+                iterator.remove();
                 Log.d(TAG, "it is Caught");
-            } else if (manager.hitsGround(object)) {
-                //TODO pass in level so caught can use it
-                object.missed(status);
-                fallingObjectsCopy.remove(object);
+            } else if (manager.hitsGround(item)) {
+                item.missed(status);
+                iterator.remove();
                 Log.d(TAG, "it is Missed");
             } else {
-                object.fall();
+                item.fall();
                 Log.d(TAG, "Falling");
             }
         }
-        status.setFallingObject(fallingObjectsCopy);
     }
+
+
 
     /**
      * Add a falling object to the screen
@@ -76,6 +82,13 @@ public class StatusUpdater {
         }
     }
 
+    /**
+     *  moreSleep and moreTime should be set to false at the start of a new game
+     */
+    private void setTools(){
+        moreSleep = false;
+        moreTime = false;
+    }
     /**
      * Increased drop rate for sleep
      */

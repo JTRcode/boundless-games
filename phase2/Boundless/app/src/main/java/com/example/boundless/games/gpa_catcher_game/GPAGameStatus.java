@@ -1,6 +1,8 @@
 package com.example.boundless.games.gpa_catcher_game;
 
 import com.example.boundless.games.game_utilities.GameResources;
+import com.example.boundless.games.gpa_catcher_game.catchers.Basket;
+import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
 public class GPAGameStatus {
     private int lives;
     private List<FallingObject> fallingObjectList;
-    private Basket basket;
+    private Catcher catcher;
     private int fallingSpeed;
     private int basketSpeed;
     private double time;
@@ -22,7 +24,7 @@ public class GPAGameStatus {
     private static int doubleGPA;
 
     public GPAGameStatus() {
-        basket = new Basket();
+        catcher = new Basket();
         fallingObjectList = new ArrayList<>();
         lives = GameResources.GPAGAME_STARTING_LIVES;
         fallingSpeed = GameResources.GPAGAME_DEFAULT_FALLING_SPEED;
@@ -30,6 +32,9 @@ public class GPAGameStatus {
         time = GameResources.GPAGAME_MAX_TIME;
         decayRate = GameResources.GPAGAME_DEFAULT_TIME_DECREMENT;
         gpa = GameResources.GPAGAME_STARTING_GPA;
+
+        catcher.setSpeed(basketSpeed);
+        FallingObject.setFallingSpeed(fallingSpeed);
 
         maxLives = GameResources.GPAGAME_STARTING_LIVES;
         bombProtection = false;
@@ -68,12 +73,12 @@ public class GPAGameStatus {
         fallingObjectList.add(newFallingObject);
     }
 
-    public Basket getBasket() {
-        return basket;
+    public Catcher getCatcher() {
+        return catcher;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public void setCatcher(Basket catcher) {
+        this.catcher = catcher;
     }
 
     public List<FallingObject> getAllFallingObjects() {
@@ -123,7 +128,7 @@ public class GPAGameStatus {
     }
 
     /**
-     *
+     * if doubleGPA is in effect, then use it and decrement the number of usage by 1
      * @return true if doubleGPA is still in effect
      */
     public boolean getDoubleGPA(){

@@ -36,12 +36,12 @@ public class GpaShop extends ShopTypeTemplate {
                 GamesEnum.GPACATCHER, GPAGameStatus::bombProtection));
 
         inventoryList.add(new InventoryItem(
-                "More sleep! \n Increased drop rate for sleep",
+                "More sleep! \n Increased drop rate for sleep fot the game you are playing",
                 R.drawable.sleep,
                 GamesEnum.GPACATCHER, StatusUpdater::moreSleep));
 
         inventoryList.add(new InventoryItem(
-                "More time! \n Increased drop rate for time",
+                "More time! \n Increased drop rate for time for the game you are playing",
                 R.drawable.time,
                 GamesEnum.GPACATCHER, StatusUpdater::moreTime));
 

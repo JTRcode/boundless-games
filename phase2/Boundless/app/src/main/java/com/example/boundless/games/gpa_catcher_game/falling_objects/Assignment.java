@@ -18,15 +18,17 @@ class Assignment extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
+    @Override
     public void caught(GPAGameStatus level) {
         double caughtValue = 0.1;
         if (level.getDoubleGPA()){
             caughtValue *= 2;
         }
-        double gpa = Math.max(4.0, level.getGpa() + caughtValue);
+        double gpa = Math.min(4.0, level.getGpa() + caughtValue);
         level.setGpa(gpa);
     }
 
+    @Override
     public void missed(GPAGameStatus level) {
         level.setGpa(level.getGpa()-0.1);
         level.setLives(level.getLives()-1);

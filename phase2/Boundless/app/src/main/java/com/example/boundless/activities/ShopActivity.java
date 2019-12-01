@@ -117,7 +117,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (item.isImmediate()) {
                     item.useItem(this);
                     showToast("Purchased, and used!");
-                    return;
+                    return;// TODO why do we need to return?
                 }
                 break;
             }

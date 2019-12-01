@@ -3,10 +3,9 @@ package com.example.boundless.games.gpa_catcher_game;
 import com.example.boundless.Panel;
 import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
-import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
-import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjectFactory;
 
-import java.util.*;
+import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
+import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 
 /**
  * Creates new falling objects and updates them
@@ -19,8 +18,8 @@ public class GPAGameManager extends CatcherGameManager {
 
     public GPAGameManager(){
         level = new GPAGameStatus();
-        level.getBasket().setCoordX(Panel.SCREEN_WIDTH / 2);
-        level.getBasket().setCoordY(Panel.SCREEN_HEIGHT - 250);
+        level.getCatcher().setCoordX(Panel.SCREEN_WIDTH / 2);
+        level.getCatcher().setCoordY(Panel.SCREEN_HEIGHT - 250);
     }
 
     public GPAGameStatus getLevel(){
@@ -28,11 +27,11 @@ public class GPAGameManager extends CatcherGameManager {
     }
 
     @Override
-    public boolean overlap(Basket basket, FallingObject object){
+    public boolean overlap(Catcher catcher, FallingObject object){
         int middle = object.getCoordX() + object.getSize() / 2;
         int bottom = object.getCoordY() + object.getSize();
 
-        return (middle >= basket.getCoordX() && middle <= basket.getCoordX() + basket.getSize() && bottom >= basket.getCoordY());
+        return (middle >= catcher.getCoordX() && middle <= catcher.getCoordX() + catcher.getSize() && bottom >= catcher.getCoordY());
     }
 
     @Override
@@ -58,6 +57,5 @@ public class GPAGameManager extends CatcherGameManager {
     @Override
     public boolean checkGameOver() {
         return(level.getTime() < 0 || level.getLives() <= 0);
-//        return false;
     }
 }

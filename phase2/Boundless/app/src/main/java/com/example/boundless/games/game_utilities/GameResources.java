@@ -8,7 +8,6 @@ import com.example.boundless.Panel;
  * Holds the resources for each game, e.g. "game over" strings and magic constants
  */
 public final class GameResources {
-
     private GameResources() {
     }
 
@@ -102,11 +101,11 @@ public final class GameResources {
 
     public static final int GPAGAME_STARTING_LIVES = 3;
 
-    public static final int GPAGAME_DEFAULT_FALLING_SPEED = 2;
+    public static final int GPAGAME_DEFAULT_FALLING_SPEED = 15;
 
     public static final double GPAGAME_MAX_TIME = 1000;
 
-    public static final double GPAGAME_STARTING_GPA = 3.0;
+    public static final double GPAGAME_STARTING_GPA = 2.5;
 
     public static final int HEART_SIZE = 60;
 

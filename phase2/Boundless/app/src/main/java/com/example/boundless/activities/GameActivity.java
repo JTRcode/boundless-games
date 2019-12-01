@@ -92,11 +92,6 @@ public class GameActivity extends Activity implements Observer {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
     /**
      * Deals with the pause button on the screen being pressed
      *

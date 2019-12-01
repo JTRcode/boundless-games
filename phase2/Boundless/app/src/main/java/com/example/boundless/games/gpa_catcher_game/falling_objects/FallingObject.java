@@ -18,7 +18,7 @@ public abstract class FallingObject {
     private int coordX;
     private int coordY;
     private int size = 100;
-    private int fallingSpeed = 15;
+    private static int fallingSpeed ;
 
     public FallingObject() {
         setCoordY(0);
@@ -89,6 +89,13 @@ public abstract class FallingObject {
         this.coordY = coordY;
     }
 
+    public static int getFallingSpeed() {
+        return fallingSpeed;
+    }
+
+    public static void setFallingSpeed(int fallingSpeed) {
+        FallingObject.fallingSpeed = fallingSpeed;
+    }
 
     /**
      * Makes the object fall down the screen when called.
