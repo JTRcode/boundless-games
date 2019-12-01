@@ -19,6 +19,8 @@ public class Statistics {
     private static int totalScore;
     private static int counterClicks;
 
+    private Statistics() {}
+
     /**
      * Starts measuring time
      */
@@ -92,7 +94,7 @@ public class Statistics {
      * adds output of addRandomScore() to total score
      */
     public static void sumTotalScore() {
-        totalScore += addRandomScore();;
+        totalScore += addRandomScore();
     }
 
     /**
