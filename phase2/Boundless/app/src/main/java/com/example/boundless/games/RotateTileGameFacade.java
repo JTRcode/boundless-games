@@ -21,7 +21,7 @@ public class RotateTileGameFacade extends Game {
      *
      * @param builder THe builder building the tile game
      */
-    public RotateTileGameFacade(GameBuilder builder) {
+    RotateTileGameFacade(GameBuilder builder) {
         currentLevel = builder.getLevel();
         touchHandler = builder.getTouchHandler();
         drawer = builder.getDrawer();
