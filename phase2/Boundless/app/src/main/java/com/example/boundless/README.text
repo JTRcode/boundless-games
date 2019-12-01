@@ -17,11 +17,13 @@ The labels indicate the number and length of the pixels in each row or column.
 For example, ‘11’ means that there is only one pixel grouping of length 11  in this row or column, while ‘3 3 1’ means that there are two pixel groupings of length 3 which are not next to each other (otherwise it will be one 6) and another one of length 1 in this row or column.
 The gird is initially empty.
 For the first time that the player touches the grid, it fills in the color and then switches to X on the second touch, then finally goes back to empty again.
+The stage will automatically end when you get the correct answer.
 
 3) Rotate Tile
 
 Rotate the tiles and let the water goes through!
 The player needs to rotate the tiles and make a path from the top left corner to the bottom right corner.
+The stage will automatically end when you get the correct answer.
 
 APP FEATURES:
 

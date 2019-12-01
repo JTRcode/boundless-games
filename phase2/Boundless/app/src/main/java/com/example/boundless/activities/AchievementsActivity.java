@@ -13,6 +13,7 @@ import com.example.boundless.stats.Achievements;
 import com.example.boundless.utilities.HandleCustomization;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The AchievementsActivity handles achievements and displays if they've been completed
@@ -24,40 +25,30 @@ public class AchievementsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         descriptions = new HashMap<>();
+        HashMap<Integer, Boolean> achievementStatus = new HashMap<>();
         setContentView(R.layout.activity_achievements);
         HandleCustomization.setActivityBackground(this, getWindow());
 
-        ImageView pixel_cross1 = findViewById(R.id.pixel_cross1);
-        ImageView pixel_cross2 = findViewById(R.id.pixel_cross2);
-        ImageView pixel_cross3 = findViewById(R.id.pixel_cross3);
+        achievementStatus.put(R.id.pixel_cross1, Achievements.isNumPixelTapsFiftyCompleted());
+        achievementStatus.put(R.id.pixel_cross2, Achievements.isNumPixelTapsTwoHundredCompleted());
+        achievementStatus.put(R.id.pixel_cross3, Achievements.isTwentySecondsOrLessPixel());
+        achievementStatus.put(R.id.rotate_cross1,Achievements.isNumRotateTapsFiftyCompleted());
+        achievementStatus.put(R.id.rotate_cross2,Achievements.isNumRotateTapsTwoHundredCompleted());
+        achievementStatus.put(R.id.rotate_cross3,Achievements.isTwentySecondsOrLessRotate());
+        achievementStatus.put(R.id.gpa_cross1, Achievements.isMaxGpaAchieve());
+        achievementStatus.put(R.id.gpa_cross2, Achievements.isFailGpaAchieve());
+        achievementStatus.put(R.id.gpa_cross3, Achievements.isThreeGpaAchieve());
 
-        ImageView rotate_cross1 = findViewById(R.id.rotate_cross1);
-        ImageView rotate_cross2 = findViewById(R.id.rotate_cross2);
-        ImageView rotate_cross3 = findViewById(R.id.rotate_cross3);
+        for (Map.Entry<Integer, Boolean> entry : achievementStatus.entrySet()) {
 
-        ImageView gpa_cross1 = findViewById(R.id.gpa_cross1);
-        ImageView gpa_cross2 = findViewById(R.id.gpa_cross2);
-        ImageView gpa_cross3 = findViewById(R.id.gpa_cross3);
+            Integer key = entry.getKey();
+            Boolean value = entry.getValue();
 
-
-        if (Achievements.getNumPixelTaps() >= 50)
-            pixel_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.getNumPixelTaps() >= 200)
-            pixel_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.isTwentySecondsOrLessPixel())
-            pixel_cross3.setImageResource(R.drawable.checkmark);
-        if (Achievements.getNumRotateTaps() >= 50)
-            rotate_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.getNumRotateTaps() >= 200)
-            rotate_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.isTwentySecondsOrLessRotate())
-            rotate_cross3.setImageResource(R.drawable.checkmark);
-        if (Achievements.isMaxGpaAchieve())
-            gpa_cross1.setImageResource(R.drawable.checkmark);
-        if (Achievements.isThreeGpaAchieve())
-            gpa_cross2.setImageResource(R.drawable.checkmark);
-        if (Achievements.isFailGpaAchieve())
-            gpa_cross3.setImageResource(R.drawable.checkmark);
+            if (value) {
+                ImageView cross = findViewById(key);
+                cross.setImageResource(R.drawable.checkmark);
+            }
+        }
 
         descriptions.put(R.id.pixel_achieve1, R.string.pixel_message1);
         descriptions.put(R.id.pixel_achieve2, R.string.pixel_message2);

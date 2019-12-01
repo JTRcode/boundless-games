@@ -12,9 +12,13 @@ public class Achievements {
     private static boolean failGpaAchieve = false;
 
     private static int numPixelTaps = 0;
+    private static boolean numPixelTapsFiftyCompleted = false;
+    private static boolean numPixelTapsTwoHundredCompleted = false;
     private static boolean twentySecondsOrLessPixel = false;
 
     private static int numRotateTaps = 0;
+    private static boolean numRotateTapsFiftyCompleted = false;
+    private static boolean numRotateTapsTwoHundredCompleted = false;
     private static boolean twentySecondsOrLessRotate = false;
 
     private Achievements() {
@@ -145,4 +149,55 @@ public class Achievements {
     public static void setTwentySecondsOrLessRotate() {
         Achievements.twentySecondsOrLessRotate = true;
     }
+
+    /**
+     *
+     * @return boolean representing if user clicked more than 200 times in Pixel Game
+     */
+    public static boolean isNumPixelTapsTwoHundredCompleted() {
+        if (numPixelTaps >= 200) {
+            numPixelTapsTwoHundredCompleted = true;
+        }
+
+        return numPixelTapsTwoHundredCompleted;
+    }
+
+    /**
+     *
+     * @return boolean representing if user clicked more than 50 times in Rotate Tile Game
+     */
+    public static boolean isNumRotateTapsFiftyCompleted() {
+        if (numRotateTaps >= 50) {
+            numRotateTapsFiftyCompleted = true;
+        }
+
+        return numRotateTapsFiftyCompleted;
+    }
+
+    /**
+     *
+     * @return boolean representing if user clicked more than 200 times in Rotate Tile Game
+     */
+    public static boolean isNumRotateTapsTwoHundredCompleted() {
+        if (numRotateTaps >= 200) {
+            numRotateTapsTwoHundredCompleted = true;
+        }
+
+        return numRotateTapsTwoHundredCompleted;
+    }
+
+
+    /**
+     *
+     * @return boolean representing if user clicked more than 50 times in Pixel Game
+     */
+    public static boolean isNumPixelTapsFiftyCompleted() {
+        if (numPixelTaps >= 50) {
+            numPixelTapsFiftyCompleted = true;
+        }
+
+        return numPixelTapsFiftyCompleted;
+    }
+
+
 }
