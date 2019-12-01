@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import com.example.boundless.activities.AchievementsActivity;
 import com.example.boundless.activities.CustomizationActivity;
 import com.example.boundless.activities.LevelActivity;
 import com.example.boundless.activities.LoginActivity;
@@ -54,6 +55,8 @@ public class HandleCustomization {
             return themeOn ? R.drawable.christ_stats : R.drawable.stats;
         else if (context instanceof LevelActivity)
             return themeOn ? R.drawable.christ_level : R.drawable.level;
+        else if (context instanceof AchievementsActivity)
+            return themeOn ? R.drawable.christ_ach : R.drawable.ach;
         return Session.getBackground(context);
     }
 
