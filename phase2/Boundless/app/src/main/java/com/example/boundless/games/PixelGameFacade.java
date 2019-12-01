@@ -32,7 +32,6 @@ public class PixelGameFacade extends Game {
         return pixelManager.checkGameOver();
     }
 
-    @Override
     public void setHint() {
         PixelDrawer.showHint();
     }

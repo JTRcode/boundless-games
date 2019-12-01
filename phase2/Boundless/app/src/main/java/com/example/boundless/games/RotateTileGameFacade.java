@@ -36,7 +36,6 @@ public class RotateTileGameFacade extends Game {
         return manager.checkGameOver();
     }
 
-    @Override
     public void setHint() {
         RotateTileTouchHandler.setFreeTile('X');
     }
