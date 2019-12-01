@@ -1,5 +1,7 @@
 package com.example.boundless.games.gpa_catcher_game.falling_objects;
 
+import com.example.boundless.games.gpa_catcher_game.FallingObjectsEnum;
+
 /**
  * Creates new falling objects
  */
@@ -30,13 +32,12 @@ public class FallingObjectFactory {
 
     /**
      * Creates a new falling object
-     * increase the chance of adding an object if there are few object on the screen
-     * @param
+     *
+     * @param objectEnum The enum of the falling object to create
      * @return The new falling object
      */
-
-    public static FallingObject createFallingObject(FallingObjects object) {
-        switch (object) {
+    public static FallingObject createFallingObject(FallingObjectsEnum objectEnum) {
+        switch (objectEnum) {
             case BOMB:
                 return new Bomb();
             case CLOCK:

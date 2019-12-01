@@ -9,26 +9,31 @@ import com.example.boundless.R;
 import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGameDrawer;
-import com.example.boundless.games.gpa_catcher_game.catchers.Basket;
 import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 import com.example.boundless.utilities.DrawUtility;
 
 import java.util.List;
 
+/**
+ * A drawer for the GPA Catcher Game
+ */
 public class GPAGameDrawer implements IGameDrawer {
     private GPAGameStatus status;
     private Bitmap heart;
     private Bitmap missingHeart;
 
-    public GPAGameDrawer(CatcherGameManager<GPAGameStatus> manager){
+    /**
+     * A new GPA catcher drawer
+     *
+     * @param manager The manager managing the game
+     */
+    public GPAGameDrawer(CatcherGameManager<GPAGameStatus> manager) {
         status = manager.getLevel();
         heart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.heart);
-        missingHeart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.unfilled_heart);
-        //TODO redundant scaling of bitmap, since when we deaw it we pass in the size
         heart = Bitmap.createScaledBitmap(heart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
+        missingHeart = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.unfilled_heart);
         missingHeart = Bitmap.createScaledBitmap(missingHeart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
-//        GpaShop.useItems(); //todo useItems() doesn't work somehow???
     }
 
     @Override
@@ -59,9 +64,9 @@ public class GPAGameDrawer implements IGameDrawer {
         int color;
         double maxTime = GameResources.GPAGAME_MAX_TIME;
         if (status.getTime() >= maxTime / 2) color = Color.GREEN;
-        else if (status.getTime() >= maxTime  / 4) color = Color.YELLOW;
+        else if (status.getTime() >= maxTime / 4) color = Color.YELLOW;
         else color = Color.RED;
-        //TODO should not be casting Time. NEED TO rework entire TIme mechanic
+
         int length = (int) Math.round((status.getTime()/GameResources.GPAGAME_MAX_TIME) * Panel.SCREEN_WIDTH);
         DrawUtility.drawRectangle(new int[]{0, 10, length, 70}, color);
     }
@@ -72,13 +77,9 @@ public class GPAGameDrawer implements IGameDrawer {
     }
 
     private void drawLives() {
-        for (int missLives = 1; missLives <= status.getMaxLives(); missLives++){
+        for (int missLives = 0; missLives < status.getMaxLives(); missLives++)
             DrawUtility.drawBitmap(missingHeart, Panel.SCREEN_WIDTH - missLives * GameResources.HEART_SIZE, 140);
-        }
-        for (int lives = 1; lives <= status.getLives(); lives++) {
+        for (int lives = 0; lives < status.getLives(); lives++)
             DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * GameResources.HEART_SIZE, 140);
-        }
     }
-
-
 }

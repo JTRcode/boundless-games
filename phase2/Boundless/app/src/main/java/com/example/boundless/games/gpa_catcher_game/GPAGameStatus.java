@@ -8,88 +8,133 @@ import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjec
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The current status of a GPA Catcher game
+ */
 public class GPAGameStatus {
     private int lives;
     private List<FallingObject> fallingObjectList;
     private Catcher catcher;
-    private int fallingSpeed;
-    private int basketSpeed;
     private double time;
     private double gpa;
-    private double decayRate;
-    private int maxItems = GameResources.GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS;
+    private static int maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
+    private static boolean bombProtection = false;
+    private static int doubleGPA = 0;
 
-    private static int maxLives;
-    private static boolean bombProtection;
-    private static int doubleGPA;
-
+    /**
+     * A new status for the GPA Catcher game
+     */
     public GPAGameStatus() {
         catcher = new Basket();
         fallingObjectList = new ArrayList<>();
         lives = GameResources.GPAGAME_STARTING_LIVES;
-        fallingSpeed = GameResources.GPAGAME_DEFAULT_FALLING_SPEED;
-        basketSpeed = GameResources.GPAGAME_DEFAULT_BASKET_SPEED;
         time = GameResources.GPAGAME_MAX_TIME;
-        decayRate = GameResources.GPAGAME_DEFAULT_TIME_DECREMENT;
         gpa = GameResources.GPAGAME_STARTING_GPA;
-
-        catcher.setSpeed(basketSpeed);
-        FallingObject.setFallingSpeed(fallingSpeed);
 
         maxLives = GameResources.GPAGAME_STARTING_LIVES;
         bombProtection = false;
         doubleGPA = 0;
     }
 
-    public int getBasketSpeed(){return basketSpeed;}
-
-    public int getMaxItem(){return maxItems;}
-
+    /**
+     * Get the current GPA of the game
+     *
+     * @return The current GPA
+     */
     public double getGpa() {
         return gpa;
     }
 
-    public void setGpa(double newGPA) {
-        gpa = Math.min(newGPA,0) == 0 ? Math.min(newGPA,4.0) : 0;
+    /**
+     * Add to the current GPA amount
+     *
+     * @param additionalGpa The amount to add to the GPA
+     */
+    public void addGpa(double additionalGpa) {
+        double newGpa = gpa + additionalGpa;
+        gpa = Math.min(newGpa, 0) == 0 ? Math.min(newGpa, 4.0) : 0;
     }
 
+    /**
+     * Get the amount of time left in the game
+     *
+     * @return The amount of time left in the game
+     */
     public double getTime() {
-        return this.time;
+        if (time <= 0) resetStatus();
+        return time;
     }
 
-    public void setTime(double time) {
-        this.time = Math.min(time, GameResources.GPAGAME_MAX_TIME);
+    /**
+     * Add to the current amount of time
+     *
+     * @param additionalTime The amount to add to the time
+     */
+    public void addTime(double additionalTime) {
+        time = Math.min(time + additionalTime, GameResources.GPAGAME_MAX_TIME);
     }
 
-    public int getLives() {
-        return this.lives;
+    /**
+     * Get the current amount of lives
+     *
+     * @return The amount of lives left
+     */
+    int getLives() {
+        if (lives <= 0) resetStatus();
+        return lives;
     }
 
-    public void setLives(int newLives) {
-        lives = Math.min(maxLives, newLives);
+    /**
+     * Add to the current amount of lives
+     *
+     * @param additionalLives The amount of lives to add
+     */
+    public void addLives(int additionalLives) {
+        lives = Math.max(0, lives + additionalLives);
     }
 
-    public void addFallingObject(FallingObject newFallingObject) {
-        fallingObjectList.add(newFallingObject);
-    }
-
+    /**
+     * Gets the basket that catches falling items
+     *
+     * @return The basket
+     */
     public Catcher getCatcher() {
         return catcher;
     }
 
+    /**
+     * Sets the catcher that will catch falling items
+     *
+     * @param catcher The catcher to use
+     */
     public void setCatcher(Basket catcher) {
         this.catcher = catcher;
     }
 
-    public List<FallingObject> getAllFallingObjects() {
-        return this.fallingObjectList;
+    /**
+     * Adds a falling object to the screen
+     *
+     * @param newFallingObject The falling object to add
+     */
+    void addFallingObject(FallingObject newFallingObject) {
+        fallingObjectList.add(newFallingObject);
     }
 
-    public int getFallingSpeed() {
-        return this.fallingSpeed;
+    /**
+     * Gets a list of the falling objects on the screen
+     *
+     * @return A list of falling objects on the screen
+     */
+    List<FallingObject> getAllFallingObjects() {
+        return fallingObjectList;
     }
 
-    public void setFallingObject(List<FallingObject> fallingObjectsList) {
+    /**
+     * Set the list of falling objects
+     *
+     * @param fallingObjectsList The list of falling objects to keep track of
+     */
+    void setFallingObject(List<FallingObject> fallingObjectsList) {
         this.fallingObjectList = fallingObjectsList;
     }
 
@@ -97,30 +142,31 @@ public class GPAGameStatus {
     /**
      * Increases maximum life by 1 (from 3 to 4) for a level.
      */
-    public static void addLife(){
-        maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
+    public static void addToMaxLives() {
+        maxLives++;
     }
 
     /**
      * No damage from the first bomb caught
      */
-    public static void bombProtection(){
+    public static void bombProtection() {
         bombProtection = true;
     }
 
     /**
      * Start with a 3.0 GPA
      */
-    public static void doubleGPA(){
+    public static void doubleGPA() {
         doubleGPA = 12;
     }
 
     /**
+     * Tell if bomb protection is in effect
      *
      * @return true if bombProtection is true
      */
-    public boolean getBombProtection(){
-        if (bombProtection){
+    public boolean getBombProtection() {
+        if (bombProtection) {
             bombProtection = false;
             return true;
         }
@@ -128,19 +174,30 @@ public class GPAGameStatus {
     }
 
     /**
-     * if doubleGPA is in effect, then use it and decrement the number of usage by 1
+     * Tell if the doubleGPA hint is still in effect
+     *
      * @return true if doubleGPA is still in effect
      */
-    public boolean getDoubleGPA(){
-        if (doubleGPA > 0){
+    public boolean getDoubleGPA() {
+        if (doubleGPA > 0) {
             doubleGPA -= 1;
             return true;
         }
         return false;
     }
 
-    public int getMaxLives(){
+    /**
+     * Get the maximum number of lives
+     *
+     * @return The maximum number of lives
+     */
+    int getMaxLives() {
         return maxLives;
     }
 
+    private static void resetStatus() {
+        maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
+        bombProtection = false;
+        doubleGPA = 0;
+    }
 }

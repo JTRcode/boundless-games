@@ -14,21 +14,22 @@ import com.example.boundless.shop.GpaShop;
  */
 public class GPACatcherGameFacade extends Game {
 
-    private CatcherGameManager GPAGameManager;
-    private ITouchHandler GPAGameTouchHandler;
-    private IGameDrawer GPAGameDrawer;
-    private StatusUpdater GPAStatusUpdater;
-
-    public GPACatcherGameFacade(GameBuilder builder) {
-        this.GPAGameManager = (CatcherGameManager) builder.getManager();
-        this.GPAGameDrawer = builder.getDrawer();
-        this.GPAGameTouchHandler = builder.getTouchHandler();
-        this.GPAStatusUpdater = builder.getStatusUpdater();
-    }
+    private CatcherGameManager manager;
+    private ITouchHandler touchHandler;
+    private IGameDrawer drawer;
+    private StatusUpdater statusUpdater;
 
     /**
-     *  if shopInventory has items then use them automatically
+     * A new GPA game
+     *
+     * @param builder The builder to create the GPA game
      */
+    GPACatcherGameFacade(GameBuilder builder) {
+        manager = (CatcherGameManager) builder.getManager();
+        drawer = builder.getDrawer();
+        touchHandler = builder.getTouchHandler();
+        statusUpdater = builder.getStatusUpdater();
+    }
 
     @Override
     String getInstructions() {
@@ -36,13 +37,13 @@ public class GPACatcherGameFacade extends Game {
     }
 
     @Override
-    public void update(){
-        GPAStatusUpdater.update();
+    public void update() {
+        statusUpdater.update();
     }
 
     @Override
     boolean gameOver() {
-        return GPAGameManager.checkGameOver();
+        return manager.checkGameOver();
     }
 
     @Override
@@ -57,6 +58,6 @@ public class GPACatcherGameFacade extends Game {
 
     @Override
     String getGameOverText() {
-        return GPAGameManager.getGameOverText();
+        return manager.getGameOverText();
     }
 }

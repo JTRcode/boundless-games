@@ -12,19 +12,22 @@ import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
  */
 class Sleep extends FallingObject {
 
+    /**
+     * A new sleep falling object
+     */
     Sleep() {
-        super();
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.sleep);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     @Override
     public void caught(GPAGameStatus status) {
-        status.setLives(status.getLives()+1);
+        status.addLives(1);
     }
 
     @Override
     public void missed(GPAGameStatus status) {
+        //Nothing happens when sleep is missed, although maybe it should...
     }
 
 }

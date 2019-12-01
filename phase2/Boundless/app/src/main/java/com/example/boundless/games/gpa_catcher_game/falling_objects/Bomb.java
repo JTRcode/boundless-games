@@ -11,30 +11,30 @@ import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
  * A falling bomb, removes a life when caught
  */
 class Bomb extends FallingObject {
+    private static int bombsAvoided;
 
+    /**
+     * A new falling bomb
+     */
     Bomb() {
-        super();
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.bomb);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     @Override
     public void caught(GPAGameStatus status) {
-        if (status.getBombProtection()){
-            return;
-        }
-        status.setLives(status.getLives()+1);
+        if (status.getBombProtection()) return;
+
+        status.addLives(-1);
     }
 
     @Override
     public void missed(GPAGameStatus status) {
-        //TODO bombAvoided += 1;
-        /*
-        if (bombAvoided >= 10) {
-            life += 1;
-            bombAvoided = 0;
+        bombsAvoided++;
+        if (bombsAvoided >= 10) {
+            bombsAvoided -= 10;
+            status.addLives(1);
         }
-         */
     }
 
 }

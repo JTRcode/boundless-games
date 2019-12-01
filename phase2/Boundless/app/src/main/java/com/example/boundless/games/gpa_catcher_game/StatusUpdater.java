@@ -4,64 +4,71 @@ import android.util.Log;
 
 import com.example.boundless.games.game_utilities.CatcherGameManager;
 import com.example.boundless.games.game_utilities.GameResources;
-import com.example.boundless.games.gpa_catcher_game.catchers.Basket;
 import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjectFactory;
-import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjects;
+import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjectsEnum;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
+/**
+ * Updates the status of the game
+ */
 public class StatusUpdater {
 
     private CatcherGameManager<GPAGameStatus> manager;
     private GPAGameStatus status;
-
     private static boolean moreSleep;
     private static boolean moreTime;
 
-    private static final String TAG = "StatusUpdater";
-    public StatusUpdater(CatcherGameManager<GPAGameStatus> manager){
+    /**
+     * A new status updater for the GPA Catcher game
+     *
+     * @param manager The manager for the GPA Catcher game
+     */
+    public StatusUpdater(CatcherGameManager<GPAGameStatus> manager) {
         status = manager.getLevel();
         this.manager = manager;
 
         setTools();
     }
 
-    public void update(){
-        status.setTime(status.getTime()- GameResources.GPAGAME_DEFAULT_TIME_DECREMENT);
+    /**
+     * Updates the items on the screen
+     */
+    public void update() {
+        String tag = "StatusUpdater";
+        status.addTime(-GameResources.GPAGAME_DEFAULT_TIME_DECREMENT);
         addFallingObject();
         List<FallingObject> fallingObjects = status.getAllFallingObjects();
-        ListIterator<FallingObject> iterator = fallingObjects.listIterator();
+        List<FallingObject> fallingObjectsCopy = new ArrayList<>(fallingObjects);
         Catcher catcher = status.getCatcher();
-        while(iterator.hasNext()){
-            FallingObject item = iterator.next();
-            if (manager.overlap(catcher, item)) {
-                item.caught(status);
-                iterator.remove();
-                Log.d(TAG, "it is Caught");
-            } else if (manager.hitsGround(item)) {
-                item.missed(status);
-                iterator.remove();
-                Log.d(TAG, "it is Missed");
+        for (FallingObject object : fallingObjects) {
+            if (manager.overlap(catcher, object)) {
+                object.caught(status);
+                fallingObjectsCopy.remove(object);
+                Log.i(tag, "Object was caught");
+            } else if (object.hitGround()) {
+                object.missed(status);
+                fallingObjectsCopy.remove(object);
+                Log.i(tag, "Object was missed");
             } else {
-                item.fall();
-                Log.d(TAG, "Falling");
+                object.fall();
+                Log.i(tag, "Object is falling");
             }
         }
+        status.setFallingObject(fallingObjectsCopy);
     }
-
-
 
     /**
      * Add a falling object to the screen
      */
-    public void addFallingObject() {
+    private void addFallingObject() {
+        if (status.getAllFallingObjects().size() >=
+                GameResources.GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS)
+            return;
 
-        if (status.getAllFallingObjects().size() >= status.getMaxItem()) return;
         double increaseSleep = 0;
         if (moreSleep){
             increaseSleep = 0.1;
@@ -72,23 +79,15 @@ public class StatusUpdater {
         }
 
         double d = Math.random();
-        FallingObjects newItem = null;
-        if (d < 0.05) newItem = FallingObjects.ASSIGNMENT;
-        else if (d < 0.06) newItem = FallingObjects.BOMB;
-        else if (d < 0.061 + increaseSleep) newItem = FallingObjects.SLEEP;
-        else if (d < 0.062 + increaseSleep + increaseTime) newItem = FallingObjects.CLOCK;
-        if (newItem != null){
+        FallingObjectsEnum newItem = null;
+        if (d < 0.05) newItem = FallingObjectsEnum.ASSIGNMENT;
+        else if (d < 0.06) newItem = FallingObjectsEnum.BOMB;
+        else if (d < 0.061 + increaseSleep) newItem = FallingObjectsEnum.SLEEP;
+        else if (d < 0.062 + increaseSleep + increaseTime) newItem = FallingObjectsEnum.CLOCK;
+        if (newItem != null)
             status.addFallingObject(FallingObjectFactory.createFallingObject(newItem));
-        }
     }
 
-    /**
-     *  moreSleep and moreTime should be set to false at the start of a new game
-     */
-    private void setTools(){
-        moreSleep = false;
-        moreTime = false;
-    }
     /**
      * Increased drop rate for sleep
      */
@@ -101,6 +100,14 @@ public class StatusUpdater {
      */
     public static void moreTime(){
         moreTime = true;
+    }
+
+    /**
+     * moreSleep and moreTime should be set to false at the start of a new game
+     */
+    private static void setTools() {
+        moreSleep = false;
+        moreTime = false;
     }
 
 }

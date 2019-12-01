@@ -1,7 +1,17 @@
 package com.example.boundless.games.game_utilities;
 
-public interface IGameManager<E>{
+/**
+ * A manager for the games
+ *
+ * @param <E> A representation of a level in the game
+ */
+public interface IGameManager<E> {
 
+    /**
+     * Checks if the game is over
+     *
+     * @return if the game is over
+     */
     boolean checkGameOver();
 
     /**

@@ -12,18 +12,20 @@ import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObjec
  */
 public class GPAGameManager extends CatcherGameManager {
 
-    private GPAGameStatus level;
+    private GPAGameStatus status;
 
-    private static final String TAG = "GPAGameManager";
-
-    public GPAGameManager(){
-        level = new GPAGameStatus();
-        level.getCatcher().setCoordX(Panel.SCREEN_WIDTH / 2);
-        level.getCatcher().setCoordY(Panel.SCREEN_HEIGHT - 250);
+    /**
+     * A new manager for the GPA game
+     */
+    public GPAGameManager() {
+        status = new GPAGameStatus();
+        status.getCatcher().setCoordX(Panel.SCREEN_WIDTH / 2);
+        status.getCatcher().setCoordY(Panel.SCREEN_HEIGHT - 250);
     }
 
-    public GPAGameStatus getLevel(){
-        return level;
+    @Override
+    public GPAGameStatus getLevel() {
+        return status;
     }
 
     @Override
@@ -35,27 +37,17 @@ public class GPAGameManager extends CatcherGameManager {
     }
 
     @Override
-    public double getScore(){
-        return level.getGpa();
-    }
-
-    @Override
     public String getGameOverText() {
-        StringBuilder text = GameResources.getGPAGameOver();
-        if (level.getTime() <= 0) text.append("You ran out of time!\n");
-        if (level.getLives() <= 0) text.append("You ran out of lives!\n");
+        StringBuilder text = new StringBuilder(GameResources.getGPAGameOver());
+        if (status.getTime() <= 0) text.append("You ran out of time!\n");
+        if (status.getLives() <= 0) text.append("You ran out of lives!\n");
         text.append("Final GPA: ");
-        text.append(Math.round(level.getGpa() * 100) / 100.0);
+        text.append(Math.round(status.getGpa() * 100) / 100.0);
         return text.toString();
     }
 
     @Override
-    public boolean hitsGround(FallingObject object){
-        return object.getCoordY()>= Panel.SCREEN_HEIGHT;
-    }
-
-    @Override
     public boolean checkGameOver() {
-        return(level.getTime() < 0 || level.getLives() <= 0);
+        return (status.getTime() < 0 || status.getLives() <= 0);
     }
 }

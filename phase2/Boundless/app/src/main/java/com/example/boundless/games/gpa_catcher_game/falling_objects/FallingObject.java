@@ -2,6 +2,7 @@ package com.example.boundless.games.gpa_catcher_game.falling_objects;
 
 import android.graphics.Bitmap;
 
+import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
 import com.example.boundless.utilities.DrawUtility;
 import com.example.boundless.Panel;
@@ -13,28 +14,18 @@ public abstract class FallingObject {
     /**
      * The appearance of the object
      */
-    Bitmap appearance;
+    protected Bitmap appearance;
 
     private int coordX;
-    private int coordY;
+    private int coordY = 0;
     private int size = 100;
-    private static int fallingSpeed ;
-
-    public FallingObject() {
-        setCoordY(0);
-        //TODO: move this to another method
-        int x = (int) (Math.random() * Panel.SCREEN_WIDTH - size);
-        x = (x <= size / 2) ? size : x;
-        setCoordX(x);
-    }
 
     /**
-     * Sets the size of the object
-     *
-     * @param size The size to set the object to
+     * A new falling object
      */
-    public void setSize(int size) {
-        this.size = size;
+    FallingObject() {
+        int x = (int) (Math.random() * Panel.SCREEN_WIDTH - size);
+        coordX = (x <= size / 2) ? size : x;
     }
 
     /**
@@ -51,7 +42,9 @@ public abstract class FallingObject {
      *
      * @return Bitmap image
      */
-    public Bitmap getAppearance(){return appearance;}
+    public Bitmap getAppearance() {
+        return appearance;
+    }
 
     /**
      * Get the x coordinate of the object
@@ -60,15 +53,6 @@ public abstract class FallingObject {
      */
     public int getCoordX() {
         return coordX;
-    }
-
-    /**
-     * Sets the x coordinate of the object
-     *
-     * @param coordX The new x coordinate to set the object to
-     */
-    public void setCoordX(int coordX) {
-        this.coordX = coordX;
     }
 
     /**
@@ -81,27 +65,10 @@ public abstract class FallingObject {
     }
 
     /**
-     * Set the y coordinate of the object
-     *
-     * @param coordY The new y coordinate to set the object to
-     */
-    public void setCoordY(int coordY) {
-        this.coordY = coordY;
-    }
-
-    public static int getFallingSpeed() {
-        return fallingSpeed;
-    }
-
-    public static void setFallingSpeed(int fallingSpeed) {
-        FallingObject.fallingSpeed = fallingSpeed;
-    }
-
-    /**
      * Makes the object fall down the screen when called.
      */
     public void fall() {
-        coordY += fallingSpeed;
+        coordY += GameResources.GPAGAME_DEFAULT_FALLING_SPEED;
     }
 
     /**
@@ -123,10 +90,10 @@ public abstract class FallingObject {
     /**
      * What happens when the object is caught
      */
-    public abstract void caught(GPAGameStatus level);
+    public abstract void caught(GPAGameStatus status);
 
     /**
      * What happens when the object is missed
      */
-    public abstract void missed(GPAGameStatus level);
+    public abstract void missed(GPAGameStatus status);
 }

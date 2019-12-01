@@ -12,19 +12,22 @@ import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
  */
 class Clock extends FallingObject {
 
+    /**
+     * A new falling clock
+     */
     Clock() {
-        super();
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.time);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     @Override
     public void caught(GPAGameStatus status) {
-        status.setTime(status.getTime()+50);
+        status.addTime(50);
     }
 
     @Override
     public void missed(GPAGameStatus status) {
+        //Nothing happens when a clock hits the ground
     }
 
 }

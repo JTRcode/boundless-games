@@ -12,26 +12,27 @@ import com.example.boundless.games.gpa_catcher_game.GPAGameStatus;
  */
 class Assignment extends FallingObject {
 
+    /**
+     * A new falling assignment
+     */
     Assignment() {
-        super();
         appearance = BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.assignment);
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
     @Override
-    public void caught(GPAGameStatus level) {
+    public void caught(GPAGameStatus status) {
         double caughtValue = 0.1;
-        if (level.getDoubleGPA()){
+        if (status.getDoubleGPA())
             caughtValue *= 2;
-        }
-        double gpa = Math.min(4.0, level.getGpa() + caughtValue);
-        level.setGpa(gpa);
+
+        status.addGpa(caughtValue);
     }
 
     @Override
-    public void missed(GPAGameStatus level) {
-        level.setGpa(level.getGpa()-0.1);
-        level.setLives(level.getLives()-1);
+    public void missed(GPAGameStatus status) {
+        status.addGpa(-0.1);
+        status.addLives(-1);
     }
 
 }
