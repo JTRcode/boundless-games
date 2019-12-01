@@ -1,8 +1,5 @@
 package com.example.boundless.games;
 
-import android.os.AsyncTask;
-
-import com.example.boundless.games.game_utilities.GridManager;
 import com.example.boundless.games.game_utilities.IGameDrawer;
 import com.example.boundless.games.game_utilities.IGameManager;
 import com.example.boundless.games.game_utilities.ITouchHandler;
@@ -51,12 +48,17 @@ class GameBuilder {
         return this;
     }
 
+    /**
+     * Store the status updater for the game
+     *
+     * @param updater The updater for the game
+     * @return The game builder
+     */
     //TODO create updater Interface
-    GameBuilder buildStatusUpdater(StatusUpdater updater){
+    GameBuilder buildStatusUpdater(StatusUpdater updater) {
         this.statusUpdater = updater;
         return this;
     }
-
 
     /**
      * Store the touch handler for the game
@@ -88,7 +90,8 @@ class GameBuilder {
                 if (touchHandler == null || drawer == null || manager == null) return null;
                 return new RotateTileGameFacade(this);
             case GPACATCHER:
-                if (touchHandler == null || drawer == null || manager == null || statusUpdater == null) return null;
+                if (touchHandler == null || drawer == null || manager == null || statusUpdater == null)
+                    return null;
                 return new GPACatcherGameFacade(this);
             default:
                 return null;
@@ -122,9 +125,15 @@ class GameBuilder {
         return manager;
     }
 
-    StatusUpdater getStatusUpdater(){
+    /**
+     * Get the status updater
+     *
+     * @return The status updater for the game
+     */
+    StatusUpdater getStatusUpdater() {
         return statusUpdater;
     }
+
     /**
      * Get the level number for the game
      *

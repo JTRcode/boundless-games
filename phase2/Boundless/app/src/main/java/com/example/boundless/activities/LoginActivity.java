@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.boundless.R;
 import com.example.boundless.users.UserAccount;
@@ -64,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
         if (userManager.signUp(user, pass)) {
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(this, "That username is already taken. Please use another.", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

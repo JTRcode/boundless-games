@@ -26,7 +26,7 @@ public class Basket extends Catcher {
      */
     @Override
     public void moveLeft(){
-        setCoordX(getCoordX()-getSpeed());
+        coordX -= speed;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Basket extends Catcher {
      */
     @Override
     public void moveRight(){
-        setCoordX(getCoordX()+getSpeed());
+        coordX += speed;
     }
 
 }

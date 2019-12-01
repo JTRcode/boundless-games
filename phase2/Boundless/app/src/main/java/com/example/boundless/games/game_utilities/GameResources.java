@@ -122,8 +122,8 @@ public final class GameResources {
      *
      * @return The string to show to the user.
      */
-    public static StringBuilder getGPAGameOver() {
-        return new StringBuilder("GAME OVER! \n");
+    public static String getGPAGameOver() {
+        return "GAME OVER! \n";
     }
 
     /**

@@ -1,12 +1,7 @@
 package com.example.boundless.games;
 
-import android.os.AsyncTask;
-
 import com.example.boundless.games.game_utilities.*;
-import com.example.boundless.games.gpa_catcher_game.GPAGameDrawer;
-import com.example.boundless.games.gpa_catcher_game.GPAGameManager;
-import com.example.boundless.games.gpa_catcher_game.GPAGameTouchHandler;
-import com.example.boundless.games.gpa_catcher_game.StatusUpdater;
+import com.example.boundless.games.gpa_catcher_game.*;
 import com.example.boundless.games.pixel_game.*;
 import com.example.boundless.games.pixel_instructions.*;
 import com.example.boundless.games.rotate_tile_game.*;
@@ -45,12 +40,12 @@ public class GameCreator {
                 return gameBuilder.buildTouchHandler(pixelTouchHandler).buildDrawer(pixelDrawer)
                         .buildLevel(level).buildManager(pixelManager).buildGame(gameToCreate);
             case GPACATCHER:
-                CatcherGameManager GPAGameManager = new GPAGameManager();
-                IGameDrawer GPAGameDrawer = new GPAGameDrawer(GPAGameManager);
-                ITouchHandler GPAGameTouchHandler = new GPAGameTouchHandler(GPAGameManager);
-                StatusUpdater gpaGameStatus = new StatusUpdater(GPAGameManager);
-                return gameBuilder.buildTouchHandler(GPAGameTouchHandler).buildDrawer(GPAGameDrawer)
-                        .buildLevel(level).buildManager(GPAGameManager).buildStatusUpdater(gpaGameStatus).buildGame(gameToCreate);
+                CatcherGameManager gpaGameManager = new GPAGameManager();
+                IGameDrawer gpaGameDrawer = new GPAGameDrawer(gpaGameManager);
+                ITouchHandler gpaGameTouchHandler = new GPAGameTouchHandler(gpaGameManager);
+                StatusUpdater gpaGameStatus = new StatusUpdater(gpaGameManager);
+                return gameBuilder.buildTouchHandler(gpaGameTouchHandler).buildDrawer(gpaGameDrawer)
+                        .buildLevel(level).buildManager(gpaGameManager).buildStatusUpdater(gpaGameStatus).buildGame(gameToCreate);
             case ROTATETILE:
                 GridManager<Tile, TileLevel> tileManager = new TileManager(level);
                 IGameDrawer tileDrawer = new RotateTileDrawer(tileManager);

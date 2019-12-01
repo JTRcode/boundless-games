@@ -7,7 +7,6 @@ import com.example.boundless.games.game_utilities.GameResources;
 import com.example.boundless.games.game_utilities.IGameDrawer;
 import com.example.boundless.games.game_utilities.ITouchHandler;
 import com.example.boundless.games.gpa_catcher_game.StatusUpdater;
-import com.example.boundless.shop.GpaShop;
 
 /**
  * A GPA catcher game, where you catch falling objects to get a good grade!
@@ -48,12 +47,12 @@ public class GPACatcherGameFacade extends Game {
 
     @Override
     public void draw() {
-        GPAGameDrawer.draw();
+        drawer.draw();
     }
 
     @Override
     public void screenTouched(MotionEvent event) {
-        GPAGameTouchHandler.screenTouched(event);
+        touchHandler.screenTouched(event);
     }
 
     @Override

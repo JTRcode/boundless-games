@@ -2,13 +2,15 @@ package com.example.boundless.games.gpa_catcher_game.catchers;
 
 import android.graphics.Bitmap;
 
+import com.example.boundless.games.game_utilities.GameResources;
+
 
 public abstract class Catcher {
 
     private Bitmap appearance;
-    private int coordX;
-    private int coordY;
-    private int speed;
+    protected int coordX;
+    protected int coordY;
+    protected int speed = GameResources.GPAGAME_DEFAULT_BASKET_SPEED;
 
 
     /**
@@ -72,9 +74,6 @@ public abstract class Catcher {
     public int getSize() {
         return appearance.getWidth();
     }
-
-
-    //TODO should not be caring about screen width
 
     /**
      * Moves left on the screen

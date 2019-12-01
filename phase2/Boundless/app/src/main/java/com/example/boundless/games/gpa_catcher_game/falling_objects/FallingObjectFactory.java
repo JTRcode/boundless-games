@@ -1,7 +1,5 @@
 package com.example.boundless.games.gpa_catcher_game.falling_objects;
 
-import com.example.boundless.games.gpa_catcher_game.FallingObjectsEnum;
-
 /**
  * Creates new falling objects
  */

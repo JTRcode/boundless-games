@@ -8,7 +8,6 @@ import android.graphics.Matrix;
  */
 public abstract class Tile implements Cloneable {
 
-    //TODO: add javadocs
     /**
      * Used in checking if the game is over.
      */
@@ -17,24 +16,28 @@ public abstract class Tile implements Cloneable {
      * The image of the tile, correctly rotated on the screen
      */
     public Bitmap rotatedImage;
-    Bitmap originalImage;
+    private Bitmap originalImage;
     private int[] exits;
     private Rotation rotation;
 
     /**
-     * Resizes the bitmap to fit it onto the grid
-     *
+     * A new tile
+     * @param exits The exits/entrances of the tile
+     * @param originalImage The image of the tile to show
      */
-    public void resize(int newDimension) {
-        originalImage = Bitmap.createScaledBitmap(originalImage, newDimension, newDimension, true);
-        rotatedImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
-    }
-
     Tile(int[] exits, Bitmap originalImage) {
         this.exits = exits;
         this.originalImage = originalImage;
         rotatedImage = originalImage;
         setTile(Rotation.getRandom());
+    }
+
+    /**
+     * Resizes the bitmap to fit it onto the grid
+     */
+    public void resize(int newDimension) {
+        originalImage = Bitmap.createScaledBitmap(originalImage, newDimension, newDimension, true);
+        rotatedImage = Bitmap.createScaledBitmap(rotatedImage, newDimension, newDimension, true);
     }
 
     /**

@@ -42,7 +42,6 @@ public class UserAccount {
      * @return If the username is the same
      */
     boolean sameUsername(String name) {
-        //TODO: show a toast saying that someone already has this username
         return (this.name.equals(name));
     }
 
@@ -125,12 +124,10 @@ public class UserAccount {
      * Add an amount of points to the user
      *
      * @param pointsToAdd The number of points to add to the user
-     * @return The number of points after the change
      */
-    public int addUserPoints(int pointsToAdd) {
+    public void addUserPoints(int pointsToAdd) {
         userPoints = Math.max(0, userPoints + pointsToAdd);
         UserAccountManager.updateUser();
-        return userPoints;
     }
 
     /**

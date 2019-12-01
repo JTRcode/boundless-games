@@ -1,6 +1,7 @@
 package com.example.boundless.stats;
 
 import com.example.boundless.games.GamesEnum;
+import com.example.boundless.users.UserAccountManager;
 
 import java.util.Date;
 import java.util.Random;
@@ -29,19 +30,15 @@ public class Statistics {
     }
 
     /**
-     *
      * Start measuring time for Pixel or Rotate game depending on enum passed in
      *
      * @param gamesEnum the enum representing the game we want to measure time for
      */
     public static void startTimeByGame(GamesEnum gamesEnum) {
-
-        if (gamesEnum == GamesEnum.PIXELS) {
+        if (gamesEnum == GamesEnum.PIXELS)
             startTimePixel = new Date().getTime();
-        }
-        else if (gamesEnum == GamesEnum.ROTATETILE) {
+        else if (gamesEnum == GamesEnum.ROTATETILE)
             startTimeRotate = new Date().getTime();
-        }
     }
 
     /**
@@ -54,7 +51,6 @@ public class Statistics {
     }
 
     /**
-     *
      * Stop measuring time for Pixel or Rotate game depending on enum passed in
      *
      * @param gamesEnum the enum representing the game we want to stop measuring time for
@@ -94,7 +90,9 @@ public class Statistics {
      * adds output of addRandomScore() to total score
      */
     public static void sumTotalScore() {
-        totalScore += addRandomScore();
+        int additionalScore = addRandomScore();
+        totalScore += additionalScore;
+        UserAccountManager.currentUser.addUserPoints(additionalScore);
     }
 
     /**
