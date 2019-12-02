@@ -84,11 +84,12 @@ public class GPAGameStatus {
 
     /**
      * Add to the current amount of lives
+     * And check if it exceeds the maximum amount of lives.
      *
      * @param additionalLives The amount of lives to add
      */
     public void addLives(int additionalLives) {
-        lives = Math.max(0, lives + additionalLives);
+        lives = Math.min(maxLives, lives + additionalLives);
     }
 
     /**

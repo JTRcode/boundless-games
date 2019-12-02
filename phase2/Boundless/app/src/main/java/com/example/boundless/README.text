@@ -6,7 +6,10 @@ THE GAMES:
 
 Try to gain a high GPA in a limited time as much as you can!
 Move the character to the right or left in order to catch the assignments, which increase your GPA, the clock, which gives you extra time and ‘sleep’ which provides you an extra life.
-The player has three lives initially. Each time the player misses an assignment or hit by a bomb, he loses one life.
+The player has three lives initially.
+Each time the player misses an assignment or hit by a bomb, s/he loses one life.
+Each time the player catches a clock, s/he will get additional time.
+Each time the player catches a sleep. s/he will get additional life.
 The game ends if the player loses three lives or the game runs out of time.
 
 2) Pixel Game

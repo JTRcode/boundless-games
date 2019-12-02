@@ -101,6 +101,8 @@ public final class GameResources {
 
     public static final int GPAGAME_STARTING_LIVES = 3;
 
+    public static final int MAXIMUM_NUMBER_OF_LIVES = 3;
+
     public static final int GPAGAME_DEFAULT_FALLING_SPEED = 15;
 
     public static final double GPAGAME_MAX_TIME = 1000;
@@ -115,7 +117,7 @@ public final class GameResources {
 
     public static final int GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS = 10;
 
-    public static final int MAXIMUM_NUMBER_OF_LIVES = 4;
+
 
     /**
      * Gets the game over text for the GPA Game

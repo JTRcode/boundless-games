@@ -71,11 +71,11 @@ public class StatusUpdater {
 
         double increaseSleep = 0;
         if (moreSleep){
-            increaseSleep = 0.1;
+            increaseSleep = 0.03;
         }
         double increaseTime = 0;
         if (moreTime){
-            increaseTime = 0.1;
+            increaseTime = 0.015;
         }
 
         double d = Math.random();

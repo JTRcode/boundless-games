@@ -78,8 +78,8 @@ public class GPAGameDrawer implements IGameDrawer {
 
     private void drawLives() {
         for (int missLives = 0; missLives < status.getMaxLives(); missLives++)
-            DrawUtility.drawBitmap(missingHeart, Panel.SCREEN_WIDTH - missLives * GameResources.HEART_SIZE, 140);
+            DrawUtility.drawBitmap(missingHeart, Panel.SCREEN_WIDTH - (missLives+1) * GameResources.HEART_SIZE, 140);
         for (int lives = 0; lives < status.getLives(); lives++)
-            DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - lives * GameResources.HEART_SIZE, 140);
+            DrawUtility.drawBitmap(heart, Panel.SCREEN_WIDTH - (lives+1)* GameResources.HEART_SIZE, 140);
     }
 }

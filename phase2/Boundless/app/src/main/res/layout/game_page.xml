@@ -37,7 +37,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="100dp"
-        android:background="#0A0A0A"
+        android:background="#B3524C4C"
         android:orientation="vertical"
         android:textAlignment="center"
         android:visibility="invisible"
@@ -68,10 +68,10 @@
             android:layout_gravity="center|center_vertical"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/pause"
             android:onClick="resumePressed"
             android:scaleType="fitCenter"
-            android:src="@drawable/play_button"
-            android:contentDescription="@string/pause" />
+            android:src="@drawable/play_button" />
 
         <Button
             android:id="@+id/pauseMenu_back_menu2"
@@ -119,10 +119,10 @@
             android:layout_weight="1">
 
             <LinearLayout
+                android:id="@+id/inventory_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/inventory_layout"></LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
 
     </LinearLayout>
