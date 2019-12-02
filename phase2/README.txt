@@ -1,3 +1,8 @@
+README External tools used:
+
+For the most part, everything for our app is internally created. The only external tool that we use in our project is an open source JSON-serialization and deserialization tool.
+The tool is called GSON and can be found here: https://github.com/google/gson
+
 README Game Instructions & Features
 
 THE GAMES:
@@ -17,14 +22,14 @@ The game ends if the player loses three lives or the game runs out of time.
 Fill in the pixels and figure out what the picture is!
 The pixel game has six levels with different difficulties.
 The labels indicate the number and length of the pixels in each row or column.
-For example, ‘11’ means that there is only one pixel grouping of length 11  in this row or column, while ‘3 3 1’ means that there are two pixel groupings of length 3 which are not next to each other (otherwise it will be one 6) and another one of length 1 in this row or column.
-The gird is initially empty.
-For the first time that the player touches the grid, it fills in the color and then switches to X on the second touch, then finally goes back to empty again.
+For example, ‘11’ means that there is only one pixel grouping of length 11  in this row or column (11 filled-in pixels in a row), while ‘3 3 1’ means that there are three filled-in pixels in a row and then another three filled-in pixels in a row which are not next to each other (otherwise it will be one 6) and another grouping of length 1 in this row or column.
+The grid is initially empty.
+For the first time that the player touches the grid, it fills in the color. On a second touch, the pixel turns into a state indicating you have decided this is NOT filled in for the final image, then a third touch brings it back to empty again.
 The stage will automatically end when you get the correct answer.
 
 3) Rotate Tile
 
-Rotate the tiles and let the water goes through!
+Rotate the tiles and let the water go through!
 The player needs to rotate the tiles and make a path from the top left corner to the bottom right corner.
 The stage will automatically end when you get the correct answer.
 
@@ -57,6 +62,6 @@ The sign in saves the user's credentials between the user closing/opening the ap
 5) Shop
 
 The shop contains "consumable items" that the user can purchase using in-game points, obtained from playing any of the three games.
-Each item is game specific, and is automatically "consumed" if it exists in the user's inventory the next time the user plays that game.
+Each item is game specific, some are used immediately while others must be used in-game from the bottom of the pause menu.
 Although multiples of the same item can be purchased, only one of them can be used at a time.
 Clicking on either the image or description of any item will automatically add the item to the shop inventory, which can contain a maximum of 20 items at any given time.

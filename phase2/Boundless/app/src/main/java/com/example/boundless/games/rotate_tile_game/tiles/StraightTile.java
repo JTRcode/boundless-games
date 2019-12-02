@@ -9,6 +9,9 @@ import com.example.boundless.R;
  * A tile that looks like an I.
  */
 class StraightTile extends Tile {
+    /**
+     * A new tile that looks like an I
+     */
     StraightTile() {
         super(new int[]{1, 0, 1, 0}, BitmapFactory.decodeResource(Panel.getPanel().getResources(), R.drawable.straight_pipe));
     }

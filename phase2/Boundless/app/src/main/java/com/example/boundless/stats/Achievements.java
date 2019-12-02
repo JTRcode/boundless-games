@@ -151,44 +151,36 @@ public class Achievements {
     }
 
     /**
+     * Tell if the user has tapped over 200 pixels
      *
      * @return boolean representing if user clicked more than 200 times in Pixel Game
      */
     public static boolean isNumPixelTapsTwoHundredCompleted() {
-        if (numPixelTaps >= 200) {
+        if (numPixelTaps >= 200)
             numPixelTapsTwoHundredCompleted = true;
-        }
-
         return numPixelTapsTwoHundredCompleted;
     }
 
     /**
-     *
      * @return boolean representing if user clicked more than 50 times in Rotate Tile Game
      */
     public static boolean isNumRotateTapsFiftyCompleted() {
-        if (numRotateTaps >= 50) {
+        if (numRotateTaps >= 50)
             numRotateTapsFiftyCompleted = true;
-        }
-
         return numRotateTapsFiftyCompleted;
     }
 
     /**
-     *
      * @return boolean representing if user clicked more than 200 times in Rotate Tile Game
      */
     public static boolean isNumRotateTapsTwoHundredCompleted() {
-        if (numRotateTaps >= 200) {
+        if (numRotateTaps >= 200)
             numRotateTapsTwoHundredCompleted = true;
-        }
-
         return numRotateTapsTwoHundredCompleted;
     }
 
 
     /**
-     *
      * @return boolean representing if user clicked more than 50 times in Pixel Game
      */
     public static boolean isNumPixelTapsFiftyCompleted() {

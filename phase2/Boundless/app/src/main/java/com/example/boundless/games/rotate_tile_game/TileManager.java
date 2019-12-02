@@ -40,12 +40,14 @@ public class TileManager extends GridManager<Tile, TileLevel> {
      * Handles creating and assigning currentLevel and userChoices
      */
     private void loadStage(DifficultyEnum difficulty, int gridLength) {
-        if (levelToPlay != BusinessContext.getNumOfLevels(GamesEnum.ROTATETILE) - 1) {
+        if (allStageList.size() > levelToPlay && allStageList.get(levelToPlay) != null) {
             currentLevel = allStageList.get(levelToPlay);
         } else {
+            for (int i = allStageList.size(); i < levelToPlay; i++)
+                allStageList.add(i, null);
             RotateStageBuilder builder = new RotateStageBuilder();
             currentLevel = builder.setDifficulty(difficulty).setGridLength(gridLength).makeLevel();
-            allStageList.add(currentLevel);
+            allStageList.add(levelToPlay, currentLevel);
         }
         userChoices = currentLevel.getTiles();
     }

@@ -6,6 +6,7 @@ import com.example.boundless.games.game_utilities.GameResources;
 
 import com.example.boundless.games.gpa_catcher_game.catchers.Catcher;
 import com.example.boundless.games.gpa_catcher_game.falling_objects.FallingObject;
+import com.example.boundless.stats.Achievements;
 
 /**
  * Creates new falling objects and updates them
@@ -24,8 +25,8 @@ public class GPAGameManager extends CatcherGameManager {
     }
 
     /**
-     * Returns the status
-     * @return
+     * Get the game status
+     * @return The status
      */
     @Override
     public GPAGameStatus getLevel() {
@@ -36,7 +37,7 @@ public class GPAGameManager extends CatcherGameManager {
      * Checks if the Falling object overlaps with the basket
      * @param catcher The basket
      * @param object  The object to check
-     * @return
+     * @return a boolean telling if they overlap
      */
     @Override
     public boolean overlap(Catcher catcher, FallingObject object){
@@ -48,7 +49,7 @@ public class GPAGameManager extends CatcherGameManager {
 
     /**
      * Returns text to be displayed for user when the game finishes
-     * @return
+     * @return The text to show if the game is over
      */
     @Override
     public String getGameOverText() {
@@ -62,10 +63,14 @@ public class GPAGameManager extends CatcherGameManager {
 
     /**
      * checks if either the time has run out or the player has lost all their life
-     * @return
+     * @return If the game is over
      */
     @Override
     public boolean checkGameOver() {
-        return (status.getTime() < 0 || status.getLives() <= 0);
+        if (status.getTime() < 0 || status.getLives() <= 0){
+            Achievements.gpaChecker(status.getGpa());
+            return true;
+        }
+        return false;
     }
 }
