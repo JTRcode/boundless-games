@@ -24,16 +24,22 @@ public enum TileEnum {
         }
     }
 
+    /**
+     * Converts a char to TileEnum
+     * @param tileType
+     * @return
+     */
     public static TileEnum valueOf(char tileType) {
         if (tileType == 'A')
             return getRandom();
         return (TileEnum) map.get(tileType);
     }
 
-    public char getValue() {
-        return value;
-    }
-
+    /**
+     * returns a random TileEnum
+     *
+     * @return
+     */
     public static TileEnum getRandom() {
         Random r = new Random();
         float xChance = r.nextFloat();

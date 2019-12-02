@@ -97,25 +97,60 @@ public final class GameResources {
 
     //region GPA catcher game
 
+    /**
+     * The pixel size of the basket
+     */
     public static final int GPAGAME_BASKET_SIZE = 250;
 
+    /**
+     * The number of lives the player starts with
+     */
     public static final int GPAGAME_STARTING_LIVES = 3;
 
+    /**
+     * The default falling speed of falling objects
+     */
     public static final int GPAGAME_DEFAULT_FALLING_SPEED = 15;
 
+    /**
+     * The Max Time allowed for the game
+     */
     public static final double GPAGAME_MAX_TIME = 1000;
 
+    /**
+     * the starting GPA for the user
+     */
     public static final double GPAGAME_STARTING_GPA = 2.5;
 
+    /**
+     * The pixel size of the heart icon
+     */
     public static final int HEART_SIZE = 60;
 
+    /**
+     * The default basket speed
+     */
     public static final int GPAGAME_DEFAULT_BASKET_SPEED = 15;
 
+    /**
+     * Default amount of time to decrease by, every time the panel updates
+     */
     public static final int GPAGAME_DEFAULT_TIME_DECREMENT = 1;
 
+    /**
+     * Maximum number of allowed falling objects allowed on the screen at once
+     */
     public static final int GPAGAME_MAX_NUMBER_OF_FALLING_OBJECTS = 10;
 
-    public static final int MAXIMUM_NUMBER_OF_LIVES = 4;
+    /**
+     * Maximum number of Lives the player can have
+     */
+    public static final int GPAGAME_MAXIMUM_NUMBER_OF_LIVES = 4;
+
+    /**
+     * Default amount of restored time
+     */
+    public static final int GPAGAME_INCREASE_TIME_BY = 100;
 
     /**
      * Gets the game over text for the GPA Game

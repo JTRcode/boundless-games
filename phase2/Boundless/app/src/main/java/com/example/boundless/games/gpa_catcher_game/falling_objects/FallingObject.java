@@ -14,7 +14,7 @@ public abstract class FallingObject {
     /**
      * The appearance of the object
      */
-    protected Bitmap appearance;
+    Bitmap appearance;
 
     private int coordX;
     private int coordY = 0;

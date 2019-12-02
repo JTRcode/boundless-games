@@ -21,6 +21,10 @@ class Bomb extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
+    /**
+     * when a bomb is caught the user loses a life
+     * @param status
+     */
     @Override
     public void caught(GPAGameStatus status) {
         if (status.getBombProtection()) return;
@@ -28,6 +32,10 @@ class Bomb extends FallingObject {
         status.addLives(-1);
     }
 
+    /**
+     * when a bomb is missed for the tenth time, the user will regain a life
+     * @param status
+     */
     @Override
     public void missed(GPAGameStatus status) {
         bombsAvoided++;

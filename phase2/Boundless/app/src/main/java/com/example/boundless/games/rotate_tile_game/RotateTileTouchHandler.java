@@ -32,6 +32,10 @@ public class RotateTileTouchHandler implements ITouchHandler {
         gridSize = manager.getGridSize();
     }
 
+    /**
+     *Calls other screenTouched method to rotate the tile bitmaps
+     * @param event The event to handle
+     */
     @Override
     public void screenTouched(MotionEvent event) {
         final int pointerCount = event.getPointerCount();
@@ -42,6 +46,11 @@ public class RotateTileTouchHandler implements ITouchHandler {
         }
     }
 
+    /**
+     * Rotates the tile bitmap associated to the coordinates x,y
+     * @param x
+     * @param y
+     */
     private void screenTouched(int x, int y) {
         int i = (y - this.startY) / width;
         int j = (x - this.startX) / width;

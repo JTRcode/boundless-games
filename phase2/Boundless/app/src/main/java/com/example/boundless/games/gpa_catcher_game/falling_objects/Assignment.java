@@ -20,6 +20,10 @@ class Assignment extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
+    /**
+     * When an Assignment is caught the GPA increases
+     * @param status
+     */
     @Override
     public void caught(GPAGameStatus status) {
         double caughtValue = 0.1;
@@ -29,6 +33,10 @@ class Assignment extends FallingObject {
         status.addGpa(caughtValue);
     }
 
+    /**
+     * When a Assignment is missed we decrease the life and GPA
+     * @param status
+     */
     @Override
     public void missed(GPAGameStatus status) {
         status.addGpa(-0.1);

@@ -3,7 +3,6 @@ package com.example.boundless.games;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
-import com.example.boundless.games.pixel_game.PixelDrawer;
 
 /**
  * A game where you use pixels to recreate an image.
@@ -30,10 +29,6 @@ public class PixelGameFacade extends Game {
     @Override
     boolean gameOver() {
         return pixelManager.checkGameOver();
-    }
-
-    public void setHint() {
-        PixelDrawer.showHint();
     }
 
     @Override

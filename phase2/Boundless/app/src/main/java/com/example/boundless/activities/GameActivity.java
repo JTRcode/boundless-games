@@ -91,7 +91,7 @@ public class GameActivity extends Activity implements Observer {
         panel.pause();
         findViewById(R.id.pauseLayout).setVisibility(View.VISIBLE);
         findViewById(R.id.pauseLayout).bringToFront();
-        HandleCustomization.pauseMusic(this);
+        HandleCustomization.pauseMusic();
     }
 
     /**
@@ -141,7 +141,7 @@ public class GameActivity extends Activity implements Observer {
                 intent.putExtra(IntentExtras.gameEnum, BusinessContext.getRegularLevel(currentGame));
             else intent.putExtra(IntentExtras.gameEnum, currentGame);
         }
-        HandleCustomization.pauseMusic(this);
+        HandleCustomization.pauseMusic();
         startActivity(intent);
     }
 
