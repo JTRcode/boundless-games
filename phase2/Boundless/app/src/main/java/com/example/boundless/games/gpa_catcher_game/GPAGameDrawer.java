@@ -36,6 +36,9 @@ public class GPAGameDrawer implements IGameDrawer {
         missingHeart = Bitmap.createScaledBitmap(missingHeart, GameResources.HEART_SIZE, GameResources.HEART_SIZE, true);
     }
 
+    /**
+     * Will draw everything for GPA Game onto the screen
+     */
     @Override
     public void draw() {
         drawTimeBar();

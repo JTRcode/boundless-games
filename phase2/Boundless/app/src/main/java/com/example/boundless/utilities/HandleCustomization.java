@@ -102,9 +102,8 @@ public class HandleCustomization {
     /**
      * Pause the music
      *
-     * @param context The current context
      */
-    public static void pauseMusic(Context context) {
+    public static void pauseMusic() {
         if (player != null) {
             player.stop();
             player.release();

@@ -17,7 +17,7 @@ public class GPAGameStatus {
     private Catcher catcher;
     private double time;
     private double gpa;
-    private static int maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
+    private static int maxLives = GameResources.GPAGAME_MAXIMUM_NUMBER_OF_LIVES;
     private static boolean bombProtection = false;
     private static int doubleGPA = 0;
 
@@ -195,7 +195,7 @@ public class GPAGameStatus {
     }
 
     private static void resetStatus() {
-        maxLives = GameResources.MAXIMUM_NUMBER_OF_LIVES;
+        maxLives = GameResources.GPAGAME_MAXIMUM_NUMBER_OF_LIVES;
         bombProtection = false;
         doubleGPA = 0;
     }

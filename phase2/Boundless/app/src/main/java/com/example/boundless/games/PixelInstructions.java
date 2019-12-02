@@ -1,6 +1,6 @@
 package com.example.boundless.games;
 
-public class PixelInstructions extends PixelGameFacade {
+class PixelInstructions extends PixelGameFacade {
 
     PixelInstructions(GameBuilder builder) {
         super(builder);

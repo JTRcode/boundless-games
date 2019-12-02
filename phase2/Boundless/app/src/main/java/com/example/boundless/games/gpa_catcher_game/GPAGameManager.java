@@ -23,11 +23,21 @@ public class GPAGameManager extends CatcherGameManager {
         status.getCatcher().setCoordY(Panel.SCREEN_HEIGHT - 250);
     }
 
+    /**
+     * Returns the status
+     * @return
+     */
     @Override
     public GPAGameStatus getLevel() {
         return status;
     }
 
+    /**
+     * Checks if the Falling object overlaps with the basket
+     * @param catcher The basket
+     * @param object  The object to check
+     * @return
+     */
     @Override
     public boolean overlap(Catcher catcher, FallingObject object){
         int middle = object.getCoordX() + object.getSize() / 2;
@@ -36,6 +46,10 @@ public class GPAGameManager extends CatcherGameManager {
         return (middle >= catcher.getCoordX() && middle <= catcher.getCoordX() + catcher.getSize() && bottom >= catcher.getCoordY());
     }
 
+    /**
+     * Returns text to be displayed for user when the game finishes
+     * @return
+     */
     @Override
     public String getGameOverText() {
         StringBuilder text = new StringBuilder(GameResources.getGPAGameOver());
@@ -46,6 +60,10 @@ public class GPAGameManager extends CatcherGameManager {
         return text.toString();
     }
 
+    /**
+     * checks if either the time has run out or the player has lost all their life
+     * @return
+     */
     @Override
     public boolean checkGameOver() {
         return (status.getTime() < 0 || status.getLives() <= 0);

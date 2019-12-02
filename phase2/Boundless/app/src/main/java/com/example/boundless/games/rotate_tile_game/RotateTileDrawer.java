@@ -38,6 +38,9 @@ public class RotateTileDrawer implements IGameDrawer {
         startEndPipe.setTile(Rotation.EAST);
     }
 
+    /**
+     * Draws the Tiles to the screen
+     */
     @Override
     public void draw() {
         DrawUtility.drawBitmap(startEndPipe.rotatedImage, startX - width, startY);

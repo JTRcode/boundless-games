@@ -3,7 +3,6 @@ package com.example.boundless.games;
 import android.view.MotionEvent;
 
 import com.example.boundless.games.game_utilities.*;
-import com.example.boundless.games.rotate_tile_game.RotateTileTouchHandler;
 import com.example.boundless.stats.Statistics;
 
 /**
@@ -34,10 +33,6 @@ public class RotateTileGameFacade extends Game {
         if (gameIsOver) {
             Statistics.endTimeByGame(GamesEnum.ROTATETILE);}
         return manager.checkGameOver();
-    }
-
-    public void setHint() {
-        RotateTileTouchHandler.setFreeTile('X');
     }
 
     @Override

@@ -20,11 +20,19 @@ class Sleep extends FallingObject {
         appearance = Bitmap.createScaledBitmap(appearance, getSize(), getSize(), true);
     }
 
+    /**
+     * When caught, user will gain another life
+     * @param status
+     */
     @Override
     public void caught(GPAGameStatus status) {
         status.addLives(1);
     }
 
+    /**
+     * when missed nothing will happen
+     * @param status
+     */
     @Override
     public void missed(GPAGameStatus status) {
         //Nothing happens when sleep is missed, although maybe it should...
