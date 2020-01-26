@@ -1,0 +1,37 @@
+Dear group_0564
+
+This semester, we talked about MVP, the Model-View-Presenter architecture. It has many advantages, particularly when working with Android. As you can see from your project, your activity classes have methods that are specific to Android. If you encapsulate the rest of your code sufficiently, it is possible to port it to another platform simply by creating a new UI (for example, a website).
+
+Encapsulation can take on many forms. You can package your View classes together. You can ensure that your dependencies go one-way, towards the inner more abstract layers. You can incorporate SOLID principles as much as possible and design patterns where they make sense.
+Here is feedback that is specific to your project:
+
+You made good use of…
++ Interfaces (iTouchHandler)
++ Single Responsibility Principle (Pixels)
++ Abstract classes and inheritance (ShopTypeTemplate)
++ Factory pattern(Tile)
++ Builder pattern (RotateStageBuilder)
++ MVP (GPACatcher)
++ Feedback from the phase 1
++ Good documentation of the project and clean UML diagrams
+ 
+The user sees…
++ Tutorials and instructions for the levels
++ Achievements
++ Shop and inventory
++ Stats for all games
++ Customizable theme and music
++ Option to buy items from the shop from the points
++ Option to pause and use the items bought from the shop
++ Swipe functionality in the second level.
+
+A good next step would be to…
++ Add javadoc that is missing for some variables
++ Reconsider the package naming (e.g. GPACatcher facade should be in gpa_catcher package, or rename the package to something more fitting)
++ Overall, excellent work.
+
+We hope that you enjoyed working on this project and found it a useful learning experience.
+
+Cheers,
+The CSC207 Instructional Team
+
